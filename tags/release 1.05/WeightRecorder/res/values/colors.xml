@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="skyblue">#00145E9D</color>
+    <color name="translucentred">#40FF0000</color>
+    <drawable name="skyblue">#40145E9D</drawable>
+    <drawable name="translucentred">#40FF0000</drawable>
+</resources>

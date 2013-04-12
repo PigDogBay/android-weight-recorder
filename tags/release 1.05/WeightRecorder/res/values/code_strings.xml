@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="code_pref_weight_units_key">weight_units_pref_key</string>
+    <string name="code_pref_length_units_key">length_units_pref_key</string>
+    <string name="code_pref_height_key">height_pref_key</string>
+    <string name="code_pref_welcome_shown_key">welcome_screen_shown_pref_key</string>
+    <string name="code_pref_last_weight_entered_key">last_weight_entered_key</string>
+    <string name="code_pref_show_trendline_key">show_trendline_key</string>
+</resources>

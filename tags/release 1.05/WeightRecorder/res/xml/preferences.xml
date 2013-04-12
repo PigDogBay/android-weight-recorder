@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:summary="@string/pref_measurement_summary"
+        android:title="@string/pref_measurement_title" >
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/weight_units"
+            android:entryValues="@array/weight_units_values"
+            android:key="@string/code_pref_weight_units_key"
+            android:summary="@string/pref_weight_units_summary"
+            android:title="@string/pref_weight_units_title" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/length_units"
+            android:entryValues="@array/length_units_values"
+            android:key="@string/code_pref_length_units_key"
+            android:summary="@string/pref_length_units_summary"
+            android:title="@string/pref_length_units_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:summary="@string/pref_bmi_summary"
+        android:title="@string/pref_bmi_title" >
+        <EditTextPreference 
+            android:key="@string/code_pref_height_key"
+            android:summary="@string/pref_bmi_height_summary"
+            android:title="@string/pref_bmi_height_title"
+            android:numeric="decimal"
+            android:defaultValue="1.72"
+            android:dialogTitle="@string/pref_bmi_dialog_height_title"/>
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:summary="@string/pref_chart_summary"
+        android:title="@string/pref_chart_title"
+        >
+        <CheckBoxPreference 
+            android:summary="@string/pref_chart_show_trendline_summary"
+            android:title="@string/pref_chart_show_trendline_title"
+            android:key="@string/code_pref_show_trendline_key"
+            android:defaultValue="False"
+            />
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>
