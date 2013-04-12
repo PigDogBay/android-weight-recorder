@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">WeightRecorder</string>
+    <string name="email">pigdogbay@yahoo.co.uk</string>
+    <string name="website">http://www.pigdogbay.com</string>
+    <string name="version">1.05</string>
+    <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
+    <string name="twitter">http://www.twitter.com/pigdogbay</string>
+    <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
+    <string name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
+    <string name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
+    <string name="about_btn_rate">Rate this app</string>
+    <string name="about_version">Version:</string>
+    <string name="about_email">Email:</string>
+    <string name="about_web">Web:</string>
+    <string name="about_email_subject">Weight Recorder Feedback</string>
+    <string name="about_email_content">Hi Pig Dog Bay,</string>
+    <string name="about_no_market_app">Unable to find market app</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Weight Recorder</string>
+    <string name="title_activity_chart">Weight Recorder Chart</string>
+    <string name="title_activity_list">Weight Recorder Readings</string>
+    <string name="title_activity_add">New Weight</string>
+    <string name="title_activity_edit">Edit Weight</string>
+    <string name="title_activity_import">Import Readings</string>
+    <string name="title_activity_report">Weight Recorder Report</string>
+    <string name="title_activity_about">About Weight Recorder</string>
+    <string name="title_activity_help">Weight Recorder Help</string>
+    <string name="chart_notenoughdata_title">Not Enough Readings</string>
+    <string name="chart_notenoughdata_message">Since there are less than 3 readings, the chart will show example data. Press the menu key to select a 30, 60 or 90 day view. </string>
+    <string name="report_notenoughdata_title">Not Enough Readings</string>
+    <string name="report_notenoughdata_message">Since there are no readings the report will show example data.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="main_btn_enter">New</string>
+    <string name="main_btn_edit">Edit</string>
+    <string name="main_btn_chart">Chart</string>
+    <string name="main_btn_report">Report</string>
+    <string name="main_btn_settings">Settings</string>
+    <string name="main_btn_help">Help</string>
+    <string name="main_welcome_title">Welcome</string>
+    <string name="main_welcome_msg">
+        Thankyou for trying Weight Recorder,
+        the scientific way to lose weight.\n\n
+    </string>
+    <string name="pref_measurement_title">Measurement Units</string>
+    <string name="pref_measurement_summary">The weight and length units used within the app</string>
+    <string name="pref_weight_units_title">Weight Units</string>
+    <string name="pref_weight_units_summary">Select the weight units to use within the app</string>
+    <string name="pref_length_units_title">Length Units</string>
+    <string name="pref_length_units_summary">Select the length units for your height setting</string>
+    <string name="pref_bmi_title">Body Mass Index</string>
+    <string name="pref_bmi_summary">Information to calculate your BMI</string>
+    <string name="pref_bmi_dialog_height_title">Enter Your Height</string>
+    <string name="pref_bmi_height_title">Your Height</string>
+    <string name="pref_bmi_height_summary">Use the above settings to select length units.</string>
+    <string name="pref_chart_title">Chart Settings</string>
+    <string name="pref_chart_summary">Display settings for the chart screen</string>
+    <string name="pref_chart_show_trendline_title">Show Trend Line</string>
+    <string name="pref_chart_show_trendline_summary">Display the best line of fit to see your weight trend</string>
+    <string name="edit_weight_hint">Enter weight</string>
+    <string name="edit_comment_hint">Enter comment</string>
+    <string name="edit_weight_error">Please enter weight</string>
+    <string name="edit_no_speech">Your device does not support speech to text</string>
+    <string name="edit_speak_prompt_weight">Speak your weight</string>
+    <string name="edit_speak_prompt_comment">Speak your comment</string>
+    <string name="addreading_added">Reading Added</string>
+    <string name="addreading_add_btn">Add</string>
+    <string name="editreading_updated">Reading Updated</string>
+    <string name="editreading_deleted">Reading Deleted</string>
+    <string name="editreading_update_btn">Update</string>
+    <string name="editreading_delete_btn">Delete</string>
+    <string name="editreading_delete_dialog_title">Confirm</string>
+    <string name="editreading_delete_dialog_message">Are you sure you wish to delete all the readings?</string>
+    <string name="menu_main_about">About</string>
+    <string name="menu_chart_30">30 Days</string>
+    <string name="menu_chart_60">60 Days</string>
+    <string name="menu_chart_90">90 Days</string>
+    <string name="menu_readings_list_import">Import Readings</string>
+    <string name="menu_readings_list_export">Email Readings</string>
+    <string name="menu_readings_list_delete_all">Delete All</string>
+    <string name="menu_report_export">Email Report</string>
+    <string name="bmi_class_severely_underweight">Severely Underweight</string>
+    <string name="bmi_class_underweight">Underweight</string>
+    <string name="bmi_class_normal">Normal</string>
+    <string name="bmi_class_overweight">Overweight</string>
+    <string name="bmi_class_obese1">Obese Class I</string>
+    <string name="bmi_class_obese2">Obese Class II</string>
+    <string name="bmi_class_obese3">Obese Class III</string>
+    <string name="readings_no_readings_export">No readings to export</string>
+    <string name="readings_export_error">Unable to export readings</string>
+    <string name="report_email_subject">Weight Recorder Report</string>
+    <string name="report_per_no_readings">No readings available</string>
+    <string name="report_per_week">per week</string>
+    <string name="report_per_min_weight">Min weight</string>
+    <string name="report_per_max_weight">Max weight</string>
+    <string name="report_per_average_weight">Average</string>
+    <string name="report_per_average_bmi">Average BMI</string>
+    <string name="report_per_trend">Trend</string>
+    <string name="report_negative_trend">Losing</string>
+    <string name="report_positive_trend">Gaining</string>
+    <string name="import_import_button">Import</string>
+    <string name="import_hint">Paste readings here</string>
+    <string name="import_no_text">Nothing to import</string>
+    <string name="import_readings_added">\u0020Readings Added</string>
+    <string name="import_dialog_title">Import Help</string>
+    <string name="import_dialog_message">Copy and paste your weight data on to the form. Please ensure that the data is correctly formatted. See the help screen for further details.</string>
+    <string name="help_html">
+        <![CDATA[
+        <b>Introduction</b><br/><br/>
+        Use Weight Recorder to track your daily weight measurements. Monitor your diet\'s progress as you aim towards your goal.<br/>
+        <br/><br/><b>Settings</b><br/><br/>
+        Before starting enter the weight and length units you wish to use. Then enter your height, so that your Body Mass Index can be calculated.<br/>
+        <br/><br/><b>New</b><br/><br/>
+        Enter new daily readings here, the date will already be set and you can also add comments to the new weight reading. You can change the date so that past weight measurements can be entered.
+        <br/><br/>To enter your weight press the button displaying the weight. You can also use the -/+ buttons to adjust the weight.
+        <br/><br/><br/><b>Edit</b><br/><br/>
+        Your readings are all displayed in a list, press a reading to edit or delete it. 
+        <br/><br/>Pressing the menu key shows options for deleting all readings, importing and exporting data, see below for further details.<br/>
+        <br/><br/><b>Chart</b><br/><br/>
+        The chart displays weight versus time. You can drag and zoom the chart using touch. Press the menu key to select the time period, last 30 days, last 60 days or the last 90 days.<br/>
+        <br/>On the settings menu you can select whether to show a trend line. The line shows the best line of fit through the selected range of data points.
+        <br/><br/><b>Report</b><br/><br/>
+        Displays your latest BMI, weight statistics and trends. Negative trends mean that you are losing weight, positive trends mean you are gaining weight. There is a menu option to export the report via email.<br/>
+        <br/><br/><b>Advanced Topics</b><br/><br/>
+        You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values format for compatibility with spreadsheets. 
+        <br/><br/>When importing data, please ensure the format of the data is similar to export format:
+        <br/><br/> 92.50,2013-01-18 16:24:35,example
+        <br/><br/> Weight is 92.50kg, date is Jan 18th 2013, time is 4:24:35pm and the comment is example.
+        <br/><br/>*Please note that weights are expressed in kilograms, to convert to pounds multiply by 2.20462.
+        ]]>
+    </string>
+    <string name="menu_help_text_small">Text Small</string>
+    <string name="menu_help_text_medium">Text Medium</string>
+    <string name="menu_help_text_large">Text Large</string>
+</resources>
