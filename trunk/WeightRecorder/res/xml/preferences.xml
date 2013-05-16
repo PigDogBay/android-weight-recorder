@@ -29,7 +29,14 @@
             android:numeric="decimal"
             android:defaultValue="1.72"
             android:dialogTitle="@string/pref_bmi_dialog_height_title"/>
-    </PreferenceCategory>
+        <EditTextPreference 
+            android:key="@string/code_pref_target_weight_key"
+            android:summary="@string/pref_bmi_target_weight_summary"
+            android:title="@string/pref_bmi_target_weight_title"
+            android:numeric="decimal"
+            android:defaultValue="75.0"
+            android:dialogTitle="@string/pref_bmi_dialog_target_weight_title"/>
+        </PreferenceCategory>
     <PreferenceCategory 
         android:summary="@string/pref_chart_summary"
         android:title="@string/pref_chart_title"
@@ -38,6 +45,12 @@
             android:summary="@string/pref_chart_show_trendline_summary"
             android:title="@string/pref_chart_show_trendline_title"
             android:key="@string/code_pref_show_trendline_key"
+            android:defaultValue="False"
+            />
+        <CheckBoxPreference 
+            android:summary="@string/pref_chart_show_targetline_summary"
+            android:title="@string/pref_chart_show_targetline_title"
+            android:key="@string/code_pref_show_targetline_key"
             android:defaultValue="False"
             />
         
