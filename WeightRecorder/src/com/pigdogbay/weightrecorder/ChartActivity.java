@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class ChartActivity extends Activity {
 	private static final int MINIMUM_READINGS = 3;
 	ReadingsChart _Chart;
-	static int _Period = 30;
+	static int _Period = 0;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,29 +63,26 @@ public class ChartActivity extends Activity {
 		ViewGroup layout = (ViewGroup) findViewById(R.id.ChartLayout);
 		switch (item.getItemId())
 		{
+		case (R.id.menu_chart_all):
+			_Period = 0;
+			break;
 		case (R.id.menu_chart_30_days):
 			_Period = 30;
-			layout.removeAllViews();
-			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 			break;
 		case (R.id.menu_chart_60_days):
 			_Period = 60;
-			layout.removeAllViews();
-			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 			break;
 		case (R.id.menu_chart_90_days):
 			_Period = 90;
-			layout.removeAllViews();
-			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 			break;
 		case (R.id.menu_chart_one_year):
 			_Period = 365;
-			layout.removeAllViews();
-			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 			break;
 		default:
 			return false;
 		}
+		layout.removeAllViews();
+		layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 		return true;
 	}
 
