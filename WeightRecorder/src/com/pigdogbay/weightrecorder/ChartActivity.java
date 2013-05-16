@@ -115,8 +115,6 @@ public class ChartActivity extends Activity {
 		_Chart.setShowTargetLine(show);
 		double targetWeight = Double.parseDouble(sharedPrefs.getString(
 				getString(R.string.code_pref_target_weight_key), "75.0"));
-		targetWeight = MainModel.getInstance().getWeightConverter()
-				.convert(targetWeight);
 		_Chart.setTargetWeight(targetWeight);
 	}
 
