@@ -95,7 +95,7 @@ public class ReadingsChart
 		}
 		if (_ShowTargetLine)
 		{
-			addTargetLine(renderer, dataset, query, period);
+			addTargetLine(renderer, dataset);
 		}
 
 		fitDisplay(context, renderer);
@@ -110,8 +110,12 @@ public class ReadingsChart
 		if (count > 2)
 		{
 			Date endTime = new Date();
-			Date startTime = new Date(endTime.getTime() - period * 1000L * 60L
-					* 60L * 24L);
+			Date startTime = new Date(endTime.getTime() - period * 1000L * 60L* 60L * 24L);
+			if (period==0)
+			{
+				//use first reading
+				startTime = query.getFirstReading().getDate();
+			}
 			Query matches = query.getReadingsBetweenDates(startTime, endTime);
 
 			double min = matches.getMinWeight().getWeight();
@@ -167,8 +171,12 @@ public class ReadingsChart
 			XYMultipleSeriesDataset dataset, Query query, long period)
 	{
 
-		long startTime = new Date().getTime() - period * 1000L * 60L * 60L
-				* 24L;
+		long startTime = new Date().getTime() - period * 1000L * 60L * 60L* 24L;
+		if (period==0)
+		{
+			//use first reading
+			startTime = query.getFirstReading().getDate().getTime();
+		}
 		BestLineFit blf = new BestLineFit();
 		Query queryPeriod = query.getReadingsBetweenDates(new Date(startTime),
 				new Date());
@@ -206,8 +214,7 @@ public class ReadingsChart
 		dataset.addSeries(trendSeries);
 
 	}
-	private void addTargetLine(XYMultipleSeriesRenderer renderer,
-			XYMultipleSeriesDataset dataset, Query query, long period)
+	private void addTargetLine(XYMultipleSeriesRenderer renderer, XYMultipleSeriesDataset dataset)
 	{
 		Log.v("WeightRecorder","adding target line");
 		XYSeriesRenderer r = new XYSeriesRenderer();

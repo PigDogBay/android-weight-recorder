@@ -82,6 +82,15 @@ public class Query
 		return avg/((double)count);
 	}
 	
+	public Reading getFirstReading()
+	{
+		int count = _Readings.size();
+		if (count==0)
+		{
+			return Reading.NullReading;
+		}
+		return _Readings.get(0);
+	}
 	public Reading getLatestReading()
 	{
 		int count = _Readings.size();
