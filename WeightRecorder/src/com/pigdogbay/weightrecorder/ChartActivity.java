@@ -78,6 +78,11 @@ public class ChartActivity extends Activity {
 			layout.removeAllViews();
 			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 			break;
+		case (R.id.menu_chart_one_year):
+			_Period = 365;
+			layout.removeAllViews();
+			layout.addView(_Chart.CreateView(getReadings(), this, _Period));
+			break;
 		default:
 			return false;
 		}

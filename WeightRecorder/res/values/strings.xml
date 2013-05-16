@@ -80,6 +80,7 @@
     <string name="menu_chart_30">30 Days</string>
     <string name="menu_chart_60">60 Days</string>
     <string name="menu_chart_90">90 Days</string>
+    <string name="menu_chart_year">One Year</string>
     <string name="menu_readings_list_import">Import Readings</string>
     <string name="menu_readings_list_export">Email Readings</string>
     <string name="menu_readings_list_delete_all">Delete All</string>
