@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,6 @@ import android.util.Log;
 
 public class ReadingsChart
 {
-	public static final int FUTURE_EXTRAPOLATION_IN_DAYS = 45;
 	String _YAxisTitle = "Weight";
 	String _XAxisTitle = "Date";
 	boolean _ShowTrendLine = false;
@@ -169,7 +169,6 @@ public class ReadingsChart
 
 		long startTime = new Date().getTime() - period * 1000L * 60L * 60L
 				* 24L;
-		long endTime = new Date().getTime() + FUTURE_EXTRAPOLATION_IN_DAYS * 1000L * 60L * 60L * 24L;
 		BestLineFit blf = new BestLineFit();
 		Query queryPeriod = query.getReadingsBetweenDates(new Date(startTime),
 				new Date());
@@ -184,7 +183,6 @@ public class ReadingsChart
 		double slope = blf.getSlope();
 		double intercept = blf.getIntercept();
 		double startWeight = ((double) startTime) * slope + intercept;
-		double endWeight = ((double) endTime) * slope + intercept;
 
 		XYSeriesRenderer r = new XYSeriesRenderer();
 		r.setColor(Color.RED);
@@ -195,7 +193,16 @@ public class ReadingsChart
 
 		TimeSeries trendSeries = new TimeSeries("trend");
 		trendSeries.add(new Date(startTime), startWeight);
-		trendSeries.add(new Date(endTime), endWeight);
+		//Project forward 1 year
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		for (int i=0;i<12; i++)
+		{
+			Date date = cal.getTime();
+			double weight = ((double)date.getTime())*slope +intercept;
+			trendSeries.add(date,weight);
+			cal.add(Calendar.MONTH,1);
+		}		
 		dataset.addSeries(trendSeries);
 
 	}
@@ -204,18 +211,23 @@ public class ReadingsChart
 	{
 		Log.v("WeightRecorder","adding target line");
 		XYSeriesRenderer r = new XYSeriesRenderer();
-		r.setColor(Color.YELLOW);
+		r.setColor(Color.CYAN);
 		r.setPointStyle(PointStyle.SQUARE);
 		r.setFillPoints(true);
 		r.setLineWidth(1.8f);
 		renderer.addSeriesRenderer(r);
 
 		TimeSeries trendSeries = new TimeSeries("target");
-		long startTime = new Date().getTime() - period * 1000L * 60L * 60L
-				* 24L;
-		long endTime = new Date().getTime() + FUTURE_EXTRAPOLATION_IN_DAYS * 1000L * 60L * 60L * 24L;
-		trendSeries.add(new Date(startTime), _TargetWeight);
-		trendSeries.add(new Date(endTime), _TargetWeight);
+		//Display line one year back and forward
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		cal.roll(Calendar.YEAR, false);
+		for (int i=0;i<24; i++)
+		{
+			trendSeries.add(cal.getTime(), _TargetWeight);
+			cal.add(Calendar.MONTH,1);
+		}
+		
 		dataset.addSeries(trendSeries);		
 	}
 	
