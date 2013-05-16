@@ -21,13 +21,25 @@ import android.util.Log;
 
 public class ReadingsChart
 {
+	public static final int FUTURE_EXTRAPOLATION_IN_DAYS = 45;
 	String _YAxisTitle = "Weight";
 	String _XAxisTitle = "Date";
 	boolean _ShowTrendLine = false;
+	boolean _ShowTargetLine = false;
+	double _TargetWeight = 75.0D;
+	
 
 	public void setShowTrendLine(boolean show)
 	{
 		_ShowTrendLine = show;
+	}
+	public void setShowTargetLine(boolean show)
+	{
+		_ShowTargetLine = show;
+	}
+	public void setTargetWeight(double weight)
+	{
+		_TargetWeight = weight;
 	}
 
 	public void setXAxisTitle(String title)
@@ -80,6 +92,10 @@ public class ReadingsChart
 		if (_ShowTrendLine)
 		{
 			addTrendLine(renderer, dataset, query, period);
+		}
+		if (_ShowTargetLine)
+		{
+			addTargetLine(renderer, dataset, query, period);
 		}
 
 		fitDisplay(context, renderer);
@@ -153,7 +169,7 @@ public class ReadingsChart
 
 		long startTime = new Date().getTime() - period * 1000L * 60L * 60L
 				* 24L;
-		long endTime = new Date().getTime() + 7 * 1000L * 60L * 60L * 24L;
+		long endTime = new Date().getTime() + FUTURE_EXTRAPOLATION_IN_DAYS * 1000L * 60L * 60L * 24L;
 		BestLineFit blf = new BestLineFit();
 		Query queryPeriod = query.getReadingsBetweenDates(new Date(startTime),
 				new Date());
@@ -183,5 +199,24 @@ public class ReadingsChart
 		dataset.addSeries(trendSeries);
 
 	}
+	private void addTargetLine(XYMultipleSeriesRenderer renderer,
+			XYMultipleSeriesDataset dataset, Query query, long period)
+	{
+		Log.v("WeightRecorder","adding target line");
+		XYSeriesRenderer r = new XYSeriesRenderer();
+		r.setColor(Color.YELLOW);
+		r.setPointStyle(PointStyle.SQUARE);
+		r.setFillPoints(true);
+		r.setLineWidth(1.8f);
+		renderer.addSeriesRenderer(r);
 
+		TimeSeries trendSeries = new TimeSeries("target");
+		long startTime = new Date().getTime() - period * 1000L * 60L * 60L
+				* 24L;
+		long endTime = new Date().getTime() + FUTURE_EXTRAPOLATION_IN_DAYS * 1000L * 60L * 60L * 24L;
+		trendSeries.add(new Date(startTime), _TargetWeight);
+		trendSeries.add(new Date(endTime), _TargetWeight);
+		dataset.addSeries(trendSeries);		
+	}
+	
 }
