@@ -33,6 +33,9 @@ public class HelpActivity extends Activity
 		TextView textView = (TextView) findViewById(R.id.HelpTextBox);
 		switch (item.getItemId())
 		{
+		case (R.id.menu_help_home):
+			finish();
+			break;
 		case (R.id.menu_help_text_small):
 			_TextStyleID = android.R.style.TextAppearance_Small;
 			break;

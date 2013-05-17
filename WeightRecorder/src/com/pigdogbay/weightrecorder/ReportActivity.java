@@ -66,6 +66,9 @@ public class ReportActivity extends Activity
 	{
 		switch (item.getItemId())
 		{
+		case (R.id.menu_report_home):
+			finish();
+			break;
 		case (R.id.menu_report_export):
 			emailReport();
 			break;

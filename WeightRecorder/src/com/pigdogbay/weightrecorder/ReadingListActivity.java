@@ -68,6 +68,9 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 	{
 		switch (item.getItemId())
 		{
+		case (R.id.menu_readings_list_home):
+			finish();
+			break;
 		case (R.id.menu_readings_list_delete_all):
 			deleteAllMenuOption();
 			break;

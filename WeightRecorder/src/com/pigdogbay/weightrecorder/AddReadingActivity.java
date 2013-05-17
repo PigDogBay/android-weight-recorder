@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -28,6 +30,25 @@ public class AddReadingActivity extends FragmentActivity
 				});
 		MainModel.getInstance().initialize(getApplication());
 	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_add_reading, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+		case (R.id.menu_add_reading_home):
+			finish();
+			break;
+		default:
+			return false;
+		}
+		return true;
+	}	
 
 	private void onEnterClick()
 	{
