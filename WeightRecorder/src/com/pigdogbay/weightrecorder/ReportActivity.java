@@ -179,16 +179,22 @@ public class ReportActivity extends Activity {
 		builder.append(prefix);
 		builder.append(weightToString(trend) + " "
 				+ getString(R.string.report_per_week));
-		long estimatedGoalDateMillis = (long) getTrendDate(bestLineFit,
-				_TargetWeight);
-		long timeNowMillis = Calendar.getInstance().getTimeInMillis();
-		if (estimatedGoalDateMillis > timeNowMillis) {
-			builder.append("<br/>Goal Date\t");
-			builder.append(getTabbing());
-			String dateText = DateUtils.formatDateTime(this,
-					estimatedGoalDateMillis, DateUtils.FORMAT_SHOW_DATE
-							| DateUtils.FORMAT_SHOW_YEAR);
-			builder.append(dateText);
+		try {
+			double targetWeightInKg = MainModel.getInstance()
+					.getWeightConverter().inverse(_TargetWeight);
+			long estimatedGoalDateMillis = getDateInMillis(bestLineFit,
+					targetWeightInKg);
+			long timeNowMillis = Calendar.getInstance().getTimeInMillis();
+			if (estimatedGoalDateMillis > timeNowMillis) {
+				builder.append("<br/>Goal Date\t");
+				builder.append(getTabbing());
+				String dateText = DateUtils.formatDateTime(this,
+						estimatedGoalDateMillis, DateUtils.FORMAT_SHOW_DATE
+								| DateUtils.FORMAT_SHOW_YEAR);
+				builder.append(dateText);
+			}
+		}
+		catch (Exception e) {
 		}
 		return builder.toString();
 
@@ -212,14 +218,12 @@ public class ReportActivity extends Activity {
 		return slope;
 	}
 
-	private double getTrendDate(BestLineFit blf, double weight) {
-		// y=mx+c
-		// x = (y-c)/m
-		double millis = (weight - blf.getIntercept()) / blf.getSlope();
+	private long getDateInMillis(BestLineFit blf, double weight) {
+		double millis = blf.calculateX(weight);
 		if (millis < 0 || Double.isNaN(millis) || Double.isInfinite(millis)) {
 			millis = 0;
 		}
-		return millis;
+		return (long) millis;
 	}
 
 	private double calculateBMI(double weight) {
