@@ -39,8 +39,7 @@
     <string name="main_btn_help">Help</string>
     <string name="main_welcome_title">Welcome</string>
     <string name="main_welcome_msg">
-        Thankyou for trying Weight Recorder,
-        the scientific way to lose weight.\n\n
+        Thankyou for trying Weight Recorder.\n\nStart by entering your weight by pressing the New button.\nPress the back button to return to the home screen.\nRemember to press the menu key to find further features.\n
     </string>
     <string name="pref_measurement_title">Measurement Units</string>
     <string name="pref_measurement_summary">The weight and length units used within the app</string>
