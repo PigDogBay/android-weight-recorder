@@ -79,6 +79,16 @@ public class MainModel
 		}
 	}
 	
+	public double calculateBMI(double weight)
+	{
+		double bmi = _Height;
+		weight = _WeightConverter.inverse(weight);
+		if (_Height!=0)
+		{
+			bmi = weight/(bmi*bmi);
+		}
+		return bmi;
+	}
 	public double calculateBMI(Reading reading)
 	{
 		double bmi = _Height;
