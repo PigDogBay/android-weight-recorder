@@ -85,17 +85,18 @@ public final class R {
         public static final int menu_chart_all=0x7f0a002c;
         public static final int menu_chart_home=0x7f0a002b;
         public static final int menu_chart_one_year=0x7f0a0030;
-        public static final int menu_help_home=0x7f0a0033;
-        public static final int menu_help_text_large=0x7f0a0036;
-        public static final int menu_help_text_medium=0x7f0a0035;
-        public static final int menu_help_text_small=0x7f0a0034;
+        public static final int menu_edit_reading_home=0x7f0a0033;
+        public static final int menu_help_home=0x7f0a0034;
+        public static final int menu_help_text_large=0x7f0a0037;
+        public static final int menu_help_text_medium=0x7f0a0036;
+        public static final int menu_help_text_small=0x7f0a0035;
         public static final int menu_main_about=0x7f0a0031;
-        public static final int menu_readings_list_delete_all=0x7f0a003a;
-        public static final int menu_readings_list_export=0x7f0a0038;
-        public static final int menu_readings_list_home=0x7f0a0037;
-        public static final int menu_readings_list_import=0x7f0a0039;
-        public static final int menu_report_export=0x7f0a003c;
-        public static final int menu_report_home=0x7f0a003b;
+        public static final int menu_readings_list_delete_all=0x7f0a003b;
+        public static final int menu_readings_list_export=0x7f0a0039;
+        public static final int menu_readings_list_home=0x7f0a0038;
+        public static final int menu_readings_list_import=0x7f0a003a;
+        public static final int menu_report_export=0x7f0a003d;
+        public static final int menu_report_home=0x7f0a003c;
         public static final int pigdogbayImg=0x7f0a000d;
         public static final int textView1=0x7f0a0001;
         public static final int textView2=0x7f0a0002;
@@ -122,9 +123,10 @@ public final class R {
         public static final int activity_chart=0x7f090000;
         public static final int activity_main=0x7f090001;
         public static final int menu_add_reading=0x7f090002;
-        public static final int menu_help=0x7f090003;
-        public static final int menu_readings_list=0x7f090004;
-        public static final int menu_report=0x7f090005;
+        public static final int menu_edit_reading=0x7f090003;
+        public static final int menu_help=0x7f090004;
+        public static final int menu_readings_list=0x7f090005;
+        public static final int menu_report=0x7f090006;
     }
     public static final class string {
         public static final int about_btn_rate=0x7f050014;
