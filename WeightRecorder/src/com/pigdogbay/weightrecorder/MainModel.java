@@ -1,6 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.app.Application;
 
@@ -39,6 +40,14 @@ public class MainModel
 			_DatabaseHelper = new DatabaseHelper(
 					application.getApplicationContext());
 		}
+	}
+	public List<Reading> getReverseOrderedReadings(){
+		List<Reading> readings = _DatabaseHelper.getAllReadings();
+		Query query = new Query(readings);
+		query.sortByDate();
+		readings = query.getReadings();
+		Collections.reverse(readings);
+		return readings;
 	}
 	/*
 	 * @param height the height in metres

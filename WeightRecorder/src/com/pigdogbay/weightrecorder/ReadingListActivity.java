@@ -27,7 +27,7 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 	public void onCreate(Bundle savedInstanceState) 
 	{
         super.onCreate(savedInstanceState);
-        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, getReadings());
+        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, MainModel.getInstance().getReverseOrderedReadings());
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
 		MainModel.getInstance().initialize(getApplication());
@@ -75,12 +75,10 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 			deleteAllMenuOption();
 			break;
 		case (R.id.menu_readings_list_export):
-			export();
+			ActivitiesHelper.startExportActivity(this);
 			break;
 		case (R.id.menu_readings_list_import):
-			Intent intent = new Intent(this,
-					ImportActivity.class);
-			startActivity(intent);
+			ActivitiesHelper.startImportActivity(this);
 			break;
 		default:
 			return false;
@@ -91,7 +89,7 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 
 	public void onDataChanged()
 	{
-		_ReadingsArrayAdapter.setReadings(getReadings());
+		_ReadingsArrayAdapter.setReadings(MainModel.getInstance().getReverseOrderedReadings());
 		_ReadingsArrayAdapter.notifyDataSetChanged();
 	}
 	
@@ -127,38 +125,6 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 	{
 		MainModel.getDatabase().deleteAllReadings();
 		onDataChanged();
-	}
-	private void export()
-	{
-		try
-		{
-			List<Reading> readings = getReadings();
-			if (readings.size()==0)
-			{
-				Toast.makeText(this, getString(R.string.readings_no_readings_export),
-						Toast.LENGTH_SHORT).show();
-				
-			}
-			String text = ReadingsSerializer.format(readings);
-			ActivityUtils.SendEmail(this, null, "Readings", text);
-			
-		}catch(Exception e)
-		{
-			Toast.makeText(this, getString(R.string.readings_export_error),
-					Toast.LENGTH_SHORT).show();
-		}
-		
-	}
-	
-	private List<Reading> getReadings()
-	{
-		List<Reading> readings = MainModel.getDatabase().getAllReadings();
-		Query query = new Query(readings);
-		query.sortByDate();
-		readings = query.getReadings();
-		Collections.reverse(readings);
-		return readings;
-		
 	}
 	
 }
