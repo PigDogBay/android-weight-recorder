@@ -3,6 +3,8 @@ package com.pigdogbay.weightrecorder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -43,6 +45,24 @@ public class EditReadingActivity extends FragmentActivity
 		_Reading = MainModel.getDatabase().getReading(id);
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_edit_reading, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+		case (R.id.menu_edit_reading_home):
+			finish();
+			break;
+		default:
+			return false;
+		}
+		return true;
+	}	
 	@Override
 	protected void onStart()
 	{
