@@ -113,10 +113,10 @@
     <string name="import_dialog_message">Copy and paste your weight data on to the form. Please ensure that the data is correctly formatted. See the help screen for further details.</string>
     <string name="help_html">
         <![CDATA[
-        <b>Introduction</b><br/><br/>
-        Use Weight Recorder to track your daily weight measurements. Monitor your diet\'s progress as you aim towards your goal.<br/>
+		<b>Introduction</b><br/><br/>
+        Enter your daily weight measurements and track your diet\'s progress as you aim towards your goal.<br/>
         <br/><br/><b>Settings</b><br/><br/>
-        Before starting enter the weight and length units you wish to use. Then enter your height, so that your Body Mass Index can be calculated.<br/>
+        Before starting enter the weight and length units you wish to use. Enter your height so that your Body Mass Index can be calculated. Set yourself a goal by entering the target weight you would like to achieve.<br/>
         <br/><br/><b>New</b><br/><br/>
         Enter new daily readings here, the date will already be set and you can also add comments to the new weight reading. You can change the date so that past weight measurements can be entered.
         <br/><br/>To enter your weight press the button displaying the weight. You can also use the -/+ buttons to adjust the weight.
@@ -124,17 +124,17 @@
         Your readings are all displayed in a list, press a reading to edit or delete it. 
         <br/><br/>Pressing the menu key shows options for deleting all readings, importing and exporting data, see below for further details.<br/>
         <br/><br/><b>Chart</b><br/><br/>
-        The chart displays weight versus time. You can drag and zoom the chart using touch. Press the menu key to select the time period, last 30 days, last 60 days or the last 90 days.<br/>
-        <br/>On the settings menu you can select whether to show a trend line. The line shows the best line of fit through the selected range of data points.
+        The chart displays weight versus time. You can drag and zoom the chart using touch. Press the menu key to select the time period for the chart to show.<br/>
+        <br/>On the settings menu you can select whether to show a trend line and your target weight. The line shows the best line of fit through the selected range of data points.
         <br/><br/><b>Report</b><br/><br/>
         Displays your latest BMI, weight statistics and trends. Negative trends mean that you are losing weight, positive trends mean you are gaining weight. There is a menu option to export the report via email.<br/>
         <br/><br/><b>Advanced Topics</b><br/><br/>
-        You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values format for compatibility with spreadsheets. 
-        <br/><br/>When importing data, please ensure the format of the data is similar to export format:
+        You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
+        <br/><br/>When importing data, please ensure the format of the data is similar to:
         <br/><br/> 92.50,2013-01-18 16:24:35,example
         <br/><br/> Weight is 92.50kg, date is Jan 18th 2013, time is 4:24:35pm and the comment is example.
         <br/><br/>*Please note that weights are expressed in kilograms, to convert to pounds multiply by 2.20462.
-        ]]>
+		<br/><br/>The easiest way to import data is to email yourself the readings. Open the email, press on the text so that the text editing options appear, choose select all and then copy. On the import screen touch and hold the screen so that the paste option appears.        ]]>
     </string>
     <string name="menu_help_text_small">Text Small</string>
     <string name="menu_help_text_medium">Text Medium</string>
