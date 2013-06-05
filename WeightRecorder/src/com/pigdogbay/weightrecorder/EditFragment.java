@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.app.Activity;

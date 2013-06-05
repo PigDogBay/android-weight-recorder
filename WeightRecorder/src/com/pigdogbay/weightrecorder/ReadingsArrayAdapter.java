@@ -3,6 +3,7 @@ package com.pigdogbay.weightrecorder;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.app.Activity;

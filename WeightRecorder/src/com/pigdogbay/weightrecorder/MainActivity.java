@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
 import android.app.Activity;

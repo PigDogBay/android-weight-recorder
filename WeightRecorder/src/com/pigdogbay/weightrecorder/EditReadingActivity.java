@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.os.Bundle;

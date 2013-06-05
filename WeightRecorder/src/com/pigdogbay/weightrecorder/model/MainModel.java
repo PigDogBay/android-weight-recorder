@@ -1,13 +1,10 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weightrecorder.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.pigdogbay.weightrecorder.model.IUnitConverter;
-import com.pigdogbay.weightrecorder.model.Query;
-import com.pigdogbay.weightrecorder.model.Reading;
-import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
+import com.pigdogbay.weightrecorder.IDataChangedListener;
 
 import android.app.Application;
 

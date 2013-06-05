@@ -3,6 +3,7 @@ package com.pigdogbay.weightrecorder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
