@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
 public class ActivitiesHelper {
 	public static void startExportActivity(Activity activity) {
