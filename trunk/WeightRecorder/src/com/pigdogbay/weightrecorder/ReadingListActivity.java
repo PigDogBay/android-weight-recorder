@@ -32,7 +32,7 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
         _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, MainModel.getInstance().getReverseOrderedReadings());
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
-		MainModel.getInstance().initialize(getApplication());
+		ActivitiesHelper.initializeMainModel(getApplication());		
         MainModel.getInstance().registerDataChangedListener(this);
     }
 	@Override
@@ -125,7 +125,7 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 	}
 	private void deleteAll()
 	{
-		MainModel.getDatabase().deleteAllReadings();
+		MainModel.getInstance().getDatabase().deleteAllReadings();
 		onDataChanged();
 	}
 	

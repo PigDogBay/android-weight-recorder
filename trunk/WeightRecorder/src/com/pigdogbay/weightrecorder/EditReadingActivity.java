@@ -44,8 +44,8 @@ public class EditReadingActivity extends FragmentActivity
 		{
 			_Reading = new Reading();
 		}
-		MainModel.getInstance().initialize(getApplication());
-		_Reading = MainModel.getDatabase().getReading(id);
+		ActivitiesHelper.initializeMainModel(getApplication());		
+		_Reading = MainModel.getInstance().getDatabase().getReading(id);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class EditReadingActivity extends FragmentActivity
 				.findFragmentById(R.id.EditReadingEditFragment);
 		Reading reading = fragment.getReading();
 		reading.setID(_Reading.getID());
-		MainModel.getDatabase().updateReading(reading);
+		MainModel.getInstance().getDatabase().updateReading(reading);
 		Toast.makeText(this, getString(R.string.editreading_updated),
 				Toast.LENGTH_SHORT).show();
 		MainModel.getInstance().notifyDataChanged();
@@ -91,7 +91,7 @@ public class EditReadingActivity extends FragmentActivity
 
 	private void onDeleteClick()
 	{
-		MainModel.getDatabase().deleteReading(_Reading);
+		MainModel.getInstance().getDatabase().deleteReading(_Reading);
 		Toast.makeText(this, getString(R.string.editreading_deleted),
 				Toast.LENGTH_SHORT).show();
 		MainModel.getInstance().notifyDataChanged();

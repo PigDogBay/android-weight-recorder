@@ -34,7 +34,7 @@ public class ImportActivity extends Activity
 					}
 				});
 		showHelp();
-		MainModel.getInstance().initialize(getApplication());
+		ActivitiesHelper.initializeMainModel(getApplication());		
 	}
 	
 	private void showHelp()
@@ -72,7 +72,7 @@ public class ImportActivity extends Activity
 			int count = readings.size();
 			if (count>0)
 			{
-				MainModel.getDatabase().addReadings(readings);
+				MainModel.getInstance().getDatabase().addReadings(readings);
 				MainModel.getInstance().notifyDataChanged();
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),

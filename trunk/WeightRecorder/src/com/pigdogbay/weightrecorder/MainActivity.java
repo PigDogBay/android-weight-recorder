@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements
 		LoadPreferences(prefs);
 		setContentView(R.layout.activity_main);
 		wireUpButtons();
-		MainModel.getInstance().initialize(getApplication());
+		ActivitiesHelper.initializeMainModel(getApplication());		
 
 		checkFirstTime();
 		new AppRate(this).setMinDaysUntilPrompt(7)
