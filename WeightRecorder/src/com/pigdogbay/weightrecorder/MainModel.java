@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
+import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
