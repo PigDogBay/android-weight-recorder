@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

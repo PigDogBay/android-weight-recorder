@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
