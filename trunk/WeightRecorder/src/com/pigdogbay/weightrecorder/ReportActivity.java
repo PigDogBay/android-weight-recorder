@@ -9,6 +9,7 @@ import com.pigdogbay.androidutils.math.BestLineFit;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
+import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.app.Activity;
