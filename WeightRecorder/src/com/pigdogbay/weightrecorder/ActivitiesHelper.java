@@ -4,10 +4,12 @@ import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.DatabaseHelper;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
@@ -37,5 +39,14 @@ public class ActivitiesHelper {
 	public static void startImportActivity(Activity activity) {
 		Intent intent = new Intent(activity, ImportActivity.class);
 		activity.startActivity(intent);
+	}
+	
+	public static void initializeMainModel(Application application)
+	{
+		MainModel model = MainModel.getInstance();
+		if (model.getDatabase() == null)
+		{
+			model.setDatabase( new DatabaseHelper(application.getApplicationContext()));
+		}		
 	}
 }

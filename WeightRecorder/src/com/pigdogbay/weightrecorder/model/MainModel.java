@@ -24,25 +24,21 @@ public class MainModel
 	{
 		return _Singleton;
 	}
-	public static IReadingsDatabase getDatabase()
+	public IReadingsDatabase getDatabase()
 	{
-		return _Singleton._DatabaseHelper;
+		return _DatabaseHelper;
 	}
-
+	public void setDatabase(IReadingsDatabase database)
+	{
+		_DatabaseHelper = database;
+	}
+	
 	private MainModel()
 	{
 		_WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
 		_DataChangedListeners = new ArrayList<IDataChangedListener>();
 	}
 
-	public void initialize(Application application)
-	{
-		if (_DatabaseHelper == null)
-		{
-			_DatabaseHelper = new DatabaseHelper(
-					application.getApplicationContext());
-		}
-	}
 	public List<Reading> getReverseOrderedReadings(){
 		List<Reading> readings = _DatabaseHelper.getAllReadings();
 		Query query = new Query(readings);

@@ -30,7 +30,7 @@ public class ChartActivity extends Activity {
 
 		checkIfEnoughReadings();
 		_Chart = new ReadingsChart();
-		MainModel.getInstance().initialize(getApplication());
+		ActivitiesHelper.initializeMainModel(getApplication());		
 		IUnitConverter converter = MainModel.getInstance().getWeightConverter();
 		_Chart.setYAxisTitle(String.format("Weight (%s)", converter.getUnits()));
 		try {
@@ -44,7 +44,7 @@ public class ChartActivity extends Activity {
 	}
 
 	private void checkIfEnoughReadings() {
-		if (MainModel.getDatabase().getReadingsCount() < MINIMUM_READINGS) {
+		if (MainModel.getInstance().getDatabase().getReadingsCount() < MINIMUM_READINGS) {
 			String title = getResources().getString(
 					R.string.chart_notenoughdata_title);
 			String message = getResources().getString(
@@ -101,7 +101,7 @@ public class ChartActivity extends Activity {
 	}
 
 	private List<Reading> getReadings() {
-		List<Reading> readings = MainModel.getDatabase().getAllReadings();
+		List<Reading> readings = MainModel.getInstance().getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
 		}

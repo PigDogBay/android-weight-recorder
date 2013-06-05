@@ -31,7 +31,7 @@ public class AddReadingActivity extends FragmentActivity
 						onEnterClick();
 					}
 				});
-		MainModel.getInstance().initialize(getApplication());
+		ActivitiesHelper.initializeMainModel(getApplication());		
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class AddReadingActivity extends FragmentActivity
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
 		Reading reading = fragment.getReading();
-		MainModel.getDatabase().addReading(reading);
+		MainModel.getInstance().getDatabase().addReading(reading);
 		fragment.hideKeyboard();
 		savePreferences();
 		Toast.makeText(this, getString(R.string.addreading_added),

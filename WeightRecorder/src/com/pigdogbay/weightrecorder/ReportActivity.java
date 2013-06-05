@@ -40,8 +40,8 @@ public class ReportActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 		TextView textView = (TextView) findViewById(R.id.ReportText);
-		MainModel.getInstance().initialize(getApplication());
-		List<Reading> readings = MainModel.getDatabase().getAllReadings();
+		ActivitiesHelper.initializeMainModel(getApplication());		
+		List<Reading> readings = MainModel.getInstance().getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
 		}
@@ -89,7 +89,7 @@ public class ReportActivity extends Activity {
 	}
 
 	private void checkIfEnoughReadings() {
-		if (MainModel.getDatabase().getReadingsCount() < MINIMUM_READINGS) {
+		if (MainModel.getInstance().getDatabase().getReadingsCount() < MINIMUM_READINGS) {
 			String title = getResources().getString(
 					R.string.report_notenoughdata_title);
 			String message = getResources().getString(
