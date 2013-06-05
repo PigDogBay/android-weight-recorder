@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weightrecorder.model;
 
 import java.util.Date;
 
