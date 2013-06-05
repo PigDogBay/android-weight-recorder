@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.weightrecorder.model.Reading;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;

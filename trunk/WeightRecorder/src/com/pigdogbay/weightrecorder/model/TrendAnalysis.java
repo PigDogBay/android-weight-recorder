@@ -10,7 +10,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.pigdogbay.androidutils.math.BestLineFit;
-import com.pigdogbay.weightrecorder.Reading;
 
 public class TrendAnalysis {
 

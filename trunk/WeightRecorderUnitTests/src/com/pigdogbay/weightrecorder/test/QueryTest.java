@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.Query;
-import com.pigdogbay.weightrecorder.Reading;
+import com.pigdogbay.weightrecorder.model.Reading;
 
 import junit.framework.TestCase;
 

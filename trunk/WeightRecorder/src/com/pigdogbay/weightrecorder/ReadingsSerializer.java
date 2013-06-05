@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.pigdogbay.weightrecorder.model.Reading;
+
 public class ReadingsSerializer
 {
 	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
