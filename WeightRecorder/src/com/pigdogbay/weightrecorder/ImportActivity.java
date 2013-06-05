@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
