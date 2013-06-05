@@ -2,6 +2,7 @@ package com.pigdogbay.weightrecorder;
 
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.app.Activity;
