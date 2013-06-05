@@ -3,6 +3,9 @@ package com.pigdogbay.weightrecorder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.pigdogbay.weightrecorder.model.Reading;
+
 import android.app.Application;
 
 /*

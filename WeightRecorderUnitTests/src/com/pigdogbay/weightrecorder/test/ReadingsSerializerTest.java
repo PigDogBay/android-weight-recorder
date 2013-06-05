@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.pigdogbay.weightrecorder.Reading;
 import com.pigdogbay.weightrecorder.ReadingsSerializer;
+import com.pigdogbay.weightrecorder.model.Reading;
 
 import junit.framework.TestCase;
 

@@ -2,6 +2,8 @@ package com.pigdogbay.weightrecorder;
 
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.Reading;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.text.format.DateUtils;

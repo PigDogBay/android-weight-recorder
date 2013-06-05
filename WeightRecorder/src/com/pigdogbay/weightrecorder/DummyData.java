@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import com.pigdogbay.weightrecorder.model.Reading;
+
 public class DummyData
 {
 	public static List<Reading> GetReadings()

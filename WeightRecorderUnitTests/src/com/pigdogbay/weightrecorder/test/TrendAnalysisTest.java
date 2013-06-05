@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import com.pigdogbay.weightrecorder.Reading;
+import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.TrendAnalysis;
 
 import junit.framework.TestCase;

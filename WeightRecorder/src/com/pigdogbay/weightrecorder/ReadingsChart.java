@@ -13,6 +13,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import com.pigdogbay.androidutils.math.BestLineFit;
+import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.content.Context;
 import android.content.res.Configuration;

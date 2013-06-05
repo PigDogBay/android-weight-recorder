@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.Reading;
+
 
 public class Query
 {
