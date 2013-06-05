@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
 import android.app.Application;
 
