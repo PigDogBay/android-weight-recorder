@@ -14,7 +14,7 @@ import android.app.Application;
 public class MainModel
 {
 	public static final double DEFAULT_HEIGHT=1.72;
-	private DatabaseHelper _DatabaseHelper;
+	private IReadingsDatabase _DatabaseHelper;
 	private static final MainModel _Singleton = new MainModel();
 	private IUnitConverter _WeightConverter;
 	private List<IDataChangedListener> _DataChangedListeners;
@@ -24,7 +24,7 @@ public class MainModel
 	{
 		return _Singleton;
 	}
-	public static DatabaseHelper getDatabase()
+	public static IReadingsDatabase getDatabase()
 	{
 		return _Singleton._DatabaseHelper;
 	}

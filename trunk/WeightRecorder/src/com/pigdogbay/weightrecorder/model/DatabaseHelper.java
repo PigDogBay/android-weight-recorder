@@ -11,7 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper
+public class DatabaseHelper extends SQLiteOpenHelper implements IReadingsDatabase
 {
 	// The index (key) column name for use in where clauses.
 	public static final String KEY_ID = "_id";
@@ -65,11 +65,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#addReading(com.pigdogbay.weightrecorder.model.Reading)
+	 */
+	@Override
 	public void addReading(Reading reading)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		insert(db, reading);
 	}
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#addReadings(java.util.List)
+	 */
+	@Override
 	public void addReadings(List<Reading> readings)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -97,6 +105,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		db.insert(DATABASE_TABLE, null, values);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#getReading(int)
+	 */
+	@Override
 	public Reading getReading(int id)
 	{
 		String[] result_columns = new String[] { KEY_ID, KEY_WEIGHT_COLUMN,
@@ -116,6 +128,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		return reading;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#getAllReadings()
+	 */
+	@Override
 	public List<Reading> getAllReadings()
 	{
 		List<Reading> list = new ArrayList<Reading>();
@@ -136,6 +152,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		return list;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#deleteReading(com.pigdogbay.weightrecorder.model.Reading)
+	 */
+	@Override
 	public void deleteReading(Reading reading)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -143,6 +163,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		db.delete(DATABASE_TABLE, where, null);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#getReadingsCount()
+	 */
+	@Override
 	public int getReadingsCount()
 	{
 		SQLiteDatabase db = getReadableDatabase();
@@ -152,6 +176,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		return count;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#updateReading(com.pigdogbay.weightrecorder.model.Reading)
+	 */
+	@Override
 	public int updateReading(Reading reading)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -163,6 +191,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		return db.update(DATABASE_TABLE, values, where, null);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.pigdogbay.weightrecorder.model.IReadingsDatabase#deleteAllReadings()
+	 */
+	@Override
 	public void deleteAllReadings()
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
