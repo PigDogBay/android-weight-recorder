@@ -85,7 +85,7 @@ public class EditReadingActivity extends FragmentActivity
 		MainModel.getInstance().getDatabase().updateReading(reading);
 		Toast.makeText(this, getString(R.string.editreading_updated),
 				Toast.LENGTH_SHORT).show();
-		MainModel.getInstance().notifyDataChanged();
+		setResult(RESULT_OK);
 		this.finish();
 	}
 
@@ -94,7 +94,7 @@ public class EditReadingActivity extends FragmentActivity
 		MainModel.getInstance().getDatabase().deleteReading(_Reading);
 		Toast.makeText(this, getString(R.string.editreading_deleted),
 				Toast.LENGTH_SHORT).show();
-		MainModel.getInstance().notifyDataChanged();
+		setResult(RESULT_OK);
 		this.finish();
 	}
 

@@ -40,6 +40,10 @@ public class ActivitiesHelper {
 		Intent intent = new Intent(activity, ImportActivity.class);
 		activity.startActivity(intent);
 	}
+	public static void startImportActivity(Activity activity, int requestCode) {
+		Intent intent = new Intent(activity, ImportActivity.class);
+		activity.startActivityForResult(intent, requestCode);
+	}
 	
 	public static void initializeMainModel(Application application)
 	{

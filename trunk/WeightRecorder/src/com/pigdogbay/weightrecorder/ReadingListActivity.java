@@ -1,30 +1,24 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import com.pigdogbay.androidutils.utils.ActivityUtils;
-import com.pigdogbay.weightrecorder.model.IDataChangedListener;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
-public class ReadingListActivity extends ListActivity implements IDataChangedListener
+public class ReadingListActivity extends ListActivity
 {
+	//Constants for Activity Result requests 
+	protected static final int REQUEST_EDIT = 1;
+	protected static final int REQUEST_IMPORT = 2;
+	
 	ReadingsArrayAdapter _ReadingsArrayAdapter;
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -33,14 +27,7 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
 		ActivitiesHelper.initializeMainModel(getApplication());		
-        MainModel.getInstance().registerDataChangedListener(this);
     }
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-        MainModel.getInstance().unregisterDataChangedListener(this);
-	}
 	
 	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
@@ -56,8 +43,21 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 		{
 	        this.getListView().setBackground(background);
 		}
-        
 	}
+	/*
+	 * Called back from array adapter when a reading is selected
+	 */
+	public void readingSelected(Reading reading)
+	{
+		Intent intent = new Intent(this,EditReadingActivity.class);
+		intent.putExtra("ReadingID", reading.getID());
+		startActivityForResult(intent,REQUEST_EDIT);
+	}
+	private void onDataChanged()
+	{
+		_ReadingsArrayAdapter.setReadings(MainModel.getInstance().getReverseOrderedReadings());
+		_ReadingsArrayAdapter.notifyDataSetChanged();
+	}	
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) 
@@ -80,21 +80,26 @@ public class ReadingListActivity extends ListActivity implements IDataChangedLis
 			ActivitiesHelper.startExportActivity(this);
 			break;
 		case (R.id.menu_readings_list_import):
-			ActivitiesHelper.startImportActivity(this);
+			ActivitiesHelper.startImportActivity(this, REQUEST_IMPORT);
 			break;
 		default:
 			return false;
 		}
 		return true;
 	}
-    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if (requestCode==REQUEST_IMPORT || requestCode==REQUEST_EDIT)
+    	{
+    		if (resultCode==RESULT_OK)
+    		{
+    			//Reload readings as a change has been made
+    			onDataChanged();
+    		}
+    	}
+    }
 
-	public void onDataChanged()
-	{
-		_ReadingsArrayAdapter.setReadings(MainModel.getInstance().getReverseOrderedReadings());
-		_ReadingsArrayAdapter.notifyDataSetChanged();
-	}
-	
 	private void deleteAllMenuOption()
 	{
 		String title = getResources().getString(R.string.editreading_delete_dialog_title);
