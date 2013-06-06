@@ -73,7 +73,7 @@ public class ImportActivity extends Activity
 			if (count>0)
 			{
 				MainModel.getInstance().getDatabase().addReadings(readings);
-				MainModel.getInstance().notifyDataChanged();
+				setResult(RESULT_OK);
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),
 					Toast.LENGTH_SHORT).show();

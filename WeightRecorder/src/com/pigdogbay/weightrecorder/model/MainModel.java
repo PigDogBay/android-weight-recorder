@@ -15,13 +15,16 @@ public class MainModel
 {
 	public static final double DEFAULT_HEIGHT=1.72;
 	private IReadingsDatabase _DatabaseHelper;
-	private static final MainModel _Singleton = new MainModel();
+	private static MainModel _Singleton;
 	private IUnitConverter _WeightConverter;
-	private List<IDataChangedListener> _DataChangedListeners;
 	private double _Height=DEFAULT_HEIGHT;
 	
 	public static MainModel getInstance()
 	{
+		if (_Singleton==null)
+		{
+			_Singleton = new MainModel();
+		}
 		return _Singleton;
 	}
 	public IReadingsDatabase getDatabase()
@@ -36,7 +39,6 @@ public class MainModel
 	private MainModel()
 	{
 		_WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
-		_DataChangedListeners = new ArrayList<IDataChangedListener>();
 	}
 
 	public List<Reading> getReverseOrderedReadings(){
@@ -68,22 +70,6 @@ public class MainModel
 	public void setWeightConverter(IUnitConverter converter)
 	{
 		_WeightConverter = converter;
-	}
-	
-	public void registerDataChangedListener(IDataChangedListener listener)
-	{
-		_DataChangedListeners.add(listener);
-	}
-	public void unregisterDataChangedListener(IDataChangedListener listener)
-	{
-		_DataChangedListeners.remove(listener);
-	}
-	public void notifyDataChanged()
-	{
-		for (IDataChangedListener listener : _DataChangedListeners)
-		{
-			listener.onDataChanged();
-		}
 	}
 	
 	public double calculateBMI(double weight)

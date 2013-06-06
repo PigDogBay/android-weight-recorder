@@ -26,9 +26,9 @@ import android.widget.TextView;
 public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnClickListener
 {
 	private List<Reading> _Readings;
-	private final Activity _Activity;
+	private final ReadingListActivity _Activity;
 
-	public ReadingsArrayAdapter(Activity activity, List<Reading> readings)
+	public ReadingsArrayAdapter(ReadingListActivity activity, List<Reading> readings)
 	{
 		super(activity, R.layout.readings_item, readings);
 		_Readings = readings;
@@ -80,9 +80,7 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 	public void onClick(View v)
 	{
 		Reading reading = (Reading)v.getTag();
-		Intent intent = new Intent(this.getContext(),EditReadingActivity.class);
-		intent.putExtra("ReadingID", reading.getID());
-		this.getContext().startActivity(intent);
+		_Activity.readingSelected(reading);
 	}
 	
 	private String getComment(Reading reading)
