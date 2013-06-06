@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 /**
  * Formatting / parsing uses the standard US Locale
+ * Double.toString() and Double.parseDouble use US Locale 
  *
  */
 public class PreferencesHelper {
