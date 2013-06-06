@@ -1,6 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
