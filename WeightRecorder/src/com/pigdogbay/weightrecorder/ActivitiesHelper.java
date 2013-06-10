@@ -21,6 +21,7 @@ public class ActivitiesHelper {
 		try {
 			MainModel mainModel = new MainModel(activity);
 			List<Reading> readings = mainModel.getReverseOrderedReadings();
+			mainModel.close();
 			if (readings.size() == 0) {
 				Toast.makeText(
 						activity,

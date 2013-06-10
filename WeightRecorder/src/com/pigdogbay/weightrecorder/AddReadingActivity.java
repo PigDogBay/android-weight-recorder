@@ -73,6 +73,12 @@ public class AddReadingActivity extends FragmentActivity
 		super.onStart();
 		loadPreferences();
 	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		_MainModel.close();
+	}
 
 	private void loadPreferences()
 	{

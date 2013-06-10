@@ -1,6 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.lang.annotation.Target;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +8,6 @@ import com.pigdogbay.androidutils.math.BestLineFit;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.DummyData;
-import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
@@ -18,32 +16,28 @@ import com.pigdogbay.weightrecorder.model.UserSettings;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Html;
-import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class ReportActivity extends Activity {
 	private static final int MINIMUM_READINGS = 1;
 	public static final long DAY_IN_MILLIS = 24L * 60L * 60L * 1000L;
 	private UserSettings _UserSettings;
+	private MainModel _MainModel;
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 		TextView textView = (TextView) findViewById(R.id.ReportText);
-		MainModel mainModel = new MainModel(this);
-		_UserSettings = mainModel.getUserSettings();
-		List<Reading> readings = mainModel.getDatabase().getAllReadings();
+		_MainModel = new MainModel(this);
+		_UserSettings = _MainModel.getUserSettings();
+		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
 			showNotEnoughReadingsDialog();
@@ -51,6 +45,12 @@ public class ReportActivity extends Activity {
 		Query query = new Query(readings);
 		textView.setText(Html.fromHtml(createReport(query)));
 		textView.setMovementMethod(new ScrollingMovementMethod());
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		_MainModel.close();
 	}
 
 	private String getTabbing() {

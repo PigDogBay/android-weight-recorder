@@ -1,23 +1,12 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.List;
-
 import com.pigdogbay.androidutils.apprate.AppRate;
-import com.pigdogbay.weightrecorder.model.IUnitConverter;
-import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.PreferencesHelper;
-import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;

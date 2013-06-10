@@ -43,7 +43,12 @@ public class ChartActivity extends Activity {
 		layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 
 	}
-
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		_MainModel.close();
+	}
 	private void checkIfEnoughReadings() {
 		if (_MainModel.getDatabase().getReadingsCount() < MINIMUM_READINGS) {
 			String title = getResources().getString(
