@@ -4,12 +4,15 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.DatabaseHelper;
+import com.pigdogbay.weightrecorder.model.IReadingsDatabase;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
@@ -23,6 +26,7 @@ public class ActivitiesHelper {
 						activity,
 						activity.getString(R.string.readings_no_readings_export),
 						Toast.LENGTH_SHORT).show();
+				return;
 
 			}
 			String text = ReadingsSerializer.format(readings);
