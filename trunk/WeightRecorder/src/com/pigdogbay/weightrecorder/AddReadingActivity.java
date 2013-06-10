@@ -82,9 +82,8 @@ public class AddReadingActivity extends FragmentActivity
 		String lastWeight = sharedPrefs.getString(key, "");
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
-		fragment.setWeight(lastWeight);
 		fragment.setWeightConvert(_MainModel.getWeightConverter());
-
+		fragment.setWeight(lastWeight);
 	}
 
 	private void savePreferences()

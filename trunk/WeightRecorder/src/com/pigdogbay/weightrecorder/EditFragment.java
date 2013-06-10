@@ -36,7 +36,6 @@ public class EditFragment extends Fragment
 	protected static final int RESULT_COMMENT_SPEECH = 2;
 
 	double _Weight = 90.0D;
-	double _Step = 0.1D;
 	Button _EditWeightButton;
 
 	private EditText _EditTextComment;
@@ -106,7 +105,6 @@ public class EditFragment extends Fragment
 				edit();
 			}
 		});
-		_Step =_WeightConverter.getStepIncrement(); 
 	}
 
 	public void setReading(Reading reading)
@@ -220,13 +218,13 @@ public class EditFragment extends Fragment
 
 	private void minus()
 	{
-		_Weight = _Weight - _Step;
+		_Weight = _Weight - _WeightConverter.getStepIncrement();
 		updateText();
 	}
 
 	private void plus()
 	{
-		_Weight = _Weight + _Step;
+		_Weight = _Weight + _WeightConverter.getStepIncrement();
 		updateText();
 	}
 
