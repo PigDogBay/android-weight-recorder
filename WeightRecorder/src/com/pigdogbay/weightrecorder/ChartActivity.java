@@ -23,15 +23,16 @@ public class ChartActivity extends Activity {
 	private static final int MINIMUM_READINGS = 3;
 	ReadingsChart _Chart;
 	static int _Period = 0;
+	private MainModel _MainModel;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart);
 
+		_MainModel = new MainModel(this);
 		checkIfEnoughReadings();
 		_Chart = new ReadingsChart();
-		ActivitiesHelper.initializeMainModel(getApplication());		
-		IUnitConverter converter = MainModel.getInstance().getWeightConverter();
+		IUnitConverter converter = _MainModel.getWeightConverter();
 		_Chart.setYAxisTitle(String.format("Weight (%s)", converter.getUnits()));
 		try {
 			loadPreferences();
@@ -44,7 +45,7 @@ public class ChartActivity extends Activity {
 	}
 
 	private void checkIfEnoughReadings() {
-		if (MainModel.getInstance().getDatabase().getReadingsCount() < MINIMUM_READINGS) {
+		if (_MainModel.getDatabase().getReadingsCount() < MINIMUM_READINGS) {
 			String title = getResources().getString(
 					R.string.chart_notenoughdata_title);
 			String message = getResources().getString(
@@ -101,11 +102,11 @@ public class ChartActivity extends Activity {
 	}
 
 	private List<Reading> getReadings() {
-		List<Reading> readings = MainModel.getInstance().getDatabase().getAllReadings();
+		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
 		}
-		IUnitConverter converter = MainModel.getInstance().getWeightConverter();
+		IUnitConverter converter = _MainModel.getWeightConverter();
 		for (Reading r : readings) {
 			r.setWeight(converter.convert(r.getWeight()));
 		}
@@ -113,17 +114,11 @@ public class ChartActivity extends Activity {
 	}
 
 	private void loadPreferences() {
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String key = getString(R.string.code_pref_show_trendline_key);
-		boolean show = sharedPrefs.getBoolean(key, false);
+		boolean show = _MainModel.getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, false);
 		_Chart.setShowTrendLine(show);
-		key = getString(R.string.code_pref_show_targetline_key);
-		show = sharedPrefs.getBoolean(key, false);
+		show = _MainModel.getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, false);
 		_Chart.setShowTargetLine(show);
-		double targetWeight = Double.parseDouble(sharedPrefs.getString(
-				getString(R.string.code_pref_target_weight_key), "75.0"));
-		_Chart.setTargetWeight(targetWeight);
+		_Chart.setTargetWeight(_MainModel.getTargetWeight()); 
 	}
 
 }

@@ -5,8 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,9 +15,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -40,13 +39,20 @@ public class EditFragment extends Fragment
 	double _Step = 0.1D;
 	Button _EditWeightButton;
 
-	EditText _EditTextComment;
-	DatePicker _DatePicker;
+	private EditText _EditTextComment;
+	private DatePicker _DatePicker;
+	private IUnitConverter _WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS); 
+
+	public void setWeightConvert(IUnitConverter weightConverter)
+	{
+		_WeightConverter = weightConverter;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
 	}
 
 	@Override
@@ -100,15 +106,13 @@ public class EditFragment extends Fragment
 				edit();
 			}
 		});
-		
-		_Step =MainModel.getInstance().getWeightConverter().getStepIncrement(); 
+		_Step =_WeightConverter.getStepIncrement(); 
 	}
 
 	public void setReading(Reading reading)
 	{
 		_EditTextComment.setText(reading.getComment());
-		_Weight = MainModel.getInstance().getWeightConverter()
-				.convert(reading.getWeight());
+		_Weight = _WeightConverter.convert(reading.getWeight());
 		updateText();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(reading.getDate());
@@ -120,8 +124,7 @@ public class EditFragment extends Fragment
 	{
 		Reading reading = new Reading();
 		// convert to kilograms
-		double weight = MainModel.getInstance().getWeightConverter()
-				.inverse(_Weight);
+		double weight = _WeightConverter.inverse(_Weight);
 		reading.setWeight(weight);
 		reading.setDate(getDateTime());
 		reading.setComment(_EditTextComment.getText().toString());
@@ -233,8 +236,7 @@ public class EditFragment extends Fragment
 		final EditText input = new EditText(getActivity());
 		input.setText(String.format(Locale.US, "%.1f", _Weight));
 		input.setHint(String.format("%s (%s)",
-				getString(R.string.edit_weight_hint), MainModel.getInstance()
-						.getWeightConverter().getUnits()));
+				getString(R.string.edit_weight_hint), _WeightConverter.getUnits()));
 		input.setInputType(InputType.TYPE_CLASS_NUMBER
 				| InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		alert.setTitle("Enter Weight");
@@ -267,7 +269,7 @@ public class EditFragment extends Fragment
 
 	private void updateText()
 	{
-		String text = MainModel.getInstance().getWeightConverter().getDisplayString(_Weight);
+		String text = _WeightConverter.getDisplayString(_Weight);
 		_EditWeightButton.setText(text);
 	}
 

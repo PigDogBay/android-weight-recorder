@@ -16,7 +16,8 @@ import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 public class ActivitiesHelper {
 	public static void startExportActivity(Activity activity) {
 		try {
-			List<Reading> readings = MainModel.getInstance().getReverseOrderedReadings();
+			MainModel mainModel = new MainModel(activity);
+			List<Reading> readings = mainModel.getReverseOrderedReadings();
 			if (readings.size() == 0) {
 				Toast.makeText(
 						activity,
@@ -42,14 +43,5 @@ public class ActivitiesHelper {
 	public static void startImportActivity(Activity activity, int requestCode) {
 		Intent intent = new Intent(activity, ImportActivity.class);
 		activity.startActivityForResult(intent, requestCode);
-	}
-	
-	public static void initializeMainModel(Application application)
-	{
-		MainModel model = MainModel.getInstance();
-		if (model.getDatabase() == null)
-		{
-			model.setDatabase( new DatabaseHelper(application.getApplicationContext()));
-		}		
 	}
 }

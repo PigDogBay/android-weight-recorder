@@ -5,6 +5,7 @@ import java.util.List;
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
 import android.app.Activity;
@@ -23,8 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements
-		OnSharedPreferenceChangeListener
+public class MainActivity extends Activity
 {
 
 	public static final String TAG = "WeightRecorder";
@@ -33,14 +33,8 @@ public class MainActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(this);
-		LoadPreferences(prefs);
 		setContentView(R.layout.activity_main);
 		wireUpButtons();
-		ActivitiesHelper.initializeMainModel(getApplication());		
-
 		checkFirstTime();
 		new AppRate(this).setMinDaysUntilPrompt(7)
 		.setMinLaunchesUntilPrompt(5).init();
@@ -139,44 +133,14 @@ public class MainActivity extends Activity implements
 		return true;
 	}
 
-	public void onSharedPreferenceChanged(SharedPreferences prefs, String key)
-	{
-		LoadPreferences(prefs);
-	}
-
-	private void LoadPreferences(SharedPreferences prefs)
-	{
-		try
-		{
-			int weightUnits = Integer.parseInt(prefs.getString(getString(R.string.code_pref_weight_units_key),"1"));
-			IUnitConverter converter = UnitConverterFactory.create(weightUnits);
-			MainModel.getInstance().setWeightConverter(converter);
-			int lengthUnits = Integer.parseInt(prefs.getString(getString(R.string.code_pref_length_units_key),"1"));
-			double height = Double.parseDouble(prefs.getString(getString(R.string.code_pref_height_key), "1.72"));
-			IUnitConverter lengthConverter = UnitConverterFactory.createLengthConverter(lengthUnits);
-			//convert to metres
-			height = lengthConverter.inverse(height);
-			MainModel.getInstance().setHeight(height);
-		}
-		catch (Exception e)
-		{
-			//main model will default to kilograms
-			Log.v(TAG, "Unable to load preferences: "+e.getMessage());
-		}
-
-	}
 	private void checkFirstTime()
 	{
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String key = getString(R.string.code_pref_welcome_shown_key);
-		boolean welcomeScreenShown = sharedPrefs.getBoolean(key, false);
+		PreferencesHelper prefHelper = new PreferencesHelper(this);
+		boolean welcomeScreenShown = prefHelper.getBoolean(R.string.code_pref_welcome_shown_key, false);
 		if (!welcomeScreenShown)
 		{
 			showWelcomeScreen();
-			SharedPreferences.Editor editor = sharedPrefs.edit();
-			editor.putBoolean(key, true);
-			editor.commit();
+			prefHelper.setBoolean(R.string.code_pref_welcome_shown_key, true);
 		}
 	}
 	private void showWelcomeScreen()
