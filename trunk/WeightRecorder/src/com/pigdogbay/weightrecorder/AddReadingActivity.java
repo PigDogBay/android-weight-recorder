@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class AddReadingActivity extends FragmentActivity
 {
-
+	private MainModel _MainModel;
 	@Override
 	protected void onCreate(Bundle arg0)
 	{
@@ -31,7 +31,7 @@ public class AddReadingActivity extends FragmentActivity
 						onEnterClick();
 					}
 				});
-		ActivitiesHelper.initializeMainModel(getApplication());		
+		_MainModel = new MainModel(this);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class AddReadingActivity extends FragmentActivity
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
 		Reading reading = fragment.getReading();
-		MainModel.getInstance().getDatabase().addReading(reading);
+		_MainModel.getDatabase().addReading(reading);
 		fragment.hideKeyboard();
 		savePreferences();
 		Toast.makeText(this, getString(R.string.addreading_added),
@@ -83,6 +83,7 @@ public class AddReadingActivity extends FragmentActivity
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
 		fragment.setWeight(lastWeight);
+		fragment.setWeightConvert(_MainModel.getWeightConverter());
 
 	}
 

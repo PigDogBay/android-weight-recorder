@@ -1,6 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.MainModel;
@@ -10,7 +9,6 @@ import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +32,6 @@ public class ImportActivity extends Activity
 					}
 				});
 		showHelp();
-		ActivitiesHelper.initializeMainModel(getApplication());		
 	}
 	
 	private void showHelp()
@@ -72,7 +69,8 @@ public class ImportActivity extends Activity
 			int count = readings.size();
 			if (count>0)
 			{
-				MainModel.getInstance().getDatabase().addReadings(readings);
+				MainModel mainModel = new MainModel(this);
+				mainModel.getDatabase().addReadings(readings);
 				setResult(RESULT_OK);
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),

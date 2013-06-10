@@ -1,11 +1,9 @@
 package com.pigdogbay.weightrecorder.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-
-import android.app.Application;
+import com.pigdogbay.weightrecorder.R;
+import android.content.Context;
 
 /*
  * Global static container for all the activities in the application
@@ -14,33 +12,25 @@ import android.app.Application;
 public class MainModel
 {
 	public static final double DEFAULT_HEIGHT=1.72;
+	public static final double DEFAULT_TARGET_WEIGHT=75.0;
 	private IReadingsDatabase _DatabaseHelper;
-	private static MainModel _Singleton;
-	private IUnitConverter _WeightConverter;
-	private double _Height=DEFAULT_HEIGHT;
+	private PreferencesHelper _PreferencesHelper; 
 	
-	public static MainModel getInstance()
+	public MainModel(Context context)
 	{
-		if (_Singleton==null)
-		{
-			_Singleton = new MainModel();
-		}
-		return _Singleton;
+		_PreferencesHelper = new PreferencesHelper(context);
+		_DatabaseHelper = new DatabaseHelper(context); 
 	}
+	
 	public IReadingsDatabase getDatabase()
 	{
 		return _DatabaseHelper;
 	}
-	public void setDatabase(IReadingsDatabase database)
+	public PreferencesHelper getPreferencesHelper()
 	{
-		_DatabaseHelper = database;
+		return _PreferencesHelper;
 	}
 	
-	private MainModel()
-	{
-		_WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
-	}
-
 	public List<Reading> getReverseOrderedReadings(){
 		List<Reading> readings = _DatabaseHelper.getAllReadings();
 		Query query = new Query(readings);
@@ -49,34 +39,42 @@ public class MainModel
 		Collections.reverse(readings);
 		return readings;
 	}
-	/*
-	 * @param height the height in metres
-	 */
-	public void setHeight(double height)
-	{
-		_Height= height;
-	}
-	/*
-	 * @return height in metres
+	/**
+	 * @return weight in currently selected units
 	 */
 	public double getHeight()
 	{
-		return _Height;
+		return _PreferencesHelper.getDouble(R.string.code_pref_height_key, DEFAULT_HEIGHT);
+	}
+	public double getTargetWeight()
+	{
+		return _PreferencesHelper.getDouble(R.string.code_pref_target_weight_key, DEFAULT_TARGET_WEIGHT);
 	}
 	public IUnitConverter getWeightConverter()
 	{
-		return _WeightConverter;
+		int converterType = _PreferencesHelper.getInt(R.string.code_pref_weight_units_key, UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
+		return UnitConverterFactory.create(converterType);
 	}
-	public void setWeightConverter(IUnitConverter converter)
+	public IUnitConverter getLengthConverter()
 	{
-		_WeightConverter = converter;
+		int converterType = _PreferencesHelper.getInt(R.string.code_pref_length_units_key, UnitConverterFactory.METRES_TO_METRES);
+		return UnitConverterFactory.createLengthConverter(converterType);
 	}
-	
+	public double getHeightInMetres()
+	{
+		return getLengthConverter().inverse(getHeight());
+	}
+	/**
+	 * @param weight in current user selected units
+	 * @return Body Mass Index
+	 */
 	public double calculateBMI(double weight)
 	{
-		double bmi = _Height;
-		weight = _WeightConverter.inverse(weight);
-		if (_Height!=0)
+		//get height in metres
+		double bmi = getLengthConverter().inverse(getHeight());
+		//get weight in kilograms
+		weight = getWeightConverter().inverse(weight);
+		if (bmi!=0)
 		{
 			bmi = weight/(bmi*bmi);
 		}
@@ -84,8 +82,9 @@ public class MainModel
 	}
 	public double calculateBMI(Reading reading)
 	{
-		double bmi = _Height;
-		if (_Height!=0)
+		//get height in metres
+		double bmi = getLengthConverter().inverse(getHeight());
+		if (bmi!=0)
 		{
 			bmi = reading.getWeight()/(bmi*bmi);
 		}
@@ -93,12 +92,18 @@ public class MainModel
 	}
 	public double calculateWeightFromBMI(double bmi)
 	{
-		return bmi*_Height*_Height;
+		double height = getLengthConverter().inverse(getHeight());
+		return bmi*height*height;
 	}
+	/**
+	 * @param weight in kilograms
+	 * @return String representation, ie 212.16 lbs
+	 */
 	public String weightToString(double weight)
 	{
-		weight = _WeightConverter.convert(weight);
-		return String.format("%.2f ", weight) + _WeightConverter.getUnits();
+		IUnitConverter weightConverter = getWeightConverter();
+		weight = weightConverter.convert(weight);
+		return String.format("%.2f ", weight) + weightConverter.getUnits();
 	}	
 		
 }

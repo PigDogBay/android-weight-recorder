@@ -34,26 +34,21 @@ public class ReportActivity extends Activity {
 	private static final int MINIMUM_READINGS = 1;
 	public static final long DAY_IN_MILLIS = 24L * 60L * 60L * 1000L;
 	private double _TargetWeight = 75.0;
-	private static int MAX_GOAL_ESTIMATION_DAYS = 500;
+	private MainModel _MainModel;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 		TextView textView = (TextView) findViewById(R.id.ReportText);
-		ActivitiesHelper.initializeMainModel(getApplication());		
-		List<Reading> readings = MainModel.getInstance().getDatabase().getAllReadings();
+		_MainModel = new MainModel(this);
+		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
-		}
-		try {
-			loadPreferences();
-		}
-		catch (Exception e) {
+			showNotEnoughReadingsDialog();
 		}
 		Query query = new Query(readings);
 		textView.setText(Html.fromHtml(createReport(query)));
 		textView.setMovementMethod(new ScrollingMovementMethod());
-		checkIfEnoughReadings();
 	}
 
 	private String getTabbing() {
@@ -88,8 +83,7 @@ public class ReportActivity extends Activity {
 		return true;
 	}
 
-	private void checkIfEnoughReadings() {
-		if (MainModel.getInstance().getDatabase().getReadingsCount() < MINIMUM_READINGS) {
+	private void showNotEnoughReadingsDialog() {
 			String title = getResources().getString(
 					R.string.report_notenoughdata_title);
 			String message = getResources().getString(
@@ -105,7 +99,6 @@ public class ReportActivity extends Activity {
 									dialog.dismiss();
 								}
 							}).show();
-		}
 	}
 
 	private String createReport(Query query) {
@@ -129,7 +122,7 @@ public class ReportActivity extends Activity {
 	private String createBMI(Query query) {
 		StringBuilder builder = new StringBuilder();
 		Reading latest = query.getLatestReading();
-		double bmi = MainModel.getInstance().calculateBMI(latest);
+		double bmi = _MainModel.calculateBMI(latest);
 		builder.append("BMI\t");
 		builder.append(getTabbing());
 		builder.append(String.format("%.1f", bmi));
@@ -138,13 +131,13 @@ public class ReportActivity extends Activity {
 		builder.append(getBMIClass(bmi));
 		builder.append("<br>Goal\t");
 		builder.append(getTabbing());
-		bmi = MainModel.getInstance().calculateBMI(_TargetWeight);
-		builder.append(String.format("%.1f %s (BMI %.1f)", _TargetWeight,
-				getWeightUnits(), bmi));
+		bmi = _MainModel.calculateBMI(_TargetWeight);
+		builder.append(weightToString(_MainModel.getTargetWeight()));
+		builder.append(String.format(" (BMI %.1f)", bmi));
 		builder.append("<br/><br/>Ideal Weight Range<br/>");
-		double startRange = MainModel.getInstance().calculateWeightFromBMI(
+		double startRange = _MainModel.calculateWeightFromBMI(
 				18.5D);
-		double endRange = MainModel.getInstance().calculateWeightFromBMI(25D);
+		double endRange = _MainModel.calculateWeightFromBMI(25D);
 		builder.append(weightToString(startRange) + "  -  "
 				+ weightToString(endRange));
 		return builder.toString();
@@ -185,8 +178,7 @@ public class ReportActivity extends Activity {
 		builder.append(weightToString(trend) + " "
 				+ getString(R.string.report_per_week));
 		try {
-			double targetWeightInKg = MainModel.getInstance()
-					.getWeightConverter().inverse(_TargetWeight);
+			double targetWeightInKg = _MainModel.getWeightConverter().inverse(_TargetWeight);
 			long estimatedGoalDateMillis = getDateInMillis(bestLineFit,
 					targetWeightInKg);
 			long timeNowMillis = Calendar.getInstance().getTimeInMillis();
@@ -232,7 +224,7 @@ public class ReportActivity extends Activity {
 	}
 
 	private double calculateBMI(double weight) {
-		double bmi = MainModel.getInstance().getHeight();
+		double bmi = _MainModel.getHeightInMetres();
 		if (bmi != 0.0d) {
 			bmi = weight / (bmi * bmi);
 		}
@@ -240,13 +232,9 @@ public class ReportActivity extends Activity {
 	}
 
 	private String weightToString(double weight) {
-		IUnitConverter converter = MainModel.getInstance().getWeightConverter();
+		IUnitConverter converter = _MainModel.getWeightConverter();
 		weight = converter.convert(weight);
 		return converter.getDisplayString(weight);
-	}
-
-	private String getWeightUnits() {
-		return MainModel.getInstance().getWeightConverter().getUnits();
 	}
 
 	private void emailReport() {
@@ -280,15 +268,6 @@ public class ReportActivity extends Activity {
 			return getString(R.string.bmi_class_obese2);
 		}
 		return getString(R.string.bmi_class_obese3);
-	}
-
-	private void loadPreferences() {
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String s = sharedPrefs.getString(
-				getString(R.string.code_pref_target_weight_key), "75.0");
-		_TargetWeight = Double.parseDouble(sharedPrefs.getString(
-				getString(R.string.code_pref_target_weight_key), "75.0"));
 	}
 
 }

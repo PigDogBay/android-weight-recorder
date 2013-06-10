@@ -3,19 +3,14 @@ package com.pigdogbay.weightrecorder;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
-import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 /*
@@ -27,12 +22,16 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 {
 	private List<Reading> _Readings;
 	private final ReadingListActivity _Activity;
-
-	public ReadingsArrayAdapter(ReadingListActivity activity, List<Reading> readings)
+	private IUnitConverter _WeightConverter;
+	private double _Height;
+	
+	public ReadingsArrayAdapter(ReadingListActivity activity, List<Reading> readings, IUnitConverter weightConverter, double heightInMetres)
 	{
 		super(activity, R.layout.readings_item, readings);
 		_Readings = readings;
 		_Activity = activity;
+		_WeightConverter = weightConverter;
+		_Height = heightInMetres;
 	}
 	
 	public void setReadings(List<Reading> readings)
@@ -88,15 +87,23 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 		String comment = reading.getComment();
 		if ("".equals(comment))
 		{
-			comment = String.format("BMI %.1f",MainModel.getInstance().calculateBMI(reading));
+			comment = String.format("BMI %.1f",calculateBMI(reading));
 		}
 		return comment;
 	}
+	private double calculateBMI(Reading reading)
+	{
+		double bmi = _Height;
+		if (bmi!=0)
+		{
+			bmi = reading.getWeight()/(bmi*bmi);
+		}
+		return bmi;
+	}	
 	private String weightToString(double weight)
 	{
-		IUnitConverter converter = MainModel.getInstance().getWeightConverter();
-		weight = converter.convert(weight);
-		return converter.getDisplayString(weight);
+		weight = _WeightConverter.convert(weight);
+		return _WeightConverter.getDisplayString(weight);
 	}
 
 }

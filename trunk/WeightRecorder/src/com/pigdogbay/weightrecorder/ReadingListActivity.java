@@ -19,14 +19,16 @@ public class ReadingListActivity extends ListActivity
 	protected static final int REQUEST_EDIT = 1;
 	protected static final int REQUEST_IMPORT = 2;
 	
-	ReadingsArrayAdapter _ReadingsArrayAdapter;
+	private MainModel _MainModel;
+	private ReadingsArrayAdapter _ReadingsArrayAdapter;
+
 	public void onCreate(Bundle savedInstanceState) 
 	{
         super.onCreate(savedInstanceState);
-        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, MainModel.getInstance().getReverseOrderedReadings());
+        _MainModel = new MainModel(this);
+        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getWeightConverter(), _MainModel.getHeightInMetres());
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
-		ActivitiesHelper.initializeMainModel(getApplication());		
     }
 	
 	@SuppressLint("NewApi")
@@ -55,7 +57,7 @@ public class ReadingListActivity extends ListActivity
 	}
 	private void onDataChanged()
 	{
-		_ReadingsArrayAdapter.setReadings(MainModel.getInstance().getReverseOrderedReadings());
+		_ReadingsArrayAdapter.setReadings(_MainModel.getReverseOrderedReadings());
 		_ReadingsArrayAdapter.notifyDataSetChanged();
 	}	
 	
@@ -130,7 +132,7 @@ public class ReadingListActivity extends ListActivity
 	}
 	private void deleteAll()
 	{
-		MainModel.getInstance().getDatabase().deleteAllReadings();
+		_MainModel.getDatabase().deleteAllReadings();
 		onDataChanged();
 	}
 	

@@ -13,39 +13,35 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class EditReadingActivity extends FragmentActivity
-{
-	Reading _Reading;
+public class EditReadingActivity extends FragmentActivity {
+	private Reading _Reading;
+	private MainModel _MainModel;
 
 	@Override
-	protected void onCreate(Bundle arg0)
-	{
+	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.activity_edit_reading);
 		((Button) findViewById(R.id.EditReadingBtnUpdate))
-				.setOnClickListener(new OnClickListener()
-				{
-					public void onClick(View v)
-					{
+				.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
 						onUpdateClick();
 					}
 				});
 		((Button) findViewById(R.id.EditReadingBtnDelete))
-				.setOnClickListener(new OnClickListener()
-				{
-					public void onClick(View v)
-					{
+				.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
 						onDeleteClick();
 					}
 				});
 
+		_MainModel = new MainModel(this);
 		int id = getIntent().getIntExtra("ReadingID", -1);
-		if (id == -1)
-		{
+		if (id == -1) {
 			_Reading = new Reading();
 		}
-		ActivitiesHelper.initializeMainModel(getApplication());		
-		_Reading = MainModel.getInstance().getDatabase().getReading(id);
+		else {
+			_Reading = _MainModel.getDatabase().getReading(id);
+		}
 	}
 
 	@Override
@@ -53,9 +49,9 @@ public class EditReadingActivity extends FragmentActivity
 		getMenuInflater().inflate(R.menu.menu_edit_reading, menu);
 		return true;
 	}
+
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId())
 		{
 		case (R.id.menu_edit_reading_home):
@@ -65,33 +61,32 @@ public class EditReadingActivity extends FragmentActivity
 			return false;
 		}
 		return true;
-	}	
+	}
+
 	@Override
-	protected void onStart()
-	{
+	protected void onStart() {
 		// onStart, the fragment will have been created by now
 		super.onStart();
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.EditReadingEditFragment);
 		fragment.setReading(_Reading);
+		fragment.setWeightConvert(_MainModel.getWeightConverter());
 	}
 
-	private void onUpdateClick()
-	{
+	private void onUpdateClick() {
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.EditReadingEditFragment);
 		Reading reading = fragment.getReading();
 		reading.setID(_Reading.getID());
-		MainModel.getInstance().getDatabase().updateReading(reading);
+		_MainModel.getDatabase().updateReading(reading);
 		Toast.makeText(this, getString(R.string.editreading_updated),
 				Toast.LENGTH_SHORT).show();
 		setResult(RESULT_OK);
 		this.finish();
 	}
 
-	private void onDeleteClick()
-	{
-		MainModel.getInstance().getDatabase().deleteReading(_Reading);
+	private void onDeleteClick() {
+		_MainModel.getDatabase().deleteReading(_Reading);
 		Toast.makeText(this, getString(R.string.editreading_deleted),
 				Toast.LENGTH_SHORT).show();
 		setResult(RESULT_OK);
