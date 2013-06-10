@@ -5,7 +5,7 @@
     <string name="code_pref_height_key">height_pref_key</string>
     <string name="code_pref_target_weight_key">target_weight_pref_key</string>
     <string name="code_pref_welcome_shown_key">welcome_screen_shown_pref_key</string>
-    <string name="code_pref_last_weight_entered_key">last_weight_entered_key</string>
+    <string name="code_pref_last_weight_key">last_weight_key</string>
     <string name="code_pref_show_trendline_key">show_trendline_key</string>
     <string name="code_pref_show_targetline_key">show_targetline_key</string>
 </resources>

@@ -69,5 +69,17 @@ public class PreferencesHelper {
 		editor.putString(key, Double.toString(value));
 		editor.commit();
 	}
+	public String getString(int id, String defaultValue)
+	{
+		String key = _Context.getString(id);
+		return _SharedPreferences.getString(key, defaultValue);
+	}
+	public void setString(int id, String value)
+	{
+		String key = _Context.getString(id);
+		SharedPreferences.Editor editor = _SharedPreferences.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}
 
 }
