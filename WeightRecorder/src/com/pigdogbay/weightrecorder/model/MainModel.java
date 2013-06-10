@@ -13,26 +13,34 @@ public class MainModel
 {
 	public static final double DEFAULT_HEIGHT=1.72;
 	public static final double DEFAULT_TARGET_WEIGHT=75.0;
+	private Context _Context;
 	private IReadingsDatabase _DatabaseHelper;
 	private PreferencesHelper _PreferencesHelper; 
 	
 	public MainModel(Context context)
 	{
-		_PreferencesHelper = new PreferencesHelper(context);
-		_DatabaseHelper = new DatabaseHelper(context); 
+		_Context = context;
 	}
 	
 	public IReadingsDatabase getDatabase()
 	{
+		if (_DatabaseHelper==null)
+		{
+			_DatabaseHelper = new DatabaseHelper(_Context); 
+		}
 		return _DatabaseHelper;
 	}
 	public PreferencesHelper getPreferencesHelper()
 	{
+		if (_PreferencesHelper==null)
+		{
+			_PreferencesHelper = new PreferencesHelper(_Context);
+		}
 		return _PreferencesHelper;
 	}
 	
 	public List<Reading> getReverseOrderedReadings(){
-		List<Reading> readings = _DatabaseHelper.getAllReadings();
+		List<Reading> readings = getDatabase().getAllReadings();
 		Query query = new Query(readings);
 		query.sortByDate();
 		readings = query.getReadings();
@@ -44,20 +52,20 @@ public class MainModel
 	 */
 	public double getHeight()
 	{
-		return _PreferencesHelper.getDouble(R.string.code_pref_height_key, DEFAULT_HEIGHT);
+		return getPreferencesHelper().getDouble(R.string.code_pref_height_key, DEFAULT_HEIGHT);
 	}
 	public double getTargetWeight()
 	{
-		return _PreferencesHelper.getDouble(R.string.code_pref_target_weight_key, DEFAULT_TARGET_WEIGHT);
+		return getPreferencesHelper().getDouble(R.string.code_pref_target_weight_key, DEFAULT_TARGET_WEIGHT);
 	}
 	public IUnitConverter getWeightConverter()
 	{
-		int converterType = _PreferencesHelper.getInt(R.string.code_pref_weight_units_key, UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
+		int converterType = getPreferencesHelper().getInt(R.string.code_pref_weight_units_key, UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
 		return UnitConverterFactory.create(converterType);
 	}
 	public IUnitConverter getLengthConverter()
 	{
-		int converterType = _PreferencesHelper.getInt(R.string.code_pref_length_units_key, UnitConverterFactory.METRES_TO_METRES);
+		int converterType = getPreferencesHelper().getInt(R.string.code_pref_length_units_key, UnitConverterFactory.METRES_TO_METRES);
 		return UnitConverterFactory.createLengthConverter(converterType);
 	}
 	public double getHeightInMetres()
