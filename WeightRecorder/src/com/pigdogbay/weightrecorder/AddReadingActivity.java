@@ -1,7 +1,9 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -82,13 +84,12 @@ public class AddReadingActivity extends FragmentActivity
 
 	private void loadPreferences()
 	{
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String key = getString(R.string.code_pref_last_weight_entered_key);
-		String lastWeight = sharedPrefs.getString(key, "");
+		IUnitConverter weightConverter = _MainModel.getWeightConverter();
+		double lastWeight = _MainModel.getPreferencesHelper().getDouble(R.string.code_pref_last_weight_key, MainModel.DEFAULT_TARGET_WEIGHT);
+		lastWeight = weightConverter.convert(lastWeight);
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
-		fragment.setWeightConvert(_MainModel.getWeightConverter());
+		fragment.setWeightConvert(weightConverter);
 		fragment.setWeight(lastWeight);
 	}
 
@@ -96,14 +97,10 @@ public class AddReadingActivity extends FragmentActivity
 	{
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.AddReadingEditFragment);
-		String lastWeight = fragment.getWeight();
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String key = getString(R.string.code_pref_last_weight_entered_key);
-		SharedPreferences.Editor editor = sharedPrefs.edit();
-		editor.putString(key, lastWeight);
-		editor.commit();
-
+		 double lastWeight = fragment.getWeight();
+		 IUnitConverter weightConverter = _MainModel.getWeightConverter();
+		 lastWeight = weightConverter.inverse(lastWeight);	
+		 _MainModel.getPreferencesHelper().setDouble(R.string.code_pref_last_weight_key, lastWeight);
 	}
 
 }

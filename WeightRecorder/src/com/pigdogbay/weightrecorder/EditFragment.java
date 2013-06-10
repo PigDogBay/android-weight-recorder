@@ -199,21 +199,15 @@ public class EditFragment extends Fragment
 		}
 	}
 
-	public void setWeight(String weight)
+	public void setWeight(double weight)
 	{
-		try
-		{
-			_Weight = Double.parseDouble(weight);
-		}
-		catch (NumberFormatException ex)
-		{
-		}
+		_Weight = weight;
 		updateText();
 	}
 
-	public String getWeight()
+	public double getWeight()
 	{
-		return String.format(Locale.US, "%.1f", _Weight);
+		return _Weight;
 	}
 
 	private void minus()
