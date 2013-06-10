@@ -15,6 +15,10 @@ public class Query
 	{
 		return _Readings;
 	}
+	public Query(IReadingsDatabase database)
+	{
+		_Readings = database.getAllReadings();
+	}
 	public Query(List<Reading> readings)
 	{
 		_Readings = readings;
@@ -23,6 +27,11 @@ public class Query
 	public void sortByDate()
 	{
 		Collections.sort(_Readings,new DateComparator());
+	}	
+	public void sortByDateDescending()
+	{
+		sortByDate();
+		Collections.reverse(_Readings);
 	}	
 	public Reading getMinWeight()
 	{
