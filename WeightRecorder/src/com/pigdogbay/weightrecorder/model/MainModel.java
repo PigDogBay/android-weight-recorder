@@ -6,7 +6,7 @@ import com.pigdogbay.weightrecorder.R;
 import android.content.Context;
 
 /*
- * Global static container for all the activities in the application
+ * Interface to the user data and settings
  * 
  */
 public class MainModel
@@ -72,46 +72,19 @@ public class MainModel
 	{
 		return getLengthConverter().inverse(getHeight());
 	}
-	/**
-	 * @param weight in current user selected units
-	 * @return Body Mass Index
-	 */
-	public double calculateBMI(double weight)
+	public double getTargetWeightInKilograms()
 	{
-		//get height in metres
-		double bmi = getLengthConverter().inverse(getHeight());
-		//get weight in kilograms
-		weight = getWeightConverter().inverse(weight);
-		if (bmi!=0)
-		{
-			bmi = weight/(bmi*bmi);
-		}
-		return bmi;
+		return getWeightConverter().inverse(getTargetWeight());
 	}
-	public double calculateBMI(Reading reading)
+	
+	public UserSettings getUserSettings()
 	{
-		//get height in metres
-		double bmi = getLengthConverter().inverse(getHeight());
-		if (bmi!=0)
-		{
-			bmi = reading.getWeight()/(bmi*bmi);
-		}
-		return bmi;
+		UserSettings userSettings = new UserSettings();
+		userSettings.Height = getHeightInMetres();
+		userSettings.TargetWeight = getTargetWeightInKilograms();
+		userSettings.LengthConverter = getLengthConverter();
+		userSettings.WeightConverter = getWeightConverter();
+		return userSettings;
 	}
-	public double calculateWeightFromBMI(double bmi)
-	{
-		double height = getLengthConverter().inverse(getHeight());
-		return bmi*height*height;
-	}
-	/**
-	 * @param weight in kilograms
-	 * @return String representation, ie 212.16 lbs
-	 */
-	public String weightToString(double weight)
-	{
-		IUnitConverter weightConverter = getWeightConverter();
-		weight = weightConverter.convert(weight);
-		return String.format("%.2f ", weight) + weightConverter.getUnits();
-	}	
 		
 }

@@ -7,11 +7,13 @@ import java.util.List;
 
 import com.pigdogbay.androidutils.math.BestLineFit;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -33,15 +35,15 @@ import android.widget.TextView;
 public class ReportActivity extends Activity {
 	private static final int MINIMUM_READINGS = 1;
 	public static final long DAY_IN_MILLIS = 24L * 60L * 60L * 1000L;
-	private double _TargetWeight = 75.0;
-	private MainModel _MainModel;
-
+	private UserSettings _UserSettings;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
 		TextView textView = (TextView) findViewById(R.id.ReportText);
-		_MainModel = new MainModel(this);
-		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
+		MainModel mainModel = new MainModel(this);
+		_UserSettings = mainModel.getUserSettings();
+		List<Reading> readings = mainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
 			showNotEnoughReadingsDialog();
@@ -120,9 +122,10 @@ public class ReportActivity extends Activity {
 	}
 
 	private String createBMI(Query query) {
+		BMICalculator bmiCalculator = new BMICalculator(_UserSettings);
 		StringBuilder builder = new StringBuilder();
 		Reading latest = query.getLatestReading();
-		double bmi = _MainModel.calculateBMI(latest);
+		double bmi = bmiCalculator.calculateBMI(latest);
 		builder.append("BMI\t");
 		builder.append(getTabbing());
 		builder.append(String.format("%.1f", bmi));
@@ -131,19 +134,19 @@ public class ReportActivity extends Activity {
 		builder.append(getBMIClass(bmi));
 		builder.append("<br>Goal\t");
 		builder.append(getTabbing());
-		bmi = _MainModel.calculateBMI(_TargetWeight);
-		builder.append(weightToString(_MainModel.getTargetWeight()));
+		bmi = bmiCalculator.calculateBMI(_UserSettings.TargetWeight);
+		builder.append(weightToString(_UserSettings.TargetWeight));
 		builder.append(String.format(" (BMI %.1f)", bmi));
 		builder.append("<br/><br/>Ideal Weight Range<br/>");
-		double startRange = _MainModel.calculateWeightFromBMI(
-				18.5D);
-		double endRange = _MainModel.calculateWeightFromBMI(25D);
+		double startRange = bmiCalculator.calculateWeightFromBMI(BMICalculator.UNDERWEIGHT_UPPER_LIMIT);
+		double endRange = bmiCalculator.calculateWeightFromBMI(BMICalculator.NORMAL_UPPER_LIMIT);
 		builder.append(weightToString(startRange) + "  -  "
 				+ weightToString(endRange));
 		return builder.toString();
 	}
 
 	private String createStats(Query query) {
+		BMICalculator bmiCalculator = new BMICalculator(_UserSettings);
 		if (query.getReadings().size() == 0) {
 			return "No readings available";
 		}
@@ -162,7 +165,7 @@ public class ReportActivity extends Activity {
 		builder.append(weightToString(avg));
 		builder.append("<br/>Average BMI");
 		builder.append(getTabbing());
-		builder.append(String.format("%.1f", calculateBMI(avg)));
+		builder.append(String.format("%.1f", bmiCalculator.calculateBMI(avg)));
 		builder.append("<br/>Trend\t\t\t");
 		builder.append(getTabbing());
 		BestLineFit bestLineFit = getBestLineFit(query.getReadings());
@@ -178,9 +181,7 @@ public class ReportActivity extends Activity {
 		builder.append(weightToString(trend) + " "
 				+ getString(R.string.report_per_week));
 		try {
-			double targetWeightInKg = _MainModel.getWeightConverter().inverse(_TargetWeight);
-			long estimatedGoalDateMillis = getDateInMillis(bestLineFit,
-					targetWeightInKg);
+			long estimatedGoalDateMillis = getDateInMillis(bestLineFit,_UserSettings.TargetWeight);
 			long timeNowMillis = Calendar.getInstance().getTimeInMillis();
 			if (estimatedGoalDateMillis > timeNowMillis) {
 				builder.append("<br/>Goal Date\t");
@@ -223,18 +224,13 @@ public class ReportActivity extends Activity {
 		return (long) millis;
 	}
 
-	private double calculateBMI(double weight) {
-		double bmi = _MainModel.getHeightInMetres();
-		if (bmi != 0.0d) {
-			bmi = weight / (bmi * bmi);
-		}
-		return bmi;
-	}
-
+	/**
+	 * @param weight in kilograms
+	 * @return string representation with user units
+	 */
 	private String weightToString(double weight) {
-		IUnitConverter converter = _MainModel.getWeightConverter();
-		weight = converter.convert(weight);
-		return converter.getDisplayString(weight);
+		weight = _UserSettings.WeightConverter.convert(weight);
+		return _UserSettings.WeightConverter.getDisplayString(weight);
 	}
 
 	private void emailReport() {
@@ -249,22 +245,22 @@ public class ReportActivity extends Activity {
 	}
 
 	private String getBMIClass(double bmi) {
-		if (bmi < 16.5) {
+		if (bmi < BMICalculator.SEVERLY_UNDERWEIGHT_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_severely_underweight);
 		}
-		else if (bmi < 18.5) {
+		else if (bmi < BMICalculator.UNDERWEIGHT_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_underweight);
 		}
-		else if (bmi < 25) {
+		else if (bmi < BMICalculator.NORMAL_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_normal);
 		}
-		else if (bmi < 30) {
+		else if (bmi < BMICalculator.OVERWEIGHT_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_overweight);
 		}
-		else if (bmi < 35) {
+		else if (bmi < BMICalculator.OBESE1_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_obese1);
 		}
-		else if (bmi < 40) {
+		else if (bmi < BMICalculator.OBESE2_UPPER_LIMIT) {
 			return getString(R.string.bmi_class_obese2);
 		}
 		return getString(R.string.bmi_class_obese3);
