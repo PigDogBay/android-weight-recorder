@@ -69,8 +69,8 @@ public class EditReadingActivity extends FragmentActivity {
 		super.onStart();
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.EditReadingEditFragment);
-		fragment.setReading(_Reading);
 		fragment.setWeightConvert(_MainModel.getWeightConverter());
+		fragment.setReading(_Reading);
 	}
 
 	private void onUpdateClick() {
