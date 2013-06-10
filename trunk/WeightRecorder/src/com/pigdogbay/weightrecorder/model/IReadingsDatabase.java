@@ -12,5 +12,6 @@ public interface IReadingsDatabase {
 	public abstract int getReadingsCount();
 	public abstract int updateReading(Reading reading);
 	public abstract void deleteAllReadings();
+	public abstract void close();
 
 }

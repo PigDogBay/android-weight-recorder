@@ -72,6 +72,12 @@ public class EditReadingActivity extends FragmentActivity {
 		fragment.setWeightConvert(_MainModel.getWeightConverter());
 		fragment.setReading(_Reading);
 	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		_MainModel.close();
+	}
 
 	private void onUpdateClick() {
 		EditFragment fragment = (EditFragment) getSupportFragmentManager()

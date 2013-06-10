@@ -38,6 +38,13 @@ public class MainModel
 		}
 		return _PreferencesHelper;
 	}
+	public void close()
+	{
+		if (_DatabaseHelper!=null)
+		{
+			_DatabaseHelper.close();
+		}
+	}
 	
 	public List<Reading> getReverseOrderedReadings(){
 		List<Reading> readings = getDatabase().getAllReadings();

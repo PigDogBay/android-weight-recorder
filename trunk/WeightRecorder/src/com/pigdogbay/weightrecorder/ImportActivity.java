@@ -71,6 +71,7 @@ public class ImportActivity extends Activity
 			{
 				MainModel mainModel = new MainModel(this);
 				mainModel.getDatabase().addReadings(readings);
+				mainModel.close();
 				setResult(RESULT_OK);
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),
