@@ -11,6 +11,7 @@ import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.TrendAnalysis;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.app.Activity;
@@ -168,8 +169,8 @@ public class ReportActivity extends Activity {
 		builder.append(String.format("%.1f", bmiCalculator.calculateBMI(avg)));
 		builder.append("<br/>Trend\t\t\t");
 		builder.append(getTabbing());
-		BestLineFit bestLineFit = getBestLineFit(query.getReadings());
-		double trend = getTrendInDays(bestLineFit) * 7D;
+		TrendAnalysis trendAnalysis = new TrendAnalysis(query.getReadings());
+		double trend = trendAnalysis.getTrendInDays();
 		String prefix = "";
 		if (trend != 0D) {
 			prefix = trend > 0 ? getString(R.string.report_positive_trend)
@@ -181,9 +182,8 @@ public class ReportActivity extends Activity {
 		builder.append(weightToString(trend) + " "
 				+ getString(R.string.report_per_week));
 		try {
-			long estimatedGoalDateMillis = getDateInMillis(bestLineFit,_UserSettings.TargetWeight);
-			long timeNowMillis = Calendar.getInstance().getTimeInMillis();
-			if (estimatedGoalDateMillis > timeNowMillis) {
+			long estimatedGoalDateMillis = trendAnalysis.getEstimatedDate(_UserSettings.TargetWeight);
+			if (TrendAnalysis.isGoalDateValid(estimatedGoalDateMillis)) {
 				builder.append("<br/>Goal Date\t");
 				builder.append(getTabbing());
 				String dateText = DateUtils.formatDateTime(this,
@@ -197,33 +197,6 @@ public class ReportActivity extends Activity {
 		return builder.toString();
 
 	}
-
-	private BestLineFit getBestLineFit(List<Reading> readings) {
-		BestLineFit blf = new BestLineFit();
-		for (Reading r : readings) {
-			blf.Add((double) r.getDate().getTime(), r.getWeight());
-		}
-		return blf;
-	}
-
-	private double getTrendInDays(BestLineFit blf) {
-		double slope = blf.getSlope();
-		// convert slope for per ms to per day
-		slope = slope * (1000D * 24D * 60D * 60D);
-		if (Double.isNaN(slope) || Double.isInfinite(slope)) {
-			slope = 0;
-		}
-		return slope;
-	}
-
-	private long getDateInMillis(BestLineFit blf, double weight) {
-		double millis = blf.calculateX(weight);
-		if (millis < 0 || Double.isNaN(millis) || Double.isInfinite(millis)) {
-			millis = 0;
-		}
-		return (long) millis;
-	}
-
 	/**
 	 * @param weight in kilograms
 	 * @return string representation with user units
