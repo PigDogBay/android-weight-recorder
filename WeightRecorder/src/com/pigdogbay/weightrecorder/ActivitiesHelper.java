@@ -3,8 +3,10 @@ package com.pigdogbay.weightrecorder;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -48,5 +50,23 @@ public class ActivitiesHelper {
 	public static void startImportActivity(Activity activity, int requestCode) {
 		Intent intent = new Intent(activity, ImportActivity.class);
 		activity.startActivityForResult(intent, requestCode);
+	}
+	
+	public static void showInfoDialog(Context context, int titleID, int messageID)
+	{
+		String title = context.getResources().getString(titleID);
+		String message = context.getResources().getString(messageID);
+		new AlertDialog.Builder(context)
+				.setIcon(android.R.drawable.ic_dialog_info)
+				.setTitle(title)
+				.setMessage(message)
+				.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.dismiss();
+							}
+						}).show();
+		
 	}
 }

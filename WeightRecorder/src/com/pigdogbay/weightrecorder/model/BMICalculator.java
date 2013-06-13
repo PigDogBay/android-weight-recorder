@@ -1,5 +1,9 @@
 package com.pigdogbay.weightrecorder.model;
 
+import android.content.Context;
+
+import com.pigdogbay.weightrecorder.R;
+
 public class BMICalculator {
 	
 	public static final double SEVERLY_UNDERWEIGHT_UPPER_LIMIT = 16.5;
@@ -41,4 +45,26 @@ public class BMICalculator {
 	{
 		return bmi*_UserSettings.Height*_UserSettings.Height;
 	}	
+	
+	public static String getString(Context context, double bmi){
+		if (bmi < BMICalculator.SEVERLY_UNDERWEIGHT_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_severely_underweight);
+		}
+		else if (bmi < BMICalculator.UNDERWEIGHT_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_underweight);
+		}
+		else if (bmi < BMICalculator.NORMAL_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_normal);
+		}
+		else if (bmi < BMICalculator.OVERWEIGHT_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_overweight);
+		}
+		else if (bmi < BMICalculator.OBESE1_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_obese1);
+		}
+		else if (bmi < BMICalculator.OBESE2_UPPER_LIMIT) {
+			return context.getString(R.string.bmi_class_obese2);
+		}
+		return context.getString(R.string.bmi_class_obese3);
+	}
 }
