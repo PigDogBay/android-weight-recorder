@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.pigdogbay.weightrecorder.R;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.format.DateUtils;
 
 public class ReportText {
@@ -53,7 +54,12 @@ public class ReportText {
 	
 	public String createReport(ReportAnalysis analysis)
 	{
-		return "report to do";
+		String template = Html.fromHtml(_Context.getString(R.string.report_template)).toString();
+		template = template.replace("$latestBMI", getBMIString(analysis.getLatestBMI()));
+		template = template.replace("$goalBMI", getBMIString(analysis.getTargetBMI()));
+		template = template.replace("$idealWeight", getIdealWeightRange(analysis.getBottomOfIdealWeightRange(),analysis.getTopOfIdealWeightRange()));
+		
+		return template;
 	}
 	
 }
