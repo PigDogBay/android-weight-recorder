@@ -8,31 +8,44 @@ public class ReportAnalysis {
 	UserSettings _UserSettings;
 	BMICalculator _BMICalculator;
 	TrendAnalysis _TrendAnalysis, _TrendanalysisLastWeek, _TrendanalysisLastMonth;
-	double _MinWeight,_MaxWeight,_AverageWeight,_LatestWeight; 
-	int _Count;
+	public double MinWeight,MaxWeight,AverageWeight,LatestWeight; 
+	public boolean IsWeekTrendAvaialble=false, IsMonthTrendAvailable=false;
+	public int Count;
 	
 	public ReportAnalysis(UserSettings userSettings, Query query)
 	{
 		_UserSettings = userSettings;
 		_BMICalculator = new BMICalculator(userSettings);
 		_TrendAnalysis = new TrendAnalysis(query.getReadings());
-		_MinWeight = query.getMinWeight().getWeight();
-		_MaxWeight = query.getMaxWeight().getWeight();
-		_LatestWeight = query.getLatestReading().getWeight();
-		_AverageWeight = query.getAverageWeight();
-		_Count = query._Readings.size();
+		MinWeight = query.getMinWeight().getWeight();
+		MaxWeight = query.getMaxWeight().getWeight();
+		LatestWeight = query.getLatestReading().getWeight();
+		AverageWeight = query.getAverageWeight();
+		Count = query._Readings.size();
+		
 		Date now = new Date();
 		Date lastWeek = new Date(now.getTime() - 7L * DAY_IN_MILLIS);
 		Date lastMonth = new Date(now.getTime() - 30L * DAY_IN_MILLIS);
 		_TrendAnalysis = new TrendAnalysis(query.getReadings());
-		Query queryLastMonth = query.getReadingsBetweenDates(lastMonth, now);
-		_TrendanalysisLastMonth = new TrendAnalysis(queryLastMonth.getReadings());
-		_TrendanalysisLastWeek = new TrendAnalysis(queryLastMonth.getReadingsBetweenDates(lastWeek, now).getReadings());
+		_TrendanalysisLastMonth = _TrendAnalysis;
+		_TrendanalysisLastWeek = _TrendAnalysis;
+		Query querySubset = query.getReadingsBetweenDates(lastMonth, now);
+		if (querySubset.getReadings().size()>1)
+		{
+			_TrendanalysisLastMonth = new TrendAnalysis(querySubset.getReadings());
+			IsMonthTrendAvailable=true;
+			querySubset = querySubset.getReadingsBetweenDates(lastWeek, now);
+			if (querySubset.getReadings().size()>1)
+			{
+				_TrendanalysisLastWeek = new TrendAnalysis(querySubset.getReadings());
+				IsWeekTrendAvaialble=true;
+			}
+		}
 	}
 	
 	public double getLatestBMI()
 	{
-		return _BMICalculator.calculateBMI(_LatestWeight);		
+		return _BMICalculator.calculateBMI(LatestWeight);		
 	}
 	public double getTargetBMI()
 	{
@@ -46,25 +59,9 @@ public class ReportAnalysis {
 	{
 		return _BMICalculator.calculateWeightFromBMI(BMICalculator.NORMAL_UPPER_LIMIT);
 	}
-	public double getMinWeight()
-	{
-		return _MinWeight;
-	}
-	public double getMaxWeight()
-	{
-		return _MaxWeight;
-	}
-	public double getAverageWeight()
-	{
-		return _AverageWeight;
-	}
 	public double getAverageBMI()
 	{
-		return _BMICalculator.calculateBMI(_AverageWeight);
-	}
-	public int getCount()
-	{
-		return _Count;
+		return _BMICalculator.calculateBMI(AverageWeight);
 	}
 	public double getWeeklyTrendOverLastWeek()
 	{
