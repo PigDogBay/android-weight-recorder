@@ -1,27 +1,22 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import com.pigdogbay.androidutils.math.BestLineFit;
-import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.ReportAnalysis;
+import com.pigdogbay.weightrecorder.model.ReportText;
 import com.pigdogbay.weightrecorder.model.TrendAnalysis;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.format.DateUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -31,21 +26,49 @@ public class ReportActivity extends Activity {
 	public static final long DAY_IN_MILLIS = 24L * 60L * 60L * 1000L;
 	private UserSettings _UserSettings;
 	private MainModel _MainModel;
+	private ReportText _ReportText;
+	private ReportAnalysis _ReportAnalysis;
+	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
-		TextView textView = (TextView) findViewById(R.id.ReportText);
 		_MainModel = new MainModel(this);
 		_UserSettings = _MainModel.getUserSettings();
 		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
 			readings = DummyData.createRandomData(120);
-			showNotEnoughReadingsDialog();
+			ActivitiesHelper.showInfoDialog(this, R.string.report_notenoughdata_title, R.string.report_notenoughdata_message);
 		}
-		Query query = new Query(readings);
-		textView.setText(Html.fromHtml(createReport(query)));
-		textView.setMovementMethod(new ScrollingMovementMethod());
+		_ReportAnalysis = new ReportAnalysis(_UserSettings, readings);
+		_ReportText = new ReportText(this, _UserSettings);
+		populateTextViews();
+//		TextView textView = (TextView) findViewById(R.id.ReportText);
+//		Query query = new Query(readings);
+//		textView.setText(Html.fromHtml(createReport(query)));
+//		textView.setMovementMethod(new ScrollingMovementMethod());
+	}
+	
+	private void populateTextViews()
+	{
+		TextView textView = (TextView) findViewById(R.id.ReportTextViewLatestBMI);
+		textView.setText(_ReportText.bmiToString(_ReportAnalysis.getLatestBMI()));
+		textView = (TextView) findViewById(R.id.ReportTextViewGoalBMI);
+		textView.setText(_ReportText.bmiToString(_ReportAnalysis.getTargetBMI()));
+		textView = (TextView) findViewById(R.id.ReportTextViewIdealRange);
+		textView.setText(_ReportText.idealWeightRangeToString(
+				_ReportAnalysis.getBottomOfIdealWeightRange(),
+				_ReportAnalysis.getTopOfIdealWeightRange()));
+		textView = (TextView) findViewById(R.id.ReportTextViewMinWeight);
+		textView.setText(_ReportText.weightToString(_ReportAnalysis.getMinWeight()));
+		textView = (TextView) findViewById(R.id.ReportTextViewMaxWeight);
+		textView.setText(_ReportText.weightToString(_ReportAnalysis.getMaxWeight()));
+		textView = (TextView) findViewById(R.id.ReportTextViewAverageWeight);
+		textView.setText(_ReportText.weightToString(_ReportAnalysis.getAverageWeight()));
+		textView = (TextView) findViewById(R.id.ReportTextViewAverageBMI);
+		textView.setText(_ReportText.bmiToString(_ReportAnalysis.getAverageBMI()));
+		textView = (TextView) findViewById(R.id.ReportTextViewCount);
+		textView.setText(_ReportText.weightToString(_ReportAnalysis.getCount()));
 	}
 	@Override
 	protected void onDestroy() {
@@ -84,24 +107,6 @@ public class ReportActivity extends Activity {
 			return false;
 		}
 		return true;
-	}
-
-	private void showNotEnoughReadingsDialog() {
-			String title = getResources().getString(
-					R.string.report_notenoughdata_title);
-			String message = getResources().getString(
-					R.string.report_notenoughdata_message);
-			new AlertDialog.Builder(this)
-					.setIcon(android.R.drawable.ic_dialog_info)
-					.setTitle(title)
-					.setMessage(message)
-					.setPositiveButton(R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									dialog.dismiss();
-								}
-							}).show();
 	}
 
 	private String createReport(Query query) {
@@ -172,11 +177,11 @@ public class ReportActivity extends Activity {
 		TrendAnalysis trendAnalysis = new TrendAnalysis(query.getReadings());
 		double trend = trendAnalysis.getTrendInDays();
 		String prefix = "";
-		if (trend != 0D) {
-			prefix = trend > 0 ? getString(R.string.report_positive_trend)
-					: getString(R.string.report_negative_trend);
-			prefix = prefix + " ";
-		}
+//		if (trend != 0D) {
+//			prefix = trend > 0 ? getString(R.string.report_positive_trend)
+//					: getString(R.string.report_negative_trend);
+//			prefix = prefix + " ";
+//		}
 		trend = Math.abs(trend);
 		builder.append(prefix);
 		builder.append(weightToString(trend) + " "
@@ -212,9 +217,9 @@ public class ReportActivity extends Activity {
 				DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
 		String subject = getString(R.string.report_email_subject) + " "
 				+ dateText;
-		TextView textView = (TextView) findViewById(R.id.ReportText);
-		ActivityUtils.SendEmail(this, null, subject, textView.getText()
-				.toString());
+//		TextView textView = (TextView) findViewById(R.id.ReportText);
+//		ActivityUtils.SendEmail(this, null, subject, textView.getText()
+//				.toString());
 	}
 
 	private String getBMIClass(double bmi) {
