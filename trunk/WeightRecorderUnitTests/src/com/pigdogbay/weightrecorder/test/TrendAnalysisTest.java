@@ -43,6 +43,29 @@ public class TrendAnalysisTest extends TestCase {
 		boolean actual = TrendAnalysis.isGoalDateValid(Calendar.getInstance().getTimeInMillis()-10000);
 		assertEquals(expected, actual);
 	}
+	
+	/**
+	 * Check dates 5 years or more in future are invalid
+	 */
+	public void testIsGoalDateValid3()
+	{
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, 5);
+		boolean expected = false;
+		boolean actual = TrendAnalysis.isGoalDateValid(cal.getTimeInMillis());
+		assertEquals(expected, actual);
+	}
+	/**
+	 * Check dates 4 years or more in future are valid
+	 */
+	public void testIsGoalDateValid4()
+	{
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, 4);
+		boolean expected = true;
+		boolean actual = TrendAnalysis.isGoalDateValid(cal.getTimeInMillis());
+		assertEquals(expected, actual);
+	}
 	public void test1GetTrendInDays()
 	{
 		double actual;
