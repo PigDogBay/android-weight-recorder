@@ -13,6 +13,8 @@ import com.pigdogbay.androidutils.math.BestLineFit;
 
 public class TrendAnalysis {
 
+	//Roughly 5 years in milliseconds
+	private static final long MAX_PROJECTION = 1000L*60L*60L*24L*365L*5L;
 	private BestLineFit _BestLineFit = new BestLineFit();
 
 	/**
@@ -48,7 +50,9 @@ public class TrendAnalysis {
 	public static boolean isGoalDateValid(long timeInMillis)
 	{
 		long now = Calendar.getInstance().getTimeInMillis();
-		return timeInMillis>now;
+		//5 years hence
+		long maxTime = now+MAX_PROJECTION;
+		return timeInMillis>now && timeInMillis<maxTime;
 	}
 	
 	/**
