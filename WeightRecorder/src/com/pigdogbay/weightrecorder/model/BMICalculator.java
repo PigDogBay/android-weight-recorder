@@ -12,6 +12,13 @@ public class BMICalculator {
 	public static final double OVERWEIGHT_UPPER_LIMIT = 30;
 	public static final double OBESE1_UPPER_LIMIT = 35;
 	public static final double OBESE2_UPPER_LIMIT = 40;
+	/**
+	 * According to 
+	 * http://en.wikipedia.org/wiki/List_of_the_heaviest_people
+	 * 
+	 * No one has gone above 200 kg/m^2
+	 */
+	public static final double MAX_BMI = 200;
 	
 	private UserSettings _UserSettings;
 	public BMICalculator(UserSettings userSettings)
