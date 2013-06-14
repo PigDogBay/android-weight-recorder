@@ -148,10 +148,41 @@
     </string>
     <string name="report_template">
         <![CDATA[
-        Body Mass Index<br/>
-		<br/>
-		<br/>
-		
+***** WEIGHT RECORDER REPORT *****<br/>
+<br/>
+http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder<br/>
+<br/>
+<br/>
+--- Body Mass Index ---<br/>
+<br/>
+Latest 								\t\t\t\t\t\t$LatestBMI<br/>
+Goal 								\t\t\t\t\t\t$GoalBMI<br/>
+Ideal Weight 						\t\t\t$IdealRange<br/>
+<br/>
+<br/>
+--- Trends ---<br/>
+<br/>
+Last 7 Days<br/>
+$TrendWeekTitle						\t\t\t\t\t\t$TrendWeekValue<br/>
+Goal Date 							\t\t\t\t$TrendWeekGoalDate<br/>
+<br/>
+Last 30 Days<br/>
+$TrendMonthTitle					\t\t\t\t\t\t$TrendMonthValue<br/>
+Goal Date 							\t\t\t\t$TrendMonthGoalDate<br/>
+<br/>
+All Time<br/>
+$TrendAllTitle						\t\t\t\t\t\t$TrendAllValue<br/>
+Goal Date 							\t\t\t\t$TrendAllGoalDate<br/>
+<br/>
+<br/>
+--- Stats ---<br/>
+<br/>
+Min Weight 							\t\t\t\t\t\t$MinWeight<br/>
+Max Weight 							\t\t\t\t\t$MaxWeight<br/>
+Average Weight 						\t\t\t\t$AverageWeight<br/>
+Average BMI 						\t\t\t\t\t$AverageBMI<br/>
+Number of Readings 					\t\t$Count<br/>
+<br/>		
 		]]>
 	</string>
 		
