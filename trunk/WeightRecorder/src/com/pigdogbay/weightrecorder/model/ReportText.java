@@ -1,65 +1,66 @@
 package com.pigdogbay.weightrecorder.model;
 
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import com.pigdogbay.weightrecorder.R;
 
-import android.content.Context;
-import android.text.Html;
-import android.text.format.DateUtils;
-
 public class ReportText {
-	UserSettings _UserSettings;
-	Context _Context;
+
+	Map<String,String> _Map = new HashMap<String,String>();
+
+	public static final String LatestBMI_Key = "$LatestBMI";
+	public static final String GoalBMI_Key = "$GoalBMI";
+	public static final String IdealRange_Key = "$IdealRange";
+	public static final String TrendWeekTitle_Key = "$TrendWeekTitle";
+	public static final String TrendWeekValue_Key = "$TrendWeekValue";
+	public static final String TrendWeekGoalDate_Key = "$TrendWeekGoalDate";
+	public static final String TrendMonthTitle_Key = "$TrendMonthTitle";
+	public static final String TrendMonthValue_Key = "$TrendMonthValue";
+	public static final String TrendMonthGoalDate_Key = "$TrendMonthGoalDate";
+	public static final String TrendAllTitle_Key = "$TrendAllTitle";
+	public static final String TrendAllValue_Key = "$TrendAllValue";
+	public static final String TrendAllGoalDate_Key = "$TrendAllGoalDate";
+	public static final String MinWeight_Key = "$MinWeight";
+	public static final String MaxWeight_Key = "$MaxWeight";
+	public static final String AverageWeight_Key = "$AverageWeight";
+	public static final String AverageBMI_Key = "$AverageBMI";
+	public static final String Count_Key = "$Count";
 	
-	public ReportText(Context context, UserSettings userSettings){
-		_UserSettings = userSettings;
-		_Context = context;
-	}
-	/**
-	 * @param weight in kilograms
-	 * @return string representation with user units
-	 */
-	public String getWeightString(double weight) {
-		weight = _UserSettings.WeightConverter.convert(weight);
-		return _UserSettings.WeightConverter.getDisplayString(weight);
-	}
-	public String getBMIString(double bmi) {
-		return String.format(Locale.US,"%.1f (%s)", bmi, BMICalculator.getString(_Context, bmi));
-	}
-	public String getIdealWeightRange(double startWeight, double endWeight) {
-		return getWeightString(startWeight) +" - "+getWeightString(endWeight);
-	}
-	public String getDateString(long timeInMillis)
+	public ReportText(ReportAnalysis analysis, ReportFormatting formatter)
 	{
-		if (!TrendAnalysis.isGoalDateValid(timeInMillis))
+		_Map.put(LatestBMI_Key, formatter.getBMIString(analysis.getLatestBMI()));
+		_Map.put(GoalBMI_Key, formatter.getBMIString(analysis.getTargetBMI()));
+		_Map.put(IdealRange_Key, formatter.getIdealWeightRange(
+				analysis.getBottomOfIdealWeightRange(),
+				analysis.getTopOfIdealWeightRange()));
+		_Map.put(TrendWeekTitle_Key, formatter.getWeightTrendDirection(analysis.getWeeklyTrendOverLastWeek()));
+		_Map.put(TrendWeekValue_Key, formatter.getWeightTrend(analysis.getWeeklyTrendOverLastWeek()));
+		_Map.put(TrendWeekGoalDate_Key, formatter.getValidDateString(analysis.getEstimatedDateUsingLastWeek()));
+		_Map.put(TrendMonthTitle_Key, formatter.getWeightTrendDirection(analysis.getWeeklyTrendOverLastMonth()));
+		_Map.put(TrendMonthValue_Key, formatter.getWeightTrend(analysis.getWeeklyTrendOverLastMonth()));
+		_Map.put(TrendMonthGoalDate_Key, formatter.getValidDateString(analysis.getEstimatedDateUsingLastMonth()));
+		_Map.put(TrendAllTitle_Key, formatter.getWeightTrendDirection(analysis.getWeeklyTrendAllTime()));
+		_Map.put(TrendAllValue_Key, formatter.getWeightTrend(analysis.getWeeklyTrendAllTime()));
+		_Map.put(TrendAllGoalDate_Key, formatter.getDateString(analysis.getEstimatedDateUsingAllTime()));
+		_Map.put(MinWeight_Key, formatter.getWeightString(analysis.MinWeight));
+		_Map.put(MaxWeight_Key, formatter.getWeightString(analysis.MaxWeight));
+		_Map.put(AverageWeight_Key, formatter.getWeightString(analysis.AverageWeight));
+		_Map.put(AverageBMI_Key, formatter.getBMIString(analysis.getAverageBMI()));
+		_Map.put(Count_Key, Integer.toString(analysis.Count));
+	}
+	public Set<Map.Entry<String, String>> getEntrySet()
+	{
+		return _Map.entrySet();
+	}
+	public String createReport(String template)
+	{
+		for (Map.Entry<String, String> entry : _Map.entrySet())
 		{
-			return "---";
+			template = template.replace(entry.getKey(), entry.getValue());
 		}
-		return DateUtils.formatDateTime(_Context,
-				timeInMillis, DateUtils.FORMAT_SHOW_DATE
-						| DateUtils.FORMAT_SHOW_YEAR);
-		
-	}
-	
-	public String getWeightTrendDirection(double trend)
-	{
-		int id =trend>0 ? R.string.report_gaining : R.string.report_losing;
-		return  _Context.getString(id);
-	}
-	public String getWeightTrend(double trend)
-	{
-		return  String.format("%s %s",getWeightString(trend),_Context.getString(R.string.report_per_week));
-	}
-	
-	public String createReport(ReportAnalysis analysis)
-	{
-		String template = Html.fromHtml(_Context.getString(R.string.report_template)).toString();
-		template = template.replace("$latestBMI", getBMIString(analysis.getLatestBMI()));
-		template = template.replace("$goalBMI", getBMIString(analysis.getTargetBMI()));
-		template = template.replace("$idealWeight", getIdealWeightRange(analysis.getBottomOfIdealWeightRange(),analysis.getTopOfIdealWeightRange()));
-		
+
 		return template;
-	}
-	
+	}	
 }

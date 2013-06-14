@@ -146,6 +146,16 @@
         <br/><br/>*Please note that weights are expressed in kilograms, to convert to pounds multiply by 2.20462.
 		<br/><br/>The easiest way to import data is to email yourself the readings. Open the email, press on the text so that the text editing options appear, choose select all and then copy. On the import screen touch and hold the screen so that the paste option appears.        ]]>
     </string>
+    <string name="report_template">
+        <![CDATA[
+        Body Mass Index<br/>
+		<br/>
+		<br/>
+		
+		]]>
+	</string>
+		
+    
     <string name="menu_help_text_small">Text Small</string>
     <string name="menu_help_text_medium">Text Medium</string>
     <string name="menu_help_text_large">Text Large</string>

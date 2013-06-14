@@ -219,9 +219,9 @@ public final class R {
         public static final int menu_chart_90=0x7f050058;
         public static final int menu_chart_all=0x7f050055;
         public static final int menu_chart_year=0x7f050059;
-        public static final int menu_help_text_large=0x7f050084;
-        public static final int menu_help_text_medium=0x7f050083;
-        public static final int menu_help_text_small=0x7f050082;
+        public static final int menu_help_text_large=0x7f050085;
+        public static final int menu_help_text_medium=0x7f050084;
+        public static final int menu_help_text_small=0x7f050083;
         public static final int menu_home=0x7f050053;
         public static final int menu_main_about=0x7f050054;
         public static final int menu_readings_list_delete_all=0x7f05005c;
@@ -273,6 +273,7 @@ public final class R {
         public static final int report_per_no_readings=0x7f050068;
         public static final int report_per_week=0x7f050069;
         public static final int report_stats=0x7f050075;
+        public static final int report_template=0x7f050082;
         public static final int report_trends=0x7f05006e;
         public static final int title_activity_about=0x7f050021;
         public static final int title_activity_add=0x7f05001d;
