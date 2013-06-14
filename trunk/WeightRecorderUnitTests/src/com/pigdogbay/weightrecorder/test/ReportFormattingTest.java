@@ -1,0 +1,99 @@
+package com.pigdogbay.weightrecorder.test;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import com.pigdogbay.weightrecorder.model.ReportFormatting;
+import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
+import com.pigdogbay.weightrecorder.model.UserSettings;
+
+import android.test.AndroidTestCase;
+
+public class ReportFormattingTest extends AndroidTestCase {
+
+	private UserSettings createMetricSettings()
+	{
+		UserSettings userSettings = new UserSettings();
+		userSettings.Height=1.72;
+		userSettings.TargetWeight = 85;
+		userSettings.WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
+		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_METRES);
+		return userSettings;
+	}
+	private UserSettings createBritishSettings()
+	{
+		UserSettings userSettings = new UserSettings();
+		userSettings.Height=1.72;
+		userSettings.TargetWeight = 85;
+		userSettings.WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_STONES);
+		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_CENTIMETRES);
+		return userSettings;
+	}
+	private UserSettings createUSSettings()
+	{
+		UserSettings userSettings = new UserSettings();
+		userSettings.Height=1.72;
+		userSettings.TargetWeight = 85;
+		userSettings.WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_POUNDS);
+		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_INCHES);
+		return userSettings;
+	}
+	
+	public void testGetWeightString1() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("0.0 kg", target.getWeightString(0) );
+		assertEquals("42.8 kg", target.getWeightString(42.84) );
+		assertEquals("42.9 kg", target.getWeightString(42.86) );
+		assertEquals("-1.0 kg", target.getWeightString(-1) );
+	}
+	public void testGetWeightString2() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createBritishSettings());
+		assertEquals("0 lb", target.getWeightString(0) );
+		assertEquals("11st 11lb", target.getWeightString(75) );
+		
+	}
+	public void testGetWeightString3() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createUSSettings());
+		assertEquals("0.0 lb", target.getWeightString(0) );
+		assertEquals("165.3 lb", target.getWeightString(75) );
+		
+	}
+	public void testGetWeightString4() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("0.0 kg", target.getWeightString(Double.NaN) );
+		assertEquals("0.0 kg", target.getWeightString(Double.POSITIVE_INFINITY) );
+		assertEquals("0.0 kg", target.getWeightString(Double.NEGATIVE_INFINITY) );
+		assertEquals("0.0 kg", target.getWeightString(Double.MIN_NORMAL) );
+	}
+
+	public void testGetBMIString1() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("25.0 (Overweight)",target.getBMIString(25));
+		assertEquals("20.1 (Normal)",target.getBMIString(20.1));
+		assertEquals("16.5 (Underweight)",target.getBMIString(16.5));
+	}
+	public void testGetBMIString2() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("0.0 (Severely Underweight)",target.getBMIString(0));
+		assertEquals("0.0 (Severely Underweight)",target.getBMIString(-1));
+		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.NaN));
+		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.POSITIVE_INFINITY));
+		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.NEGATIVE_INFINITY));
+		assertEquals("200.0 (Obese Class III)",target.getBMIString(999999));
+	}
+
+	public void testGetDateString1() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		Calendar cal = new GregorianCalendar(2013,Calendar.JUNE,14,16,01);
+		assertEquals("June 14, 2013",target.getDateString(cal.getTimeInMillis()));
+		//DateUtils suffers from Year 2038 problem
+		cal = new GregorianCalendar(3000,Calendar.JUNE,14,16,01);
+		assertEquals("June 14, 3000",target.getDateString(cal.getTimeInMillis()));
+	}
+	public void testGetDateString2() {
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("January 1, 1970",target.getDateString(0));
+	}
+
+
+}

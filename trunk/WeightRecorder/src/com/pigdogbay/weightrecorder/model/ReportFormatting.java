@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import com.pigdogbay.weightrecorder.R;
@@ -22,10 +24,24 @@ public class ReportFormatting {
 	 * @return string representation with user units
 	 */
 	public String getWeightString(double weight) {
+		if (Double.isNaN(weight) || Double.isInfinite(weight))
+		{
+			//prevent user seeing INF or NaN 
+			weight = 0;
+		}
 		weight = _UserSettings.WeightConverter.convert(weight);
 		return _UserSettings.WeightConverter.getDisplayString(weight);
 	}
 	public String getBMIString(double bmi) {
+		if (Double.isNaN(bmi) || Double.isInfinite(bmi) || bmi<0)
+		{
+			//prevent user seeing INF or NaN 
+			bmi = 0;
+		}
+		if (bmi>BMICalculator.MAX_BMI)
+		{
+			bmi = BMICalculator.MAX_BMI;
+		}
 		return String.format(Locale.US,"%.1f (%s)", bmi, BMICalculator.getString(_Context, bmi));
 	}
 	public String getIdealWeightRange(double startWeight, double endWeight) {
@@ -37,9 +53,9 @@ public class ReportFormatting {
 	}
 	public String getDateString(long timeInMillis)
 	{
-		return DateUtils.formatDateTime(_Context,
-				timeInMillis, DateUtils.FORMAT_SHOW_DATE
-						| DateUtils.FORMAT_SHOW_YEAR);
+		//DateUtils.formatDateTime suffers from the Year 2038 problem
+		//One gripe with SDF is that UK locale formats like June 14, 2013 which is more American IMHO
+		return SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(new Date(timeInMillis));
 	}
 	public String getWeightTrendDirection(double trend)
 	{
