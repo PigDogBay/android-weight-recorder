@@ -56,7 +56,7 @@ public class ReportActivity extends Activity {
 		}
 		Query query = new Query(readings);
 		ReportAnalysis analysis = new ReportAnalysis(userSettings, query);
-		ReportFormatting _ReportFormatting = new ReportFormatting(this, userSettings);
+		_ReportFormatting = new ReportFormatting(this, userSettings);
 		_ReportText = new ReportText(analysis, _ReportFormatting);
 		mainModel.close();
 		
