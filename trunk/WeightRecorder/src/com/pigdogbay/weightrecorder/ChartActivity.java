@@ -76,7 +76,7 @@ public class ChartActivity extends Activity {
 		{
 		case (R.id.menu_chart_home):
 			finish();
-			return;
+			return true;
 		case (R.id.menu_chart_all):
 			_Period = 0;
 			break;
