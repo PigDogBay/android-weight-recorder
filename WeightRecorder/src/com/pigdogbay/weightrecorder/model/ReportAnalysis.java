@@ -16,7 +16,6 @@ public class ReportAnalysis {
 	{
 		_UserSettings = userSettings;
 		_BMICalculator = new BMICalculator(userSettings);
-		_TrendAnalysis = new TrendAnalysis(query.getReadings());
 		MinWeight = query.getMinWeight().getWeight();
 		MaxWeight = query.getMaxWeight().getWeight();
 		LatestWeight = query.getLatestReading().getWeight();
@@ -65,15 +64,15 @@ public class ReportAnalysis {
 	}
 	public double getWeeklyTrendOverLastWeek()
 	{
-		return _TrendanalysisLastWeek.getTrendInDays()*7;
+		return _TrendanalysisLastWeek.getTrendInDays()*7D;
 	}
 	public double getWeeklyTrendOverLastMonth()
 	{
-		return _TrendanalysisLastMonth.getTrendInDays()*7;
+		return _TrendanalysisLastMonth.getTrendInDays()*7D;
 	}
 	public double getWeeklyTrendAllTime()
 	{
-		return _TrendAnalysis.getTrendInDays()*7;
+		return _TrendAnalysis.getTrendInDays()*7D;
 	}
 	public long getEstimatedDateUsingLastWeek()
 	{
