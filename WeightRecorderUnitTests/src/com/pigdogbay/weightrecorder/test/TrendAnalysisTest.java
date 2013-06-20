@@ -28,7 +28,7 @@ public class TrendAnalysisTest extends TestCase {
 		double actual;
 		double expected=Mocks.DAILY_WEIGHT_TREND;
 		actual = target.getTrendInDays();
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 	/*
 	 * The long to double conversions can lose precision for times in milliseconds
@@ -97,8 +97,7 @@ public class TrendAnalysisTest extends TestCase {
 		double expected=-5;
 		TrendAnalysis target = new TrendAnalysis(createReadings());
 		actual =target.getTrendInDays();
-		actual = Math.floor(actual*100)/100;
-		assertEquals(expected, actual);		
+		Utils.assertRounded(expected, actual);
 	}
 	public void testGetEstimatedWeight1()
 	{
@@ -106,7 +105,6 @@ public class TrendAnalysisTest extends TestCase {
 		double expected=95;
 		TrendAnalysis target = new TrendAnalysis(createReadings());
 		actual = target.getEstimatedWeight(new GregorianCalendar(2013, Calendar.JUNE, 8, 8, 0).getTimeInMillis());
-		actual = Math.floor(actual*100)/100;
-		assertEquals(expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 }

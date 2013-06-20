@@ -1,16 +1,9 @@
 package com.pigdogbay.weightrecorder.test;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
 import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.Query;
-import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReportAnalysis;
-import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
-import com.pigdogbay.weightrecorder.model.UserSettings;
-
 import android.test.AndroidTestCase;
 
 public class ReportAnalysisTest extends AndroidTestCase {
@@ -26,56 +19,56 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getLatestBMI();
 		double expected = Mocks.START_WEIGHT/(Mocks.HEIGHT*Mocks.HEIGHT);
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetTargetBMI() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getTargetBMI();
 		double expected = Mocks.TARGET_WEIGHT/(Mocks.HEIGHT*Mocks.HEIGHT);
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetBottomOfIdealWeightRange() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getBottomOfIdealWeightRange();
 		double expected = Mocks.HEIGHT*Mocks.HEIGHT*BMICalculator.UNDERWEIGHT_UPPER_LIMIT;
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetTopOfIdealWeightRange() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getTopOfIdealWeightRange();
 		double expected = Mocks.HEIGHT*Mocks.HEIGHT*BMICalculator.NORMAL_UPPER_LIMIT;
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetAverageBMI() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getAverageBMI();
 		double expected = 104.995D/(Mocks.HEIGHT*Mocks.HEIGHT);
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetWeeklyTrendOverLastWeek() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendOverLastWeek();
 		double expected = Mocks.DAILY_WEIGHT_TREND*7;
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetWeeklyTrendOverLastMonth() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendOverLastMonth();
 		double expected = Mocks.DAILY_WEIGHT_TREND*7;
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetWeeklyTrendAllTime() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendAllTime();
 		double expected = Mocks.DAILY_WEIGHT_TREND*7;
-		Utils.assertRounded(this, expected, actual);
+		Utils.assertRounded(expected, actual);
 	}
 
 	public void testGetEstimatedDateUsingLastWeek() {

@@ -3,9 +3,10 @@ package com.pigdogbay.weightrecorder.test;
 import junit.framework.TestCase;
 
 public class Utils {
+	public static final long DAY_IN_MILLIS = 24L * 60L * 60L * 1000L;
 
-	public static void assertRounded(TestCase test, double expected, double actual)
+	public static void assertRounded(double expected, double actual)
 	{
-		test.assertEquals(Math.round(expected*10000), Math.round(actual*10000));
+		TestCase.assertEquals(Math.round(expected*10000), Math.round(actual*10000));
 	}
 }
