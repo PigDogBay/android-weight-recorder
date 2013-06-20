@@ -79,6 +79,11 @@ public class ChartLogic {
 		{
 			query = query.getReadingsBetweenDates(new Date(startTime),new Date());
 		}
+		
+		if (query.getReadings().size()<3)
+		{
+			return series;
+		}
 		TrendAnalysis trendAnalysis = new TrendAnalysis(query.getReadings());
 
 		//Add start weight
