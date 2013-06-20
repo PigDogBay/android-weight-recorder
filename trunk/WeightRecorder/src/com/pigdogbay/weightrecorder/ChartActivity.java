@@ -2,10 +2,12 @@ package com.pigdogbay.weightrecorder;
 
 import java.util.List;
 
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,24 +25,30 @@ public class ChartActivity extends Activity {
 	private static final int MINIMUM_READINGS = 3;
 	ReadingsChart _Chart;
 	static int _Period = 0;
+	private UserSettings _UserSettings;
 	private MainModel _MainModel;
+	private boolean _UseDummyReadings;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart);
 
 		_MainModel = new MainModel(this);
-		checkIfEnoughReadings();
+		_UserSettings = _MainModel.getUserSettings();
 		_Chart = new ReadingsChart();
-		IUnitConverter converter = _MainModel.getWeightConverter();
-		_Chart.setYAxisTitle(String.format("Weight (%s)", converter.getUnits()));
-		try {
-			loadPreferences();
+		_Chart.setXAxisTitle(getString(R.string.chart_xaxis_title));
+		_Chart.setYAxisTitle(String.format("%s (%s)", 
+				getString(R.string.chart_yaxis_title),
+				_UserSettings.WeightConverter.getUnits()));
+		_Chart.setShowTrendLine(_UserSettings.ShowTrendLine);
+		_Chart.setShowTargetLine(_UserSettings.ShowTargetLine);
+		_Chart.setTargetWeight(_UserSettings.TargetWeight);
+		_UseDummyReadings =_MainModel.getDatabase().getReadingsCount()< MINIMUM_READINGS; 
+		createChart();
+		if (_UseDummyReadings)
+		{
+			ActivitiesHelper.showInfoDialog(this, R.string.chart_notenoughdata_title, R.string.chart_notenoughdata_message);
 		}
-		catch (Exception e) {
-		}
-		ViewGroup layout = (ViewGroup) findViewById(R.id.ChartLayout);
-		layout.addView(_Chart.CreateView(getReadings(), this, _Period));
 
 	}
 	@Override
@@ -49,29 +57,9 @@ public class ChartActivity extends Activity {
 		super.onDestroy();
 		_MainModel.close();
 	}
-	private void checkIfEnoughReadings() {
-		if (_MainModel.getDatabase().getReadingsCount() < MINIMUM_READINGS) {
-			String title = getResources().getString(
-					R.string.chart_notenoughdata_title);
-			String message = getResources().getString(
-					R.string.chart_notenoughdata_message);
-			new AlertDialog.Builder(this)
-					.setIcon(android.R.drawable.ic_dialog_info)
-					.setTitle(title)
-					.setMessage(message)
-					.setPositiveButton(R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									dialog.dismiss();
-								}
-							}).show();
-		}
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		ViewGroup layout = (ViewGroup) findViewById(R.id.ChartLayout);
 		switch (item.getItemId())
 		{
 		case (R.id.menu_chart_home):
@@ -95,8 +83,7 @@ public class ChartActivity extends Activity {
 		default:
 			return false;
 		}
-		layout.removeAllViews();
-		layout.addView(_Chart.CreateView(getReadings(), this, _Period));
+		createChart();
 		return true;
 	}
 
@@ -105,25 +92,20 @@ public class ChartActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_chart, menu);
 		return true;
 	}
-
-	private List<Reading> getReadings() {
-		List<Reading> readings = _MainModel.getDatabase().getAllReadings();
-		if (readings.size() < MINIMUM_READINGS) {
-			readings = DummyData.createRandomData(120);
-		}
-		IUnitConverter converter = _MainModel.getWeightConverter();
+	private void createChart()
+	{
+		ViewGroup layout = (ViewGroup) findViewById(R.id.ChartLayout);
+		layout.removeAllViews();
+		layout.addView(_Chart.CreateView(createReadings(), this, _Period));
+	}
+	private List<Reading> createReadings()
+	{
+		List<Reading> readings = _UseDummyReadings ?
+				DummyData.createRandomData(120) : 
+				_MainModel.getDatabase().getAllReadings();
 		for (Reading r : readings) {
-			r.setWeight(converter.convert(r.getWeight()));
+			r.setWeight(_UserSettings.WeightConverter.convert(r.getWeight()));
 		}
 		return readings;
 	}
-
-	private void loadPreferences() {
-		boolean show = _MainModel.getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, false);
-		_Chart.setShowTrendLine(show);
-		show = _MainModel.getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, false);
-		_Chart.setShowTargetLine(show);
-		_Chart.setTargetWeight(_MainModel.getTargetWeight()); 
-	}
-
 }
