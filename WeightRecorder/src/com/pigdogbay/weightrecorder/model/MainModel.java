@@ -83,6 +83,14 @@ public class MainModel
 	{
 		return getWeightConverter().inverse(getTargetWeight());
 	}
+	public boolean getShowTargetLine()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, false);
+	}
+	public boolean getShowTrendLine()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, false);
+	}
 	
 	public UserSettings getUserSettings()
 	{
@@ -91,6 +99,8 @@ public class MainModel
 		userSettings.TargetWeight = getTargetWeightInKilograms();
 		userSettings.LengthConverter = getLengthConverter();
 		userSettings.WeightConverter = getWeightConverter();
+		userSettings.ShowTargetLine= getShowTargetLine();
+		userSettings.ShowTrendLine = getShowTrendLine();
 		return userSettings;
 	}
 		

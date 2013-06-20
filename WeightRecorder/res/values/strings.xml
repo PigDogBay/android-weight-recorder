@@ -27,6 +27,8 @@
     <string name="title_activity_help">Weight Recorder Help</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">Since there are less than 3 readings, the chart will show example data. Press the menu key to select a 30, 60 or 90 day view. </string>
+    <string name="chart_xaxis_title">Date</string>
+    <string name="chart_yaxis_title">Weight</string>
     <string name="report_notenoughdata_title">Not Enough Readings</string>
     <string name="report_notenoughdata_message">Since there are no readings the report will show example data.</string>
     <string name="ok">OK</string>

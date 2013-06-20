@@ -11,5 +11,5 @@ public class UserSettings {
 	 */
 	public double TargetWeight;
 	public IUnitConverter WeightConverter, LengthConverter;
-
+	public boolean ShowTrendLine, ShowTargetLine;
 }
