@@ -1,9 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.PointStyle;
@@ -12,213 +8,121 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import com.pigdogbay.androidutils.math.BestLineFit;
 import com.pigdogbay.weightrecorder.model.ChartAxesRanges;
-import com.pigdogbay.weightrecorder.model.ChartLogic;
-import com.pigdogbay.weightrecorder.model.Query;
-import com.pigdogbay.weightrecorder.model.Reading;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.util.Log;
 
 public class ReadingsChart
 {
-	String _YAxisTitle = "Weight";
-	String _XAxisTitle = "Date";
-	boolean _ShowTrendLine = false;
-	boolean _ShowTargetLine = false;
-	double _TargetWeight = 75.0D;
+	XYMultipleSeriesRenderer _Renderer;
+	XYMultipleSeriesDataset _Dataset;
 	
+	public ReadingsChart()
+	{
+		_Renderer = new XYMultipleSeriesRenderer();
+		_Renderer.setShowLegend(false);
+		_Renderer.setPanEnabled(false);
+		_Renderer.setZoomEnabled(false);
+		_Renderer.setBackgroundColor(Color.BLACK);
+		_Renderer.setApplyBackgroundColor(true);
+		_Renderer.setAxesColor(Color.LTGRAY);
+		_Renderer.setLabelsColor(Color.LTGRAY);
+		_Renderer.setShowGrid(true);
+		_Renderer.setXLabelsAlign(Align.CENTER);
+		_Renderer.setYLabelsAlign(Align.RIGHT);
+		_Renderer.setZoomButtonsVisible(false);
 
-	public void setShowTrendLine(boolean show)
-	{
-		_ShowTrendLine = show;
+		_Dataset = new XYMultipleSeriesDataset();
+		
 	}
-	public void setShowTargetLine(boolean show)
-	{
-		_ShowTargetLine = show;
-	}
-	public void setTargetWeight(double weight)
-	{
-		_TargetWeight = weight;
-	}
-
 	public void setXAxisTitle(String title)
 	{
-		_XAxisTitle = title;
+		_Renderer.setXTitle(title);
 	}
 
 	public void setYAxisTitle(String title)
 	{
-		_YAxisTitle = title;
+		_Renderer.setYTitle(title);
 	}
-
-	public GraphicalView CreateView(List<Reading> readings, Context context,
-			int period)
+	public void setChartAxesRanges(ChartAxesRanges chartAxesRanges)
 	{
-		Query query = new Query(readings);
-		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		renderer.setShowLegend(false);
-		renderer.setPanEnabled(false);
-		renderer.setZoomEnabled(false);
-		renderer.setBackgroundColor(Color.BLACK);
-		renderer.setApplyBackgroundColor(true);
-
+		_Renderer.setXAxisMin(chartAxesRanges.XAxisMin);
+		_Renderer.setXAxisMax(chartAxesRanges.XAxisMax);
+		_Renderer.setYAxisMin(chartAxesRanges.YAxisMin);
+		_Renderer.setYAxisMax(chartAxesRanges.YAxisMax);
+	}
+	
+	public void addReadings(TimeSeries series)
+	{
 		XYSeriesRenderer r = new XYSeriesRenderer();
 		r.setColor(Color.GREEN);
 		r.setPointStyle(PointStyle.CIRCLE);
 		r.setFillPoints(true);
 		r.setLineWidth(2f);
-		renderer.addSeriesRenderer(r);
-
-		renderer.setXTitle(_XAxisTitle);
-		renderer.setYTitle(_YAxisTitle);
-		renderer.setAxesColor(Color.LTGRAY);
-		renderer.setLabelsColor(Color.LTGRAY);
-		renderer.setShowGrid(true);
-		renderer.setXLabelsAlign(Align.CENTER);
-		renderer.setYLabelsAlign(Align.RIGHT);
-		renderer.setZoomButtonsVisible(false);
-
-		query.sortByDate();
-		setAxes(renderer, new ChartLogic().calculateAxesRanges(query, period));
-
-		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-		TimeSeries series = new TimeSeries("weights");
-		for (Reading reading : query.getReadings())
-		{
-			series.add(reading.getDate(), reading.getWeight());
-		}
-		dataset.addSeries(series);
-		if (_ShowTrendLine)
-		{
-			addTrendLine(renderer, dataset, query, period);
-		}
-		if (_ShowTargetLine)
-		{
-			addTargetLine(renderer, dataset);
-		}
-
-		fitDisplay(context, renderer);
-		return ChartFactory.getTimeChartView(context, dataset, renderer,
-				"d MMM");
+		_Renderer.addSeriesRenderer(r);
+		_Dataset.addSeries(series);
 	}
-	private void setAxes(XYMultipleSeriesRenderer renderer,ChartAxesRanges chartAxesRanges)
+	public void addTrend(TimeSeries series)
 	{
-		renderer.setXAxisMin(chartAxesRanges.XAxisMin);
-		renderer.setXAxisMax(chartAxesRanges.XAxisMax);
-		renderer.setYAxisMin(chartAxesRanges.YAxisMin);
-		renderer.setYAxisMax(chartAxesRanges.YAxisMax);
+		XYSeriesRenderer r = new XYSeriesRenderer();
+		r.setColor(Color.RED);
+		r.setPointStyle(PointStyle.TRIANGLE);
+		r.setFillPoints(true);
+		r.setLineWidth(1.8f);
+		_Renderer.addSeriesRenderer(r);
+		_Dataset.addSeries(series);
 	}
-
-	private void fitDisplay(Context context, XYMultipleSeriesRenderer renderer)
+	public void addTarget(TimeSeries series)
+	{
+		XYSeriesRenderer r = new XYSeriesRenderer();
+		r.setColor(Color.CYAN);
+		r.setPointStyle(PointStyle.SQUARE);
+		r.setFillPoints(true);
+		r.setLineWidth(1.8f);
+		_Renderer.addSeriesRenderer(r);
+		_Dataset.addSeries(series);
+	}
+	private void fitDisplay(Context context)
 	{
 		int screenSize = context.getResources().getConfiguration().screenLayout
 				& Configuration.SCREENLAYOUT_SIZE_MASK;
 		if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE)
 		{
 			// Top, left, bottom, right
-			renderer.setMargins(new int[] { 20, 80, 40, 0 });
-			renderer.setAxisTitleTextSize(32f);
-			renderer.setLabelsTextSize(18f);
-			renderer.setXLabels(10);
-			renderer.setYLabels(10);
-			renderer.setPointSize(5f);
+			_Renderer.setMargins(new int[] { 20, 80, 40, 0 });
+			_Renderer.setAxisTitleTextSize(32f);
+			_Renderer.setLabelsTextSize(18f);
+			_Renderer.setXLabels(10);
+			_Renderer.setYLabels(10);
+			_Renderer.setPointSize(5f);
 
 		}
 		else if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL)
 		{
-			renderer.setMargins(new int[] { 10, 40, 20, 0 });
-			renderer.setAxisTitleTextSize(16f);
-			renderer.setLabelsTextSize(10f);
-			renderer.setXLabels(8);
-			renderer.setYLabels(8);
-			renderer.setPointSize(3f);
+			_Renderer.setMargins(new int[] { 10, 40, 20, 0 });
+			_Renderer.setAxisTitleTextSize(16f);
+			_Renderer.setLabelsTextSize(10f);
+			_Renderer.setXLabels(8);
+			_Renderer.setYLabels(8);
+			_Renderer.setPointSize(3f);
 		}
 		else
 		{
-			renderer.setMargins(new int[] { 8, 30, 16, 0 });
-			renderer.setAxisTitleTextSize(12f);
-			renderer.setLabelsTextSize(8f);
-			renderer.setXLabels(6);
-			renderer.setYLabels(6);
-			renderer.setPointSize(2f);
+			_Renderer.setMargins(new int[] { 8, 30, 16, 0 });
+			_Renderer.setAxisTitleTextSize(12f);
+			_Renderer.setLabelsTextSize(8f);
+			_Renderer.setXLabels(6);
+			_Renderer.setYLabels(6);
+			_Renderer.setPointSize(2f);
 		}
 
 	}
-
-	private void addTrendLine(XYMultipleSeriesRenderer renderer,
-			XYMultipleSeriesDataset dataset, Query query, long period)
+	public GraphicalView createView(Context context)
 	{
-
-		long startTime = new Date().getTime() - period * 1000L * 60L * 60L* 24L;
-		if (period==0)
-		{
-			//use first reading
-			startTime = query.getFirstReading().getDate().getTime();
-		}
-		BestLineFit blf = new BestLineFit();
-		Query queryPeriod = query.getReadingsBetweenDates(new Date(startTime),
-				new Date());
-		if (queryPeriod.getReadings().size() < 3)
-		{
-			return;
-		}
-		for (Reading reading : queryPeriod.getReadings())
-		{
-			blf.Add((double) reading.getDate().getTime(), reading.getWeight());
-		}
-		double slope = blf.getSlope();
-		double intercept = blf.getIntercept();
-		double startWeight = ((double) startTime) * slope + intercept;
-
-		XYSeriesRenderer r = new XYSeriesRenderer();
-		r.setColor(Color.RED);
-		r.setPointStyle(PointStyle.TRIANGLE);
-		r.setFillPoints(true);
-		r.setLineWidth(1.8f);
-		renderer.addSeriesRenderer(r);
-
-		TimeSeries trendSeries = new TimeSeries("trend");
-		trendSeries.add(new Date(startTime), startWeight);
-		//Project forward 1 year
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, 1);
-		for (int i=0;i<12; i++)
-		{
-			Date date = cal.getTime();
-			double weight = ((double)date.getTime())*slope +intercept;
-			trendSeries.add(date,weight);
-			cal.add(Calendar.MONTH,1);
-		}		
-		dataset.addSeries(trendSeries);
+		fitDisplay(context);
+		return ChartFactory.getTimeChartView(context, _Dataset, _Renderer,"d MMM");
 
 	}
-	private void addTargetLine(XYMultipleSeriesRenderer renderer, XYMultipleSeriesDataset dataset)
-	{
-		Log.v("WeightRecorder","adding target line");
-		XYSeriesRenderer r = new XYSeriesRenderer();
-		r.setColor(Color.CYAN);
-		r.setPointStyle(PointStyle.SQUARE);
-		r.setFillPoints(true);
-		r.setLineWidth(1.8f);
-		renderer.addSeriesRenderer(r);
-
-		TimeSeries trendSeries = new TimeSeries("target");
-		//Display line one year back and forward
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, 1);
-		cal.roll(Calendar.YEAR, false);
-		for (int i=0;i<24; i++)
-		{
-			trendSeries.add(cal.getTime(), _TargetWeight);
-			cal.add(Calendar.MONTH,1);
-		}
-		
-		dataset.addSeries(trendSeries);		
-	}
-	
 }
