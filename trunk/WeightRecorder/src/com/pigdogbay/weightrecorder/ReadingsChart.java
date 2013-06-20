@@ -23,8 +23,8 @@ public class ReadingsChart
 	{
 		_Renderer = new XYMultipleSeriesRenderer();
 		_Renderer.setShowLegend(false);
-		_Renderer.setPanEnabled(false);
-		_Renderer.setZoomEnabled(false);
+		_Renderer.setPanEnabled(true);
+		_Renderer.setZoomEnabled(true);
 		_Renderer.setBackgroundColor(Color.BLACK);
 		_Renderer.setApplyBackgroundColor(true);
 		_Renderer.setAxesColor(Color.LTGRAY);
@@ -32,7 +32,7 @@ public class ReadingsChart
 		_Renderer.setShowGrid(true);
 		_Renderer.setXLabelsAlign(Align.CENTER);
 		_Renderer.setYLabelsAlign(Align.RIGHT);
-		_Renderer.setZoomButtonsVisible(false);
+		_Renderer.setZoomButtonsVisible(true);
 
 		_Dataset = new XYMultipleSeriesDataset();
 		
@@ -93,7 +93,7 @@ public class ReadingsChart
 			// Top, left, bottom, right
 			_Renderer.setMargins(new int[] { 20, 80, 40, 0 });
 			_Renderer.setAxisTitleTextSize(32f);
-			_Renderer.setLabelsTextSize(18f);
+			_Renderer.setLabelsTextSize(20f);
 			_Renderer.setXLabels(10);
 			_Renderer.setYLabels(10);
 			_Renderer.setPointSize(5f);
@@ -103,7 +103,7 @@ public class ReadingsChart
 		{
 			_Renderer.setMargins(new int[] { 10, 40, 20, 0 });
 			_Renderer.setAxisTitleTextSize(16f);
-			_Renderer.setLabelsTextSize(10f);
+			_Renderer.setLabelsTextSize(12f);
 			_Renderer.setXLabels(8);
 			_Renderer.setYLabels(8);
 			_Renderer.setPointSize(3f);
@@ -112,7 +112,7 @@ public class ReadingsChart
 		{
 			_Renderer.setMargins(new int[] { 8, 30, 16, 0 });
 			_Renderer.setAxisTitleTextSize(12f);
-			_Renderer.setLabelsTextSize(8f);
+			_Renderer.setLabelsTextSize(10f);
 			_Renderer.setXLabels(6);
 			_Renderer.setYLabels(6);
 			_Renderer.setPointSize(2f);
