@@ -15,90 +15,67 @@ import android.test.AndroidTestCase;
 
 public class ReportAnalysisTest extends AndroidTestCase {
 	
-	private static final double HEIGHT = 1.72D;
 
-	private UserSettings createMetricSettings()
-	{
-		UserSettings userSettings = new UserSettings();
-		userSettings.Height=HEIGHT;
-		userSettings.TargetWeight = 85;
-		userSettings.WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
-		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_METRES);
-		return userSettings;
-	}
-	private List<Reading> createReadings(int number, double weightStep)
-	{
-		List<Reading> readings = new ArrayList<Reading>();
-		double weight = 100;
-		Calendar cal = Calendar.getInstance();
-		for (int i=0;i<number;i++){
-			Reading r = new Reading(weight,cal.getTime(),"");
-			readings.add(r);
-			weight = weight +weightStep;
-			cal.add(Calendar.DAY_OF_MONTH, -1);
-		}
-		return readings;
-	}
 	private ReportAnalysis createReportAnalysis()
 	{
-		Query query = new Query(createReadings(1000,0.01D));
-		return new ReportAnalysis(createMetricSettings(), query);
+		Query query = new Query(Mocks.createReadings(1000,Mocks.DAILY_WEIGHT_TREND));
+		return new ReportAnalysis(Mocks.createMetricSettings(Mocks.HEIGHT,Mocks.TARGET_WEIGHT), query);
 	}
 	
 	public void testGetLatestBMI() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getLatestBMI();
-		double expected = 100/(HEIGHT*HEIGHT);
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.START_WEIGHT/(Mocks.HEIGHT*Mocks.HEIGHT);
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetTargetBMI() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getTargetBMI();
-		double expected = 85/(HEIGHT*HEIGHT);
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.TARGET_WEIGHT/(Mocks.HEIGHT*Mocks.HEIGHT);
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetBottomOfIdealWeightRange() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getBottomOfIdealWeightRange();
-		double expected = HEIGHT*HEIGHT*BMICalculator.UNDERWEIGHT_UPPER_LIMIT;
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.HEIGHT*Mocks.HEIGHT*BMICalculator.UNDERWEIGHT_UPPER_LIMIT;
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetTopOfIdealWeightRange() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getTopOfIdealWeightRange();
-		double expected = HEIGHT*HEIGHT*BMICalculator.NORMAL_UPPER_LIMIT;
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.HEIGHT*Mocks.HEIGHT*BMICalculator.NORMAL_UPPER_LIMIT;
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetAverageBMI() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getAverageBMI();
-		double expected = 105D/(HEIGHT*HEIGHT);
-		assertEquals(Math.round(expected*100), Math.round(actual*100));
+		double expected = 104.995D/(Mocks.HEIGHT*Mocks.HEIGHT);
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetWeeklyTrendOverLastWeek() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendOverLastWeek();
-		double expected = -0.07;
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.DAILY_WEIGHT_TREND*7;
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetWeeklyTrendOverLastMonth() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendOverLastMonth();
-		double expected = -0.07;
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.DAILY_WEIGHT_TREND*7;
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetWeeklyTrendAllTime() {
 		ReportAnalysis target = createReportAnalysis();
 		double actual = target.getWeeklyTrendAllTime();
-		double expected = -0.07;
-		assertEquals(Math.round(expected*1000), Math.round(actual*1000));
+		double expected = Mocks.DAILY_WEIGHT_TREND*7;
+		Utils.assertRounded(this, expected, actual);
 	}
 
 	public void testGetEstimatedDateUsingLastWeek() {
@@ -108,7 +85,8 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingLastWeek();
 		long diff = Math.abs(expected-actual);
-		assertTrue(diff<10000);
+		//check within one hour
+		assertTrue(diff<60L*60L*1000L);
 	}
 
 	public void testGetEstimatedDateUsingLastMonth() {
@@ -118,7 +96,8 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingLastMonth();
 		long diff = Math.abs(expected-actual);
-		assertTrue(diff<10000);
+		//check within one hour
+		assertTrue(diff<60L*60L*1000L);
 	}
 
 	public void testGetEstimatedDateUsingAllTime() {
@@ -128,7 +107,8 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingAllTime();
 		long diff = Math.abs(expected-actual);
-		assertTrue(diff<10000);
+		//check within one hour
+		assertTrue(diff<60L*60L*1000L);
 	}
 
 }
