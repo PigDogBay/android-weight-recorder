@@ -105,6 +105,22 @@ public class QueryTest extends TestCase
 		Query actual = target.getReadingsBetweenDates(new Date(112,Calendar.DECEMBER,17,8,5), new Date(112,Calendar.DECEMBER,19,8,5));
 		assertTrue(actual.getReadings().size()==0);
 	}
+	public void testGetReadingsBetweenDates3()
+	{
+		Query target = new Query(Mocks.createReadings(1000,Mocks.DAILY_WEIGHT_TREND));
+		Date now = new Date();
+		Date lastWeek = new Date(now.getTime() - 7L * Utils.DAY_IN_MILLIS);
+		Query actual = target.getReadingsBetweenDates(lastWeek,now);
+		assertTrue(actual.getReadings().size()==7);
+	}
+	public void testGetReadingsBetweenDates4()
+	{
+		Query target = new Query(Mocks.createReadings(1000,Mocks.DAILY_WEIGHT_TREND));
+		Date now = new Date();
+		Date lastMonth = new Date(now.getTime() - 30L * Utils.DAY_IN_MILLIS);
+		Query actual = target.getReadingsBetweenDates(lastMonth,now);
+		assertTrue(actual.getReadings().size()==30);
+	}
 	public void testGetLatestReading1()
 	{
 		Query target = new Query(getReadings());
