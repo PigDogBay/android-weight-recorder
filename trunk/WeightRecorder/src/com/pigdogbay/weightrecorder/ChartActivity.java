@@ -3,9 +3,11 @@ package com.pigdogbay.weightrecorder;
 import java.util.List;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.ChartLogic;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
@@ -23,9 +25,7 @@ import android.widget.Toast;
 
 public class ChartActivity extends Activity {
 	private static final int MINIMUM_READINGS = 3;
-	ReadingsChart _Chart;
 	static int _Period = 0;
-	private UserSettings _UserSettings;
 	private MainModel _MainModel;
 	private boolean _UseDummyReadings;
 
@@ -34,15 +34,6 @@ public class ChartActivity extends Activity {
 		setContentView(R.layout.activity_chart);
 
 		_MainModel = new MainModel(this);
-		_UserSettings = _MainModel.getUserSettings();
-		_Chart = new ReadingsChart();
-		_Chart.setXAxisTitle(getString(R.string.chart_xaxis_title));
-		_Chart.setYAxisTitle(String.format("%s (%s)", 
-				getString(R.string.chart_yaxis_title),
-				_UserSettings.WeightConverter.getUnits()));
-		_Chart.setShowTrendLine(_UserSettings.ShowTrendLine);
-		_Chart.setShowTargetLine(_UserSettings.ShowTargetLine);
-		_Chart.setTargetWeight(_UserSettings.TargetWeight);
 		_UseDummyReadings =_MainModel.getDatabase().getReadingsCount()< MINIMUM_READINGS; 
 		createChart();
 		if (_UseDummyReadings)
@@ -96,16 +87,31 @@ public class ChartActivity extends Activity {
 	{
 		ViewGroup layout = (ViewGroup) findViewById(R.id.ChartLayout);
 		layout.removeAllViews();
-		layout.addView(_Chart.CreateView(createReadings(), this, _Period));
+		UserSettings userSettings = _MainModel.getUserSettings();
+		Query query = new Query(createReadings());
+		query.sortByDate();
+		ChartLogic chartLogic = new ChartLogic(userSettings);
+		ReadingsChart chart = new ReadingsChart();
+		chart.setXAxisTitle(getString(R.string.chart_xaxis_title));
+		chart.setYAxisTitle(String.format("%s (%s)", 
+				getString(R.string.chart_yaxis_title),
+				userSettings.WeightConverter.getUnits()));
+		chart.setChartAxesRanges(chartLogic.calculateAxesRanges(query, _Period));
+		chart.addReadings(chartLogic.createReadingsSeries(query));
+		if (userSettings.ShowTargetLine)
+		{
+			chart.addTarget(chartLogic.createTargetSeries());
+		}
+		if (userSettings.ShowTrendLine)
+		{
+			chart.addTrend(chartLogic.createTrendSeries(query, _Period));
+		}
+		layout.addView(chart.createView(this));
 	}
 	private List<Reading> createReadings()
 	{
-		List<Reading> readings = _UseDummyReadings ?
+		return _UseDummyReadings ?
 				DummyData.createRandomData(120) : 
 				_MainModel.getDatabase().getAllReadings();
-		for (Reading r : readings) {
-			r.setWeight(_UserSettings.WeightConverter.convert(r.getWeight()));
-		}
-		return readings;
 	}
 }
