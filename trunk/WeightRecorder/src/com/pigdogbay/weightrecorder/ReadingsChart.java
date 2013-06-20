@@ -13,6 +13,8 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import com.pigdogbay.androidutils.math.BestLineFit;
+import com.pigdogbay.weightrecorder.model.ChartAxesRanges;
+import com.pigdogbay.weightrecorder.model.ChartLogic;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 
@@ -82,7 +84,7 @@ public class ReadingsChart
 		renderer.setZoomButtonsVisible(false);
 
 		query.sortByDate();
-		setAxes(query, renderer, period);
+		setAxes(renderer, new ChartLogic().calculateAxesRanges(query, period));
 
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		TimeSeries series = new TimeSeries("weights");
@@ -104,33 +106,12 @@ public class ReadingsChart
 		return ChartFactory.getTimeChartView(context, dataset, renderer,
 				"d MMM");
 	}
-
-	private void setAxes(Query query, XYMultipleSeriesRenderer renderer,
-			long period)
+	private void setAxes(XYMultipleSeriesRenderer renderer,ChartAxesRanges chartAxesRanges)
 	{
-		int count = query.getReadings().size();
-		if (count > 2)
-		{
-			Date endTime = new Date();
-			Date startTime = new Date(endTime.getTime() - period * 1000L * 60L* 60L * 24L);
-			if (period==0)
-			{
-				//use first reading
-				startTime = query.getFirstReading().getDate();
-			}
-			Query matches = query.getReadingsBetweenDates(startTime, endTime);
-
-			double min = matches.getMinWeight().getWeight();
-			double max = matches.getMaxWeight().getWeight();
-			double extra = (max - min) / 10;
-			if (extra<0.5d){extra=0.5d;}
-			renderer.setYAxisMin(min - extra);
-			renderer.setYAxisMax(max + extra);
-			// add 1 day to current date
-			renderer.setXAxisMax(endTime.getTime() + 1000L * 60L * 60L * 24L);
-			renderer.setXAxisMin(startTime.getTime());
-		}
-
+		renderer.setXAxisMin(chartAxesRanges.XAxisMin);
+		renderer.setXAxisMax(chartAxesRanges.XAxisMax);
+		renderer.setYAxisMin(chartAxesRanges.YAxisMin);
+		renderer.setYAxisMax(chartAxesRanges.YAxisMax);
 	}
 
 	private void fitDisplay(Context context, XYMultipleSeriesRenderer renderer)
