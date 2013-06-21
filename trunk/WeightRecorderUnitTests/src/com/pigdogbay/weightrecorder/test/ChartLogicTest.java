@@ -10,8 +10,7 @@ import java.util.List;
 
 import org.achartengine.model.TimeSeries;
 
-import android.widget.CalendarView;
-
+import com.pigdogbay.weightrecorder.model.ChartAxesRanges;
 import com.pigdogbay.weightrecorder.model.ChartLogic;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
@@ -31,8 +30,91 @@ public class ChartLogicTest extends TestCase {
 	/**
 	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
 	 */
-	public void testCalculateAxesRanges() {
-		fail("Not yet implemented"); // TODO
+	public void testCalculateAxesRanges1() {
+		List<Reading> readings = new ArrayList<Reading>();
+		Calendar cal1 = new GregorianCalendar(2013,Calendar.JANUARY,14,16,01,0);
+		Calendar cal2 = new GregorianCalendar(2013,Calendar.JUNE,20,14,50,0);
+		readings.add(new Reading(100,cal1.getTime(),""));
+		readings.add(new Reading(92,cal2.getTime(),""));
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		ChartAxesRanges ranges = target.calculateAxesRanges(new Query(readings), 0L);
+		assertEquals(ranges.XAxisMin,(double)cal1.getTimeInMillis());
+		assertEquals(ranges.XAxisMax,(double)(cal2.getTimeInMillis()+Utils.DAY_IN_MILLIS),1000L);
+		assertEquals(ranges.YAxisMin,92-0.8);
+		assertEquals(ranges.YAxisMax,100+0.8);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * US Units
+	 */
+	public void testCalculateAxesRanges2() {
+		List<Reading> readings = new ArrayList<Reading>();
+		Calendar cal1 = new GregorianCalendar(2013,Calendar.JANUARY,14,16,01,0);
+		Calendar cal2 = new GregorianCalendar(2013,Calendar.JUNE,20,14,50,0);
+		readings.add(new Reading(100,cal1.getTime(),""));
+		readings.add(new Reading(92,cal2.getTime(),""));
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		ChartAxesRanges ranges = target.calculateAxesRanges(new Query(readings), 0L);
+		assertEquals(ranges.XAxisMin,(double)cal1.getTimeInMillis());
+		assertEquals(ranges.XAxisMax,(double)(cal2.getTimeInMillis()+Utils.DAY_IN_MILLIS),1000L);
+		assertEquals(ranges.YAxisMin,(92-0.8)/UnitConverterFactory.POUND_TO_KILOGRAM_FACTOR,0.0001);
+		assertEquals(ranges.YAxisMax,(100+0.8)/UnitConverterFactory.POUND_TO_KILOGRAM_FACTOR,0.0001);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * Period 30 days
+	 */
+	public void testCalculateAxesRanges3() {
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		Query query = new Query(Mocks.createReadings(100, 0.4));
+		ChartAxesRanges ranges = target.calculateAxesRanges(query, 30L);
+		Calendar cal = Calendar.getInstance();
+		assertEquals(cal.getTimeInMillis()-Utils.DAY_IN_MILLIS*30L,ranges.XAxisMin,1000L);
+		assertEquals(cal.getTimeInMillis()+Utils.DAY_IN_MILLIS,ranges.XAxisMax,1000L);
+		//30 days * 0.4 =  12, but its is 29 days since due to the 30th day being a few milliseconds short of the start time 
+		assertEquals(88.4-1.16,ranges.YAxisMin,0.0001);
+		assertEquals(100+1.16,ranges.YAxisMax,0.0001);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * 0 Readings
+	 */
+	public void testCalculateAxesRanges4() {
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		List<Reading> empty = new ArrayList<Reading>();
+		Query query = new Query(empty); 
+		ChartAxesRanges ranges = target.calculateAxesRanges(query, 0L);
+		Calendar cal = Calendar.getInstance();
+		assertEquals(0D,ranges.XAxisMin);
+		assertEquals(0D,ranges.XAxisMax);
+		assertEquals(0D,ranges.YAxisMin);
+		assertEquals(0D,ranges.YAxisMax);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * 0 Readings in 30 day period
+	 */
+	public void testCalculateAxesRanges5() {
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		Query query = new Query(Mocks.getChristmasReadings());
+		ChartAxesRanges ranges = target.calculateAxesRanges(query, 30L);
+		Calendar cal = Calendar.getInstance();
+		assertEquals(cal.getTimeInMillis()-Utils.DAY_IN_MILLIS*30L,ranges.XAxisMin,1000L);
+		assertEquals(cal.getTimeInMillis()+Utils.DAY_IN_MILLIS,ranges.XAxisMax,1000L);
+		double delta = (ChartLogic.AXIS_DEFAULT_MAX_WEIGHT - ChartLogic.AXIS_DEFAULT_MIN_WEIGHT)/10D;
+		assertEquals(ChartLogic.AXIS_DEFAULT_MIN_WEIGHT-delta,ranges.YAxisMin);
+		assertEquals(ChartLogic.AXIS_DEFAULT_MAX_WEIGHT+delta,ranges.YAxisMax);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * Min Padding
+	 */
+	public void testCalculateAxesRanges6() {
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.DAILY_WEIGHT_TREND));
+		Query query = new Query(Mocks.createReadings(100, 0.0D));
+		ChartAxesRanges ranges = target.calculateAxesRanges(query, 30L);
+		assertEquals(100-ChartLogic.AXIS_MIN_PADDING,ranges.YAxisMin,0.0001);
+		assertEquals(100+ChartLogic.AXIS_MIN_PADDING,ranges.YAxisMax,0.0001);
 	}
 
 	/**
