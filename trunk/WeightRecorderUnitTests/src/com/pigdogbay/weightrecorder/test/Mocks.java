@@ -2,6 +2,7 @@ package com.pigdogbay.weightrecorder.test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.Reading;
@@ -50,4 +51,30 @@ public class Mocks {
 		}
 		return readings;
 	}
+	
+	public static List<Reading> getChristmasReadings()
+	{
+		ArrayList<Reading> readings = new ArrayList<Reading>();
+		readings.add(new Reading(94.2D,new Date(112,11,22,13,23,10),"nearly there"));
+		readings.add(new Reading(94.1D,new Date(112,11,23,13,23,10),"Last day at work"));
+		readings.add(new Reading(94.7D,new Date(112,11,24,13,23,10),"Christmas eve"));
+		readings.add(new Reading(94.6D,new Date(112,11,25,13,23,10),"Christmas Day"));
+		readings.add(new Reading(95.23D,new Date(112,11,26,13,23,10),"Boxing Day"));
+		readings.add(new Reading(96.1D,new Date(112,11,31,13,23,10),"New years eve"));
+		readings.add(new Reading(94.22D,new Date(113,0,14,18,15,49),"Birthday"));
+		readings.add(new Reading(93.5D,new Date(113,0,18,8,59,10),"today"));
+		return readings;
+	}
+	public static List<Reading> createFutureReadings()
+	{
+		Calendar cal = Calendar.getInstance();
+		List<Reading> future = new ArrayList<Reading>();
+		for (int i=0;i<100;i++)
+		{
+			cal.add(Calendar.DATE,1);
+			future.add(new Reading(100D,cal.getTime(),""));
+		}
+		return future;
+	}
+	
 }
