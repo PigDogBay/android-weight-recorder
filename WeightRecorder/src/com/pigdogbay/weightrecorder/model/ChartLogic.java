@@ -10,6 +10,9 @@ public class ChartLogic {
 	public static final double AXIS_DEFAULT_MIN_WEIGHT = 50D;
 	public static final double AXIS_DEFAULT_MAX_WEIGHT = 100D;
 	public static final double AXIS_MIN_PADDING = 0.5D;
+
+	public static final double AXIS_Y_PERCENTAGE_PADDING = 0.1D;
+	private static final long MILLIS_IN_DAY = 1000L*60L*60L*24L;
 	
 	UserSettings _UserSettings;
 	public ChartLogic(UserSettings userSettings) {
@@ -39,8 +42,7 @@ public class ChartLogic {
 			return new ChartAxesRanges();
 		}
 		Date endTime = new Date();
-		Date startTime = new Date(endTime.getTime() - period * 1000L * 60L
-				* 60L * 24L);
+		Date startTime = new Date(endTime.getTime() - period * MILLIS_IN_DAY);
 		if (period == 0) {
 			startTime = query.getFirstReading().getDate();
 			endTime = query.getLatestReading().getDate();
@@ -57,19 +59,26 @@ public class ChartLogic {
 			min = AXIS_DEFAULT_MIN_WEIGHT;
 			max = AXIS_DEFAULT_MAX_WEIGHT;
 		}
-		min = _UserSettings.WeightConverter.convert(min);
-		max = _UserSettings.WeightConverter.convert(max);
-		double extra = (max - min) / 10;
-		if (extra < AXIS_MIN_PADDING) {
-			extra = AXIS_MIN_PADDING;
-		}
-		chartAxesRanges.YAxisMin = min - extra;
-		chartAxesRanges.YAxisMax = max + extra;
+		chartAxesRanges.YAxisMin = _UserSettings.WeightConverter.convert(min);
+		chartAxesRanges.YAxisMax = _UserSettings.WeightConverter.convert(max);
+		padYAxis(chartAxesRanges, AXIS_Y_PERCENTAGE_PADDING);
 		// add 1 day to current date
-		chartAxesRanges.XAxisMax = endTime.getTime() + 1000L * 60L * 60L * 24L;
+		chartAxesRanges.XAxisMax = endTime.getTime() + MILLIS_IN_DAY;
 		chartAxesRanges.XAxisMin = startTime.getTime();
 		return chartAxesRanges;
 	}
+	/*
+	 * Extends the Y-axis at both ends to give a more pleasing look
+	 */
+	private void padYAxis(ChartAxesRanges chartAxesRanges, double percentagePadding)
+	{
+		double padding = (chartAxesRanges.YAxisMax-chartAxesRanges.YAxisMin) *percentagePadding;
+		if (padding < AXIS_MIN_PADDING) {
+			padding = AXIS_MIN_PADDING;
+		}
+		chartAxesRanges.YAxisMin -= padding;
+		chartAxesRanges.YAxisMax += padding;
+	}	
 	
 	public TimeSeries createReadingsSeries(Query query)
 	{
@@ -102,7 +111,7 @@ public class ChartLogic {
 		//ensure readings are sorted by date before proceding
 		query.sortByDate();
 		TimeSeries series = new TimeSeries("trend");
-		long startTime = new Date().getTime() - period * 1000L * 60L * 60L* 24L;
+		long startTime = new Date().getTime() - period * MILLIS_IN_DAY;
 		if (period==0)
 		{
 			//use first reading
