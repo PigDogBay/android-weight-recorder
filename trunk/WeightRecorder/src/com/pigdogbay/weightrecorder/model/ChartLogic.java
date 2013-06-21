@@ -19,19 +19,15 @@ public class ChartLogic {
 		_UserSettings = userSettings;
 	}
 	/*
-	 * period is 0 axes fit the entire data set and use the padding:
-	 * x-axis has an extra day on RHS
-	 * y-axis is padded by 10% either end 
-	 * If 0 readings are passed in then then return 0,0,0,0, there is likely to be a bug somewhere if this happens.
+	 * If period is 0,  the axes fit the entire data set. If period is 0 and 0 readings are passed, this is likely to
+	 * be a bug as readings should be guaranteed by callee, if this happens 0,0,0,0 is returned.
 	 * 
-	 * For past periods, period>0
-	 * x-axis - starts with time period
-	 * x-axis has an extra day on RHS
-	 * y-axis is padded by 10% either end 
+	 * For period>0, the time axis, X, is set from period days past upto now.
 	 * If 0 readings are in this period then default y-axis values are used, this may happen if the user has not entered
 	 * any readings for a while.
 	 * 
-	 * Y-axis minimum padding must be >= AXIS_MIN_PADDING
+	 * The Y axis is padded by 10% of the min-max range both ends. The x-axis has one extra day added at the RHS
+	 * Minimum Y-axis padding is AXIS_MIN_PADDING
 	 * 
 	 */
 	public ChartAxesRanges calculateAxesRanges(Query query, long period) {
