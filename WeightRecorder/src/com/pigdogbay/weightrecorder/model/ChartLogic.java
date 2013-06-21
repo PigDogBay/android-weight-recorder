@@ -68,6 +68,8 @@ public class ChartLogic {
 	}
 	public TimeSeries createTrendSeries(Query query, long period)
 	{
+		//ensure readings are sorted by date before proceding
+		query.sortByDate();
 		TimeSeries series = new TimeSeries("trend");
 		long startTime = new Date().getTime() - period * 1000L * 60L * 60L* 24L;
 		if (period==0)
@@ -92,8 +94,7 @@ public class ChartLogic {
 		series.add(new Date(startTime), weight);
 		//Project forward 1 year
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, 1);
-		for (int i=0;i<12; i++)
+		for (int i=0;i<13; i++)
 		{
 			weight = trendAnalysis.getEstimatedWeight(cal.getTimeInMillis());
 			weight = _UserSettings.WeightConverter.convert(weight);
