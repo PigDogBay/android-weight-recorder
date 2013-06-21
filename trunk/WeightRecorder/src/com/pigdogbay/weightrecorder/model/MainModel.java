@@ -85,11 +85,11 @@ public class MainModel
 	}
 	public boolean getShowTargetLine()
 	{
-		return getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, false);
+		return getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, false);
 	}
 	public boolean getShowTrendLine()
 	{
-		return getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, false);
+		return getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, false);
 	}
 	
 	public UserSettings getUserSettings()
