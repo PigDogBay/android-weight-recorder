@@ -35,8 +35,6 @@ public class ChartLogic {
 	 * 
 	 */
 	public ChartAxesRanges calculateAxesRanges(Query query, long period) {
-		ChartAxesRanges chartAxesRanges = new ChartAxesRanges();
-
 		if (query.getReadings().size()==0)
 		{
 			return new ChartAxesRanges();
@@ -51,7 +49,27 @@ public class ChartLogic {
 		{
 			query = query.getReadingsBetweenDates(startTime, endTime);
 		}
-
+		
+		ChartAxesRanges chartAxesRanges = calculateYAxisRange(query);
+		padYAxis(chartAxesRanges, AXIS_Y_PERCENTAGE_PADDING);
+		// add 1 day to current date
+		chartAxesRanges.XAxisMax = endTime.getTime() + MILLIS_IN_DAY;
+		chartAxesRanges.XAxisMin = startTime.getTime();
+		return chartAxesRanges;
+	}
+	/**
+	 * Calculate the Y Axis values based on the min and max values in the query
+	 * Values are converted into the user units
+	 * 
+	 * If 0 readings are in this period then default y-axis values are used, this may happen if the user has not entered
+	 * any readings for a while.
+	 * 
+	 * @param query
+	 * @return ChartAxesRanges with Y axis values set
+	 */
+	private ChartAxesRanges calculateYAxisRange(Query query)
+	{
+		ChartAxesRanges chartAxesRanges = new ChartAxesRanges();
 		double min = query.getMinWeight().getWeight();
 		double max = query.getMaxWeight().getWeight();
 		if (query.getReadings().size()==0)
@@ -61,11 +79,9 @@ public class ChartLogic {
 		}
 		chartAxesRanges.YAxisMin = _UserSettings.WeightConverter.convert(min);
 		chartAxesRanges.YAxisMax = _UserSettings.WeightConverter.convert(max);
-		padYAxis(chartAxesRanges, AXIS_Y_PERCENTAGE_PADDING);
-		// add 1 day to current date
-		chartAxesRanges.XAxisMax = endTime.getTime() + MILLIS_IN_DAY;
-		chartAxesRanges.XAxisMin = startTime.getTime();
+		
 		return chartAxesRanges;
+		
 	}
 	/*
 	 * Extends the Y-axis at both ends to give a more pleasing look
