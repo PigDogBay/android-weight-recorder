@@ -18,7 +18,7 @@ public class ChartLogic {
 	public ChartLogic(UserSettings userSettings) {
 		_UserSettings = userSettings;
 	}
-	/*
+	/**
 	 * If period is 0,  the axes fit the entire data set. If period is 0 and 0 readings are passed, this is likely to
 	 * be a bug as readings should be guaranteed by callee, if this happens 0,0,0,0 is returned.
 	 * 
@@ -29,6 +29,8 @@ public class ChartLogic {
 	 * The Y axis is padded by 10% of the min-max range both ends. The x-axis has one extra day added at the RHS
 	 * Minimum Y-axis padding is AXIS_MIN_PADDING
 	 * 
+	 * @param query containing data to plot
+	 * @param period in days
 	 */
 	public ChartAxesRanges calculateAxesRanges(Query query, long period) {
 		if (query.getReadings().size()==0)
