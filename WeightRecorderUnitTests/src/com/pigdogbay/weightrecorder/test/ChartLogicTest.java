@@ -38,8 +38,37 @@ public class ChartLogicTest extends TestCase {
 	/**
 	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createReadingsSeries(com.pigdogbay.weightrecorder.model.Query)}.
 	 */
-	public void testCreateReadingsSeries() {
-		fail("Not yet implemented"); // TODO
+	public void testCreateReadingsSeries1() {
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(1.72D, 87.5D));
+		Query query = new Query(Mocks.getChristmasReadings());
+		TimeSeries series = target.createReadingsSeries(query);
+		assertEquals(query.getReadings().size(), series.getItemCount());
+		assertEquals(query.getMinWeight().getWeight(),series.getMinY());
+		assertEquals(query.getMaxWeight().getWeight(),series.getMaxY());
+		assertEquals(query.getFirstReading().getDate().getTime(),series.getMinX(), 1000L);
+		assertEquals(query.getLatestReading().getDate().getTime(),series.getMaxX(), 1000L);
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createReadingsSeries(com.pigdogbay.weightrecorder.model.Query)}.
+	 * Empty data
+	 */
+	public void testCreateReadingsSeries2() {
+		List<Reading> empty = new ArrayList<Reading>();
+		Query query = new Query(empty); 
+		ChartLogic target = new ChartLogic(Mocks.createMetricSettings(1.72D, 87.5D));
+		TimeSeries series = target.createReadingsSeries(query);
+		assertEquals(0, series.getItemCount());
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createReadingsSeries(com.pigdogbay.weightrecorder.model.Query)}.
+	 * US Units
+	 */
+	public void testCreateReadingsSeries3() {
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(1.72D, 87.5D));
+		Query query = new Query(Mocks.getChristmasReadings());
+		TimeSeries series = target.createReadingsSeries(query);
+		assertEquals(query.getMinWeight().getWeight()/UnitConverterFactory.POUND_TO_KILOGRAM_FACTOR,series.getMinY());
+		assertEquals(query.getMaxWeight().getWeight()/UnitConverterFactory.POUND_TO_KILOGRAM_FACTOR,series.getMaxY());
 	}
 
 	/**
