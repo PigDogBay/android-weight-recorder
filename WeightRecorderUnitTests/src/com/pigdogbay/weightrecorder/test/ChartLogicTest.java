@@ -3,12 +3,18 @@
  */
 package com.pigdogbay.weightrecorder.test;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.achartengine.model.TimeSeries;
 
+import android.widget.CalendarView;
+
 import com.pigdogbay.weightrecorder.model.ChartLogic;
 import com.pigdogbay.weightrecorder.model.Query;
+import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
@@ -21,6 +27,7 @@ import junit.framework.TestCase;
  */
 public class ChartLogicTest extends TestCase {
 
+	private static final int ExpectedNumberOfPointsOnTrendLine = 14;
 	/**
 	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#calculateAxesRanges(com.pigdogbay.weightrecorder.model.Query, long)}.
 	 */
@@ -69,7 +76,7 @@ public class ChartLogicTest extends TestCase {
 		UserSettings settings = Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT);
 		ChartLogic target = new ChartLogic(settings);
 		TimeSeries series = target.createTrendSeries(query, 0);
-		assertEquals(14, series.getItemCount());
+		assertEquals(ExpectedNumberOfPointsOnTrendLine, series.getItemCount());
 		long expected = query.getFirstReading().getDate().getTime();
 		long actual = (long)series.getMinX();
 		assertEquals(expected,actual);
@@ -88,7 +95,7 @@ public class ChartLogicTest extends TestCase {
 		UserSettings settings = Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT);
 		ChartLogic target = new ChartLogic(settings);
 		TimeSeries series = target.createTrendSeries(query, 90);
-		assertEquals(14, series.getItemCount());
+		assertEquals(ExpectedNumberOfPointsOnTrendLine, series.getItemCount());
 		
 		long expected = Calendar.getInstance().getTimeInMillis()-90*Utils.DAY_IN_MILLIS;
 		long actual = (long)series.getMinX();
@@ -103,7 +110,7 @@ public class ChartLogicTest extends TestCase {
 		UserSettings settings = Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT);
 		ChartLogic target = new ChartLogic(settings);
 		TimeSeries series = target.createTrendSeries(query, 0);
-		assertEquals(14, series.getItemCount());
+		assertEquals(ExpectedNumberOfPointsOnTrendLine, series.getItemCount());
 		//Base expected weight on min time
 		double minX = series.getMinX();
 		double timeNow = Calendar.getInstance().getTimeInMillis();
@@ -127,7 +134,7 @@ public class ChartLogicTest extends TestCase {
 		UserSettings settings = Mocks.createMetricSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT);
 		ChartLogic target = new ChartLogic(settings);
 		TimeSeries series = target.createTrendSeries(query, 90);
-		assertEquals(14, series.getItemCount());
+		assertEquals(ExpectedNumberOfPointsOnTrendLine, series.getItemCount());
 		
 		double expected = 100-90*Mocks.DAILY_WEIGHT_TREND;
 		double actual = series.getMaxY();
@@ -158,6 +165,48 @@ public class ChartLogicTest extends TestCase {
 		actual = series.getMinY();
 		//assertEquals(expected, actual, 0.01D);
 		
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createTrendSeries(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * Readings too old
+	 */
+	public void testCreateTrendSeries1() {
+		Query query = new Query(Mocks.getChristmasReadings()); 
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT));
+		TimeSeries series = target.createTrendSeries(query, 90);
+		assertEquals(0, series.getItemCount());
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createTrendSeries(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * No readings
+	 */
+	public void testCreateTrendSeries2() {
+		List<Reading> empty = new ArrayList<Reading>();
+		Query query = new Query(empty); 
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT));
+		TimeSeries series = target.createTrendSeries(query, 0);
+		assertEquals(0, series.getItemCount());
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createTrendSeries(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * Future readings only, but try create trend based on past 30 days
+	 */
+	public void testCreateTrendSeries3() {
+
+		Query query = new Query(Mocks.createFutureReadings()); 
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT));
+		TimeSeries series = target.createTrendSeries(query, 30);
+		assertEquals(0, series.getItemCount());
+	}
+	/**
+	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createTrendSeries(com.pigdogbay.weightrecorder.model.Query, long)}.
+	 * Future readings only, but try create trend all readings including future
+	 */
+	public void testCreateTrendSeries4() {
+		Query query = new Query(Mocks.createFutureReadings()); 
+		ChartLogic target = new ChartLogic(Mocks.createUSSettings(Mocks.HEIGHT, Mocks.TARGET_WEIGHT));
+		TimeSeries series = target.createTrendSeries(query, 0);
+		assertEquals(ExpectedNumberOfPointsOnTrendLine, series.getItemCount());
 	}
 
 }
