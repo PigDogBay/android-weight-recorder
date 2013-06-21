@@ -3,6 +3,19 @@ package com.pigdogbay.weightrecorder.model;
 
 public class UnitConverterFactory
 {
+	/*
+	 * http://en.wikipedia.org/wiki/US_customary_units#Units_of_mass 
+	 * The pound avoirdupois, which forms the basis of the U.S. customary system of mass, 
+	 * is defined as exactly 453.59237 grams by agreement between the U.S., the U.K. 
+	 * and other English-speaking countries in 1959. 
+	 */
+	public static final double POUND_TO_KILOGRAM_FACTOR = 0.45359237d;
+	/*
+	 * http://en.wikipedia.org/wiki/Inch#Modern_standardisation 
+	 * The current internationally accepted value for the imperial and US customary inch is exactly 25.4 millimetres.
+	 */
+	public static final double INCH_METRE_FACTOR = 0.0254D;
+	
 	// Numbers must match arrays.xml
 	public final static int KILOGRAMS_TO_KILOGRAMS = 1;
 	public final static int KILOGRAMS_TO_POUNDS = 2;
@@ -19,7 +32,7 @@ public class UnitConverterFactory
 		case KILOGRAMS_TO_KILOGRAMS:
 			return new FactorConverter("kg", 1.0d);
 		case KILOGRAMS_TO_POUNDS:
-			return new FactorConverter("lb", 2.2046213d,0.5d);
+			return new FactorConverter("lb", 1d/POUND_TO_KILOGRAM_FACTOR,0.5d);
 		case KILOGRAMS_TO_STONES:
 			return new StonesConverter();
 		default:
@@ -36,7 +49,7 @@ public class UnitConverterFactory
 		case METRES_TO_CENTIMETRES:
 			return new FactorConverter("cm", 100.0d);
 		case METRES_TO_INCHES:
-			return new FactorConverter("in", 39.37d);
+			return new FactorConverter("in", 1d/INCH_METRE_FACTOR);
 		default:
 			throw new IllegalArgumentException();
 		}
@@ -76,6 +89,11 @@ class FactorConverter implements IUnitConverter
 		return value / factor;
 	}
 
+	/**
+	 * NB Does not convert the weight
+	 * @param weight in the user units
+	 * @return string representation of the weight in user units
+	 */
 	public String getDisplayString(double weight)
 	{
 		return String.format("%.1f %s", weight, units);
@@ -92,9 +110,8 @@ class StonesConverter implements IUnitConverter
 	private static final String STONE_UNITS = "st";
 	private static final String POUND_UNITS = "lb";
 	
-	private static final double STONES_TO_POUNDS = 14d;
-	private static final double KILOGRAMS_TO_POUNDS = 2.2046213d;
-	private static final double KILOGRAMS_TO_STONES = KILOGRAMS_TO_POUNDS/STONES_TO_POUNDS;
+	private static final double STONE_TO_POUND_FACTOR = 14d;
+	private static final double STONE_KILOGRAM = UnitConverterFactory.POUND_TO_KILOGRAM_FACTOR*STONE_TO_POUND_FACTOR;
 	public String getUnits()
 	{
 		return STONE_UNITS;
@@ -102,17 +119,23 @@ class StonesConverter implements IUnitConverter
 
 	public double convert(double value)
 	{
-		return value*KILOGRAMS_TO_STONES;
+		return value/STONE_KILOGRAM;
 	}
 
 	public double inverse(double value)
 	{
-		return value/KILOGRAMS_TO_STONES;
+		return value*STONE_KILOGRAM;
 	}
 
+	/**
+	 * NB Does not convert the weight
+	 * @param weight in the user units
+	 * @return string representation of the weight in user units
+	 */
 	public String getDisplayString(double weight)
 	{
-		weight = weight*STONES_TO_POUNDS;
+		//Convert to pounds
+		weight = weight*STONE_TO_POUND_FACTOR;
 		int intWeight = (int)Math.round(weight);
 		int stones= intWeight/14;
 		int pounds=intWeight - stones*14;

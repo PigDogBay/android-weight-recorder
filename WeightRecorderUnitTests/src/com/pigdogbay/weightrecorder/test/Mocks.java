@@ -24,6 +24,15 @@ public class Mocks {
 		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_METRES);
 		return userSettings;
 	}
+	public static UserSettings createUSSettings(double height, double weight)
+	{
+		UserSettings userSettings = new UserSettings();
+		userSettings.Height=height;
+		userSettings.TargetWeight = weight;
+		userSettings.WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_POUNDS);
+		userSettings.LengthConverter = UnitConverterFactory.create(UnitConverterFactory.METRES_TO_INCHES);
+		return userSettings;
+	}
 	public static List<Reading> createReadings(int number, double weightStep)
 	{
 		return createReadings(START_WEIGHT,number, weightStep);
