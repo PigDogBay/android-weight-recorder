@@ -59,7 +59,7 @@ public class ChartLogic {
 		cal.set(Calendar.DAY_OF_MONTH, 1);
 		cal.roll(Calendar.YEAR, false);
 		double targetWeight = _UserSettings.WeightConverter.convert(_UserSettings.TargetWeight);
-		for (int i=0;i<24; i++)
+		for (int i=0;i<25; i++)
 		{
 			series.add(cal.getTime(), targetWeight);
 			cal.add(Calendar.MONTH,1);
