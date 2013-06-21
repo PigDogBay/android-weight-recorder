@@ -6,31 +6,62 @@ import java.util.Date;
 import org.achartengine.model.TimeSeries;
 
 public class ChartLogic {
-
+	
+	public static final double AXIS_DEFAULT_MIN_WEIGHT = 50D;
+	public static final double AXIS_DEFAULT_MAX_WEIGHT = 100D;
+	public static final double AXIS_MIN_PADDING = 0.5D;
+	
 	UserSettings _UserSettings;
 	public ChartLogic(UserSettings userSettings) {
 		_UserSettings = userSettings;
 	}
-
+	/*
+	 * period is 0 axes fit the entire data set and use the padding:
+	 * x-axis has an extra day on RHS
+	 * y-axis is padded by 10% either end 
+	 * If 0 readings are passed in then then return 0,0,0,0, there is likely to be a bug somewhere if this happens.
+	 * 
+	 * For past periods, period>0
+	 * x-axis - starts with time period
+	 * x-axis has an extra day on RHS
+	 * y-axis is padded by 10% either end 
+	 * If 0 readings are in this period then default y-axis values are used, this may happen if the user has not entered
+	 * any readings for a while.
+	 * 
+	 * Y-axis minimum padding must be >= AXIS_MIN_PADDING
+	 * 
+	 */
 	public ChartAxesRanges calculateAxesRanges(Query query, long period) {
 		ChartAxesRanges chartAxesRanges = new ChartAxesRanges();
 
+		if (query.getReadings().size()==0)
+		{
+			return new ChartAxesRanges();
+		}
 		Date endTime = new Date();
 		Date startTime = new Date(endTime.getTime() - period * 1000L * 60L
 				* 60L * 24L);
 		if (period == 0) {
-			// use first reading
 			startTime = query.getFirstReading().getDate();
+			endTime = query.getLatestReading().getDate();
 		}
-		Query matches = query.getReadingsBetweenDates(startTime, endTime);
+		else
+		{
+			query = query.getReadingsBetweenDates(startTime, endTime);
+		}
 
-		double min = matches.getMinWeight().getWeight();
+		double min = query.getMinWeight().getWeight();
+		double max = query.getMaxWeight().getWeight();
+		if (query.getReadings().size()==0)
+		{
+			min = AXIS_DEFAULT_MIN_WEIGHT;
+			max = AXIS_DEFAULT_MAX_WEIGHT;
+		}
 		min = _UserSettings.WeightConverter.convert(min);
-		double max = matches.getMaxWeight().getWeight();
 		max = _UserSettings.WeightConverter.convert(max);
 		double extra = (max - min) / 10;
-		if (extra < 0.5d) {
-			extra = 0.5d;
+		if (extra < AXIS_MIN_PADDING) {
+			extra = AXIS_MIN_PADDING;
 		}
 		chartAxesRanges.YAxisMin = min - extra;
 		chartAxesRanges.YAxisMax = max + extra;
