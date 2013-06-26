@@ -2,6 +2,7 @@ package com.pigdogbay.weightrecorder.test;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import com.pigdogbay.weightrecorder.model.ReportFormatting;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
@@ -81,18 +82,29 @@ public class ReportFormattingTest extends AndroidTestCase {
 		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.NEGATIVE_INFINITY));
 		assertEquals("200.0 (Obese Class III)",target.getBMIString(999999));
 	}
+	/**
+	 * Locale Test
+	 */
+	public void testGetBMIString3() {
+		Locale.setDefault(Locale.FRENCH);
+		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
+		assertEquals("25,1 (Overweight)",target.getBMIString(25.1D));
+		Locale.setDefault(Locale.UK);
+	}
 
 	public void testGetDateString1() {
+		Locale.setDefault(Locale.UK);
 		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
 		Calendar cal = new GregorianCalendar(2013,Calendar.JUNE,14,16,01);
-		assertEquals("June 14, 2013",target.getDateString(cal.getTimeInMillis()));
+		assertEquals("14 June 2013",target.getDateString(cal.getTimeInMillis()));
 		//DateUtils suffers from Year 2038 problem
 		cal = new GregorianCalendar(3000,Calendar.JUNE,14,16,01);
-		assertEquals("June 14, 3000",target.getDateString(cal.getTimeInMillis()));
+		assertEquals("14 June 3000",target.getDateString(cal.getTimeInMillis()));
 	}
 	public void testGetDateString2() {
+		Locale.setDefault(Locale.UK);
 		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
-		assertEquals("January 1, 1970",target.getDateString(0));
+		assertEquals("1 January 1970",target.getDateString(0));
 	}
 
 
