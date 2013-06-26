@@ -42,7 +42,7 @@ public class ReportFormatting {
 		{
 			bmi = BMICalculator.MAX_BMI;
 		}
-		return String.format(Locale.US,"%.1f (%s)", bmi, BMICalculator.getString(_Context, bmi));
+		return String.format("%.1f (%s)", bmi, BMICalculator.getString(_Context, bmi));
 	}
 	public String getIdealWeightRange(double startWeight, double endWeight) {
 		return getWeightString(startWeight) +" - "+getWeightString(endWeight);
