@@ -64,8 +64,20 @@ public class PreferencesHelperTest extends AndroidTestCase {
 	{
 		Locale.setDefault(new Locale("es"));
 		testGetDouble1();
-		Locale.setDefault(Locale.US);
+		Locale.setDefault(Locale.UK);
 	}
+	/*
+	 * Test API for locale behaviour
+	 * Expect locale to have no effect
+	 */
+	public void testDoubleCheck()
+	{
+		Locale.setDefault(new Locale("es"));
+		assertEquals(1.23D,Double.parseDouble("1.23"));
+		assertEquals("4.56",Double.toString(4.56D));
+		Locale.setDefault(Locale.UK);
+	}
+	
 	/*
 	 * Basic case
 	 */
