@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="weight_units">
+    <string-array translatable="false" name="weight_units">
         <item name="metric">Kilograms</item>
         <item name="us">Pounds</item>
         <item name="british">Stones</item>
         </string-array>
-    <string-array name="weight_units_values">
+    <string-array translatable="false" name="weight_units_values">
         <item name="metric">1</item>
         <item name="us">2</item>
         <item name="british">3</item>
         </string-array>
-    <string-array name="length_units">
+    <string-array translatable="false" name="length_units">
         <item name="metres">Metres</item>
         <item name="centimetres">Centimetres</item>
         <item name="inches">Inches</item>
     </string-array>
-    <string-array name="length_units_values">
+    <string-array translatable="false" name="length_units_values">
         <item name="metres">1</item>
         <item name="centimetres">2</item>
         <item name="inches">3</item>
