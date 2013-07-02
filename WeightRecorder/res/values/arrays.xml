@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array translatable="false" name="weight_units">
-        <item name="metric">Kilograms</item>
-        <item name="us">Pounds</item>
-        <item name="british">Stones</item>
+        <item name="metric">@string/weight_unit_kilograms</item>
+        <item name="us">@string/weight_unit_pounds</item>
+        <item name="british">@string/weight_unit_stones</item>
         </string-array>
     <string-array translatable="false" name="weight_units_values">
         <item name="metric">1</item>
@@ -11,9 +11,9 @@
         <item name="british">3</item>
         </string-array>
     <string-array translatable="false" name="length_units">
-        <item name="metres">Metres</item>
-        <item name="centimetres">Centimetres</item>
-        <item name="inches">Inches</item>
+        <item name="metres">@string/length_unit_metres</item>
+        <item name="centimetres">@string/length_unit_centimetres</item>
+        <item name="inches">@string/length_unit_inches</item>
     </string-array>
     <string-array translatable="false" name="length_units_values">
         <item name="metres">1</item>

@@ -205,6 +205,9 @@ public final class R {
         public static final int import_import_button=0x7f06007c;
         public static final int import_no_text=0x7f06007e;
         public static final int import_readings_added=0x7f06007f;
+        public static final int length_unit_centimetres=0x7f060088;
+        public static final int length_unit_inches=0x7f060089;
+        public static final int length_unit_metres=0x7f060087;
         public static final int main_btn_chart=0x7f06002c;
         public static final int main_btn_edit=0x7f06002b;
         public static final int main_btn_enter=0x7f06002a;
@@ -288,6 +291,9 @@ public final class R {
         public static final int twitter=0x7f06000d;
         public static final int version=0x7f06000b;
         public static final int website=0x7f06000a;
+        public static final int weight_unit_kilograms=0x7f06008a;
+        public static final int weight_unit_pounds=0x7f06008b;
+        public static final int weight_unit_stones=0x7f06008c;
     }
     public static final class style {
         public static final int AppTheme=0x7f080000;
