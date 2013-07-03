@@ -25,8 +25,30 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		wireUpButtons();
 		checkFirstTime();
-		new AppRate(this).setMinDaysUntilPrompt(7)
-		.setMinLaunchesUntilPrompt(5).init();
+	    checkRate();
+	}
+	private void checkRate()
+	{
+		try {
+			new AppRate(this)
+			.setCustomDialog(createRateDialog())
+			.setMinDaysUntilPrompt(7)
+			.setMinLaunchesUntilPrompt(5)
+//			.setMinDaysUntilPrompt(0)
+//			.setMinLaunchesUntilPrompt(0)
+			.init();
+		}
+		catch (Exception e) {
+		}
+	}
+	private AlertDialog.Builder createRateDialog()
+	{
+		return new AlertDialog.Builder(this)
+		.setTitle(R.string.rate_dialog_title)
+		.setMessage(R.string.rate_dialog_message)
+		.setPositiveButton(R.string.rate_dialog_positive, null)
+		.setNegativeButton(R.string.rate_dialog_negative, null)
+		.setNeutralButton(R.string.rate_dialog_neutral,null);
 	}
 
 	private void wireUpButtons()

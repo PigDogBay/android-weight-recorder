@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.DatabaseHelper;
 import com.pigdogbay.weightrecorder.model.IReadingsDatabase;
 import com.pigdogbay.weightrecorder.model.MainModel;
@@ -33,7 +34,11 @@ public class ActivitiesHelper {
 
 			}
 			String text = ReadingsSerializer.format(readings);
-			ActivityUtils.SendEmail(activity, null, activity.getString(R.string.email_subject_readings), text);
+			String subject = FileUtils.appendDate(activity.getString(R.string.app_name),"");
+			ActivityUtils.SendEmail(activity, null, 
+					subject,
+					text,
+					activity.getString(R.string.share_readings_chooser_title));
 
 		} catch (Exception e) {
 			Toast.makeText(activity,
@@ -42,7 +47,7 @@ public class ActivitiesHelper {
 		}
 
 	}
-
+	
 	public static void startImportActivity(Activity activity) {
 		Intent intent = new Intent(activity, ImportActivity.class);
 		activity.startActivity(intent);

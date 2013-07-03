@@ -197,7 +197,6 @@ public final class R {
         public static final int editreading_update_btn=0x7f060050;
         public static final int editreading_updated=0x7f06004e;
         public static final int email=0x7f060009;
-        public static final int email_subject_readings=0x7f06008d;
         public static final int facebookPage=0x7f06000c;
         public static final int help_html=0x7f060082;
         public static final int import_dialog_message=0x7f060081;
@@ -255,6 +254,11 @@ public final class R {
         public static final int pref_measurement_title=0x7f060032;
         public static final int pref_weight_units_summary=0x7f060035;
         public static final int pref_weight_units_title=0x7f060034;
+        public static final int rate_dialog_message=0x7f06008f;
+        public static final int rate_dialog_negative=0x7f060092;
+        public static final int rate_dialog_neutral=0x7f060091;
+        public static final int rate_dialog_positive=0x7f060090;
+        public static final int rate_dialog_title=0x7f06008e;
         public static final int readings_export_error=0x7f060067;
         public static final int readings_no_readings_export=0x7f060066;
         public static final int report_all_time=0x7f060075;
@@ -280,6 +284,7 @@ public final class R {
         public static final int report_stats=0x7f060076;
         public static final int report_template=0x7f060083;
         public static final int report_trends=0x7f06006f;
+        public static final int share_readings_chooser_title=0x7f06008d;
         public static final int title_activity_about=0x7f060020;
         public static final int title_activity_add=0x7f06001c;
         public static final int title_activity_chart=0x7f06001a;

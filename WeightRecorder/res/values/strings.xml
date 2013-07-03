@@ -187,8 +187,6 @@ Number of Readings 					\t\t$Count<br/>
 <br/>		
 		]]>
 	</string>
-		
-    
     <string name="menu_help_text_small">Text Small</string>
     <string name="menu_help_text_medium">Text Medium</string>
     <string name="menu_help_text_large">Text Large</string>
@@ -198,5 +196,11 @@ Number of Readings 					\t\t$Count<br/>
     <string name="weight_unit_kilograms">Kilograms</string>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
-    <string name="email_subject_readings">Readings</string>
+    <string name="share_readings_chooser_title">Share Readings</string>
+    <string name="rate_dialog_title">Rate Weight Recorder</string>
+    <string name="rate_dialog_message">If you enjoy using Weight Recorder, please take a moment to rate it. Thanks for your support!</string>
+    <string name="rate_dialog_positive">Rate it!</string>
+    <string name="rate_dialog_neutral">Remind me later</string>
+    <string name="rate_dialog_negative">No thanks</string>
+    
 </resources>
