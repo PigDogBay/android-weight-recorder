@@ -33,7 +33,7 @@ public class ActivitiesHelper {
 
 			}
 			String text = ReadingsSerializer.format(readings);
-			ActivityUtils.SendEmail(activity, null, "Readings", text);
+			ActivityUtils.SendEmail(activity, null, activity.getString(R.string.email_subject_readings), text);
 
 		} catch (Exception e) {
 			Toast.makeText(activity,

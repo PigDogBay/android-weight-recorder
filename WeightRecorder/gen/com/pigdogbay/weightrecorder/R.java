@@ -197,6 +197,7 @@ public final class R {
         public static final int editreading_update_btn=0x7f060050;
         public static final int editreading_updated=0x7f06004e;
         public static final int email=0x7f060009;
+        public static final int email_subject_readings=0x7f06008d;
         public static final int facebookPage=0x7f06000c;
         public static final int help_html=0x7f060082;
         public static final int import_dialog_message=0x7f060081;

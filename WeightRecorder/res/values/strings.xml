@@ -198,4 +198,5 @@ Number of Readings 					\t\t$Count<br/>
     <string name="weight_unit_kilograms">Kilograms</string>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
+    <string name="email_subject_readings">Readings</string>
 </resources>
