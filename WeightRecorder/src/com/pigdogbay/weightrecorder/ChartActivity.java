@@ -91,7 +91,7 @@ public class ChartActivity extends Activity {
 		Query query = new Query(createReadings());
 		query.sortByDate();
 		ChartLogic chartLogic = new ChartLogic(userSettings);
-		ReadingsChart chart = new ReadingsChart();
+		ReadingsChart chart = new ReadingsChart(this);
 		chart.setXAxisTitle(getString(R.string.chart_xaxis_title));
 		chart.setYAxisTitle(String.format("%s (%s)", 
 				getString(R.string.chart_yaxis_title),
@@ -106,7 +106,7 @@ public class ChartActivity extends Activity {
 		{
 			chart.addTrend(chartLogic.createTrendSeries(query, _Period));
 		}
-		layout.addView(chart.createView(this));
+		layout.addView(chart.createView());
 	}
 	private List<Reading> createReadings()
 	{
