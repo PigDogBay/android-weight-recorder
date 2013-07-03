@@ -13,14 +13,16 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.util.TypedValue;
 
 public class ReadingsChart
 {
 	XYMultipleSeriesRenderer _Renderer;
 	XYMultipleSeriesDataset _Dataset;
-	
-	public ReadingsChart()
+	Context _Context;
+	public ReadingsChart(Context context)
 	{
+		_Context = context;
 		_Renderer = new XYMultipleSeriesRenderer();
 		_Renderer.setShowLegend(false);
 		_Renderer.setPanEnabled(true);
@@ -60,7 +62,8 @@ public class ReadingsChart
 		r.setColor(Color.GREEN);
 		r.setPointStyle(PointStyle.CIRCLE);
 		r.setFillPoints(true);
-		r.setLineWidth(2f);
+		float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2f, _Context.getResources().getDisplayMetrics());
+		r.setLineWidth(size);
 		_Renderer.addSeriesRenderer(r);
 		_Dataset.addSeries(series);
 	}
@@ -70,7 +73,8 @@ public class ReadingsChart
 		r.setColor(Color.RED);
 		r.setPointStyle(PointStyle.TRIANGLE);
 		r.setFillPoints(true);
-		r.setLineWidth(1.8f);
+		float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1.8f, _Context.getResources().getDisplayMetrics());
+		r.setLineWidth(size);
 		_Renderer.addSeriesRenderer(r);
 		_Dataset.addSeries(series);
 	}
@@ -80,49 +84,47 @@ public class ReadingsChart
 		r.setColor(Color.CYAN);
 		r.setPointStyle(PointStyle.SQUARE);
 		r.setFillPoints(true);
-		r.setLineWidth(1.8f);
+		float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1.8f, _Context.getResources().getDisplayMetrics());
+		r.setLineWidth(size);
 		_Renderer.addSeriesRenderer(r);
 		_Dataset.addSeries(series);
 	}
-	private void fitDisplay(Context context)
+	private void fitDisplay()
 	{
-		int screenSize = context.getResources().getConfiguration().screenLayout
+		int screenSize = _Context.getResources().getConfiguration().screenLayout
 				& Configuration.SCREENLAYOUT_SIZE_MASK;
+		float size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, _Context.getResources().getDisplayMetrics());
+		_Renderer.setPointSize(size);
+		size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, _Context.getResources().getDisplayMetrics());
+		_Renderer.setAxisTitleTextSize(size);
+		size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12f, _Context.getResources().getDisplayMetrics());
+		_Renderer.setLabelsTextSize(size);
 		if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE)
 		{
 			// Top, left, bottom, right
 			_Renderer.setMargins(new int[] { 20, 80, 40, 0 });
-			_Renderer.setAxisTitleTextSize(32f);
-			_Renderer.setLabelsTextSize(20f);
 			_Renderer.setXLabels(10);
 			_Renderer.setYLabels(10);
-			_Renderer.setPointSize(5f);
 
 		}
 		else if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL)
 		{
 			_Renderer.setMargins(new int[] { 10, 40, 20, 0 });
-			_Renderer.setAxisTitleTextSize(16f);
-			_Renderer.setLabelsTextSize(12f);
 			_Renderer.setXLabels(8);
 			_Renderer.setYLabels(8);
-			_Renderer.setPointSize(3f);
 		}
 		else
 		{
 			_Renderer.setMargins(new int[] { 8, 30, 16, 0 });
-			_Renderer.setAxisTitleTextSize(12f);
-			_Renderer.setLabelsTextSize(10f);
 			_Renderer.setXLabels(6);
 			_Renderer.setYLabels(6);
-			_Renderer.setPointSize(2f);
 		}
 
 	}
-	public GraphicalView createView(Context context)
+	public GraphicalView createView()
 	{
-		fitDisplay(context);
-		return ChartFactory.getTimeChartView(context, _Dataset, _Renderer,"d MMM");
+		fitDisplay();
+		return ChartFactory.getTimeChartView(_Context, _Dataset, _Renderer,"d MMM");
 
 	}
 }
