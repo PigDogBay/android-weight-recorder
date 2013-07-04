@@ -125,12 +125,6 @@ public class MainActivity extends Activity
 			Intent intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			break;
-		case (R.id.menu_main_export):
-			ActivitiesHelper.startExportActivity(this);
-			break;
-		case (R.id.menu_main_import):
-			ActivitiesHelper.startImportActivity(this);
-			break;
 		default:
 			return false;
 		}
