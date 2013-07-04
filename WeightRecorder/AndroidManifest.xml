@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="10802"
-    android:versionName="1.0802" 
+    android:versionCode="10803"
+    android:versionName="1.0803" 
     android:installLocation="auto">
 
+	<uses-permission android:name="android.permission.INTERNET"/>
+  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
@@ -27,7 +30,17 @@
         <activity
             android:name=".ImportActivity"
             android:windowSoftInputMode="stateHidden"
-            android:label="@string/title_activity_import" />
+            android:label="@string/title_activity_import">
+            <intent-filter>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+		        <data android:scheme="file" />
+		        <data android:mimeType="*/*" />
+		        <data android:pathPattern=".*\\.csv" />
+		        <data android:host="*" />                
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ReadingListActivity"
             android:label="@string/title_activity_list" />
@@ -54,7 +67,4 @@
 		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>   
     </application>
-	<uses-permission android:name="android.permission.INTERNET"/>
-  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    
 </manifest>
