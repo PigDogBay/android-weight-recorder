@@ -9,6 +9,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
@@ -35,7 +36,7 @@ public class ActivitiesHelper {
 
 			}
 			String text = ReadingsSerializer.format(readings);
-			String subject = FileUtils.appendDate(activity.getString(R.string.app_name),"");
+			String subject = FileUtils.appendDate(activity.getString(R.string.app_name),".csv");
 			ActivityUtils.SendEmail(activity, null, 
 					subject,
 					text,
@@ -91,7 +92,11 @@ public class ActivitiesHelper {
 			}
 			String text = ReadingsSerializer.format(readings);
 			String filename = FileUtils.appendDate(activity.getString(R.string.app_name),".csv");
-			File file = FileUtils.createDownloadsFile(filename);
+			File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+			File file = new File(path,filename);
+			if (file.exists()) {
+				file.delete();
+			}			
 			FileUtils.writeTextFile(file, text);
 			Toast.makeText(activity,
 					filename,
