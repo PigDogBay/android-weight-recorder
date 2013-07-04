@@ -1,7 +1,9 @@
 package com.pigdogbay.weightrecorder;
 
+import java.io.File;
 import java.util.List;
 
+import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
@@ -9,11 +11,15 @@ import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ImportActivity extends Activity
@@ -31,9 +37,41 @@ public class ImportActivity extends Activity
 						importReadings();
 					}
 				});
-		showHelp();
+	    Intent intent = getIntent();
+	    Uri uri = intent.getData();
+	    String action = intent.getAction();
+	    String type = intent.getType();
+	    log("Action: "+ action);
+	    log("Type: "+type);
+	    if (null!=uri)
+	    {
+	    	String path = uri.getPath();
+	    	log("Path: "+path);
+	    	loadReadings(path);
+	    }
+	    else
+	    {
+	    	showHelp();
+	    }
 	}
-	
+	void log(String s)
+	{
+		s = s==null ? "null" : s;
+		Log.v("WR-Import",s);
+	}
+	private void loadReadings(String path){
+	    try
+	    {
+		    File file = new File(path);
+	    	String data = FileUtils.readTextFile(file);
+	    	TextView textView = (TextView)findViewById(R.id.ImportEdit);
+	    	textView.setText(data);
+	    }catch(Exception e)
+	    {
+	    	log(e.getMessage());
+	    }		
+	}
+
 	private void showHelp()
 	{
 		String title = getResources().getString(R.string.import_dialog_title);
