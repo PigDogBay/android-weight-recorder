@@ -1,194 +1,200 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-
-    <string name="app_name">WeightRecorder</string>
-    <string name="email">pigdogbay@yahoo.co.uk</string>
-    <string name="website">http://www.pigdogbay.com</string>
-    <string name="version">1.0801</string>
-    <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
-    <string name="twitter">http://www.twitter.com/pigdogbay</string>
-    <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
-    <string name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
-    <string name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
-    <string name="about_btn_rate">Bewerte diese App</string>
-    <string name="about_version">Version:</string>
-    <string name="about_email">Email:</string>
-    <string name="about_web">Web:</string>
-    <string name="about_email_subject">Weight Recorder Feedback</string>
-    <string name="about_email_content">Hi Pig Dog Bay,</string>
-    <string name="about_no_market_app">Keinen PlayStore gefunden</string>
-    <string name="menu_settings">Einstellungen</string>
-    <string name="title_activity_main">Weight Recorder</string>
-    <string name="title_activity_chart">Weight Recorder Diagramm</string>
-    <string name="title_activity_list">Weight Recorder Werte</string>
-    <string name="title_activity_add">Neuer Wert</string>
-    <string name="title_activity_edit">Wert ändern</string>
-    <string name="title_activity_import">Daten importieren</string>
-    <string name="title_activity_report">Weight Recorder Zusammenfassung</string>
-    <string name="title_activity_about">Über Weight Recorder</string>
-    <string name="title_activity_help">Weight Recorder Hilfe</string>
-    <string name="chart_notenoughdata_title">Nicht genügend Werte vorhanden</string>
-    <string name="chart_notenoughdata_message">Bei weniger als 3 eingetragenen Werten, werden noch Beispielwerte angezeigt. „Menü“, um eine 30-,60- oder 90-Tage-Ansicht einzustellen.</string>
-    <string name="chart_xaxis_title">Datum</string>
-    <string name="chart_yaxis_title">Gewicht</string>
-    <string name="report_notenoughdata_title">Nicht genügend Werte.</string>
-    <string name="report_notenoughdata_message">Solange noch keine Werte hinterlegt sind, erscheinen noch Beispielwerte.</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Abbrechen</string>
-    <string name="main_btn_enter">Neu</string>
-    <string name="main_btn_edit">Ändern</string>
-    <string name="main_btn_chart">Diagramm</string>
-    <string name="main_btn_report">Bericht</string>
-    <string name="main_btn_settings">Einstellungen</string>
-    <string name="main_btn_help">Hilfe</string>
-    <string name="main_welcome_title">Welcome</string>
-    <string name="main_welcome_msg">Schön, dass Du Weight Recorder ausprobierst.\n\nBeginne einfach, indem Du den „Neu“-Button drückst.\nDrücke „Zurück“ um wieder zum Hauptmenü zu gelangen\nDrück hier und da auch die Menü-Taste, um weitere Funktionen zu entdecken.\n</string>
-    <string name="pref_measurement_title">Maßeinheiten</string>
-    <string name="pref_measurement_summary">Gewichts- und Größeneinheiten, die in der App benutzt werden</string>
-    <string name="pref_weight_units_title">Gewichtseinheit</string>
-    <string name="pref_weight_units_summary">Lege hier die Gewichtseinheit fest (z.B. kg).</string>
-    <string name="pref_length_units_title">Längenmaße</string>
-    <string name="pref_length_units_summary">Hier kannst Du verschiedene Längeneinheiten wählen.</string>
-    <string name="pref_bmi_title">Deine Daten</string>
-    <string name="pref_bmi_summary">Wird benutzt, um Deinen BMI und Dein Zielgewicht zu berechnen.</string>
-    <string name="pref_bmi_dialog_height_title">Gib hier Deine Größe ein.</string>
-    <string name="pref_bmi_height_title">Größe</string>
-    <string name="pref_bmi_height_summary">Deine Größe in der zuvor festgelegten Einheit.</string>
-    <string name="pref_bmi_dialog_target_weight_title">Dein Zielgewicht</string>
-    <string name="pref_bmi_target_weight_title">Zielgewicht</string>
-    <string name="pref_bmi_target_weight_summary">Dein Zielgewicht in der zuvor festgelegten Einheit.</string>
-    <string name="pref_chart_title">Diagrammeinstellungen</string>
-    <string name="pref_chart_summary">Einstellungen für die Diagrammansicht anzeigen</string>
-    <string name="pref_chart_show_trendline_title">Trendlinie</string>
-    <string name="pref_chart_show_trendline_summary">Zeigt eine Trendlinie Deines Gewichtsverlaufes.</string>
-    <string name="pref_chart_show_targetline_title">Zielgewicht</string>
-    <string name="pref_chart_show_targetline_summary">Zeigt Dein Zielgewicht als Linie an.</string>
-    <string name="edit_weight_hint">Gib Dein Gewicht ein</string>
-    <string name="edit_comment_hint">Kommentar</string>
-    <string name="edit_weight_error">Gib Dein Gewicht ein</string>
-    <string name="edit_no_speech">Dein Gerät unterstützt keine Spracheingabe.</string>
-    <string name="edit_speak_prompt_weight">Sprich Dein Gewicht ein</string>
-    <string name="edit_speak_prompt_comment">Sprich Deinen Kommentar dazu ein</string>
-    <string name="addreading_added">Wert wurde hinzugefügt.</string>
-    <string name="addreading_add_btn">Hinzufügen</string>
-    <string name="editreading_updated">Wert geändert.</string>
-    <string name="editreading_deleted">Wert gelöscht.</string>
-    <string name="editreading_update_btn">Ändern</string>
-    <string name="editreading_delete_btn">Löschen</string>
-    <string name="editreading_delete_dialog_title">Bestätigen</string>
-    <string name="editreading_delete_dialog_message">Willst Du wirklich alle Werte löschen?</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_main_about">Über</string>
-    <string name="menu_chart_all">Alle Werte</string>
-    <string name="menu_chart_30">30 Tage</string>
-    <string name="menu_chart_60">60 Tage</string>
-    <string name="menu_chart_90">90 Tage</string>
-    <string name="menu_chart_year">Ein Jahr</string>
-    <string name="menu_readings_list_import">Werte importieren</string>
-    <string name="menu_readings_list_export">Werte per Email versenden</string>
-    <string name="menu_readings_list_delete_all">Alles löschen</string>
-    <string name="menu_report_export">Bericht per Email versenden</string>
-    <string name="bmi_class_severely_underweight">Stark untergewichtig</string>
-    <string name="bmi_class_underweight">Untergewichtig</string>
-    <string name="bmi_class_normal">Normal</string>
-    <string name="bmi_class_overweight">Übergewichtig</string>
-    <string name="bmi_class_obese1">Adipös Stufe I</string>
-    <string name="bmi_class_obese2">Adipös Stufe II</string>
-    <string name="bmi_class_obese3">Adipös Stufe III</string>
-    <string name="readings_no_readings_export">Keine Werte zum exportieren vorhanden</string>
-    <string name="readings_export_error">Kann Werte nicht exportieren.</string>
-    <string name="report_email_subject">Weight Recorder Bericht</string>
-    <string name="report_per_no_readings">Keine Werte verfügbar</string>
-    <string name="report_per_week">wöchentlich</string>
-    <string name="report_body_mass_index">Body Mass Index</string>
-    <string name="report_latest">Letzer Wert</string>
-    <string name="report_goal">Ziel</string>
-    <string name="report_ideal_weight">Idealgewicht</string>
-    <string name="report_trends">Trends</string>
-    <string name="report_last_7_days">..in den letzten 7 Tagen</string>
-    <string name="report_losing">verloren</string>
-    <string name="report_gaining">gestiegen</string>
-    <string name="report_goal_date">Zielgewicht am</string>
-    <string name="report_last_30_days">..in den letzen 30 Tagen</string>
-    <string name="report_all_time">..aus allen Werten:</string>
-    <string name="report_stats">Statistik</string>
-    <string name="report_min_weight">Niedrigstes Gewicht</string>
-    <string name="report_max_weight">Höchstes Gewicht</string>
-    <string name="report_average_weight">Durchschnitt</string>
-    <string name="report_average_bmi">Average BMI</string>
-    <string name="report_number_of_readings">Anzahl der Werte</string>
-    <string name="import_import_button">Importieren</string>
-    <string name="import_hint">Füge die Werte hier ein</string>
-    <string name="import_no_text">Da ist nichts zum importieren.</string>
-    <string name="import_readings_added">\u0020Werte hinzugefügt.</string>
-    <string name="import_dialog_title">Hilfe zum Improtieren</string>
-    <string name="import_dialog_message">Kopiere Deine Werte und füge sie hier ein. Stell dazu sicher, dass sie in der richtigen Formatierung vorliegen. Schaue in den Hilfebereich, um weitere Infos zu bekommen.</string>
-    <string name="help_html">
-                <![CDATA[
-<b>Einführung</b><br/><br/>         
-Trage Dein täglich gemessenes Gewicht ein, um Deine Fortschritte Deiner Diät auf dem Weg zu Deinem Wunschgewicht zu verfolgen.<br/>         <br/><br/><b>Settings</b><br/><br/>
-Bevor Du beginnst, trage noch Deine bevorzugten Längen- und Gewichtseinheiten ein. Deine Größe wird nur dazu benötigt, Deinen Body Maß Index zu berechnen. Wenn Du möchtest, trag ein Zielgewicht ein, damit Dein Ansporn sichtbar bleibt. <br/>         
-<br/><br/><b>New</b><br/><br/>         
-Hier gibst Du Deine neuen täglichen Werte ein. Dabei wird immer das aktuelle Datum bereits eingetragen, Du kannst es aber trotzdem noch ändern, um einen Wert eines anderen Tages neu einzutragen.         
-<br/><br/>Um den Zahlenwert Deines Gewichts einzugeben, tippe einfach auf die Zahl. Du kannst aber auch einfach die + und – Taste benutzen, um den Wert anzupassen.         
-<br/><br/><br/><b>Edit</b><br/><br/>         
-All Deine Werte werden hier in einer Liste angezeigt. Tippe auf einen Wert, um ihn zu ändern, oder auch zu löschen.          
-<br/><br/>Drückst Du hier die „Menü“-Taste, kannst Du in den Optionen alle Werte löschen, importieren oder exportieren. Schau Dir dazu auch noch weitere Hilfestellung weiter unten an.<br/>         
-<br/><br/><b>Chart</b><br/><br/>         
-Das Diagramm zeigt Dir das Gewicht in Abhängigkeit der Zeit an. Du kannst die Anzeige völlig frei verändern, in dem Du einfach darauf tippst und die Anzeige zur Seite oder nach oben und unten ziehst. Auch ein Zoom ist nach der bekannten Methode möglich. Drücke hier die „Menü“-Taste, um das Diagramm für eine bestimmte Zeitperiode anzupassen.<br/>         
-<br/>In den Einstellungen kannst Du auch noch festlegen, ob z.B. eine Trendlinie oder auch noch Dein Zielgewicht im Diagramm angezeigt werden soll. Die Trendlinie zeigt dabei eine Ausgleichsgerade durch Deine bisherigen Werte.          
-<br/><br/><b>Report</b><br/><br/>         
-Hier wird Dein aktueller BMI, Deine Gewichtsstatistik und aktuelle Trendwerte angezeigt. Negative Zahlen bedeuten dabei, dass Du an Gewicht verlierst, positive Zahlen bedeuten, Du baust Gewicht auf. Über die „Menü“-Taste kannst Du hieraus Deinen Bericht auch per Email versenden.<br/>         <br/><br/><b>Weitere Themen</b><br/><br/>         
-Du kannst Deine Werte über die „Menü“-Taste im Bereich „Ändern“ exportieren. Dabei werden die Werte im Textformat „comma separated values“ (CSV) ausgegeben, um danach in einer Tabellenkalkulation aufbereitet werden zu können.          
-<br/><br/>Möchtest Du Werte importieren, achte bitte darauf, dass dabei folgendes Format eingehalten wird:         
-<br/><br/> 92.50,2013-01-18 16:24:35,Beispiel         
-<br/><br/> Gewicht 92.50kg, am 18. Januar 2013, um 4:24:35pm und der Kommentar wäre dabei „Beispiel“.         
-<br/><br/>*Beachte dabei bitte, dass die Werte hier in Kilogramm verwertet werden. Für Pfund (lbs) multipliziere den Wert mit 2.20462.   
-<br/><br/>Der einfachste Weg, Daten zu importieren ist, Dir selbst die Daten per Email zu senden. Öffne die Email auf Deinem Gerät, markiere die Daten und kopiere sie. Auf dem Importbildschirm drückst Du dann einfach länger auf den Touchscreen, bis die Möglichkeit erscheint, die Daten einzufügen.                 
-<br/><br/><b>Credits</b><br/><br/>   
-Deutsche Übersetzung von Christian Niemietz.        		
-				]]>
-	</string>
-    <string name="report_template">
-                <![CDATA[
-***** WEIGHT RECORDER-Bericht *****<br/> 
-<br/> 
-http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder<br/> 
-<br/> 
-<br/> 
---- Body Mass Index ---<br/> 
-<br/> 
-Letzter         \t\t\t\t\t\t$LatestBMI<br/> 
-Ziel         \t\t\t\t\t\t$GoalBMI<br/> 
-Idealgewicht       \t\t\t$IdealRange<br/> 
-<br/> 
-<br/> 
---- Trends ---<br/> 
-<br/> 
-In den letzten 7 Tagen<br/> 
-$TrendWeekTitle      \t\t\t\t\t\t$TrendWeekValue<br/> 
-Zielgewicht wird erreicht        \t\t\t\t$TrendWeekGoalDate<br/> 
-<br/> 
-Letzte 30 Tage<br/> 
-$TrendMonthTitle     \t\t\t\t\t\t$TrendMonthValue<br/> 
-Zielgewicht wird erreicht        \t\t\t\t$TrendMonthGoalDate<br/> <br/> 
-Alle Werte<br/> 
-$TrendAllTitle      \t\t\t\t\t\t$TrendAllValue<br/> 
-Zielgewicht wird erreicht                \t\t\t\t$TrendAllGoalDate<br/> 
-<br/> 
-<br/> 
---- Stats ---<br/> 
-<br/> 
-geringstes Gewicht        \t\t\t\t\t\t$MinWeight<br/> 
-höchstes Gewicht        \t\t\t\t\t$MaxWeight<br/> 
-Durchschnitt       \t\t\t\t$AverageWeight<br/> 
-BMI-Durchschnitt       \t\t\t\t\t$AverageBMI<br/> 
-Anzahl der Werte      \t\t$Count<br/> 
-<br/>                
-				]]>
-        </string>
-    <string name="menu_help_text_small">Text Small</string>
-    <string name="menu_help_text_medium">Text Medium</string>
-    <string name="menu_help_text_large">Text Large</string>
-
+  <string name="app_name">WeightRecorder</string>
+  <string name="email">pigdogbay@yahoo.co.uk</string>
+  <string name="website">http://www.pigdogbay.com</string>
+  <string name="version">1.0802</string>
+  <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
+  <string name="twitter">http://www.twitter.com/pigdogbay</string>
+  <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
+  <string name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
+  <string name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
+  <string name="about_btn_rate">Bewerte diese App</string>
+  <string name="about_version">Version:</string>
+  <string name="about_email">Email:</string>
+  <string name="about_web">Web:</string>
+  <string name="about_email_subject">Weight Recorder Feedback</string>
+  <string name="about_email_content">Hi Pig Dog Bay,</string>
+  <string name="about_no_market_app">Keinen PlayStore gefunden</string>
+  <string name="menu_settings">Optionen</string>
+  <string name="title_activity_main">Weight Recorder</string>
+  <string name="title_activity_chart">Weight Recorder Diagramm</string>
+  <string name="title_activity_list">Weight Recorder Werte</string>
+  <string name="title_activity_add">Neuer Wert</string>
+  <string name="title_activity_edit">Wert ändern</string>
+  <string name="title_activity_import">Daten importieren</string>
+  <string name="title_activity_report">Weight Recorder Zusammenfassung</string>
+  <string name="title_activity_about">Über Weight Recorder</string>
+  <string name="title_activity_help">Weight Recorder Hilfe</string>
+  <string name="chart_notenoughdata_title">Nicht genügend Werte vorhanden</string>
+  <string name="chart_notenoughdata_message">Bei weniger als 3 eingetragenen Werten, werden noch Beispielwerte angezeigt. „Menü“, um eine 30-,60- oder 90-Tage-Ansicht einzustellen.</string>
+  <string name="chart_xaxis_title">Datum</string>
+  <string name="chart_yaxis_title">Gewicht</string>
+  <string name="report_notenoughdata_title">Nicht genügend Werte.</string>
+  <string name="report_notenoughdata_message">Solange noch keine Werte hinterlegt sind, erscheinen noch Beispielwerte.</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="main_btn_enter">Neu</string>
+  <string name="main_btn_edit">Ändern</string>
+  <string name="main_btn_chart">Diagramm</string>
+  <string name="main_btn_report">Bericht</string>
+  <string name="main_btn_settings">Optionen</string>
+  <string name="main_btn_help">Hilfe</string>
+  <string name="main_welcome_title">Willkommen</string>
+  <string name="main_welcome_msg">Schön, dass Du Weight Recorder ausprobierst.\n\nBeginne einfach, indem Du den „Neu“-Button drückst.\nDrücke „Zurück“ um wieder zum Hauptmenü zu gelangen\nDrück hier und da auch die Menü-Taste, um weitere Funktionen zu entdecken.\n</string>
+  <string name="pref_measurement_title">Maßeinheiten</string>
+  <string name="pref_measurement_summary">Gewichts- und Größeneinheiten, die in der App benutzt werden</string>
+  <string name="pref_weight_units_title">Gewichtseinheit</string>
+  <string name="pref_weight_units_summary">Lege hier die Gewichtseinheit fest (z.B. kg).</string>
+  <string name="pref_length_units_title">Längenmaße</string>
+  <string name="pref_length_units_summary">Hier kannst Du verschiedene Längeneinheiten wählen.</string>
+  <string name="pref_bmi_title">Deine Daten</string>
+  <string name="pref_bmi_summary">Wird benutzt, um Deinen BMI und Dein Zielgewicht zu berechnen.</string>
+  <string name="pref_bmi_dialog_height_title">Gib hier Deine Größe ein.</string>
+  <string name="pref_bmi_height_title">Größe</string>
+  <string name="pref_bmi_height_summary">Deine Größe in der zuvor festgelegten Einheit.</string>
+  <string name="pref_bmi_dialog_target_weight_title">Dein Zielgewicht</string>
+  <string name="pref_bmi_target_weight_title">Zielgewicht</string>
+  <string name="pref_bmi_target_weight_summary">Dein Zielgewicht in der zuvor festgelegten Einheit.</string>
+  <string name="pref_chart_title">Diagrammeinstellungen</string>
+  <string name="pref_chart_summary">Einstellungen für die Diagrammansicht anzeigen</string>
+  <string name="pref_chart_show_trendline_title">Trendlinie</string>
+  <string name="pref_chart_show_trendline_summary">Zeigt eine Trendlinie Deines Gewichtsverlaufes.</string>
+  <string name="pref_chart_show_targetline_title">Zielgewicht</string>
+  <string name="pref_chart_show_targetline_summary">Zeigt Dein Zielgewicht als Linie an.</string>
+  <string name="edit_weight_hint">Gib Dein Gewicht ein</string>
+  <string name="edit_comment_hint">Kommentar</string>
+  <string name="edit_weight_error">Gib Dein Gewicht ein</string>
+  <string name="edit_no_speech">Dein Gerät unterstützt keine Spracheingabe.</string>
+  <string name="edit_speak_prompt_weight">Sprich Dein Gewicht ein</string>
+  <string name="edit_speak_prompt_comment">Sprich Deinen Kommentar dazu ein</string>
+  <string name="addreading_added">Wert wurde hinzugefügt.</string>
+  <string name="addreading_add_btn">Hinzufügen</string>
+  <string name="editreading_updated">Wert geändert.</string>
+  <string name="editreading_deleted">Wert gelöscht.</string>
+  <string name="editreading_update_btn">Ändern</string>
+  <string name="editreading_delete_btn">Löschen</string>
+  <string name="editreading_delete_dialog_title">Bestätigen</string>
+  <string name="editreading_delete_dialog_message">Willst Du wirklich alle Werte löschen?</string>
+  <string name="menu_home">Home</string>
+  <string name="menu_main_about">Über</string>
+  <string name="menu_chart_all">Alle Werte</string>
+  <string name="menu_chart_30">30 Tage</string>
+  <string name="menu_chart_60">60 Tage</string>
+  <string name="menu_chart_90">90 Tage</string>
+  <string name="menu_chart_year">Ein Jahr</string>
+  <string name="menu_readings_list_import">Werte importieren</string>
+  <string name="menu_readings_list_export">Werte per Email versenden</string>
+  <string name="menu_readings_list_delete_all">Alles löschen</string>
+  <string name="menu_report_export">Bericht per Email versenden</string>
+  <string name="bmi_class_severely_underweight">Stark untergewichtig</string>
+  <string name="bmi_class_underweight">Untergewichtig</string>
+  <string name="bmi_class_normal">Normal</string>
+  <string name="bmi_class_overweight">Übergewichtig</string>
+  <string name="bmi_class_obese1">Adipös Stufe I</string>
+  <string name="bmi_class_obese2">Adipös Stufe II</string>
+  <string name="bmi_class_obese3">Adipös Stufe III</string>
+  <string name="readings_no_readings_export">Keine Werte zum exportieren vorhanden</string>
+  <string name="readings_export_error">Kann Werte nicht exportieren.</string>
+  <string name="report_email_subject">Weight Recorder Bericht</string>
+  <string name="report_per_no_readings">Keine Werte verfügbar</string>
+  <string name="report_per_week">wöchentlich</string>
+  <string name="report_body_mass_index">Body Mass Index</string>
+  <string name="report_latest">Letzer Wert</string>
+  <string name="report_goal">Ziel</string>
+  <string name="report_ideal_weight">Idealgewicht</string>
+  <string name="report_trends">Trends</string>
+  <string name="report_last_7_days">..in den letzten 7 Tagen</string>
+  <string name="report_losing">verloren</string>
+  <string name="report_gaining">gestiegen</string>
+  <string name="report_goal_date">Zielgewicht am</string>
+  <string name="report_last_30_days">..in den letzen 30 Tagen</string>
+  <string name="report_all_time">..aus allen Werten:</string>
+  <string name="report_stats">Statistik</string>
+  <string name="report_min_weight">Niedrigstes Gewicht</string>
+  <string name="report_max_weight">Höchstes Gewicht</string>
+  <string name="report_average_weight">Durchschnitt</string>
+  <string name="report_average_bmi">Durchschnitt BMI</string>
+  <string name="report_number_of_readings">Anzahl der Werte</string>
+  <string name="import_import_button">Importieren</string>
+  <string name="import_hint">Füge die Werte hier ein</string>
+  <string name="import_no_text">Da ist nichts zum importieren.</string>
+  <string name="import_readings_added">\u0020Werte hinzugefügt.</string>
+  <string name="import_dialog_title">Hilfe zum Improtieren</string>
+  <string name="import_dialog_message">Kopiere Deine Werte und füge sie hier ein. Stell dazu sicher, dass sie in der richtigen Formatierung vorliegen. Schaue in den Hilfebereich, um weitere Infos zu bekommen.</string>
+  <string name="help_html">
+        <![CDATA[
+    <b>Einführung</b><br/><br/> 
+    Trage Dein täglich gemessenes Gewicht ein, um Deine Fortschritte Deiner Diät auf dem Weg zu Deinem Wunschgewicht zu verfolgen.<br/> 
+    <br/><br/><b>Optionen</b><br/><br/> 
+    Bevor Du beginnst, trage noch Deine bevorzugten Längen- und Gewichtseinheiten ein. Deine Größe wird nur dazu benötigt, Deinen Body Maß Index zu berechnen. Wenn Du möchtest, trag ein Zielgewicht ein, damit Dein Ansporn sichtbar bleibt. <br/> 
+    <br/><br/><b>Neu</b><br/><br/> 
+    Hier gibst Du Deine neuen täglichen Werte ein. Dabei wird immer das aktuelle Datum bereits eingetragen, Du kannst es aber trotzdem noch ändern, um einen Wert eines anderen Tages neu einzutragen. <br/>
+    <br/>Um den Zahlenwert Deines Gewichts einzugeben, tippe einfach auf die Zahl. Du kannst aber auch einfach die + und – Taste benutzen, um den Wert anzupassen. <br/>
+    <br/><br/><b>Ändern</b><br/>
+    <br/> All Deine Werte werden hier in einer Liste angezeigt. Tippe auf einen Wert, um ihn zu ändern, oder auch zu löschen. <br/>
+    <br/>Drückst Du hier die „Menü“-Taste, kannst Du in den Optionen alle Werte löschen, importieren oder exportieren. Schau Dir dazu auch noch weitere Hilfestellung weiter unten an.<br/> 
+    <br/><br/><b>Diagramm</b><br/><br/> 
+    Das Diagramm zeigt Dir das Gewicht in Abhängigkeit der Zeit an. Du kannst die Anzeige völlig frei verändern, in dem Du einfach darauf tippst und die Anzeige zur Seite oder nach oben und unten ziehst. Auch ein Zoom ist nach der bekannten Methode möglich. Drücke hier die „Menü“-Taste, um das Diagramm für eine bestimmte Zeitperiode anzupassen.<br/> 
+    <br/>In den Optionen kannst Du auch noch festlegen, ob z.B. eine Trendlinie oder auch noch Dein Zielgewicht im Diagramm angezeigt werden soll. Die Trendlinie zeigt dabei eine Ausgleichsgerade durch Deine bisherigen Werte. 
+    <br/><br/><b>Bericht</b><br/><br/> 
+    Hier wird Dein aktueller BMI, Deine Gewichtsstatistik und aktuelle Trendwerte angezeigt. Negative Zahlen bedeuten dabei, dass Du an Gewicht verlierst, positive Zahlen bedeuten, Du baust Gewicht auf. Über die „Menü“-Taste kannst Du hieraus Deinen Bericht auch per Email versenden.<br/> 
+    <br/><br/><b>Weitere Themen</b><br/><br/> 
+    Du kannst Deine Werte über die „Menü“-Taste im Bereich „Ändern“ exportieren. Dabei werden die Werte im Textformat „comma separated values“ (CSV) ausgegeben, um danach in einer Tabellenkalkulation aufbereitet werden zu können. 
+    <br/><br/>Möchtest Du Werte importieren, achte bitte darauf, dass dabei folgendes Format eingehalten wird: 
+    <br/><br/> 92.50,2013-01-18 16:24:35,Beispiel <br/><br/> Gewicht 92.50kg, am 18. Januar 2013, um 16:24:35 Uhr und der Kommentar wäre dabei „Beispiel“. 
+    <br/><br/>*Beachte dabei bitte, dass die Werte hier in Kilogramm verwertet werden. Für Pfund (lbs) multipliziere den Wert mit 2.20462. 
+    <br/><br/>Der einfachste Weg, Daten zu importieren ist, Dir selbst die Daten per Email zu senden. Öffne die Email auf Deinem Gerät, markiere die Daten und kopiere sie. Auf dem Importbildschirm drückst Du dann einfach länger auf den Touchscreen, bis die Möglichkeit erscheint, die Daten einzufügen. 
+    <br/><br/><b>Credits</b><br/><br/> 
+    Deutsche Übersetzung von Christian Niemietz.
+		]]>
+  </string>
+  <string name="report_template">
+        <![CDATA[
+    ***** WEIGHT RECORDER-Bericht *****<br/> 
+    <br/> http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder<br/> 
+    <br/> 
+    <br/> --- Body Mass Index ---<br/> 
+    <br/> Letzter \t\t\t\t\t\t$LatestBMI<br/> 
+    Ziel \t\t\t\t\t\t$GoalBMI<br/> 
+    Idealgewicht \t\t\t$IdealRange<br/> 
+    <br/> 
+    <br/> --- Trends ---<br/> 
+    <br/> In den letzten 7 Tagen<br/> 
+    $TrendWeekTitle \t\t\t\t\t\t$TrendWeekValue<br/> 
+    Zielgewicht wird erreicht \t\t\t\t$TrendWeekGoalDate<br/> 
+    <br/> 
+    Letzte 30 Tage<br/> 
+    $TrendMonthTitle \t\t\t\t\t\t$TrendMonthValue<br/> 
+    Zielgewicht wird erreicht \t\t\t\t$TrendMonthGoalDate<br/> 
+    <br/> 
+    Alle Werte<br/> 
+    $TrendAllTitle \t\t\t\t\t\t$TrendAllValue<br/> 
+    Zielgewicht wird erreicht \t\t\t\t$TrendAllGoalDate<br/> 
+    <br/> 
+    <br/> --- Stats ---<br/> 
+    <br/> 
+    geringstes Gewicht \t\t\t\t\t\t$MinWeight<br/> 
+    höchstes Gewicht \t\t\t\t\t$MaxWeight<br/> 
+    Durchschnitt \t\t\t\t$AverageWeight<br/> 
+    BMI-Durchschnitt \t\t\t\t\t$AverageBMI<br/> 
+    Anzahl der Werte \t\t$Count<br/> 
+    <br/>
+		]]>
+  </string>
+  <string name="menu_help_text_small">Schrift klein</string>
+  <string name="menu_help_text_medium">Schrift mittel</string>
+  <string name="menu_help_text_large">Schrift groß</string>
+  <string name="length_unit_metres">Meter</string>
+  <string name="length_unit_centimetres">Zentimeter</string>
+  <string name="length_unit_inches">Zoll</string>
+  <string name="weight_unit_kilograms">Kilogramm</string>
+  <string name="weight_unit_pounds">Pfund</string>
+  <string name="weight_unit_stones">Steine</string>
+  <string name="share_readings_chooser_title">Werte teilen</string>
+  <string name="rate_dialog_title">Bewerte Weight Recorder</string>
+  <string name="rate_dialog_message">Wenn Dir Weight Recorder gefällt, dann gib doch bitte eine Bewertung ab. Danke sehr :-)</string>
+  <string name="rate_dialog_positive">Jetzt bewerten</string>
+  <string name="rate_dialog_neutral">Später..</string>
+  <string name="rate_dialog_negative">Nein Danke.</string>
 </resources>
