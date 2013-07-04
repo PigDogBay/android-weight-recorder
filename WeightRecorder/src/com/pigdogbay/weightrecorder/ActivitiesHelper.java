@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import java.io.File;
 import java.util.List;
 
 import android.app.Activity;
@@ -74,4 +75,33 @@ public class ActivitiesHelper {
 						}).show();
 		
 	}
+	public static void backupReadings(Activity activity)
+	{
+		try {
+			MainModel mainModel = new MainModel(activity);
+			List<Reading> readings = mainModel.getReverseOrderedReadings();
+			mainModel.close();
+			if (readings.size() == 0) {
+				Toast.makeText(
+						activity,
+						activity.getString(R.string.readings_no_readings_export),
+						Toast.LENGTH_SHORT).show();
+				return;
+			
+			}
+			String text = ReadingsSerializer.format(readings);
+			String filename = FileUtils.appendDate(activity.getString(R.string.app_name),".csv");
+			File file = FileUtils.createDownloadsFile(filename);
+			FileUtils.writeTextFile(file, text);
+			Toast.makeText(activity,
+					filename,
+					Toast.LENGTH_SHORT).show();
+		
+		} catch (Exception e) {
+			Toast.makeText(activity,
+					activity.getString(R.string.readings_export_error),
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 }
