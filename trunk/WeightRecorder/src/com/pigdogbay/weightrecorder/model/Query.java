@@ -111,6 +111,22 @@ public class Query
 		sortByDate();
 		return _Readings.get(count-1);
 	}
+	
+	public Reading findReadingByDate(Date date)
+	{
+		//remove milliseconds
+		long key = date.getTime()/1000L;
+		for (Reading r : _Readings)
+		{
+			long match = r.getDate().getTime()/1000L;
+			if (key==match)
+			{
+				return r;
+			}
+		}
+		return Reading.NullReading;
+		
+	}
 
 	private class DateComparator implements Comparator<Reading>
 	{

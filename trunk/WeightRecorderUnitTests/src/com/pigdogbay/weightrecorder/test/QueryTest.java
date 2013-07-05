@@ -137,6 +137,19 @@ public class QueryTest extends TestCase
 		Reading actual = target.getLatestReading();
 		assertTrue(actual==Reading.NullReading);
 	}	
-
+	public void testFindReadingByDate1()
+	{
+		List<Reading> readings = getReadings();
+		Reading expected = readings.get(10);
+		Query target = new Query(readings);
+		Reading actual = target.findReadingByDate(expected.getDate());
+		assertEquals(expected, actual);
+	}
+	public void testFindReadingByDate2()
+	{
+		Query target = new Query(getReadings());
+		Reading actual = target.findReadingByDate(new Date());
+		assertEquals(Reading.NullReading, actual);
+	}
 
 }
