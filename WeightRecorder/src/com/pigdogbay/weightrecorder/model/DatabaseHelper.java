@@ -95,6 +95,33 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IReadingsDatabas
 		}
 		
 	}
+
+	@Override
+	public void mergeReadings(List<Reading> readings)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		try
+		{
+			db.beginTransaction();
+			for (Reading r : readings)
+			{
+				if (r._ID==0)
+				{
+					insert(db, r);
+				}
+				else
+				{
+					update(db,r);
+				}
+			}
+			db.setTransactionSuccessful();
+		}
+		finally
+		{
+			db.endTransaction();
+		}
+		
+	}
 	private void insert(SQLiteDatabase db, Reading reading)
 	{
 		ContentValues values = new ContentValues();
@@ -102,6 +129,15 @@ public class DatabaseHelper extends SQLiteOpenHelper implements IReadingsDatabas
 		values.put(KEY_DATE_COLUMN, reading.getDate().getTime());
 		values.put(KEY_COMMENT_COLUMN, reading.getComment());
 		db.insert(DATABASE_TABLE, null, values);
+	}
+	private void update(SQLiteDatabase db, Reading reading)
+	{
+		ContentValues values = new ContentValues();
+		values.put(KEY_WEIGHT_COLUMN, reading.getWeight());
+		values.put(KEY_DATE_COLUMN, reading.getDate().getTime());
+		values.put(KEY_COMMENT_COLUMN, reading.getComment());
+		String where = KEY_ID + " = " + String.valueOf(reading.getID());
+		db.update(DATABASE_TABLE, values, where, null);
 	}
 
 	/* (non-Javadoc)
