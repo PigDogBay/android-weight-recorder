@@ -7,6 +7,7 @@ import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
+import com.pigdogbay.weightrecorder.model.Synchronization;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -108,8 +109,15 @@ public class ImportActivity extends Activity
 			if (count>0)
 			{
 				MainModel mainModel = new MainModel(this);
-				mainModel.getDatabase().addReadings(readings);
-				mainModel.close();
+				try{
+					Synchronization sync = new Synchronization(mainModel.getReverseOrderedReadings());
+					sync.Merge(readings);
+					mainModel.getDatabase().mergeReadings(sync._Readings);
+				}
+				finally{
+					mainModel.close();
+					}
+				
 				setResult(RESULT_OK);
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),
