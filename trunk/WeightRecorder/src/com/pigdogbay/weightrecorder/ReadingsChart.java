@@ -106,26 +106,28 @@ public class ReadingsChart
 		_Renderer.setAxisTitleTextSize(size);
 		size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, LABELS_TEXT_SIZE_SP, metrics);
 		_Renderer.setLabelsTextSize(size);
+		//Default large screen values
+		float marginLeft=48f,marginBottom=10f;
+		_Renderer.setXLabels(10);
+		_Renderer.setYLabels(10);
 		if (screenSize == Configuration.SCREENLAYOUT_SIZE_SMALL)
 		{
 			_Renderer.setXLabels(4);
 			_Renderer.setYLabels(4);
-			// Top, left, bottom, right
-			_Renderer.setMargins(new int[] { 0, 30, 16, 0 });
-
+			marginLeft = 30f;
+			marginBottom = 16f;
 		}
 		else if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL)
 		{
 			_Renderer.setXLabels(6);
 			_Renderer.setYLabels(6);
-			_Renderer.setMargins(new int[] { 0, 50, 20, 0 });
+			marginLeft = 44f;
+			marginBottom = 16f;
 		}
-		else
-		{
-			_Renderer.setXLabels(10);
-			_Renderer.setYLabels(10);
-			_Renderer.setMargins(new int[] { 0, 60, 10, 0 });
-		}
+		marginLeft = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginLeft, metrics);
+		marginBottom = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginBottom, metrics);
+		// Top, left, bottom, right
+		_Renderer.setMargins(new int[]{0,(int)marginLeft,(int)marginBottom,0});
 
 	}
 	public GraphicalView createView()
