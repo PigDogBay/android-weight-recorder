@@ -2,7 +2,7 @@
     <string name="app_name">WeightRecorder</string>
     <string name="email">pigdogbay@yahoo.co.uk</string>
     <string name="website">http://www.pigdogbay.com</string>
-    <string name="version">1.0802</string>
+    <string name="version">1.0803</string>
     <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
     <string name="twitter">http://www.twitter.com/pigdogbay</string>
     <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
@@ -86,7 +86,7 @@
     <string name="menu_chart_year">One Year</string>
     <string name="menu_readings_list_backup">Backup Readings</string>
     <string name="menu_readings_list_import">Import Readings</string>
-    <string name="menu_readings_list_export">Email Readings</string>
+    <string name="menu_readings_list_export">Share Readings</string>
     <string name="menu_readings_list_delete_all">Delete All</string>
     <string name="menu_report_export">Email Report</string>
     <string name="bmi_class_severely_underweight">Severely Underweight</string>
