@@ -1,6 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.io.File;
 import java.util.List;
 
 import com.pigdogbay.androidutils.utils.FileUtils;
@@ -46,9 +45,7 @@ public class ImportActivity extends Activity
 	    log("Type: "+type);
 	    if (null!=uri)
 	    {
-	    	String path = uri.getPath();
-	    	log("Path: "+path);
-	    	loadReadings(path);
+	    	loadReadings(uri);
 	    }
 	    else
 	    {
@@ -60,11 +57,12 @@ public class ImportActivity extends Activity
 		s = s==null ? "null" : s;
 		Log.v("WR-Import",s);
 	}
-	private void loadReadings(String path){
+	private void loadReadings(Uri uri){
 	    try
 	    {
-		    File file = new File(path);
-	    	String data = FileUtils.readTextFile(file);
+	    	String path = uri.getPath();
+	    	log("Path: "+path);
+	    	String data = FileUtils.readText(this, uri);
 	    	TextView textView = (TextView)findViewById(R.id.ImportEdit);
 	    	textView.setText(data);
 	    }catch(Exception e)
