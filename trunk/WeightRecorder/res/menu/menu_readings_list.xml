@@ -6,9 +6,6 @@
         android:showAsAction="ifRoom"     
         android:title="@string/menu_home"/>   
     <item
-        android:id="@+id/menu_readings_list_backup"
-        android:title="@string/menu_readings_list_backup"/>
-    <item
         android:id="@+id/menu_readings_list_export"
         android:title="@string/menu_readings_list_export"/>
     <item
