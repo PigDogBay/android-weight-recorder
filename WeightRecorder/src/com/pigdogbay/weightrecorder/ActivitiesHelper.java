@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,10 +14,7 @@ import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.FileUtils;
-import com.pigdogbay.weightrecorder.model.DatabaseHelper;
-import com.pigdogbay.weightrecorder.model.IReadingsDatabase;
 import com.pigdogbay.weightrecorder.model.MainModel;
-import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
@@ -102,7 +98,7 @@ public class ActivitiesHelper {
 			Toast.makeText(activity,
 					filename,
 					Toast.LENGTH_SHORT).show();
-			SendFile(activity, file);
+			SendFile(activity, file,"text/plain");
 		
 		} catch (Exception e) {
 			Toast.makeText(activity,
@@ -111,10 +107,10 @@ public class ActivitiesHelper {
 		}
 	}
 	
-	public static void SendFile(Activity activity, File file)
+	public static void SendFile(Activity activity, File file, String type)
 	{
 		Intent i = new Intent(Intent.ACTION_SEND);
-		i.setType("text/plain");
+		i.setType(type);
 		i.putExtra(Intent.EXTRA_EMAIL, "");
 		i.putExtra(Intent.EXTRA_SUBJECT, file.getName());
 		i.putExtra(Intent.EXTRA_TEXT, activity.getString(R.string.facebookPage));

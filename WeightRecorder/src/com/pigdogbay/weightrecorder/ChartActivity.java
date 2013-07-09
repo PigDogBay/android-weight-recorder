@@ -1,23 +1,21 @@
 package com.pigdogbay.weightrecorder;
 
+import java.io.File;
 import java.util.List;
 
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.ChartLogic;
 import com.pigdogbay.weightrecorder.model.DummyData;
-import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -56,6 +54,9 @@ public class ChartActivity extends Activity {
 		case (R.id.menu_chart_home):
 			finish();
 			return true;
+		case (R.id.menu_chart_share):
+			shareScreenShot();
+			break;
 		case (R.id.menu_chart_all):
 			_Period = 0;
 			break;
@@ -113,5 +114,24 @@ public class ChartActivity extends Activity {
 		return _UseDummyReadings ?
 				DummyData.createRandomData(120) : 
 				_MainModel.getDatabase().getAllReadings();
+	}
+	private void shareScreenShot()
+	{
+		try
+		{
+			Bitmap screenshot = ActivityUtils.takeScreenShot(this);
+			String filename = FileUtils.appendDate(this.getString(R.string.app_name),".png");
+			File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+			File file = new File(path,filename);
+			if (file.exists()) {
+				file.delete();
+			}			
+			FileUtils.writeImage(file, screenshot);
+			ActivitiesHelper.SendFile(this, file,"image/png");
+		}
+		catch(Exception e){
+			Toast.makeText(this,
+					this.getString(R.string.readings_export_error),
+					Toast.LENGTH_SHORT).show();		}
 	}
 }
