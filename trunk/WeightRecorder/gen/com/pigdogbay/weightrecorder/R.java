@@ -38,15 +38,16 @@ public final class R {
         public static final int ic_launcher=0x7f020008;
         public static final int ic_menu_home=0x7f020009;
         public static final int ic_menu_info_details=0x7f02000a;
-        public static final int index_edit=0x7f02000b;
-        public static final int line_chart=0x7f02000c;
-        public static final int pigdogbay_banner=0x7f02000d;
-        public static final int presentation_chart=0x7f02000e;
-        public static final int skyblue=0x7f020012;
-        public static final int tape_measure_add=0x7f02000f;
-        public static final int translucentred=0x7f020013;
-        public static final int twitter=0x7f020010;
-        public static final int wrench=0x7f020011;
+        public static final int ic_menu_share=0x7f02000b;
+        public static final int index_edit=0x7f02000c;
+        public static final int line_chart=0x7f02000d;
+        public static final int pigdogbay_banner=0x7f02000e;
+        public static final int presentation_chart=0x7f02000f;
+        public static final int skyblue=0x7f020013;
+        public static final int tape_measure_add=0x7f020010;
+        public static final int translucentred=0x7f020014;
+        public static final int twitter=0x7f020011;
+        public static final int wrench=0x7f020012;
     }
     public static final class id {
         public static final int AboutBtnRate=0x7f0a000c;
