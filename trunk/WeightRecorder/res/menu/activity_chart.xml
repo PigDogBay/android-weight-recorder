@@ -5,6 +5,11 @@
         android:icon="@drawable/ic_menu_home"   
         android:showAsAction="ifRoom"     
         android:title="@string/menu_home"/>   
+    <item
+        android:icon="@drawable/ic_menu_share"   
+        android:showAsAction="ifRoom"     
+        android:id="@+id/menu_chart_share"
+        android:title="@string/menu_chart_share"/>
     <item 
         android:id="@+id/menu_chart_all" 
         android:title="@string/menu_chart_all"/>   
