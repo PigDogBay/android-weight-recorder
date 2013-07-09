@@ -82,14 +82,11 @@ public class ReadingListActivity extends ListActivity
 		case (R.id.menu_readings_list_home):
 			finish();
 			break;
-		case (R.id.menu_readings_list_backup):
-			ActivitiesHelper.backupReadings(this);
-			break;
 		case (R.id.menu_readings_list_delete_all):
 			deleteAllMenuOption();
 			break;
 		case (R.id.menu_readings_list_export):
-			ActivitiesHelper.startExportActivity(this);
+			ActivitiesHelper.shareReadings(this);
 			break;
 		case (R.id.menu_readings_list_import):
 			ActivitiesHelper.startImportActivity(this, REQUEST_IMPORT);

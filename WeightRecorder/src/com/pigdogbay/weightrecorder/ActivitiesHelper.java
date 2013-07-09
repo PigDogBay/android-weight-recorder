@@ -9,6 +9,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -76,7 +77,7 @@ public class ActivitiesHelper {
 						}).show();
 		
 	}
-	public static void backupReadings(Activity activity)
+	public static void shareReadings(Activity activity)
 	{
 		try {
 			MainModel mainModel = new MainModel(activity);
@@ -101,6 +102,7 @@ public class ActivitiesHelper {
 			Toast.makeText(activity,
 					filename,
 					Toast.LENGTH_SHORT).show();
+			SendFile(activity, file);
 		
 		} catch (Exception e) {
 			Toast.makeText(activity,
@@ -108,5 +110,27 @@ public class ActivitiesHelper {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
+	
+	public static void SendFile(Activity activity, File file)
+	{
+		Intent i = new Intent(Intent.ACTION_SEND);
+		i.setType("text/plain");
+		i.putExtra(Intent.EXTRA_EMAIL, "");
+		i.putExtra(Intent.EXTRA_SUBJECT, file.getName());
+		i.putExtra(Intent.EXTRA_TEXT, activity.getString(R.string.facebookPage));
+		Uri uri = Uri.fromFile(file);
+		i.putExtra(Intent.EXTRA_STREAM, uri);
+		try
+		{
+			activity.startActivity(Intent.createChooser(i,activity.getString(R.string.share_readings_chooser_title)));
+		} 
+		catch (android.content.ActivityNotFoundException ex)
+		{
+			Toast.makeText(activity,
+					activity.getString(R.string.about_no_market_app), Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
+
 	
 }
