@@ -88,7 +88,7 @@
     <string name="menu_readings_list_import">Import Readings</string>
     <string name="menu_readings_list_export">Share Readings</string>
     <string name="menu_readings_list_delete_all">Delete All</string>
-    <string name="menu_report_export">Email Report</string>
+    <string name="menu_report_export">Share</string>
     <string name="bmi_class_severely_underweight">Severely Underweight</string>
     <string name="bmi_class_underweight">Underweight</string>
     <string name="bmi_class_normal">Normal</string>
@@ -151,9 +151,10 @@
     </string>
     <string name="report_template">
         <![CDATA[
-***** WEIGHT RECORDER REPORT *****<br/>
+http://www.facebook.com/pigdogbay<br/>
 <br/>
-http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder<br/>
+<br/>
+Weight Recorder Report<br/>
 <br/>
 <br/>
 --- Body Mass Index ---<br/>
