@@ -19,33 +19,6 @@ import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
 public class ActivitiesHelper {
-	public static void startExportActivity(Activity activity) {
-		try {
-			MainModel mainModel = new MainModel(activity);
-			List<Reading> readings = mainModel.getReverseOrderedReadings();
-			mainModel.close();
-			if (readings.size() == 0) {
-				Toast.makeText(
-						activity,
-						activity.getString(R.string.readings_no_readings_export),
-						Toast.LENGTH_SHORT).show();
-				return;
-
-			}
-			String text = ReadingsSerializer.format(readings);
-			String subject = FileUtils.appendDate(
-					activity.getString(R.string.app_name), ".csv");
-			ActivityUtils.SendEmail(activity, null, subject, text,
-					activity.getString(R.string.share_readings_chooser_title));
-
-		}
-		catch (Exception e) {
-			Toast.makeText(activity,
-					activity.getString(R.string.readings_export_error),
-					Toast.LENGTH_SHORT).show();
-		}
-
-	}
 
 	public static void startImportActivity(Activity activity) {
 		Intent intent = new Intent(activity, ImportActivity.class);
@@ -108,6 +81,37 @@ public class ActivitiesHelper {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
+	
+	public static void backupReadings(Activity activity)
+	{
+		try {
+			MainModel mainModel = new MainModel(activity);
+			List<Reading> readings = mainModel.getReverseOrderedReadings();
+			mainModel.close();
+			if (readings.size() == 0) {
+				return;
+			}
+			String text = ReadingsSerializer.format(readings);
+			String filename = FileUtils.appendDate(
+					activity.getString(R.string.app_name), ".csv");
+			File path = Environment
+					.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+			File file = new File(path, filename);
+			if (file.exists()) {
+				file.delete();
+			}
+			FileUtils.writeTextFile(file, text);
+			Toast.makeText(activity, filename, Toast.LENGTH_SHORT).show();
+
+		}
+		catch (Exception e) {
+			Toast.makeText(activity,
+					activity.getString(R.string.backup_readings_error),
+					Toast.LENGTH_SHORT).show();
+		}
+		
+	}
+	
 
 	public static void SendFile(Activity activity, File file, String type, int chooserTitleID) {
 		Intent i = new Intent(Intent.ACTION_SEND);

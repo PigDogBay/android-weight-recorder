@@ -8,6 +8,7 @@
     <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
     <string name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
     <string name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
+    <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
     <string name="about_version">Version:</string>
     <string name="about_email">Email:</string>

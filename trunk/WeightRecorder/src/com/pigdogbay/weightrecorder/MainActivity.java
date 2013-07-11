@@ -1,6 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
+import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,9 +24,14 @@ public class MainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		PreferencesHelper prefHelper = new PreferencesHelper(this);
 		wireUpButtons();
-		checkFirstTime();
-	    checkRate();
+		try{
+			checkFirstTime(prefHelper);
+			checkIfBackupDue(prefHelper);
+			checkRate();
+		} catch (Exception e){
+		}
 	}
 	private void checkRate()
 	{
@@ -138,9 +144,8 @@ public class MainActivity extends Activity
 		return true;
 	}
 
-	private void checkFirstTime()
+	private void checkFirstTime(PreferencesHelper prefHelper)
 	{
-		PreferencesHelper prefHelper = new PreferencesHelper(this);
 		boolean welcomeScreenShown = prefHelper.getBoolean(R.string.code_pref_welcome_shown_key, false);
 		if (!welcomeScreenShown)
 		{
@@ -148,6 +153,14 @@ public class MainActivity extends Activity
 			prefHelper.setBoolean(R.string.code_pref_welcome_shown_key, true);
 		}
 	}
+	private void checkIfBackupDue(PreferencesHelper prefHelper){
+		AutoBackup autoBackup = new AutoBackup(prefHelper);
+		if (autoBackup.isAutoBackupEnabled() && autoBackup.isBackupDue(AutoBackup.WEEKLY_BACKUP_PERIOD_IN_DAYS)){
+			autoBackup.setBackupDateToNow();
+			ActivitiesHelper.backupReadings(this);
+		}
+	}
+	
 	private void showWelcomeScreen()
 	{
 		String whatsNewTitle = getResources().getString(R.string.main_welcome_title);
