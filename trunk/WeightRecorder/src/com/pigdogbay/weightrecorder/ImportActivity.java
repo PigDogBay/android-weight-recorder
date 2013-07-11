@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 public class ImportActivity extends Activity
 {
+	public static final String NEW_IMPORTED_READINGS = "com.pigdogbay.weightrecorder.NEW_IMPORTED_READINGS";
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -117,6 +119,8 @@ public class ImportActivity extends Activity
 					}
 				
 				setResult(RESULT_OK);
+				Intent intent = new Intent(NEW_IMPORTED_READINGS);
+				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 			}
 			Toast.makeText(this, String.valueOf(count)+ getString(R.string.import_readings_added),
 					Toast.LENGTH_SHORT).show();

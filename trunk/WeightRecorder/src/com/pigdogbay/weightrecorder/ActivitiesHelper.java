@@ -25,11 +25,6 @@ public class ActivitiesHelper {
 		activity.startActivity(intent);
 	}
 
-	public static void startImportActivity(Activity activity, int requestCode) {
-		Intent intent = new Intent(activity, ImportActivity.class);
-		activity.startActivityForResult(intent, requestCode);
-	}
-
 	public static void showInfoDialog(Context context, int titleID,
 			int messageID) {
 		String title = context.getResources().getString(titleID);
