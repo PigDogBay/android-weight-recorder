@@ -33,6 +33,24 @@ public class PreferencesHelper {
 		editor.putBoolean(key, flag);
 		editor.commit();		
 	}
+	public long getLong(int id, long defaultValue) {
+		String key = _Context.getString(id);
+		long value = defaultValue;
+		try {
+			String stringValue = _SharedPreferences.getString(key,Long.toString(defaultValue));
+			value = Long.parseLong(stringValue);
+		}
+		catch (Exception ex) {
+		}
+		return value;
+	}
+
+	public void setLong(int id, long value) {
+		String key = _Context.getString(id);
+		SharedPreferences.Editor editor = _SharedPreferences.edit();
+		editor.putString(key, Long.toString(value));
+		editor.commit();
+	}
 	public int getInt(int id, int defaultValue) {
 		String key = _Context.getString(id);
 		int intValue = defaultValue;
