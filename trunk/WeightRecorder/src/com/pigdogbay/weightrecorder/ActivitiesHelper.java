@@ -99,7 +99,7 @@ public class ActivitiesHelper {
 			}
 			FileUtils.writeTextFile(file, text);
 			Toast.makeText(activity, filename, Toast.LENGTH_SHORT).show();
-			SendFile(activity, file, "text/plain");
+			SendFile(activity, file, "text/plain", R.string.readings_share_chooser_title);
 
 		}
 		catch (Exception e) {
@@ -109,7 +109,7 @@ public class ActivitiesHelper {
 		}
 	}
 
-	public static void SendFile(Activity activity, File file, String type) {
+	public static void SendFile(Activity activity, File file, String type, int chooserTitleID) {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType(type);
 		i.putExtra(Intent.EXTRA_EMAIL, "");
@@ -119,7 +119,7 @@ public class ActivitiesHelper {
 		i.putExtra(Intent.EXTRA_STREAM, uri);
 		try {
 			activity.startActivity(Intent.createChooser(i,
-					activity.getString(R.string.share_readings_chooser_title)));
+					activity.getString(chooserTitleID)));
 		}
 		catch (android.content.ActivityNotFoundException ex) {
 			Toast.makeText(activity,
@@ -128,7 +128,7 @@ public class ActivitiesHelper {
 		}
 	}
 
-	public static void shareText(Activity activity, String subject, String text) {
+	public static void shareText(Activity activity, String subject, String text, int chooserTitleID) {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType("text/plain");
 		i.putExtra(Intent.EXTRA_EMAIL, "");
@@ -136,7 +136,7 @@ public class ActivitiesHelper {
 		i.putExtra(Intent.EXTRA_TEXT, text);
 		try {
 			activity.startActivity(Intent.createChooser(i,
-					activity.getString(R.string.share_readings_chooser_title)));
+					activity.getString(chooserTitleID)));
 		}
 		catch (android.content.ActivityNotFoundException ex) {
 			Toast.makeText(activity,

@@ -99,6 +99,6 @@ public class ReportActivity extends Activity {
 		String subject = getString(R.string.report_email_subject) + " "	+ dateText;
 		String template = Html.fromHtml(this.getString(R.string.report_template)).toString();
 		String text = _ReportText.createReport(template);
-		ActivitiesHelper.shareText(this, subject, text);
+		ActivitiesHelper.shareText(this, subject, text,R.string.report_share_chooser_title);
 	}
 }
