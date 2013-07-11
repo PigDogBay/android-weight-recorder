@@ -6,10 +6,14 @@ import com.pigdogbay.weightrecorder.model.Reading;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,6 +25,8 @@ public class ReadingListActivity extends ListActivity
 	
 	private MainModel _MainModel;
 	private ReadingsArrayAdapter _ReadingsArrayAdapter;
+	private BroadcastReceiver _BroadcastReceiver;
+	private boolean _DataChanged = false;
 
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -29,14 +35,27 @@ public class ReadingListActivity extends ListActivity
         _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getWeightConverter(), _MainModel.getHeightInMetres());
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
+        _BroadcastReceiver = new ImportBroadcastReceiver();
+		LocalBroadcastManager.getInstance(this).registerReceiver(_BroadcastReceiver, new IntentFilter(ImportActivity.NEW_IMPORTED_READINGS));
     }
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		_MainModel.close();
+        //Its recommended this should be in onResume() / onPause() 
+		//as onDestroy is not guaranteed to be called
+		//But this means the I can't listen for events when the import activity is showing
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(_BroadcastReceiver);
 	}
-	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (_DataChanged)
+		{
+			onDataChanged();
+		}
+	}
 	
 	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
@@ -66,6 +85,7 @@ public class ReadingListActivity extends ListActivity
 	{
 		_ReadingsArrayAdapter.setReadings(_MainModel.getReverseOrderedReadings());
 		_ReadingsArrayAdapter.notifyDataSetChanged();
+		_DataChanged=false;
 	}	
 	
     @Override
@@ -89,25 +109,13 @@ public class ReadingListActivity extends ListActivity
 			ActivitiesHelper.shareReadings(this);
 			break;
 		case (R.id.menu_readings_list_import):
-			ActivitiesHelper.startImportActivity(this, REQUEST_IMPORT);
+			ActivitiesHelper.startImportActivity(this);
 			break;
 		default:
 			return false;
 		}
 		return true;
 	}
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	super.onActivityResult(requestCode, resultCode, data);
-    	if (requestCode==REQUEST_IMPORT || requestCode==REQUEST_EDIT)
-    	{
-    		if (resultCode==RESULT_OK)
-    		{
-    			//Reload readings as a change has been made
-    			onDataChanged();
-    		}
-    	}
-    }
 
 	private void deleteAllMenuOption()
 	{
@@ -141,6 +149,13 @@ public class ReadingListActivity extends ListActivity
 	{
 		_MainModel.getDatabase().deleteAllReadings();
 		onDataChanged();
+	}
+	
+	private class ImportBroadcastReceiver extends BroadcastReceiver{
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			ReadingListActivity.this._DataChanged=true;
+		}
 	}
 	
 }
