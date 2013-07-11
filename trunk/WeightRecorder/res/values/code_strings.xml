@@ -8,4 +8,6 @@
     <string translatable="false" name="code_pref_last_weight_key">last_weight_key</string>
     <string translatable="false" name="code_pref_show_trendline_key">show_trendline_key</string>
     <string translatable="false" name="code_pref_show_targetline_key">show_targetline_key</string>
+    <string translatable="false" name="code_pref_auto_backup_key">auto_backup_key</string>
+    <string translatable="false" name="code_pref_auto_backup_last_date_key">auto_backup_last_date_key</string>
 </resources>

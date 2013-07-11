@@ -62,6 +62,10 @@
     <string name="pref_chart_show_trendline_summary">Display the best line of fit to see your weight trend</string>
     <string name="pref_chart_show_targetline_title">Show Target Weight</string>
     <string name="pref_chart_show_targetline_summary">Display your target weight as a line on the chart</string>
+    <string name="pref_other_title">General Settings</string>
+    <string name="pref_other_summary">Various application settings</string>
+    <string name="pref_auto_backup_title">Automatic Backups</string>
+    <string name="pref_auto_backup_summary">Let the app back up your readings every week</string>
     <string name="edit_weight_hint">Enter weight</string>
     <string name="edit_comment_hint">Enter comment</string>
     <string name="edit_weight_error">Please enter weight</string>
