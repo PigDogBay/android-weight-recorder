@@ -29,8 +29,7 @@
     <string name="chart_notenoughdata_message">Since there are less than 3 readings, the chart will show example data. Press the menu key to select a 30, 60 or 90 day view. </string>
     <string name="chart_xaxis_title">Date</string>
     <string name="chart_yaxis_title">Weight</string>
-    <string name="report_notenoughdata_title">Not Enough Readings</string>
-    <string name="report_notenoughdata_message">Since there are no readings the report will show example data.</string>
+    <string name="chart_share_chooser_title">Share Chart</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="main_btn_enter">New</string>
@@ -98,6 +97,10 @@
     <string name="bmi_class_obese3">Obese Class III</string>
     <string name="readings_no_readings_export">No readings to export</string>
     <string name="readings_export_error">Unable to export readings</string>
+    <string name="readings_share_chooser_title">Share Readings</string>
+    <string name="report_notenoughdata_title">Not Enough Readings</string>
+    <string name="report_notenoughdata_message">Since there are no readings the report will show example data.</string>
+    <string name="report_share_chooser_title">Share Report</string>
     <string name="report_email_subject">Weight Recorder Report</string>
     <string name="report_per_no_readings">No readings available</string>
     <string name="report_per_week">per week</string>

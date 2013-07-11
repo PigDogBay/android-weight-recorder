@@ -127,7 +127,7 @@ public class ChartActivity extends Activity {
 				file.delete();
 			}			
 			FileUtils.writeImage(file, screenshot);
-			ActivitiesHelper.SendFile(this, file,"image/png");
+			ActivitiesHelper.SendFile(this, file,"image/png", R.string.chart_share_chooser_title);
 		}
 		catch(Exception e){
 			Toast.makeText(this,
