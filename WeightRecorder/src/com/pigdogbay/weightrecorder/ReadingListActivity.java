@@ -56,7 +56,15 @@ public class ReadingListActivity extends ListActivity
 			onDataChanged();
 		}
 	}
-	
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	super.onActivityResult(requestCode, resultCode, data);
+    	if (requestCode==REQUEST_EDIT && resultCode==RESULT_OK)
+    	{
+   			//Reload readings as a change has been made
+   			onDataChanged();
+    	}
+    }	
 	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
 	private void setBackground()
