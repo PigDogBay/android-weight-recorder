@@ -1,6 +1,8 @@
 package com.pigdogbay.weightrecorder;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -12,13 +14,16 @@ import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
 
-import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.DateStampComparator;
+import com.pigdogbay.androidutils.utils.DateStampedFileFilter;
 import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
 
 public class ActivitiesHelper {
+
+	private static final String CSV_FILE_EXTENSION = ".csv";
 
 	public static void startImportActivity(Activity activity) {
 		Intent intent = new Intent(activity, ImportActivity.class);
@@ -58,7 +63,7 @@ public class ActivitiesHelper {
 			}
 			String text = ReadingsSerializer.format(readings);
 			String filename = FileUtils.appendDate(
-					activity.getString(R.string.app_name), ".csv");
+					activity.getString(R.string.app_name), CSV_FILE_EXTENSION);
 			File path = Environment
 					.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 			File file = new File(path, filename);
@@ -88,7 +93,7 @@ public class ActivitiesHelper {
 			}
 			String text = ReadingsSerializer.format(readings);
 			String filename = FileUtils.appendDate(
-					activity.getString(R.string.app_name), ".csv");
+					activity.getString(R.string.app_name), CSV_FILE_EXTENSION);
 			File path = Environment
 					.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 			File file = new File(path, filename);
@@ -106,6 +111,21 @@ public class ActivitiesHelper {
 		}
 		
 	}
+	
+	public static File getLatestBackupFile(Activity activity)
+	{
+		File dir = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+		File[] matches = dir.listFiles(new DateStampedFileFilter(activity.getString(R.string.app_name), CSV_FILE_EXTENSION));
+		if (matches.length>0)
+		{
+			Arrays.sort(matches, new DateStampComparator());
+			return matches[matches.length-1];
+		}
+		return null;
+	}
+	
+	
 	
 
 	public static void SendFile(Activity activity, File file, String type, int chooserTitleID) {
