@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">WeightRecorder</string>
-    <string name="email">pigdogbay@yahoo.co.uk</string>
-    <string name="website">http://www.pigdogbay.com</string>
-    <string name="version">1.0804</string>
-    <string name="facebookPage">http://www.facebook.com/pigdogbay</string>
-    <string name="twitter">http://www.twitter.com/pigdogbay</string>
-    <string name="blogger">http://pigdogbay.blogspot.co.uk</string>
-    <string name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
-    <string name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
+    <string translatable="false" name="app_name">WeightRecorder</string>
+    <string translatable="false" name="email">pigdogbay@yahoo.co.uk</string>
+    <string translatable="false" name="website">http://www.pigdogbay.com</string>
+    <string translatable="false" name="version">1.0804</string>
+    <string translatable="false" name="facebookPage">http://www.facebook.com/pigdogbay</string>
+    <string translatable="false" name="twitter">http://www.twitter.com/pigdogbay</string>
+    <string translatable="false" name="blogger">http://pigdogbay.blogspot.co.uk</string>
+    <string translatable="false" name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
+    <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
     <string name="about_version">Version:</string>
@@ -27,7 +27,7 @@
     <string name="title_activity_about">About Weight Recorder</string>
     <string name="title_activity_help">Weight Recorder Help</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
-    <string name="chart_notenoughdata_message">Since there are less than 3 readings, the chart will show example data. Press the menu key to select a 30, 60 or 90 day view. </string>
+    <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
     <string name="chart_xaxis_title">Date</string>
     <string name="chart_yaxis_title">Weight</string>
     <string name="chart_share_chooser_title">Share Chart</string>
@@ -41,22 +41,22 @@
     <string name="main_btn_help">Help</string>
     <string name="main_welcome_title">Welcome</string>
     <string name="main_welcome_msg">
-        Thankyou for trying Weight Recorder.\n\nStart by entering your weight by pressing the New button.\nPress the back button to return to the home screen.\nRemember to press the menu key to find further features.\n
+        Start by pressing the settings buttons to enter your details.\n\nGood luck with your diet!\n
     </string>
     <string name="pref_measurement_title">Measurement Units</string>
     <string name="pref_measurement_summary">The weight and length units used within the app</string>
     <string name="pref_weight_units_title">Weight Units</string>
-    <string name="pref_weight_units_summary">Select the weight units to use within the app</string>
+    <string name="pref_weight_units_summary">Select the weight units to use such as pounds or kilograms</string>
     <string name="pref_length_units_title">Length Units</string>
-    <string name="pref_length_units_summary">Select the length units for your height setting</string>
+    <string name="pref_length_units_summary">Select the length units to use for your height</string>
     <string name="pref_bmi_title">About You</string>
     <string name="pref_bmi_summary">Used to calculate BMI and your weight goal</string>
     <string name="pref_bmi_dialog_height_title">Enter Your Height</string>
     <string name="pref_bmi_height_title">Your Height</string>
-    <string name="pref_bmi_height_summary">Use the above settings to select length units.</string>
+    <string name="pref_bmi_height_summary">Use the above settings to select length units first.</string>
     <string name="pref_bmi_dialog_target_weight_title">Enter Your Target Weight</string>
     <string name="pref_bmi_target_weight_title">Target Weight</string>
-    <string name="pref_bmi_target_weight_summary">Use the above settings to select weight units.</string>
+    <string name="pref_bmi_target_weight_summary">Use the above settings to select weight units first.</string>
     <string name="pref_chart_title">Chart Settings</string>
     <string name="pref_chart_summary">Display settings for the chart screen</string>
     <string name="pref_chart_show_trendline_title">Show Trend Line</string>
@@ -104,7 +104,7 @@
     <string name="readings_export_error">Unable to export readings</string>
     <string name="readings_share_chooser_title">Share Readings</string>
     <string name="report_notenoughdata_title">Not Enough Readings</string>
-    <string name="report_notenoughdata_message">Since there are no readings the report will show example data.</string>
+    <string name="report_notenoughdata_message">You have no readings the report will show example data.</string>
     <string name="report_share_chooser_title">Share Report</string>
     <string name="report_email_subject">Weight Recorder Report</string>
     <string name="report_per_no_readings">No readings available</string>
@@ -134,31 +134,40 @@
     <string name="import_no_text">Nothing to import</string>
     <string name="import_readings_added">\u0020Readings Added</string>
     <string name="import_dialog_title">Import Help</string>
-    <string name="import_dialog_message">Copy and paste your weight data on to the form. Please ensure that the data is correctly formatted. See the help screen for further details.</string>
+    <string name="import_dialog_message">
+        Press the Get Backup Readings button to load your latest backup readings if available.
+        \n\nPress the Import button to merge the readings into the app.
+        \n\nSee the help screen for further details.</string>
     <string name="help_html">
         <![CDATA[
 		<b>Introduction</b><br/><br/>
-        Enter your daily weight measurements and track your diet\'s progress as you aim towards your goal.<br/>
+        Enter your weight each day, use the chart and report screens to see how your diet is going.
         <br/><br/><b>Settings</b><br/><br/>
-        Before starting enter the weight and length units you wish to use. Enter your height so that your Body Mass Index can be calculated. Set yourself a goal by entering the target weight you would like to achieve.<br/>
+        Set your weight units such as pounds, kilograms and stones, then set yourself a goal by entering your Target Weight.
+        <br/><br/>For Body Mass Index calculations, first set your length units and then enter your height.
         <br/><br/><b>New</b><br/><br/>
-        Enter new daily readings here, the date will already be set and you can also add comments to the new weight reading. You can change the date so that past weight measurements can be entered.
+        Enter new daily weight readings here, the date will already be set and you can also add comments. Past weight measurements can also be entered.
         <br/><br/>To enter your weight press the button displaying the weight. You can also use the -/+ buttons to adjust the weight.
-        <br/><br/><br/><b>Edit</b><br/><br/>
-        Your readings are all displayed in a list, press a reading to edit or delete it. 
-        <br/><br/>Pressing the menu key shows options for deleting all readings, importing and exporting data, see below for further details.<br/>
+        <br/><br/><b>Edit</b><br/><br/>
+        Your readings are all displayed in a list, most recent first. Press a reading to edit or delete it.
+        <br/><br/>Share your readings with other apps such as Google Drive and Evernote, press the Share menu button.
+        <br/><br/>Import readings into the app by pressing the Import menu button.
         <br/><br/><b>Chart</b><br/><br/>
-        The chart displays weight versus time. You can drag and zoom the chart using touch. Press the menu key to select the time period for the chart to show.<br/>
-        <br/>On the settings menu you can select whether to show a trend line and your target weight. The line shows the best line of fit through the selected range of data points.
+        The chart displays weight versus time. You can drag and zoom the chart using touch.
+        <br/><br/>Your weight goal is shown as a horizontal line and your weight trend is shown as a straight line going through your weight readings. See if the two lines meet!<br/>
+        <br/>Share the chart with other apps such as Facebook and Twitter, press the Share menu button.
         <br/><br/><b>Report</b><br/><br/>
-        Displays your latest BMI, weight statistics and trends. Negative trends mean that you are losing weight, positive trends mean you are gaining weight. There is a menu option to export the report via email.<br/>
+        Displays your latest BMI, weight statistics and trends. 
+        <br/><br/>Share the report with other apps such as Gmail and Yahoo! Mail, press the Share menu button.
         <br/><br/><b>Advanced Topics</b><br/><br/>
         You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
+		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Recorder.
+		<br/><br/>The imported readings are merged with the readings in the apps database, if any two readings have the same date, the imported reading will overwrite the one in the database. 
         <br/><br/>When importing data, please ensure the format of the data is similar to:
-        <br/><br/> 92.50,2013-01-18 16:24:35,example
-        <br/><br/> Weight is 92.50kg, date is Jan 18th 2013, time is 4:24:35pm and the comment is example.
+        <br/><br/>92.50,2013-07-04 16:24:35,lovely day
+        <br/><br/>Weight is 92.50kg, date is July 4th 2013, time is 4:24:35pm and the comment is lovely day.
         <br/><br/>*Please note that weights are expressed in kilograms, to convert to pounds multiply by 2.20462.
-		<br/><br/>The easiest way to import data is to email yourself the readings. Open the email, press on the text so that the text editing options appear, choose select all and then copy. On the import screen touch and hold the screen so that the paste option appears.        ]]>
+]]>
     </string>
     <string name="report_template">
         <![CDATA[
@@ -214,5 +223,4 @@ Number of Readings 					\t\t$Count<br/>
     <string name="rate_dialog_positive">Rate it!</string>
     <string name="rate_dialog_neutral">Remind me later</string>
     <string name="rate_dialog_negative">No thanks</string>
-    
 </resources>
