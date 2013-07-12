@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="10803"
-    android:versionName="1.0803" 
+    android:versionCode="10804"
+    android:versionName="1.0804" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
