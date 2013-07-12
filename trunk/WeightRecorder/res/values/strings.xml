@@ -127,6 +127,9 @@
     <string name="report_average_bmi">Average BMI</string>
     <string name="report_number_of_readings">Number of Readings</string>
     <string name="import_import_button">Import</string>
+    <string name="import_load_backup_button">Get Backup Readings</string>
+    <string name="import_no_backup_file">No backup available</string>
+    <string name="import_error_loading_backup_file">Error loading backup</string>
     <string name="import_hint">Paste readings here</string>
     <string name="import_no_text">Nothing to import</string>
     <string name="import_readings_added">\u0020Readings Added</string>
