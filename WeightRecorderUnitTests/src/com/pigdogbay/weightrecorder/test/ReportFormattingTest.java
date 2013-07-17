@@ -74,13 +74,14 @@ public class ReportFormattingTest extends AndroidTestCase {
 		assertEquals("16.5 (Underweight)",target.getBMIString(16.5));
 	}
 	public void testGetBMIString2() {
+		String bmiError =mContext.getString(com.pigdogbay.weightrecorder.R.string.bmi_error); 
 		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
 		assertEquals("0.0 (Severely Underweight)",target.getBMIString(0));
-		assertEquals("0.0 (Severely Underweight)",target.getBMIString(-1));
-		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.NaN));
-		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.POSITIVE_INFINITY));
-		assertEquals("0.0 (Severely Underweight)",target.getBMIString(Double.NEGATIVE_INFINITY));
-		assertEquals("200.0 (Obese Class III)",target.getBMIString(999999));
+		assertEquals(bmiError,target.getBMIString(-1));
+		assertEquals(bmiError,target.getBMIString(Double.NaN));
+		assertEquals(bmiError,target.getBMIString(Double.POSITIVE_INFINITY));
+		assertEquals(bmiError,target.getBMIString(Double.NEGATIVE_INFINITY));
+		assertEquals(bmiError,target.getBMIString(999999));
 	}
 	/**
 	 * Locale Test

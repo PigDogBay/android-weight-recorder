@@ -32,7 +32,7 @@ public class ReadingListActivity extends ListActivity
 	{
         super.onCreate(savedInstanceState);
         _MainModel = new MainModel(this);
-        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getWeightConverter(), _MainModel.getHeightInMetres());
+        _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getUserSettings());
         setListAdapter(_ReadingsArrayAdapter);
         setBackground();
         _BroadcastReceiver = new ImportBroadcastReceiver();
