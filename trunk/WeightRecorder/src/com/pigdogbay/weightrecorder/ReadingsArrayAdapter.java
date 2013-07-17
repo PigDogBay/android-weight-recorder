@@ -2,8 +2,11 @@ package com.pigdogbay.weightrecorder;
 
 import java.util.List;
 
+import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.Reading;
+import com.pigdogbay.weightrecorder.model.ReportFormatting;
+import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -22,16 +25,16 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 {
 	private List<Reading> _Readings;
 	private final ReadingListActivity _Activity;
-	private IUnitConverter _WeightConverter;
-	private double _Height;
+	private ReportFormatting _ReportFormatting;
+	private BMICalculator _BMICalculator;
 	
-	public ReadingsArrayAdapter(ReadingListActivity activity, List<Reading> readings, IUnitConverter weightConverter, double heightInMetres)
+	public ReadingsArrayAdapter(ReadingListActivity activity, List<Reading> readings, UserSettings userSettings)
 	{
 		super(activity, R.layout.readings_item, readings);
 		_Readings = readings;
 		_Activity = activity;
-		_WeightConverter = weightConverter;
-		_Height = heightInMetres;
+		_ReportFormatting = new ReportFormatting(activity, userSettings);
+		_BMICalculator = new BMICalculator(userSettings);
 	}
 	
 	public void setReadings(List<Reading> readings)
@@ -50,10 +53,10 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 		}
 		TextView textView = (TextView) convertView
 				.findViewById(R.id.ResultsItemWeight);
-		textView.setText(weightToString(reading.getWeight()));
+		textView.setText(_ReportFormatting.getWeightString(reading.getWeight()));
 
 		textView = (TextView) convertView.findViewById(R.id.ResultsItemDate);
-		String dateText = DateUtils.formatDateTime(this.getContext(), reading.getDate().getTime(), DateUtils.FORMAT_SHOW_DATE|DateUtils.FORMAT_SHOW_TIME|DateUtils.FORMAT_SHOW_YEAR);
+		String dateText = _ReportFormatting.getDateTimeString(reading.getDate()); 
 		textView.setText(dateText);
 		textView = (TextView) convertView.findViewById(R.id.ResultsItemComment);
 		textView.setText(getComment(reading));
@@ -87,23 +90,9 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 		String comment = reading.getComment();
 		if ("".equals(comment))
 		{
-			comment = String.format("BMI %.1f",calculateBMI(reading));
+			double bmi = _BMICalculator.calculateBMI(reading);
+			comment = _ReportFormatting.getBMIString(bmi);
 		}
 		return comment;
 	}
-	private double calculateBMI(Reading reading)
-	{
-		double bmi = _Height;
-		if (bmi!=0)
-		{
-			bmi = reading.getWeight()/(bmi*bmi);
-		}
-		return bmi;
-	}	
-	private String weightToString(double weight)
-	{
-		weight = _WeightConverter.convert(weight);
-		return _WeightConverter.getDisplayString(weight);
-	}
-
 }

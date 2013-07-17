@@ -100,6 +100,7 @@
     <string name="bmi_class_obese1">Obese Class I</string>
     <string name="bmi_class_obese2">Obese Class II</string>
     <string name="bmi_class_obese3">Obese Class III</string>
+    <string name="bmi_error">Check height settings</string>
     <string name="readings_no_readings_export">No readings to export</string>
     <string name="readings_export_error">Unable to export readings</string>
     <string name="readings_share_chooser_title">Share Readings</string>

@@ -2,13 +2,9 @@ package com.pigdogbay.weightrecorder.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-
 import com.pigdogbay.weightrecorder.R;
 
 import android.content.Context;
-import android.text.Html;
-import android.text.format.DateUtils;
 
 public class ReportFormatting {
 	private static final String InvalidDateString = "---";
@@ -33,14 +29,9 @@ public class ReportFormatting {
 		return _UserSettings.WeightConverter.getDisplayString(weight);
 	}
 	public String getBMIString(double bmi) {
-		if (Double.isNaN(bmi) || Double.isInfinite(bmi) || bmi<0)
+		if (Double.isNaN(bmi) || Double.isInfinite(bmi) || bmi<0 || bmi>BMICalculator.MAX_BMI)
 		{
-			//prevent user seeing INF or NaN 
-			bmi = 0;
-		}
-		if (bmi>BMICalculator.MAX_BMI)
-		{
-			bmi = BMICalculator.MAX_BMI;
+			return _Context.getString(R.string.bmi_error);
 		}
 		return String.format("%.1f (%s)", bmi, BMICalculator.getString(_Context, bmi));
 	}
@@ -56,6 +47,10 @@ public class ReportFormatting {
 		//DateUtils.formatDateTime suffers from the Year 2038 problem
 		//One gripe with SDF is that UK locale formats like June 14, 2013 which is more American IMHO
 		return SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(new Date(timeInMillis));
+	}
+	public String getDateTimeString(Date date)
+	{
+		return SimpleDateFormat.getDateTimeInstance(SimpleDateFormat.LONG, SimpleDateFormat.MEDIUM).format(date);
 	}
 	public String getWeightTrendDirection(double trend)
 	{
