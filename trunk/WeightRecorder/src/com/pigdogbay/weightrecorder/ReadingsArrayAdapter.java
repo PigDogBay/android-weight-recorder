@@ -3,12 +3,10 @@ package com.pigdogbay.weightrecorder;
 import java.util.List;
 
 import com.pigdogbay.weightrecorder.model.BMICalculator;
-import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReportFormatting;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
