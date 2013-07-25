@@ -1,12 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="109"
-    android:versionName="1.09" 
+    android:versionCode="10901"
+    android:versionName="1.0901" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
   	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="com.android.vending.BILLING" />    
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
