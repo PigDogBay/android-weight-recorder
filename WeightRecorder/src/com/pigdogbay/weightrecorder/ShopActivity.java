@@ -3,14 +3,22 @@ package com.pigdogbay.weightrecorder;
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Purchase;
+import com.pigdogbay.androidutils.iab.SkuDetails;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShopActivity extends Activity {
@@ -20,6 +28,7 @@ public class ShopActivity extends Activity {
 	static final int RC_REQUEST = 10001;
 
 	static final String SKU_TEST = "android.test.purchased";
+	static final String SKU_DISABLE_ADS = "android.test.purchased";
 	static final String TAG = "WeightRecorder";
 
 	@Override
@@ -35,6 +44,8 @@ public class ShopActivity extends Activity {
 //				});
 
 		setUpIAB();
+		addSaleItem("Test Item", "$0.99", "Static Test Item", SKU_TEST);
+		addSaleItem("Disable Ads", "$0.99", "Remove all ads from the app", SKU_DISABLE_ADS);
 
 	}
 
@@ -46,6 +57,57 @@ public class ShopActivity extends Activity {
 		}
 		_Helper = null;
 
+	}
+	
+	private void addSaleItem(String title, String price, String description, String sku)
+	{
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int margin =(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, metrics);
+
+		LinearLayout layout = new LinearLayout(this);
+		LinearLayout.LayoutParams layoutParams =new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		layout.setOrientation(LinearLayout.HORIZONTAL);
+		layout.setLayoutParams(layoutParams);
+		
+		TextView titleView = new TextView(this);
+		titleView.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.WRAP_CONTENT,3f));
+		titleView.setText(title);
+		titleView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+		titleView.setTypeface(null,Typeface.BOLD);
+
+		TextView priceView = new TextView(this);
+		priceView.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+		priceView.setText(price);
+		priceView.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+		
+		Button buyButton  = new Button(this);
+		buyButton.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+		buyButton.setText("Buy");
+		buyButton.setTag(sku);
+		buyButton.setOnClickListener( new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				String sku = (String)v.getTag();
+				buy(sku);
+				
+			}
+		});
+
+		TextView descriptionView = new TextView(this);
+		layoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(0, 0, 0, margin);
+		descriptionView.setLayoutParams(layoutParams);
+		descriptionView.setText(description);
+		descriptionView.setTextAppearance(this, android.R.style.TextAppearance_Small);
+		
+		
+		layout.addView(titleView);
+		layout.addView(priceView);
+		layout.addView(buyButton);
+		ViewGroup parent = (ViewGroup)this.findViewById(R.id.shopSaleItemsLayout);
+		parent.addView(layout);
+		parent.addView(descriptionView);
 	}
 
 	private void setUpIAB() {
@@ -75,10 +137,10 @@ public class ShopActivity extends Activity {
 		});
 	}
 
-	private void buy() {
+	private void buy(String sku) {
 		// !SECURITY!
 		String payload = "";
-		_Helper.launchPurchaseFlow(this, SKU_TEST, RC_REQUEST,
+		_Helper.launchPurchaseFlow(this, sku, RC_REQUEST,
 				_PurchaseFinishedListener, payload);
 	}
     @Override
