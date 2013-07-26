@@ -57,8 +57,10 @@ public class ReportActivity extends Activity {
 		ReportAnalysis analysis = new ReportAnalysis(userSettings, query);
 		_ReportFormatting = new ReportFormatting(this, userSettings);
 		_ReportText = new ReportText(analysis, _ReportFormatting);
+		if (mainModel.getRemoveAds()){
+			ActivitiesHelper.removeAds(this);
+		}
 		mainModel.close();
-
 	}
 
 	private void populateTextViews() throws IllegalArgumentException,

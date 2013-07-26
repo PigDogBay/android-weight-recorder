@@ -12,6 +12,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.view.View;
+import android.webkit.WebView.FindListener;
 import android.widget.Toast;
 
 import com.pigdogbay.androidutils.utils.DateStampComparator;
@@ -163,6 +165,16 @@ public class ActivitiesHelper {
 					Toast.LENGTH_SHORT).show();
 		}
 
+	}
+	
+	public static void removeAds(Activity activity)
+	{
+		View ad = (View) activity.findViewById(R.id.adView);
+		if (ad!=null)
+		{
+			ad.setEnabled(false);
+			ad.setVisibility(View.GONE);
+		}
 	}
 
 }

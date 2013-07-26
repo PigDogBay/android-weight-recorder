@@ -95,6 +95,10 @@ public class MainModel
 	{
 		return getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, true);
 	}
+	public boolean getRemoveAds()
+	{
+		return !getPreferencesHelper().getBoolean(R.string.code_pref_show_ads_key, true);
+	}
 	
 	public UserSettings getUserSettings()
 	{
