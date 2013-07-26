@@ -27,12 +27,12 @@ public class ShopActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop);
 
-		((Button) findViewById(R.id.ShopBtnBuy))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						buy();
-					}
-				});
+//		((Button) findViewById(R.id.ShopBtnBuy))
+//				.setOnClickListener(new OnClickListener() {
+//					public void onClick(View v) {
+//						buy();
+//					}
+//				});
 
 		setUpIAB();
 
