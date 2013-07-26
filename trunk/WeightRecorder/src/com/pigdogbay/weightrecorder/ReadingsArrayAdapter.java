@@ -89,7 +89,7 @@ public class ReadingsArrayAdapter extends ArrayAdapter<Reading> implements OnCli
 		if ("".equals(comment))
 		{
 			double bmi = _BMICalculator.calculateBMI(reading);
-			comment = _ReportFormatting.getBMIString(bmi);
+			comment = _Activity.getString(R.string.readings_bmi_prefix)+" "+_ReportFormatting.getBMIString(bmi);
 		}
 		return comment;
 	}
