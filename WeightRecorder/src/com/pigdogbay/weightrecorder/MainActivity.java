@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.Date;
+
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.PreferencesHelper;
@@ -155,6 +157,7 @@ public class MainActivity extends Activity
 		{
 			showWelcomeScreen();
 			prefHelper.setBoolean(R.string.code_pref_welcome_shown_key, true);
+			prefHelper.setLong(R.string.code_pref_purchase_date, new Date().getTime());
 		}
 	}
 	private void checkIfBackupDue(PreferencesHelper prefHelper){

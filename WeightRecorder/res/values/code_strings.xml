@@ -11,4 +11,5 @@
     <string translatable="false" name="code_pref_auto_backup_key">auto_backup_key</string>
     <string translatable="false" name="code_pref_auto_backup_last_date_key">auto_backup_last_date_key</string>
     <string translatable="false" name="code_pref_show_ads_key">show_ads_pref_key</string>
+    <string translatable="false" name="code_pref_purchase_date">purchase_date_pref_key</string>
 </resources>
