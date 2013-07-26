@@ -31,10 +31,10 @@ public class ReadingListActivity extends ListActivity
 	public void onCreate(Bundle savedInstanceState) 
 	{
         super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_readings_list);
         _MainModel = new MainModel(this);
         _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getUserSettings());
         setListAdapter(_ReadingsArrayAdapter);
-        setBackground();
         _BroadcastReceiver = new ImportBroadcastReceiver();
 		LocalBroadcastManager.getInstance(this).registerReceiver(_BroadcastReceiver, new IntentFilter(ImportActivity.NEW_IMPORTED_READINGS));
     }
@@ -65,21 +65,6 @@ public class ReadingListActivity extends ListActivity
    			onDataChanged();
     	}
     }	
-	@SuppressLint("NewApi")
-	@SuppressWarnings("deprecation")
-	private void setBackground()
-	{
-        Drawable background = getResources().getDrawable(R.drawable.background);
-		int sdk = android.os.Build.VERSION.SDK_INT;
-		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
-		{
-	        this.getListView().setBackgroundDrawable(background);
-		} 
-		else
-		{
-	        this.getListView().setBackground(background);
-		}
-	}
 	/*
 	 * Called back from array adapter when a reading is selected
 	 */
