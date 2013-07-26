@@ -131,6 +131,10 @@ public class MainActivity extends Activity
 			Intent intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			break;
+		case (R.id.menu_main_shop):
+			intent = new Intent(this, ShopActivity.class);
+			startActivity(intent);
+			break;
 		default:
 			return false;
 		}

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="10901"
-    android:versionName="1.0901" 
+    android:versionCode="10902"
+    android:versionName="1.0902" 
     android:installLocation="auto">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
@@ -75,6 +75,10 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"/>     
+        <activity 
+            android:windowSoftInputMode="stateHidden"
+            android:name=".ShopActivity"
+            android:label="@string/title_activity_shop"/>     
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".SettingsActivity"
