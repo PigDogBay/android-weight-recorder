@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.weightrecorder.model.MainModel;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,6 +21,11 @@ public class HelpActivity extends Activity
 		TextView textView = (TextView) findViewById(R.id.HelpTextBox);
 		textView.setText(Html.fromHtml(getString(R.string.help_html)));
 		textView.setMovementMethod(new ScrollingMovementMethod());
+		MainModel mainModel = new MainModel(this);
+		if (mainModel.getRemoveAds()){
+			ActivitiesHelper.removeAds(this);
+		}
+		mainModel.close();
         
     }
 	@Override

@@ -33,6 +33,9 @@ public class ReadingListActivity extends ListActivity
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_readings_list);
         _MainModel = new MainModel(this);
+		if (_MainModel.getRemoveAds()){
+			ActivitiesHelper.removeAds(this);
+		}
         _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getUserSettings());
         setListAdapter(_ReadingsArrayAdapter);
         _BroadcastReceiver = new ImportBroadcastReceiver();

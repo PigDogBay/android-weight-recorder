@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/HelpTextBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
-	    android:textAppearance="@android:style/TextAppearance.Medium"
-	    android:scrollbars="vertical"
-        android:text="Help" />
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:text="Help"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
 
-</RelativeLayout>
+    <com.google.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        ads:adSize="BANNER"
+        ads:adUnitId="a150ec1ad9123c4"
+        ads:loadAdOnCreate="true"
+        ads:testDevices="TEST_EMULATOR, 7FDFE2A7093B4FE11D7C0794B8BDEAC2, 6E65810B3B431A1B553C14663938DA93" />
+
+</LinearLayout>

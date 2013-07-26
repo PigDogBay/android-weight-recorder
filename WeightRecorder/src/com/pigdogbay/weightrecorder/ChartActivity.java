@@ -30,8 +30,10 @@ public class ChartActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart);
-
 		_MainModel = new MainModel(this);
+		if (_MainModel.getRemoveAds()){
+			ActivitiesHelper.removeAds(this);
+		}
 		_UseDummyReadings =_MainModel.getDatabase().getReadingsCount()< MINIMUM_READINGS; 
 		createChart();
 		if (_UseDummyReadings)
