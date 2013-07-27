@@ -28,20 +28,13 @@ public class ShopActivity extends Activity {
 	static final int RC_REQUEST = 10001;
 
 	static final String SKU_TEST = "android.test.purchased";
-	static final String SKU_DISABLE_ADS = "android.test.purchased";
+	static final String SKU_DISABLE_ADS = "disable_ads";
 	static final String TAG = "WeightRecorder";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop);
-
-//		((Button) findViewById(R.id.ShopBtnBuy))
-//				.setOnClickListener(new OnClickListener() {
-//					public void onClick(View v) {
-//						buy();
-//					}
-//				});
 
 		setUpIAB();
 		addSaleItem("Test Item", "$0.99", "Static Test Item", SKU_TEST);
