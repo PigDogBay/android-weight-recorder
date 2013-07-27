@@ -1,17 +1,22 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.List;
+
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
+import com.pigdogbay.androidutils.iab.Inventory;
 import com.pigdogbay.androidutils.iab.Purchase;
 import com.pigdogbay.androidutils.iab.SkuDetails;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -39,7 +44,7 @@ public class ShopActivity extends Activity {
 		setWaitScreen(true);
 		setUpIAB();
 		addSaleItem("Test Item", "$0.99", "Static Test Item", SKU_TEST);
-		addSaleItem("Disable Ads", "$0.99", "Remove all ads from the app", SKU_DISABLE_ADS);
+//		addSaleItem("Disable Ads", "$0.99", "Remove all ads from the app", SKU_DISABLE_ADS);
 
 	}
 
@@ -55,6 +60,43 @@ public class ShopActivity extends Activity {
     void setWaitScreen(boolean set) {
         findViewById(R.id.shopSaleItemsLayout).setVisibility(set ? View.GONE : View.VISIBLE);
         findViewById(R.id.shopWait).setVisibility(set ? View.VISIBLE : View.GONE);
+    }
+    
+    private void addPurchasedItem(String title, String description)
+    {
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int margin =(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, metrics);
+
+		LinearLayout layout = new LinearLayout(this);
+		LinearLayout.LayoutParams layoutParams =new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		layout.setOrientation(LinearLayout.HORIZONTAL);
+		layout.setLayoutParams(layoutParams);
+		
+		TextView titleView = new TextView(this);
+		titleView.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+		titleView.setText(title);
+		titleView.setTextAppearance(this, android.R.style.TextAppearance_Large);
+		titleView.setTypeface(null,Typeface.BOLD);
+
+		TextView purchasedView = new TextView(this);
+		purchasedView.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.WRAP_CONTENT,1f));
+		purchasedView.setText("Purchased");
+		purchasedView.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+		purchasedView.setGravity(Gravity.RIGHT);
+
+		TextView descriptionView = new TextView(this);
+		layoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+		layoutParams.setMargins(0, 0, 0, margin);
+		descriptionView.setLayoutParams(layoutParams);
+		descriptionView.setText(description);
+		descriptionView.setTextAppearance(this, android.R.style.TextAppearance_Small);
+				
+		layout.addView(titleView);
+		layout.addView(purchasedView);
+		ViewGroup parent = (ViewGroup)this.findViewById(R.id.shopSaleItemsLayout);
+		parent.addView(layout);
+		parent.addView(descriptionView);
+    	
     }
 	
 	private void addSaleItem(String title, String price, String description, String sku)
@@ -107,6 +149,51 @@ public class ShopActivity extends Activity {
 		parent.addView(layout);
 		parent.addView(descriptionView);
 	}
+    void complain(String message) {
+        Log.e(TAG, message);
+        alert("Error: " + message);
+    }
+
+    void alert(String message) {
+        AlertDialog.Builder bld = new AlertDialog.Builder(this);
+        bld.setMessage(message);
+        bld.setNeutralButton("OK", null);
+        Log.d(TAG, "Showing alert dialog: " + message);
+        bld.create().show();
+    }
+    void addSaleItems(Inventory inventory)
+    {
+    	List<String> skus = inventory.getSKUs();
+    	for (String sku : skus)
+    	{
+    		SkuDetails details = inventory.getSkuDetails(sku);
+    		if (!inventory.hasPurchase(sku)){
+    			addSaleItem(details.getTitle(), details.getPrice(), details.getDescription(), sku);
+    		}
+    		else
+    		{
+//    			_Helper.consumeAsync(inventory.getPurchase(sku), new IabHelper.OnConsumeFinishedListener() {
+//					
+//					@Override
+//					public void onConsumeFinished(Purchase purchase, IabResult result) {
+//						// TODO Auto-generated method stub
+//						Log.v(TAG, "Consumed Purchase");
+//						Log.v(TAG, result.getMessage());
+//						
+//					}
+//				});
+    			addPurchasedItem(details.getTitle(), details.getDescription());
+    		}
+    	}
+    }
+    
+    private void refreshInventory()
+    {
+		ViewGroup parent = (ViewGroup)this.findViewById(R.id.shopSaleItemsLayout);
+		parent.removeAllViews();
+		_Helper.queryInventoryAsync(_GotInventoryListener);
+
+    }
 
 	private void setUpIAB() {
 		// !SECURITY!
@@ -130,11 +217,23 @@ public class ShopActivity extends Activity {
 				// Hooray, IAB is fully set up. Now, let's get an inventory of
 				// stuff we own.
 				Log.d(TAG, "Setup successful. Querying inventory.");
-				// mHelper.queryInventoryAsync(mGotInventoryListener);
+				_Helper.queryInventoryAsync(_GotInventoryListener);
 			}
 		});
 	}
-
+	  // Listener that's called when we finish querying the items and subscriptions we own
+    IabHelper.QueryInventoryFinishedListener _GotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+            Log.d(TAG, "Query inventory finished.");
+            if (result.isFailure()) {
+                complain("Failed to query inventory: " + result);
+                return;
+            }
+            addSaleItems(inventory);
+            Log.d(TAG, "Query inventory was successful.");
+            
+        }};
+            
 	private void buy(String sku) {
 		// !SECURITY!
 		String payload = "";
@@ -208,7 +307,7 @@ public class ShopActivity extends Activity {
 			}
 
 			Log.d(TAG, "Purchase successful.");
-
+			refreshInventory();
 			if (purchase.getSku().equals(SKU_TEST)) {
 				Toast.makeText(ShopActivity.this, "Thankyou!",
 						Toast.LENGTH_LONG).show();
