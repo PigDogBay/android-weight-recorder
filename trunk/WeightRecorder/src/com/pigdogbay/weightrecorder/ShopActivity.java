@@ -36,6 +36,7 @@ public class ShopActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop);
 
+		setWaitScreen(true);
 		setUpIAB();
 		addSaleItem("Test Item", "$0.99", "Static Test Item", SKU_TEST);
 		addSaleItem("Disable Ads", "$0.99", "Remove all ads from the app", SKU_DISABLE_ADS);
@@ -51,6 +52,10 @@ public class ShopActivity extends Activity {
 		_Helper = null;
 
 	}
+    void setWaitScreen(boolean set) {
+        findViewById(R.id.shopSaleItemsLayout).setVisibility(set ? View.GONE : View.VISIBLE);
+        findViewById(R.id.shopWait).setVisibility(set ? View.VISIBLE : View.GONE);
+    }
 	
 	private void addSaleItem(String title, String price, String description, String sku)
 	{
@@ -115,7 +120,7 @@ public class ShopActivity extends Activity {
 		_Helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
 			public void onIabSetupFinished(IabResult result) {
 				Log.d(TAG, "Setup finished.");
-
+				setWaitScreen(false);
 				if (!result.isSuccess()) {
 					Toast.makeText(ShopActivity.this, "Unable to set up IAB.",
 							Toast.LENGTH_LONG).show();
@@ -133,6 +138,7 @@ public class ShopActivity extends Activity {
 	private void buy(String sku) {
 		// !SECURITY!
 		String payload = "";
+		setWaitScreen(true);
 		_Helper.launchPurchaseFlow(this, sku, RC_REQUEST,
 				_PurchaseFinishedListener, payload);
 	}
@@ -189,6 +195,7 @@ public class ShopActivity extends Activity {
 		public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
 			Log.d(TAG, "Purchase finished: " + result + ", purchase: "
 					+ purchase);
+			setWaitScreen(false);
 			if (result.isFailure()) {
 				Toast.makeText(ShopActivity.this, "Unable to purchase item.",
 						Toast.LENGTH_LONG).show();
