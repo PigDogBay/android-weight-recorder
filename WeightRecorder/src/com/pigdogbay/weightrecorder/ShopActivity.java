@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.pigdogbay.androidutils.iab.IabHelper;
@@ -43,9 +44,6 @@ public class ShopActivity extends Activity {
 
 		setWaitScreen(true);
 		setUpIAB();
-		addSaleItem("Test Item", "$0.99", "Static Test Item", SKU_TEST);
-//		addSaleItem("Disable Ads", "$0.99", "Remove all ads from the app", SKU_DISABLE_ADS);
-
 	}
 
 	@Override
@@ -191,7 +189,9 @@ public class ShopActivity extends Activity {
     {
 		ViewGroup parent = (ViewGroup)this.findViewById(R.id.shopSaleItemsLayout);
 		parent.removeAllViews();
-		_Helper.queryInventoryAsync(_GotInventoryListener);
+		List<String> moreSkus = new ArrayList<String>();
+		moreSkus.add(SKU_DISABLE_ADS);
+		_Helper.queryInventoryAsync(true,moreSkus,_GotInventoryListener);
 
     }
 
@@ -217,7 +217,7 @@ public class ShopActivity extends Activity {
 				// Hooray, IAB is fully set up. Now, let's get an inventory of
 				// stuff we own.
 				Log.d(TAG, "Setup successful. Querying inventory.");
-				_Helper.queryInventoryAsync(_GotInventoryListener);
+				refreshInventory();
 			}
 		});
 	}
