@@ -186,11 +186,11 @@ public final class R {
         public static final int chart_yaxis_title=0x7f06002b;
         public static final int code_pref_auto_backup_key=0x7f060008;
         public static final int code_pref_auto_backup_last_date_key=0x7f060009;
+        public static final int code_pref_disable_ads_key=0x7f06000a;
         public static final int code_pref_height_key=0x7f060002;
         public static final int code_pref_last_weight_key=0x7f060005;
         public static final int code_pref_length_units_key=0x7f060001;
         public static final int code_pref_purchase_date=0x7f06000b;
-        public static final int code_pref_show_ads_key=0x7f06000a;
         public static final int code_pref_show_targetline_key=0x7f060007;
         public static final int code_pref_show_trendline_key=0x7f060006;
         public static final int code_pref_target_weight_key=0x7f060003;

@@ -65,10 +65,10 @@
             android:key="@string/code_pref_auto_backup_key"
             android:defaultValue="True"/>
         <CheckBoxPreference 
-            android:summary="Show banner ads"
-            android:title="Show Ads"
-            android:key="@string/code_pref_show_ads_key"
-            android:defaultValue="True"/>
+            android:summary="Remove ads from the app"
+            android:title="Disbale Ads"
+            android:key="@string/code_pref_disable_ads_key"
+            android:defaultValue="False"/>
         </PreferenceCategory>
     
 </PreferenceScreen>

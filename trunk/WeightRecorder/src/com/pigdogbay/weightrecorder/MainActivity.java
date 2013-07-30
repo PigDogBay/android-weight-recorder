@@ -3,6 +3,7 @@ package com.pigdogbay.weightrecorder;
 import java.util.Date;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
+import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 import android.app.Activity;
@@ -32,6 +33,7 @@ public class MainActivity extends Activity
 			checkFirstTime(prefHelper);
 			checkIfBackupDue(prefHelper);
 			checkRate();
+			new AppPurchases(this).QueryAsync();
 		} catch (Exception e){
 		}
 	}
