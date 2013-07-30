@@ -97,7 +97,7 @@ public class MainModel
 	}
 	public boolean getRemoveAds()
 	{
-		return !getPreferencesHelper().getBoolean(R.string.code_pref_show_ads_key, true);
+		return getPreferencesHelper().getBoolean(R.string.code_pref_disable_ads_key, false);
 	}
 	
 	public UserSettings getUserSettings()
