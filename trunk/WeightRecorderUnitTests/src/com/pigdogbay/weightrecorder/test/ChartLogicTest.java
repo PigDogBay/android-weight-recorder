@@ -195,7 +195,7 @@ public class ChartLogicTest extends TestCase {
 		cal.add(Calendar.YEAR, 1);
 		expected = cal.getTimeInMillis();
 		actual = (long)series.getMaxX();
-		assertEquals(expected,actual, Utils.DAY_IN_MILLIS);
+		assertEquals(expected,actual, 3*Utils.DAY_IN_MILLIS);
 	}
 	/**
 	 * Test method for {@link com.pigdogbay.weightrecorder.model.ChartLogic#createTrendSeries(com.pigdogbay.weightrecorder.model.Query, long)}.
@@ -233,7 +233,7 @@ public class ChartLogicTest extends TestCase {
 		//Min weight, in future
 		expected = 100+365*Mocks.DAILY_WEIGHT_TREND;
 		actual = series.getMinY();
-		assertEquals(expected, actual, 0.01D);
+		assertEquals(expected, actual, 0.02D);
 		
 	}
 	/**
@@ -254,7 +254,7 @@ public class ChartLogicTest extends TestCase {
 		//Min weight, in future
 		expected = 100+365*Mocks.DAILY_WEIGHT_TREND;
 		actual = series.getMinY();
-		assertEquals(expected, actual, 0.01D);
+		assertEquals(expected, actual, 0.03D);
 		
 	}
 	/**
