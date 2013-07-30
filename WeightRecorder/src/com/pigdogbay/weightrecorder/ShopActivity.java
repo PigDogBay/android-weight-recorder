@@ -244,6 +244,8 @@ public class ShopActivity extends Activity implements
 			return;
 		}
 		_Inventory = inventory;
+		AppPurchases appPurchases = new AppPurchases(this);
+		appPurchases.SetPreferences(inventory);
 		addSaleItems(inventory);
 	}
 	@Override
