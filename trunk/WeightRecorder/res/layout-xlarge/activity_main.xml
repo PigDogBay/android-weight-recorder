@@ -53,11 +53,11 @@
         android:text="@string/main_btn_settings" />
 
     <Button
-        android:id="@+id/MainBtnHelp"
+        android:id="@+id/MainBtnShop"
         style="@style/ExtraLargeButton"
         android:layout_below="@+id/MainBtnReport"
         android:layout_toRightOf="@+id/MainHorizontalCentre"
-        android:drawableTop="@drawable/help"
-        android:text="@string/main_btn_help" />
+        android:drawableTop="@drawable/cashier"
+        android:text="@string/main_btn_shop" />
 
 </RelativeLayout>
