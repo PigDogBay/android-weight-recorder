@@ -14,6 +14,7 @@ import com.pigdogbay.weightrecorder.R;
 import com.pigdogbay.weightrecorder.ShopActivity;
 
 public class AppPurchases {
+	public static final String SKU_TEST = "android.test.purchased";
 	public static final String SKU_DISABLE_ADS = "disable_ads";
 
 	private static final String _base64EncodedPublicKey1 = "MIIBIjANBgkqhkiG";
@@ -87,6 +88,13 @@ public class AppPurchases {
 					inventory.hasPurchase(SKU_DISABLE_ADS));
 		}
 	}
+	
+	public static List<String> getAppSkus()
+	{
+		List<String> appSkus = new ArrayList<String>();
+		appSkus.add(SKU_DISABLE_ADS);
+		return appSkus;
+	}
 
 	public void QueryAsync() {
 		_Helper = new IabHelper(_Context, getPublicKey());
@@ -100,9 +108,7 @@ public class AppPurchases {
 	}
 
 	private void queryInventory() {
-		List<String> moreSkus = new ArrayList<String>();
-		moreSkus.add(SKU_DISABLE_ADS);
-		_Helper.queryInventoryAsync(true, moreSkus,
+		_Helper.queryInventoryAsync(true, getAppSkus(),
 				new IabHelper.QueryInventoryFinishedListener() {
 					@Override
 					public void onQueryInventoryFinished(IabResult result,
