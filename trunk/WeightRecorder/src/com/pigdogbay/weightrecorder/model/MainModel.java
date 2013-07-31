@@ -101,7 +101,16 @@ public class MainModel
 	}
 	public int getBackgroundId()
 	{
-		return R.drawable.white;
+		int colorIndex =getPreferencesHelper().getInt(R.string.code_pref_background_colour, 0);
+		switch (colorIndex){
+		case 1:
+			return R.drawable.bgpink;
+		case 2:
+			return R.drawable.bggrey;
+		case 3:
+			return R.drawable.white;
+		}
+		return R.drawable.bgskyblue;
 	}
 	
 	public UserSettings getUserSettings()

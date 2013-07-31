@@ -20,4 +20,16 @@
         <item name="centimetres">2</item>
         <item name="inches">3</item>
     </string-array>
+    <string-array translatable="false" name="background_colours">
+        <item name="skyblue">Sky Blue</item>
+        <item name="pink">Pink</item>
+        <item name="grey">Shades of Grey</item>
+        <item name="white">White</item>
+    </string-array>
+    <string-array translatable="false" name="background_colours_values">
+        <item name="skyblue">0</item>
+        <item name="pink">1</item>
+        <item name="grey">2</item>
+        <item name="white">3</item>
+    </string-array>
 </resources>

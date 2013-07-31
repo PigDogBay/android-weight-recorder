@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="skyblue">#00145E9D</color>
+    <color name="pink">#fffdd7e4</color>
     <color name="translucentred">#40FF0000</color>
     <color name="report_header_bg">#FF101050</color>
     <color name="report_header">#FFFFFFFF</color>
