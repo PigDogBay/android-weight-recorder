@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.view.View;
@@ -176,5 +178,22 @@ public class ActivitiesHelper {
 			ad.setVisibility(View.GONE);
 		}
 	}
+	
+	@SuppressLint("NewApi")
+	@SuppressWarnings("deprecation")
+	public static void setBackground(Activity activity, int viewID, int backgroundID)
+	{
+        Drawable background = activity.getResources().getDrawable(backgroundID);
+        View view = (View)activity.findViewById(viewID);
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+		{
+	        view.setBackgroundDrawable(background);
+		} 
+		else
+		{
+	        view.setBackground(background);
+		}
+	}	
 
 }
