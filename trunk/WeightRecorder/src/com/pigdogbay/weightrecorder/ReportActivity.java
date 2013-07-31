@@ -30,6 +30,7 @@ public class ReportActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
+		ActivitiesHelper.setBackground(this);
 		if (!isLoaded) {
 			createReport();
 			isLoaded = true;

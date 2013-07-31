@@ -195,5 +195,16 @@ public class ActivitiesHelper {
 	        view.setBackground(background);
 		}
 	}	
+	
+	public static void setBackground(Activity activity)
+	{
+		MainModel mainModel = new MainModel(activity);
+		setBackground(activity, mainModel);
+		mainModel.close();
+	}
+	public static void setBackground(Activity activity, MainModel mainModel)
+	{
+		setBackground(activity, R.id.rootLayout, mainModel.getBackgroundId());
+	}
 
 }

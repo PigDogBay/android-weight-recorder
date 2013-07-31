@@ -49,6 +49,7 @@ public final class R {
         public static final int tape_measure_add=0x7f020012;
         public static final int translucentred=0x7f020016;
         public static final int twitter=0x7f020013;
+        public static final int white=0x7f020017;
         public static final int wrench=0x7f020014;
     }
     public static final class id {

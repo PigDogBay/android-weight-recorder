@@ -99,6 +99,10 @@ public class MainModel
 	{
 		return getPreferencesHelper().getBoolean(R.string.code_pref_disable_ads_key, false);
 	}
+	public int getBackgroundId()
+	{
+		return R.drawable.white;
+	}
 	
 	public UserSettings getUserSettings()
 	{

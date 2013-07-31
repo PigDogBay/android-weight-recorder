@@ -35,6 +35,7 @@ public class EditReadingActivity extends FragmentActivity {
 				});
 
 		_MainModel = new MainModel(this);
+		ActivitiesHelper.setBackground(this, _MainModel);
 		int id = getIntent().getIntExtra("ReadingID", -1);
 		if (id == -1) {
 			_Reading = new Reading();

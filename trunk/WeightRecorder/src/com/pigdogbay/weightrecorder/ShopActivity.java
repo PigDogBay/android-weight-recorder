@@ -38,7 +38,7 @@ public class ShopActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop);
-
+		ActivitiesHelper.setBackground(this);
 		setWaitScreen(true);
 		_Helper = new IabHelper(this, AppPurchases.getPublicKey());
 		_Helper.startSetup(this);
