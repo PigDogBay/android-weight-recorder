@@ -185,7 +185,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		super.onDestroy();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
-		
 	}
 	
 	@Override
