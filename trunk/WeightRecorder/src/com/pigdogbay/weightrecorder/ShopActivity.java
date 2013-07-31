@@ -42,6 +42,14 @@ public class ShopActivity extends Activity implements
 		setWaitScreen(true);
 		_Helper = new IabHelper(this, AppPurchases.getPublicKey());
 		_Helper.startSetup(this);
+		
+		//Debug
+		((Button) findViewById(R.id.shopBtnConsume)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				consumeItem(AppPurchases.SKU_DISABLE_ADS);
+			}
+		});
 	}
 
 	@Override
