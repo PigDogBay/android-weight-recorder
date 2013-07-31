@@ -70,5 +70,13 @@
             android:key="@string/code_pref_disable_ads_key"
             android:defaultValue="False"/>
         </PreferenceCategory>
+        <ListPreference 
+            android:defaultValue="0"
+            android:entries="@array/background_colours"
+            android:entryValues="@array/background_colours_values"
+            android:key="@string/code_pref_background_colour"
+            android:title="Background Color"
+            android:summary="Choose the background color"
+            />
     
 </PreferenceScreen>

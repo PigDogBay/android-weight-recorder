@@ -10,14 +10,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
 
 	public static final String TAG = "WeightRecorder";
 
@@ -28,6 +31,9 @@ public class MainActivity extends Activity {
 		PreferencesHelper prefHelper = new PreferencesHelper(this);
 		wireUpButtons();
 		ActivitiesHelper.setBackground(this);
+		PreferenceManager
+				.getDefaultSharedPreferences(this)
+				.registerOnSharedPreferenceChangeListener(this);
 		try {
 			checkFirstTime(prefHelper);
 			checkIfBackupDue(prefHelper);
@@ -172,5 +178,21 @@ public class MainActivity extends Activity {
 								dialog.dismiss();
 							}
 						}).show();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.unregisterOnSharedPreferenceChangeListener(this);
+		
+	}
+	
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+		if (key.equals(getString(R.string.code_pref_background_colour))){
+			ActivitiesHelper.setBackground(this);
+		}
+		
 	}
 }
