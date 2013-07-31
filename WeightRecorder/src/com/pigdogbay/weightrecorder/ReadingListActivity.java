@@ -40,7 +40,8 @@ public class ReadingListActivity extends ListActivity
         setListAdapter(_ReadingsArrayAdapter);
         _BroadcastReceiver = new ImportBroadcastReceiver();
 		LocalBroadcastManager.getInstance(this).registerReceiver(_BroadcastReceiver, new IntentFilter(ImportActivity.NEW_IMPORTED_READINGS));
-		ActivitiesHelper.setBackground(this, R.id.rootLayout, R.drawable.background);
+		ActivitiesHelper.setBackground(this, _MainModel);
+
     }
 	@Override
 	protected void onDestroy() {

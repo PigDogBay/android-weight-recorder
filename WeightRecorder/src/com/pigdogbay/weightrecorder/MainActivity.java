@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		PreferencesHelper prefHelper = new PreferencesHelper(this);
 		wireUpButtons();
+		ActivitiesHelper.setBackground(this);
 		try {
 			checkFirstTime(prefHelper);
 			checkIfBackupDue(prefHelper);

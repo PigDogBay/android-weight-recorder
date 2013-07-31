@@ -34,6 +34,8 @@ public class AddReadingActivity extends FragmentActivity
 					}
 				});
 		_MainModel = new MainModel(this);
+		ActivitiesHelper.setBackground(this, _MainModel);
+		
 	}
 
 	@Override

@@ -10,4 +10,5 @@
     <color name="report_field_value">#ff000000</color>
     <drawable name="skyblue">#40145E9D</drawable>
     <drawable name="translucentred">#40FF0000</drawable>
+    <drawable name="white">#ffffffff</drawable>
 </resources>
