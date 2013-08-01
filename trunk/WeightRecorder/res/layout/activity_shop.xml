@@ -26,7 +26,14 @@
     android:id="@+id/shopBtnConsume"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Consume"
-    android:layout_gravity="bottom|center_horizontal"
+    android:text="Consume Disable Ads"
+    android:layout_gravity="bottom|left"
+    />
+<Button 
+    android:id="@+id/shopBtnConsumeColorPack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Consume Color Pack"
+    android:layout_gravity="bottom|right"
     />
 </FrameLayout>

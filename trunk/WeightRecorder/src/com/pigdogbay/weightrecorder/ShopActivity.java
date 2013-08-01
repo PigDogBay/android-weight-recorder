@@ -50,6 +50,12 @@ public class ShopActivity extends Activity implements
 				consumeItem(AppPurchases.SKU_DISABLE_ADS);
 			}
 		});
+		((Button) findViewById(R.id.shopBtnConsumeColorPack)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				consumeItem(AppPurchases.SKU_COLOR_PACK);
+			}
+		});
 	}
 
 	@Override
