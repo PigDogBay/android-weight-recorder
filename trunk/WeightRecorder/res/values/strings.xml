@@ -130,6 +130,8 @@
     <string name="report_average_weight">Average Weight</string>
     <string name="report_average_bmi">Average BMI</string>
     <string name="report_number_of_readings">Number of Readings</string>
+    <string name="settings_purchase_color_pack_title">Purchase Required</string>
+    <string name="settings_purchase_color_pack_message">Please purchase the Color Pack item from the Shop to unlock the background color settings.</string>
     <string name="import_import_button">Import</string>
     <string name="import_load_backup_button">Get Backup Readings</string>
     <string name="import_no_backup_file">No backup available</string>

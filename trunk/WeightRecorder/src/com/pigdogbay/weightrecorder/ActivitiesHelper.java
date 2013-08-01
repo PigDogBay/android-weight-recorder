@@ -204,7 +204,12 @@ public class ActivitiesHelper {
 	}
 	public static void setBackground(Activity activity, MainModel mainModel)
 	{
-		setBackground(activity, R.id.rootLayout, mainModel.getBackgroundId());
+		int id = R.drawable.bgskyblue;
+		if (mainModel.getUnlockColorPack())
+		{
+			id = mainModel.getBackgroundId();
+		}
+		setBackground(activity, R.id.rootLayout, id);
 	}
 
 }
