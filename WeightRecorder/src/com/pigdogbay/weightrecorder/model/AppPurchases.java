@@ -16,6 +16,7 @@ import com.pigdogbay.weightrecorder.ShopActivity;
 public class AppPurchases {
 	public static final String SKU_TEST = "android.test.purchased";
 	public static final String SKU_DISABLE_ADS = "disable_ads";
+	public static final String SKU_COLOR_PACK = "com.pigdogbay.weightrecorder.color_pack";
 
 	private static final String _base64EncodedPublicKey1 = "MIIBIjANBgkqhkiG";
 	private static final String _base64EncodedPublicKey2 = "9w0BAQEFAAOCAQ8A";
@@ -87,12 +88,17 @@ public class AppPurchases {
 			prefHelper.setBoolean(R.string.code_pref_disable_ads_key,
 					inventory.hasPurchase(SKU_DISABLE_ADS));
 		}
+		if (inventory.hasDetails(SKU_COLOR_PACK)){
+			prefHelper.setBoolean(R.string.code_pref_unlock_color_pack_key,
+					inventory.hasPurchase(SKU_COLOR_PACK));
+		}
 	}
 	
 	public static List<String> getAppSkus()
 	{
 		List<String> appSkus = new ArrayList<String>();
 		appSkus.add(SKU_DISABLE_ADS);
+		appSkus.add(SKU_COLOR_PACK);
 		return appSkus;
 	}
 

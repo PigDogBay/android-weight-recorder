@@ -99,6 +99,10 @@ public class MainModel
 	{
 		return getPreferencesHelper().getBoolean(R.string.code_pref_disable_ads_key, false);
 	}
+	public boolean getUnlockColorPack()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_unlock_color_pack_key, false);
+	}
 	public int getBackgroundId()
 	{
 		int colorIndex =getPreferencesHelper().getInt(R.string.code_pref_background_colour, 0);

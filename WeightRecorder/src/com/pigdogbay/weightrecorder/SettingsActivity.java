@@ -53,13 +53,25 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	        view.setBackground(background);
 		}
 	}
+	/* (non-Javadoc)
+	 * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener#onSharedPreferenceChanged(android.content.SharedPreferences, java.lang.String)
+	 * 
+	 * Allow the user to see the new color background to whet their appetite, put up a notice for them to purchase the color pack
+	 */
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		if (key.equals(getString(R.string.code_pref_background_colour))){
-			ActivitiesHelper.setBackground(this);
+			MainModel mainModel = new MainModel(this);
+			int bgId = mainModel.getBackgroundId();
+			boolean hasUnlockColorPackPurchase = mainModel.getUnlockColorPack();
+			mainModel.close();		
+			ActivitiesHelper.setBackground(this, R.id.rootLayout, bgId);
+			if  (!hasUnlockColorPackPurchase)
+			{
+				ActivitiesHelper.showInfoDialog(this,R.string.settings_purchase_color_pack_title , R.string.settings_purchase_color_pack_message);
+			}
 		}
-		
 	}	
     
 }
