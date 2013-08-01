@@ -69,6 +69,11 @@
             android:title="Disbale Ads"
             android:key="@string/code_pref_disable_ads_key"
             android:defaultValue="False"/>
+        <CheckBoxPreference 
+            android:summary="Enable Color Pack"
+            android:title="Unlock Color Pack"
+            android:key="@string/code_pref_unlock_color_pack_key"
+            android:defaultValue="False"/>
         </PreferenceCategory>
         <ListPreference 
             android:defaultValue="0"
