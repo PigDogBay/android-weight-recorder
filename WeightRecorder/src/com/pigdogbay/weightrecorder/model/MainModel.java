@@ -1,6 +1,7 @@
 package com.pigdogbay.weightrecorder.model;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import com.pigdogbay.weightrecorder.R;
 import android.content.Context;
@@ -16,6 +17,7 @@ public class MainModel
 	public static final double DEFAULT_TARGET_WEIGHT=79.3787D;
 	public static final double DEFAULT_HEIGHT_INCHES=72D;
 	public static final double DEFAULT_TARGET_WEIGHT_POUNDS=175D;
+	public static final long AD_FREE_GRACE_PERIOD_IN_MILLIS = 7L*24L*60L*60L*1000L;
 	
 	private Context _Context;
 	private IReadingsDatabase _DatabaseHelper;
@@ -97,6 +99,12 @@ public class MainModel
 	}
 	public boolean getRemoveAds()
 	{
+		long purchaseTime = getPreferencesHelper().getLong(R.string.code_pref_purchase_date,0L);
+		long timeElapsedSincePurchase = new Date().getTime()-purchaseTime;
+		if (timeElapsedSincePurchase<AD_FREE_GRACE_PERIOD_IN_MILLIS)
+		{
+			return true;
+		}
 		return getPreferencesHelper().getBoolean(R.string.code_pref_disable_ads_key, false);
 	}
 	public boolean getUnlockColorPack()

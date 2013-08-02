@@ -63,7 +63,7 @@ public final class R {
         public static final int AboutCleverDicImage=0x7f0a0000;
         public static final int AddReadingBtnAdd=0x7f0a0010;
         public static final int AddReadingEditFragment=0x7f0a000f;
-        public static final int ChartLayout=0x7f0a0011;
+        public static final int ChartLayout=0x7f0a0012;
         public static final int EditFragmentComment=0x7f0a003c;
         public static final int EditFragmentCommentSpeak=0x7f0a003d;
         public static final int EditFragmentDatePicker=0x7f0a0038;
@@ -106,7 +106,7 @@ public final class R {
         public static final int ResultsItemComment=0x7f0a0040;
         public static final int ResultsItemDate=0x7f0a003f;
         public static final int ResultsItemWeight=0x7f0a003e;
-        public static final int adView=0x7f0a0012;
+        public static final int adView=0x7f0a0011;
         public static final int bloggerImg=0x7f0a000a;
         public static final int facebookImg=0x7f0a0008;
         public static final int iconsLayout=0x7f0a0007;
