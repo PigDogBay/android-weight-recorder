@@ -22,18 +22,31 @@
     android:paddingTop="10dp" >
 
 </LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="bottom"
+    >
 <Button 
     android:id="@+id/shopBtnConsume"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Consume Disable Ads"
-    android:layout_gravity="bottom|left"
     />
 <Button 
     android:id="@+id/shopBtnConsumeColorPack"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Consume Color Pack"
-    android:layout_gravity="bottom|right"
     />
+<Button 
+    android:id="@+id/shopBtnResetPurchaseDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Reset Purchase Date"
+    />
+
+    
+</LinearLayout>
 </FrameLayout>

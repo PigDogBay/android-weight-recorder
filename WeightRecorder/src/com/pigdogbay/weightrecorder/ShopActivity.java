@@ -8,6 +8,7 @@ import com.pigdogbay.androidutils.iab.Inventory;
 import com.pigdogbay.androidutils.iab.Purchase;
 import com.pigdogbay.androidutils.iab.SkuDetails;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
+import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -54,6 +55,13 @@ public class ShopActivity extends Activity implements
 			@Override
 			public void onClick(View v) {
 				consumeItem(AppPurchases.SKU_COLOR_PACK);
+			}
+		});
+		((Button) findViewById(R.id.shopBtnResetPurchaseDate)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				PreferencesHelper prefs = new PreferencesHelper(ShopActivity.this);
+				prefs.setLong(R.string.code_pref_purchase_date, 0L);
 			}
 		});
 	}
