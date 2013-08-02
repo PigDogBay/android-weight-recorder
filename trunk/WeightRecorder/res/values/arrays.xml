@@ -22,8 +22,8 @@
     </string-array>
     <string-array translatable="false" name="background_colours">
         <item name="skyblue">Sky Blue</item>
-        <item name="pink">Pink</item>
-        <item name="lightpink">Light Pink</item>
+        <item name="pink">Deep Pink</item>
+        <item name="lightpink">Apple Blossom</item>
         <item name="grey">Shades of Grey</item>
         <item name="white">White</item>
         </string-array>
