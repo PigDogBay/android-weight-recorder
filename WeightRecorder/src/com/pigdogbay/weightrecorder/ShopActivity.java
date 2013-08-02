@@ -181,7 +181,7 @@ public class ShopActivity extends Activity implements
 	void alert(String message) {
 		AlertDialog.Builder bld = new AlertDialog.Builder(this);
 		bld.setMessage(message);
-		bld.setNeutralButton("OK", null);
+		bld.setNeutralButton(getString(R.string.ok), null);
 		bld.create().show();
 	}
 
@@ -214,6 +214,10 @@ public class ShopActivity extends Activity implements
 		_Helper.launchPurchaseFlow(this, sku, PURCHASE_REQUEST, this, payload);
 	}
 
+	/**
+	 * Debug code to test purchases
+	 * @param sku
+	 */
 	private void consumeItem(String sku) {
 		if (_Inventory == null || !_Inventory.hasPurchase(sku)) {
 			Toast.makeText(ShopActivity.this, "No Purchase To Consume",
@@ -246,7 +250,7 @@ public class ShopActivity extends Activity implements
 	public void onIabSetupFinished(IabResult result) {
 		setWaitScreen(false);
 		if (!result.isSuccess()) {
-			alert("In app billing is not supported on this device.");
+			alert(getString(R.string.shop_in_app_billing_not_supported));
 			return;
 		}
 		refreshInventory();
@@ -254,7 +258,7 @@ public class ShopActivity extends Activity implements
 	@Override
 	public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
 		if (result.isFailure()) {
-			alert("Failed to contact Google Play. Please ensure you have an internet connection.");
+			alert(getString(R.string.shop_failed_to_contact_google_play));
 			return;
 		}
 		_Inventory = inventory;
@@ -266,11 +270,11 @@ public class ShopActivity extends Activity implements
 	public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
 		setWaitScreen(false);
 		if (result.isFailure()) {
-			alert("Uable to purchase the item");
+			alert(getString(R.string.shop_purchase_fail));
 			return;
 		}
 		refreshInventory();
-		Toast.makeText(ShopActivity.this, "Thankyou!", Toast.LENGTH_LONG)
+		Toast.makeText(ShopActivity.this, getString(R.string.shop_thankyou), Toast.LENGTH_LONG)
 				.show();
 	}
 }
