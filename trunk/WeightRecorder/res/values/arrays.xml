@@ -24,6 +24,7 @@
         <item name="skyblue">Sky Blue</item>
         <item name="pink">Deep Pink</item>
         <item name="lightpink">Apple Blossom</item>
+        <item name="turquoise">Ocean</item>
         <item name="grey">Shades of Grey</item>
         <item name="white">White</item>
         </string-array>
@@ -31,6 +32,7 @@
         <item name="skyblue">0</item>
         <item name="pink">1</item>
         <item name="lightpink">4</item>
+        <item name="turquoise">5</item>
         <item name="grey">2</item>
         <item name="white">3</item>
         </string-array>
