@@ -132,6 +132,7 @@ public final class R {
         public static final int menu_readings_list_import=0x7f0a0052;
         public static final int menu_report_export=0x7f0a0055;
         public static final int menu_report_home=0x7f0a0054;
+        public static final int menu_settings_home=0x7f0a0056;
         public static final int pigdogbayImg=0x7f0a000d;
         public static final int rootLayout=0x7f0a000e;
         public static final int shopBtnConsume=0x7f0a0036;
@@ -169,6 +170,7 @@ public final class R {
         public static final int menu_help=0x7f090004;
         public static final int menu_readings_list=0x7f090005;
         public static final int menu_report=0x7f090006;
+        public static final int menu_settings=0x7f090007;
     }
     public static final class string {
         public static final int about_btn_rate=0x7f060018;
