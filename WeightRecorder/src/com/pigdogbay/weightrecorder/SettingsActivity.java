@@ -7,6 +7,8 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
 
@@ -32,6 +34,23 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
     }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_settings, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId())
+		{
+		case (R.id.menu_settings_home):
+			finish();
+			break;
+		default:
+			return false;
+		}
+		return true;
+	}    
     
 	/* (non-Javadoc)
 	 * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener#onSharedPreferenceChanged(android.content.SharedPreferences, java.lang.String)
