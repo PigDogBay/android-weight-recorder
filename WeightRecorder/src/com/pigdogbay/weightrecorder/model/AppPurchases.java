@@ -107,15 +107,15 @@ public class AppPurchases {
 		_Helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
 			public void onIabSetupFinished(IabResult result) {
 				if (result.isSuccess()) {
-					queryInventory(null);
+					queryInventory(getAppSkus());
 				}
 			}
 		});
 	}
 
 	/**
-	 * @param appSkus null if you want to check on purchased items
-	 * 			or list of skus if you want to buy
+	 * @param appSkus null only returns purchased items
+	 * 			need to pass in sku details to get details of non-purchased items
 	 */
 	private void queryInventory(List<String> appSkus) {
 		_Helper.queryInventoryAsync(true, appSkus,
