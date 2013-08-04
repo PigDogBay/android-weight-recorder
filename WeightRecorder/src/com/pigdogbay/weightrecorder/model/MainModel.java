@@ -125,6 +125,8 @@ public class MainModel
 			return R.drawable.bglightpink;
 		case 5:
 			return R.drawable.bgturquoise;
+		case 6:
+			return R.drawable.bgsunshine;
 		}
 		return R.drawable.bgskyblue;
 	}
