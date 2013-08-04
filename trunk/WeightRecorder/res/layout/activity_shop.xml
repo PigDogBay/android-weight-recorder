@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
     <TextView 
         android:id="@+id/shopWait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:text="@string/shop_please_wait"
@@ -15,8 +17,9 @@
 <LinearLayout 
     android:id="@+id/shopSaleItemsLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
     android:orientation="vertical"
+    android:layout_weight="1"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingTop="10dp" >
@@ -26,27 +29,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_gravity="bottom"
+    android:layout_weight="0"
     >
 <Button 
     android:id="@+id/shopBtnConsume"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Consume Disable Ads"
+    android:text="Disable Ads"
     />
 <Button 
     android:id="@+id/shopBtnConsumeColorPack"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Consume Color Pack"
+    android:text="Color Pack"
+    />
+<Button 
+    android:id="@+id/shopBtnConsumeTest"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Test"
     />
 <Button 
     android:id="@+id/shopBtnResetPurchaseDate"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Reset Purchase Date"
+    android:text="0 Purchase Date"
     />
 
     
 </LinearLayout>
-</FrameLayout>
+</LinearLayout>
