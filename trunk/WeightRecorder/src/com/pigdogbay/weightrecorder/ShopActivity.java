@@ -43,33 +43,6 @@ public class ShopActivity extends Activity implements
 		setWaitScreen(true);
 		_Helper = new IabHelper(this, AppPurchases.getPublicKey());
 		_Helper.startSetup(this);
-		
-		//Debug
-		((Button) findViewById(R.id.shopBtnConsume)).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				consumeItem(AppPurchases.SKU_DISABLE_ADS);
-			}
-		});
-		((Button) findViewById(R.id.shopBtnConsumeColorPack)).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				consumeItem(AppPurchases.SKU_COLOR_PACK);
-			}
-		});
-		((Button) findViewById(R.id.shopBtnConsumeTest)).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				consumeItem(AppPurchases.SKU_TEST);
-			}
-		});
-		((Button) findViewById(R.id.shopBtnResetPurchaseDate)).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				PreferencesHelper prefs = new PreferencesHelper(ShopActivity.this);
-				prefs.setLong(R.string.code_pref_purchase_date, 0L);
-			}
-		});
 	}
 
 	@Override
@@ -211,9 +184,6 @@ public class ShopActivity extends Activity implements
 						details.getDescription(), sku);
 			}
 		}
-		//DEBUG
-		addPurchasedItem("TestPurchase", "This is a test purchased item");
-		addSaleItem("TestSale", "$100.00", "Test Sale", AppPurchases.SKU_TEST);
 	}
 
 	private void refreshInventory() {

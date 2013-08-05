@@ -53,28 +53,11 @@
             android:key="@string/code_pref_show_targetline_key"
             android:defaultValue="True"
             />
-        
     </PreferenceCategory>
     <PreferenceCategory 
         android:summary="@string/pref_other_summary"
         android:title="@string/pref_other_title"
         >
-        <CheckBoxPreference 
-            android:summary="@string/pref_auto_backup_summary"
-            android:title="@string/pref_auto_backup_title"
-            android:key="@string/code_pref_auto_backup_key"
-            android:defaultValue="True"/>
-        <CheckBoxPreference 
-            android:summary="Remove ads from the app"
-            android:title="Disbale Ads"
-            android:key="@string/code_pref_disable_ads_key"
-            android:defaultValue="False"/>
-        <CheckBoxPreference 
-            android:summary="Enable Color Pack"
-            android:title="Unlock Color Pack"
-            android:key="@string/code_pref_unlock_color_pack_key"
-            android:defaultValue="False"/>
-        </PreferenceCategory>
         <ListPreference 
             android:defaultValue="0"
             android:entries="@array/background_colours"
@@ -83,5 +66,10 @@
             android:title="Background Color"
             android:summary="Choose the background color"
             />
-    
+        <CheckBoxPreference 
+            android:summary="@string/pref_auto_backup_summary"
+            android:title="@string/pref_auto_backup_title"
+            android:key="@string/code_pref_auto_backup_key"
+            android:defaultValue="True"/>
+        </PreferenceCategory>
 </PreferenceScreen>
