@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array translatable="false" name="weight_units">
+        <item name="metric">@string/weight_unit_kilograms</item>
+        <item name="us">@string/weight_unit_pounds</item>
+        <item name="british">@string/weight_unit_stones</item>
+        </string-array>
+    <string-array translatable="false" name="weight_units_values">
+        <item name="metric">1</item>
+        <item name="us">2</item>
+        <item name="british">3</item>
+        </string-array>
+    <string-array translatable="false" name="length_units">
+        <item name="metres">@string/length_unit_metres</item>
+        <item name="centimetres">@string/length_unit_centimetres</item>
+        <item name="inches">@string/length_unit_inches</item>
+    </string-array>
+    <string-array translatable="false" name="length_units_values">
+        <item name="metres">1</item>
+        <item name="centimetres">2</item>
+        <item name="inches">3</item>
+    </string-array>
+    <string-array translatable="false" name="background_colours">
+        <item name="skyblue">Sky Blue</item>
+        <item name="pink">Deep Pink</item>
+        <item name="lightpink">Apple Blossom</item>
+        <item name="turquoise">Ocean</item>
+        <item name="sunshine">Sunshine</item>
+        <item name="grey">Shades of Grey</item>
+        <item name="white">White</item>
+        </string-array>
+    <string-array translatable="false" name="background_colours_values">
+        <item name="skyblue">0</item>
+        <item name="pink">1</item>
+        <item name="lightpink">4</item>
+        <item name="turquoise">5</item>
+        <item name="sunshine">6</item>
+        <item name="grey">2</item>
+        <item name="white">3</item>
+        </string-array>
+</resources>
