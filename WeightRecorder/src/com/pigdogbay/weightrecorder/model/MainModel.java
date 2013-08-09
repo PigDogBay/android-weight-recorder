@@ -3,6 +3,8 @@ package com.pigdogbay.weightrecorder.model;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.R;
 import android.content.Context;
 

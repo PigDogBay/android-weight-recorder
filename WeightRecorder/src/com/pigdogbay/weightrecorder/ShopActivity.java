@@ -7,8 +7,8 @@ import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Inventory;
 import com.pigdogbay.androidutils.iab.Purchase;
 import com.pigdogbay.androidutils.iab.SkuDetails;
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
-import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
