@@ -6,8 +6,8 @@ package com.pigdogbay.weightrecorder.test;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.MainModel;
-import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 
 import android.test.AndroidTestCase;
 

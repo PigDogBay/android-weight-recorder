@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Inventory;
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.R;
 import com.pigdogbay.weightrecorder.ShopActivity;
 

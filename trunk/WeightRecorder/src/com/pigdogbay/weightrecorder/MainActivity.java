@@ -3,9 +3,9 @@ package com.pigdogbay.weightrecorder;
 import java.util.Date;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
-import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

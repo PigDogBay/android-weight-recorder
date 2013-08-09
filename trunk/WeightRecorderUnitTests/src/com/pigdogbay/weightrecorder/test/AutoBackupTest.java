@@ -8,8 +8,8 @@ import java.util.Date;
 
 import android.test.AndroidTestCase;
 
+import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
-import com.pigdogbay.weightrecorder.model.PreferencesHelper;
 
 /**
  * @author mark.bailey
