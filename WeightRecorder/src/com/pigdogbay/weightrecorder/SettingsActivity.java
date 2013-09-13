@@ -1,5 +1,8 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.content.SharedPreferences;
@@ -10,7 +13,9 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
+public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener, IBackgroundColorView{
+
+	BackgroundColorPresenter _BackgroundColorPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -20,12 +25,20 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         setContentView(R.layout.activity_settings);
-        ActivitiesHelper.setBackground(this);
-		PreferenceManager
-		.getDefaultSharedPreferences(this)
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,new MainModel(this).createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
+    }
+    @Override
+    protected void onResume() {
+    	super.onResume();
+		PreferenceManager.getDefaultSharedPreferences(this)
 		.registerOnSharedPreferenceChangeListener(this);
-        
-        
+    }
+    @Override
+    protected void onPause() {
+    	super.onPause();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.unregisterOnSharedPreferenceChangeListener(this);
     }
     @Override
     protected void onDestroy() {
@@ -61,16 +74,16 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		if (key.equals(getString(R.string.code_pref_background_colour))){
-			MainModel mainModel = new MainModel(this);
-			int bgId = mainModel.getBackgroundId();
-			boolean hasUnlockColorPackPurchase = mainModel.getUnlockColorPack();
-			mainModel.close();		
-			ActivitiesHelper.setBackground(this, R.id.rootLayout, bgId);
-			if  (!hasUnlockColorPackPurchase)
-			{
-				ActivitiesHelper.showInfoDialog(this,R.string.settings_purchase_color_pack_title , R.string.settings_purchase_color_pack_message);
-			}
+			_BackgroundColorPresenter.trialUpdateBackground();
 		}
 	}	
-    
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		ActivityUtils.showInfoDialog(this,R.string.settings_purchase_color_pack_title , R.string.settings_purchase_color_pack_message);
+	}	
+   
 }
