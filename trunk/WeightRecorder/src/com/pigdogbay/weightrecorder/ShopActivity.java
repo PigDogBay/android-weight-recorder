@@ -7,8 +7,12 @@ import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Inventory;
 import com.pigdogbay.androidutils.iab.Purchase;
 import com.pigdogbay.androidutils.iab.SkuDetails;
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
+import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,10 +32,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShopActivity extends Activity implements
-		IabHelper.OnIabPurchaseFinishedListener, IabHelper.QueryInventoryFinishedListener, IabHelper.OnIabSetupFinishedListener {
+		IabHelper.OnIabPurchaseFinishedListener, IabHelper.QueryInventoryFinishedListener, IabHelper.OnIabSetupFinishedListener
+		, IBackgroundColorView{
 
 	IabHelper _Helper;
 	Inventory _Inventory = null;
+	BackgroundColorPresenter _BackgroundColorPresenter;
+	
 	// (arbitrary) request code for the purchase flow
 	static final int PURCHASE_REQUEST = 10001;
 
@@ -39,10 +46,12 @@ public class ShopActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop);
-		ActivitiesHelper.setBackground(this);
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,new MainModel(this).createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
 		setWaitScreen(true);
 		_Helper = new IabHelper(this, AppPurchases.getPublicKey());
 		_Helper.startSetup(this);
+		
 	}
 
 	@Override
@@ -264,4 +273,13 @@ public class ShopActivity extends Activity implements
 		Toast.makeText(ShopActivity.this, getString(R.string.shop_thankyou), Toast.LENGTH_LONG)
 				.show();
 	}
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		//Do nothing
+	}	
+	
 }

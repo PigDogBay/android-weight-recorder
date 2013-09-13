@@ -1,5 +1,10 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.mvp.AdPresenter;
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IAdView;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
@@ -17,7 +22,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ReadingListActivity extends ListActivity
+public class ReadingListActivity extends ListActivity implements IAdView, IBackgroundColorView
 {
 	//Constants for Activity Result requests 
 	protected static final int REQUEST_EDIT = 1;
@@ -28,19 +33,24 @@ public class ReadingListActivity extends ListActivity
 	private BroadcastReceiver _BroadcastReceiver;
 	private boolean _DataChanged = false;
 
+	AdPresenter _AdPresenter;
+	BackgroundColorPresenter _BackgroundColorPresenter;
+	
 	public void onCreate(Bundle savedInstanceState) 
 	{
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_readings_list);
         _MainModel = new MainModel(this);
-		if (_MainModel.getRemoveAds()){
-			ActivitiesHelper.removeAds(this);
-		}
         _ReadingsArrayAdapter = new ReadingsArrayAdapter(this, _MainModel.getReverseOrderedReadings(),_MainModel.getUserSettings());
         setListAdapter(_ReadingsArrayAdapter);
         _BroadcastReceiver = new ImportBroadcastReceiver();
 		LocalBroadcastManager.getInstance(this).registerReceiver(_BroadcastReceiver, new IntentFilter(ImportActivity.NEW_IMPORTED_READINGS));
-		ActivitiesHelper.setBackground(this, _MainModel);
+
+		_AdPresenter = new AdPresenter(this,_MainModel.createAdModel());
+		try{_AdPresenter.adCheck();}catch(Exception e){}
+
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,_MainModel.createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
 
     }
 	@Override
@@ -154,6 +164,24 @@ public class ReadingListActivity extends ListActivity
 		public void onReceive(Context context, Intent intent) {
 			ReadingListActivity.this._DataChanged=true;
 		}
+	}
+
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		//Do nothing
+	}	
+	@Override
+	public void removeAd() {
+		ActivitiesHelper.removeAds(this);
+	}
+
+	@Override
+	public void showAd() {
+		ActivitiesHelper.loadAd(this);
 	}
 	
 }

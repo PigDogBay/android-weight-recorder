@@ -1,5 +1,8 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
@@ -13,9 +16,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class EditReadingActivity extends FragmentActivity {
+public class EditReadingActivity extends FragmentActivity implements IBackgroundColorView{
 	private Reading _Reading;
 	private MainModel _MainModel;
+	private BackgroundColorPresenter _BackgroundColorPresenter;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -35,7 +39,8 @@ public class EditReadingActivity extends FragmentActivity {
 				});
 
 		_MainModel = new MainModel(this);
-		ActivitiesHelper.setBackground(this, _MainModel);
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,_MainModel.createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
 		int id = getIntent().getIntExtra("ReadingID", -1);
 		if (id == -1) {
 			_Reading = new Reading();
@@ -99,5 +104,14 @@ public class EditReadingActivity extends FragmentActivity {
 		setResult(RESULT_OK);
 		this.finish();
 	}
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		//Do nothing
+	}	
+	
 
 }

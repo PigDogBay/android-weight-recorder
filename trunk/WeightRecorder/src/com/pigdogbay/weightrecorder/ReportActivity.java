@@ -3,6 +3,12 @@ package com.pigdogbay.weightrecorder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.pigdogbay.androidutils.mvp.AdPresenter;
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IAdView;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.DummyData;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Query;
@@ -20,19 +26,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class ReportActivity extends Activity {
+public class ReportActivity extends Activity implements IAdView, IBackgroundColorView{
 	private static final String TEXT_FIELD_PREFIX = "ReportTextView";
 	private static final int MINIMUM_READINGS = 2;
 	private ReportText _ReportText;
 	private ReportFormatting _ReportFormatting;
 	private boolean isLoaded = false;
+	AdPresenter _AdPresenter;
+	BackgroundColorPresenter _BackgroundColorPresenter;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_report);
-		ActivitiesHelper.setBackground(this);
+		MainModel mainModel = new MainModel(this);
 		if (!isLoaded) {
-			createReport();
+			createReport(mainModel);
 			isLoaded = true;
 		}
 		try {
@@ -42,10 +50,15 @@ public class ReportActivity extends Activity {
 			Log.v(MainActivity.TAG,
 					"Unable to populate views: " + e.getMessage());
 		}
+		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
+		try{_AdPresenter.adCheck();}catch(Exception e){}
+
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
+		mainModel.close();
 	}
 
-	private void createReport() {
-		MainModel mainModel = new MainModel(this);
+	private void createReport(MainModel mainModel) {
 		UserSettings userSettings = mainModel.getUserSettings();
 		List<Reading> readings = mainModel.getDatabase().getAllReadings();
 		if (readings.size() < MINIMUM_READINGS) {
@@ -58,10 +71,6 @@ public class ReportActivity extends Activity {
 		ReportAnalysis analysis = new ReportAnalysis(userSettings, query);
 		_ReportFormatting = new ReportFormatting(this, userSettings);
 		_ReportText = new ReportText(analysis, _ReportFormatting);
-		if (mainModel.getRemoveAds()){
-			ActivitiesHelper.removeAds(this);
-		}
-		mainModel.close();
 	}
 
 	private void populateTextViews() throws IllegalArgumentException,
@@ -104,4 +113,24 @@ public class ReportActivity extends Activity {
 		String text = _ReportText.createReport(template);
 		ActivitiesHelper.shareText(this, subject, text,R.string.report_share_chooser_title);
 	}
+
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		//Do nothing
+	}	
+	
+	@Override
+	public void removeAd() {
+		ActivitiesHelper.removeAds(this);
+	}
+
+	@Override
+	public void showAd() {
+		ActivitiesHelper.loadAd(this);
+	}
+	
 }

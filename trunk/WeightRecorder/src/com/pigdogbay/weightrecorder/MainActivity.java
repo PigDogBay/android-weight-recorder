@@ -4,7 +4,6 @@ import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IAdView;
-import com.pigdogbay.androidutils.mvp.IBackgroundColorModel;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
@@ -48,6 +47,7 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		try{_AdPresenter.adCheck();}catch(Exception e){}
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
+		mainModel.close();
 		
 
 		try {

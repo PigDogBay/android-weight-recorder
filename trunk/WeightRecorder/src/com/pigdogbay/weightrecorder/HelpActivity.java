@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.mvp.AdPresenter;
+import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.app.Activity;
@@ -10,9 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class HelpActivity extends Activity
+public class HelpActivity extends Activity implements IAdView
 {
 	static int _TextStyleID = android.R.style.TextAppearance_Medium;
+	AdPresenter _AdPresenter;
 
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -22,12 +25,11 @@ public class HelpActivity extends Activity
 		textView.setText(Html.fromHtml(getString(R.string.help_html)));
 		textView.setMovementMethod(new ScrollingMovementMethod());
 		MainModel mainModel = new MainModel(this);
-		if (mainModel.getRemoveAds()){
-			ActivitiesHelper.removeAds(this);
-		}
+		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
+		try{_AdPresenter.adCheck();}catch(Exception e){}
 		mainModel.close();
-        
     }
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -58,4 +60,14 @@ public class HelpActivity extends Activity
 		textView.setTextAppearance(this, _TextStyleID);
 		return true;
 	}	
+	@Override
+	public void removeAd() {
+		ActivitiesHelper.removeAds(this);
+	}
+
+	@Override
+	public void showAd() {
+		ActivitiesHelper.loadAd(this);
+	}
+	
 }
