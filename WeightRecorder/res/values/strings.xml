@@ -1,5 +1,5 @@
 <resources>
-    <string translatable="false" name="app_name">WeightRecorder</string>
+    <string translatable="false" name="app_name">Weight Tracker</string>
     <string translatable="false" name="email">pigdogbay@yahoo.co.uk</string>
     <string translatable="false" name="website">http://www.pigdogbay.com</string>
     <string translatable="false" name="version">1.1001</string>
@@ -13,20 +13,20 @@
     <string name="about_version">Version:</string>
     <string name="about_email">Email:</string>
     <string name="about_web">Web:</string>
-    <string name="about_email_subject">Weight Recorder Feedback</string>
+    <string name="about_email_subject">Weight Tracker Feedback</string>
     <string name="about_email_content">Hi Pig Dog Bay,</string>
     <string name="about_no_market_app">Unable to find market app</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Weight Recorder</string>
-    <string name="title_activity_chart">Weight Recorder Chart</string>
-    <string name="title_activity_list">Weight Recorder Readings</string>
+    <string name="title_activity_main">Weight Tracker</string>
+    <string name="title_activity_chart">Weight Tracker Chart</string>
+    <string name="title_activity_list">Weight Tracker Readings</string>
     <string name="title_activity_add">New Weight</string>
     <string name="title_activity_edit">Edit Weight</string>
     <string name="title_activity_import">Import Readings</string>
-    <string name="title_activity_report">Weight Recorder Report</string>
-    <string name="title_activity_about">About Weight Recorder</string>
-    <string name="title_activity_help">Weight Recorder Help</string>
-    <string name="title_activity_shop">Weight Recorder Store</string>
+    <string name="title_activity_report">Weight Tracker Report</string>
+    <string name="title_activity_about">About Weight Tracker</string>
+    <string name="title_activity_help">Weight Tracker Help</string>
+    <string name="title_activity_shop">Weight Tracker Store</string>
     <string name="title_activity_debug">Weight Tracker Debugging</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
@@ -111,7 +111,7 @@
     <string name="report_notenoughdata_title">Not Enough Readings</string>
     <string name="report_notenoughdata_message">You have no readings the report will show example data.</string>
     <string name="report_share_chooser_title">Share Report</string>
-    <string name="report_email_subject">Weight Recorder Report</string>
+    <string name="report_email_subject">Weight Tracker Report</string>
     <string name="report_per_no_readings">No readings available</string>
     <string name="report_per_week">per week</string>
     <string name="report_body_mass_index">Body Mass Index</string>
@@ -177,7 +177,7 @@
         <br/><br/>All purchases go through Google Play and are securely stored on Google Play servers, Google will securely process your payment details. 
         <br/><br/><b>Advanced Topics</b><br/><br/>
         You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
-		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Recorder.
+		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Tracker.
 		<br/><br/>The imported readings are merged with the readings in the apps database, if any two readings have the same date, the imported reading will overwrite the one in the database. 
         <br/><br/>When importing data, please ensure the format of the data is similar to:
         <br/><br/>92.50,2013-07-04 16:24:35,lovely day
@@ -187,7 +187,7 @@
     </string>
     <string name="report_template">
         <![CDATA[
-Weight Recorder Report<br/>
+Weight Tracker Report<br/>
 http://www.facebook.com/pigdogbay<br/>
 <br/>
 <br/>
@@ -234,8 +234,8 @@ Number of Readings 					\t\t$Count<br/>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
     <string name="share_readings_chooser_title">Share Readings</string>
-    <string name="rate_dialog_title">Rate Weight Recorder</string>
-    <string name="rate_dialog_message">If you enjoy using Weight Recorder, please take a moment to rate it. Thanks for your support!</string>
+    <string name="rate_dialog_title">Rate Weight Tracker</string>
+    <string name="rate_dialog_message">If you enjoy using Weight Tracker, please take a moment to rate it. Thanks for your support!</string>
     <string name="rate_dialog_positive">Rate it!</string>
     <string name="rate_dialog_neutral">Remind me later</string>
     <string name="rate_dialog_negative">No thanks</string>
