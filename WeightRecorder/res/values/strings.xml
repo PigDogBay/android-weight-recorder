@@ -1,12 +1,6 @@
 <resources>
     <string translatable="false" name="app_name">Weight Tracker</string>
-    <string translatable="false" name="email">pigdogbay@yahoo.co.uk</string>
-    <string translatable="false" name="website">http://www.pigdogbay.com</string>
     <string translatable="false" name="version">1.1001</string>
-    <string translatable="false" name="facebookPage">http://www.facebook.com/pigdogbay</string>
-    <string translatable="false" name="twitter">http://www.twitter.com/pigdogbay</string>
-    <string translatable="false" name="blogger">http://pigdogbay.blogspot.co.uk</string>
-    <string translatable="false" name="market">http://play.google.com/store/search?q=pub:Pig Dog Bay</string>
     <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
