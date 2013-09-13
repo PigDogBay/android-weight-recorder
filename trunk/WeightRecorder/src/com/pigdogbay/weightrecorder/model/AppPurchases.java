@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
+
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Inventory;
@@ -16,6 +19,9 @@ public class AppPurchases {
 	public static final String SKU_DISABLE_ADS = "disable_ads";
 	public static final String SKU_COLOR_PACK = "com.pigdogbay.weightrecorder.color_pack";
 
+	public static final String NEW_PURCHASE_INTENT = "com.pigdogbay.weightrecorder.NEW_PURCHASE_INTENT";
+	public static final String EXTRA_PURCHASE_SKU = "EXTRA_PURCHASE_SKU";
+	
 	private static final String _base64EncodedPublicKey1 = "MIIBIjANBgkqhkiG";
 	private static final String _base64EncodedPublicKey2 = "9w0BAQEFAAOCAQ8A";
 	private static final String _base64EncodedPublicKey3 = "MIIBCgKCAQEAtj5n";
@@ -133,6 +139,12 @@ public class AppPurchases {
 					}
 				});
 
+	}
+
+	public void broadcastPurchase(String sku){
+		Intent intent = new Intent(AppPurchases.NEW_PURCHASE_INTENT);
+		intent.putExtra(AppPurchases.EXTRA_PURCHASE_SKU, sku);
+		LocalBroadcastManager.getInstance(_Context).sendBroadcast(intent);
 	}
 
 }
