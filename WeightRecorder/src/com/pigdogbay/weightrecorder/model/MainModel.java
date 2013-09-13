@@ -4,6 +4,10 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import com.pigdogbay.androidutils.mvp.AdModel;
+import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
+import com.pigdogbay.androidutils.mvp.IAdModel;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorModel;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.R;
 import android.content.Context;
@@ -52,6 +56,14 @@ public class MainModel
 		{
 			_DatabaseHelper.close();
 		}
+	}
+	public IAdModel createAdModel()
+	{
+		return new AdModel(getPreferencesHelper());
+	}
+	public IBackgroundColorModel createBackgroundColorModel()
+	{
+		return new BackgroundColorModel(getPreferencesHelper());
 	}
 	
 	public List<Reading> getReverseOrderedReadings(){

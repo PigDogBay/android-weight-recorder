@@ -1,11 +1,13 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Date;
-
 import com.pigdogbay.androidutils.apprate.AppRate;
+import com.pigdogbay.androidutils.mvp.AdPresenter;
+import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
+import com.pigdogbay.weightrecorder.model.MainModel;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,10 +22,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements OnSharedPreferenceChangeListener{
+public class MainActivity extends Activity implements OnSharedPreferenceChangeListener, IAdView{
 
 	public static final String TAG = "WeightRecorder";
 
+	AdPresenter _AdPresenter;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +38,10 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		PreferenceManager
 				.getDefaultSharedPreferences(this)
 				.registerOnSharedPreferenceChangeListener(this);
+		MainModel mainModel = new MainModel(this);
+		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
+		try{_AdPresenter.adCheck();}catch(Exception e){}
+
 		try {
 			checkFirstTime(prefHelper);
 			checkIfBackupDue(prefHelper);
@@ -147,8 +155,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		if (!welcomeScreenShown) {
 			showWelcomeScreen();
 			prefHelper.setBoolean(R.string.code_pref_welcome_shown_key, true);
-			prefHelper.setLong(R.string.code_pref_purchase_date,
-					new Date().getTime());
 		}
 	}
 
@@ -192,6 +198,19 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		if (key.equals(getString(R.string.code_pref_background_colour))){
 			ActivitiesHelper.setBackground(this);
 		}
-		
+		else if (key.equals(getString(R.string.code_pref_disable_ads_key))){
+			_AdPresenter.adCheck();
+		}
 	}
+	
+	@Override
+	public void removeAd() {
+		ActivitiesHelper.removeAds(this);
+	}
+
+	@Override
+	public void showAd() {
+		ActivitiesHelper.loadAd(this);
+	}
+	
 }

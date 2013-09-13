@@ -2,7 +2,6 @@ package com.pigdogbay.weightrecorder;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -15,9 +14,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.Toast;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.pigdogbay.androidutils.utils.DateStampComparator;
 import com.pigdogbay.androidutils.utils.DateStampedFileFilter;
 import com.pigdogbay.androidutils.utils.FileUtils;
@@ -176,6 +176,18 @@ public class ActivitiesHelper {
 		{
 			ad.setEnabled(false);
 			ad.setVisibility(View.GONE);
+		}
+	}
+	public static void loadAd(Activity activity)
+	{
+		AdView ad = (AdView) activity.findViewById(R.id.adView);
+		if (ad!=null)
+		{
+			AdRequest adRequest = new AdRequest();
+			adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
+			adRequest.addTestDevice(activity.getString(R.string.code_test_device_1_id));
+			adRequest.addTestDevice(activity.getString(R.string.code_test_device_2_id));
+			ad.loadAd(adRequest);
 		}
 	}
 	
