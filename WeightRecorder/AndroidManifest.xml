@@ -85,6 +85,10 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_main"
             />
+        <activity 
+            android:windowSoftInputMode="stateHidden"
+            android:name=".DebugActivity"
+            android:label="@string/title_activity_debug"/>     
 		<activity android:name="com.google.ads.AdActivity"
 		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>   

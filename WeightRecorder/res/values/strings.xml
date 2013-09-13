@@ -27,6 +27,7 @@
     <string name="title_activity_about">About Weight Recorder</string>
     <string name="title_activity_help">Weight Recorder Help</string>
     <string name="title_activity_shop">Weight Recorder Store</string>
+    <string name="title_activity_debug">Weight Tracker Debugging</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
     <string name="chart_xaxis_title">Date</string>
