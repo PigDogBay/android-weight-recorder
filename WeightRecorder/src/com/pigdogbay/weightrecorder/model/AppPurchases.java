@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
 import com.pigdogbay.androidutils.iab.Inventory;
+import com.pigdogbay.androidutils.mvp.AdModel;
+import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
-import com.pigdogbay.weightrecorder.R;
-import com.pigdogbay.weightrecorder.ShopActivity;
 
 public class AppPurchases {
 	public static final String SKU_TEST = "android.test.purchased";
@@ -86,12 +83,12 @@ public class AppPurchases {
 
 		PreferencesHelper prefHelper = new PreferencesHelper(_Context);
 		if (inventory.hasDetails(SKU_DISABLE_ADS)) {
-			prefHelper.setBoolean(R.string.code_pref_disable_ads_key,
-					inventory.hasPurchase(SKU_DISABLE_ADS));
+			AdModel adModel = new AdModel(prefHelper); 
+			adModel.setDisableAds(inventory.hasPurchase(SKU_DISABLE_ADS));
 		}
 		if (inventory.hasDetails(SKU_COLOR_PACK)){
-			prefHelper.setBoolean(R.string.code_pref_unlock_color_pack_key,
-					inventory.hasPurchase(SKU_COLOR_PACK));
+			BackgroundColorModel bcm = new BackgroundColorModel(prefHelper);
+			bcm.setUnlockColorPack(inventory.hasPurchase(SKU_COLOR_PACK));
 		}
 	}
 	
