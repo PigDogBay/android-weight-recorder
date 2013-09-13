@@ -190,38 +190,4 @@ public class ActivitiesHelper {
 			ad.loadAd(adRequest);
 		}
 	}
-	
-	@SuppressLint("NewApi")
-	@SuppressWarnings("deprecation")
-	public static void setBackground(Activity activity, int viewID, int backgroundID)
-	{
-        Drawable background = activity.getResources().getDrawable(backgroundID);
-        View view = (View)activity.findViewById(viewID);
-		int sdk = android.os.Build.VERSION.SDK_INT;
-		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
-		{
-	        view.setBackgroundDrawable(background);
-		} 
-		else
-		{
-	        view.setBackground(background);
-		}
-	}	
-	
-	public static void setBackground(Activity activity)
-	{
-		MainModel mainModel = new MainModel(activity);
-		setBackground(activity, mainModel);
-		mainModel.close();
-	}
-	public static void setBackground(Activity activity, MainModel mainModel)
-	{
-		int id = R.drawable.bgskyblue;
-		if (mainModel.getUnlockColorPack())
-		{
-			id = mainModel.getBackgroundId();
-		}
-		setBackground(activity, R.id.rootLayout, id);
-	}
-
 }
