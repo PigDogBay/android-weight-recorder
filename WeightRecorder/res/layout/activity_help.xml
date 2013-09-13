@@ -22,7 +22,7 @@
         android:layout_weight="0"
         ads:adSize="BANNER"
         ads:adUnitId="a150ec1ad9123c4"
-        ads:loadAdOnCreate="true"
-        ads:testDevices="TEST_EMULATOR, 7FDFE2A7093B4FE11D7C0794B8BDEAC2, 6E65810B3B431A1B553C14663938DA93" />
+        ads:loadAdOnCreate="false"
+        />
 
 </LinearLayout>
