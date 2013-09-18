@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -53,6 +55,26 @@ public class ShopActivity extends Activity implements
 		_Helper.startSetup(this);
 		
 	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		getMenuInflater().inflate(R.menu.menu_shop, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+		case (R.id.menu_shop_home):
+			finish();
+			break;
+		default:
+			return false;
+		}
+		return true;
+	}
+	
 
 	@Override
 	protected void onDestroy() {
