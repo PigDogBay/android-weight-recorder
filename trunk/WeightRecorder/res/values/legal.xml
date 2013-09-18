@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="copyright_title">Copyright</string>
+    <string name="copyright">
+        <![CDATA[
+\nCopyright 2013 Weight Tracker by Mark Bailey
+        ]]>
+    </string>
+</resources>

@@ -7,7 +7,6 @@
     android:background="#fff" >
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
@@ -115,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:src="@drawable/androidmail" />
-            />
+
         </LinearLayout>
 
         <Button
@@ -129,9 +128,20 @@
             android:paddingRight="40dp"
             android:text="@string/about_btn_rate" />
 
+        <Button 
+			android:id="@+id/AboutBtnLegal"
+			android:layout_below="@id/AboutBtnRate"            
+            android:text="@string/about_button_legal"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_centerHorizontal="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+        
         <ImageView
             android:id="@+id/pigdogbayImg"
-            android:layout_below="@+id/AboutBtnRate"
+            android:layout_below="@id/AboutBtnLegal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
