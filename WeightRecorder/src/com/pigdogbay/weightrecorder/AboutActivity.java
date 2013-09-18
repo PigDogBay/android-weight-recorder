@@ -30,6 +30,14 @@ public class AboutActivity extends Activity
 				ShowWebPage(getString(R.string.market_weightrecorder));
 			}
 		});
+		((Button) findViewById(R.id.AboutBtnLegal)).setOnClickListener(new OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				showLegal();
+			}
+		});
+		
 		ImageView img = (ImageView) findViewById(R.id.mailImg);
 		img.setOnClickListener(new View.OnClickListener()
 		{
@@ -64,5 +72,9 @@ public class AboutActivity extends Activity
 					.show();
 		}
 		
+	}
+	private void showLegal()
+	{
+		ActivityUtils.showInfoDialog(this, R.string.copyright_title, R.string.copyright);
 	}
 }

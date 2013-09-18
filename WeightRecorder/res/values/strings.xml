@@ -10,6 +10,7 @@
     <string name="about_email_subject">Weight Tracker Feedback</string>
     <string name="about_email_content">Hi Pig Dog Bay,</string>
     <string name="about_no_market_app">Unable to find market app</string>
+    <string name="about_button_legal">Legal</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Weight Tracker</string>
     <string name="title_activity_chart">Weight Tracker Chart</string>
