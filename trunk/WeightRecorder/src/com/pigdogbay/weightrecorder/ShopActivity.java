@@ -10,7 +10,6 @@ import com.pigdogbay.androidutils.iab.SkuDetails;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
-import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.MainModel;
 
@@ -91,7 +90,19 @@ public class ShopActivity extends Activity implements
 				set ? View.GONE : View.VISIBLE);
 		findViewById(R.id.shopWait).setVisibility(
 				set ? View.VISIBLE : View.GONE);
+		findViewById(R.id.shopContactingGoogle).setVisibility(
+				set ? View.VISIBLE : View.GONE);
 	}
+	private String stripAppName(String title)
+	{
+		int index = title.indexOf('(');
+		if (index>0)
+		{
+			return title.substring(0,index);
+		}
+		return title;
+	}
+	
 
 	private void addPurchasedItem(String title, String description) {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -208,10 +219,10 @@ public class ShopActivity extends Activity implements
 		for (String sku : skus) {
 			SkuDetails details = inventory.getSkuDetails(sku);
 			if (inventory.hasPurchase(sku)) {
-				addPurchasedItem(details.getTitle(), details.getDescription());
+				addPurchasedItem(stripAppName(details.getTitle()), details.getDescription());
 			}
 			else {
-				addSaleItem(details.getTitle(), details.getPrice(),
+				addSaleItem(stripAppName(details.getTitle()), details.getPrice(),
 						details.getDescription(), sku);
 			}
 		}
@@ -232,30 +243,6 @@ public class ShopActivity extends Activity implements
 		_Helper.launchPurchaseFlow(this, sku, PURCHASE_REQUEST, this, payload);
 	}
 
-	/**
-	 * Debug code to test purchases
-	 * @param sku
-	 */
-	private void consumeItem(String sku) {
-		if (_Inventory == null || !_Inventory.hasPurchase(sku)) {
-			Toast.makeText(ShopActivity.this, "No Purchase To Consume",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
-		_Helper.consumeAsync(_Inventory.getPurchase(sku),
-				new IabHelper.OnConsumeFinishedListener() {
-					@Override
-					public void onConsumeFinished(Purchase purchase,
-							IabResult result) {
-						String toast = result.isSuccess() ? "Purchased Consumed"
-								: "Unable To Consume";
-						Toast.makeText(ShopActivity.this, toast,
-								Toast.LENGTH_SHORT).show();
-					}
-				});
-	}
-
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// Handle any billing results
@@ -266,8 +253,8 @@ public class ShopActivity extends Activity implements
 	}
 	@Override
 	public void onIabSetupFinished(IabResult result) {
-		setWaitScreen(false);
 		if (!result.isSuccess()) {
+			setWaitScreen(false);
 			alert(getString(R.string.shop_in_app_billing_not_supported));
 			return;
 		}
@@ -275,6 +262,7 @@ public class ShopActivity extends Activity implements
 	}
 	@Override
 	public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+		setWaitScreen(false);
 		if (result.isFailure()) {
 			alert(getString(R.string.shop_failed_to_contact_google_play));
 			return;

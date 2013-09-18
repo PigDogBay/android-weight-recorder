@@ -132,7 +132,7 @@
     <string name="shop_purchase_fail">Uable to purchase the item</string>
     <string name="shop_thankyou">Thankyou!</string>
     <string name="shop_please_wait">Please wait&#8230;</string>
-    <string name="shop_"></string>
+    <string name="shop_contacting_google">Contacting Google Play</string>
     <string name="import_import_button">Import</string>
     <string name="import_load_backup_button">Get Backup Readings</string>
     <string name="import_no_backup_file">No backup available</string>
