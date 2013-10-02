@@ -114,11 +114,11 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 						startActivity(intent);
 					}
 				});
-		((Button) findViewById(R.id.MainBtnShop))
+		((Button) findViewById(R.id.MainBtnHelp))
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
 						Intent intent = new Intent(MainActivity.this,
-								ShopActivity.class);
+								HelpActivity.class);
 						startActivity(intent);
 					}
 				});
@@ -139,10 +139,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		{
 		case (R.id.menu_main_about):
 			Intent intent = new Intent(this, AboutActivity.class);
-			startActivity(intent);
-			break;
-		case (R.id.menu_main_help):
-			intent = new Intent(this, HelpActivity.class);
 			startActivity(intent);
 			break;
 		default:

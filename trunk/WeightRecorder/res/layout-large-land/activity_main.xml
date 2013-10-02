@@ -51,9 +51,9 @@
             android:text="@string/main_btn_report" />
 
         <Button
-            android:id="@+id/MainBtnShop"
+            android:id="@+id/MainBtnHelp"
 	        style="@style/LargeButton"
-            android:drawableTop="@drawable/cashier"
-            android:text="@string/main_btn_shop" />
+            android:drawableTop="@drawable/help"
+            android:text="@string/main_btn_help" />
     </LinearLayout>
 </RelativeLayout>
