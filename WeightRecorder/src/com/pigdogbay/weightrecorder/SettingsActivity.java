@@ -74,7 +74,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		if (key.equals(getString(R.string.code_pref_background_colour))){
-			_BackgroundColorPresenter.trialUpdateBackground();
+			_BackgroundColorPresenter.updateBackground();
 		}
 	}	
 	@Override
