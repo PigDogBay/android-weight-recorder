@@ -1,10 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
-        android:id="@+id/menu_main_help" 
-        android:showAsAction="ifRoom"     
-		android:icon="@drawable/ic_menu_help"        
-        android:title="@string/menu_main_help"/>    
-    <item 
         android:id="@+id/menu_main_about" 
         android:showAsAction="ifRoom"     
 		android:icon="@drawable/ic_menu_info_details"        

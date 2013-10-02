@@ -53,12 +53,12 @@
         android:text="@string/main_btn_settings" />
 
     <Button
-        android:id="@+id/MainBtnShop"
+        android:id="@+id/MainBtnHelp"
         style="@style/ExtraLargeButton"
         android:layout_below="@+id/MainBtnReport"
         android:layout_toRightOf="@+id/MainHorizontalCentre"
-        android:drawableTop="@drawable/cashier"
-        android:text="@string/main_btn_shop" />
+        android:drawableTop="@drawable/help"
+        android:text="@string/main_btn_help" />
  <com.google.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
         android:id="@+id/adView"
