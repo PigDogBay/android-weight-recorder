@@ -90,7 +90,6 @@ public class HelpActivity extends FragmentActivity
                     return "QUICK HELP";
                 case 1:
                     return "HELP";
-                case 2:
             }
             return null;
         }
