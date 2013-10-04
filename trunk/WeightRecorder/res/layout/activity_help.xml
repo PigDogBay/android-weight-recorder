@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
-    >
-    <TextView
-        android:id="@+id/HelpTextBox"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
-        android:text="Help"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
-
-    <com.google.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-        android:id="@+id/adView"
+	<android.support.v4.view.ViewPager
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+	    android:id="@+id/helpPager"
+	    android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+	    >
+    <android.support.v4.view.PagerTitleStrip
+        android:id="@+id/helpPagerTitleStrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        ads:adSize="BANNER"
-        ads:adUnitId="a150ec1ad9123c4"
-        ads:loadAdOnCreate="false"
-        />
-
-</LinearLayout>
+        android:layout_gravity="top"
+        android:background="#33b5e5"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:textColor="#fff" />
+	    	    
+	</android.support.v4.view.ViewPager>
