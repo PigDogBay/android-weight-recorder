@@ -1,10 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import com.pigdogbay.androidutils.mvp.AdPresenter;
-import com.pigdogbay.androidutils.mvp.IAdView;
-import com.pigdogbay.weightrecorder.model.MainModel;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,7 +18,6 @@ import android.widget.TextView;
 public class HelpActivity extends FragmentActivity
 {
 	static int _TextStyleID = android.R.style.TextAppearance_Medium;
-	AdPresenter _AdPresenter;
 
 	public void onCreate(Bundle savedInstanceState) 
 	{

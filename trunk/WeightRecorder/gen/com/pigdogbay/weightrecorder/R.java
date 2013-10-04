@@ -178,7 +178,8 @@ public final class R {
         public static final int edit_fragment=0x7f03000c;
         public static final int fragment_help=0x7f03000d;
         public static final int fragment_quickhelp=0x7f03000e;
-        public static final int readings_item=0x7f03000f;
+        public static final int fragment_weight_settings=0x7f03000f;
+        public static final int readings_item=0x7f030010;
     }
     public static final class menu {
         public static final int activity_chart=0x7f090000;
