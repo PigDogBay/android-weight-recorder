@@ -24,6 +24,7 @@ public class UnitConverterFactory
 	public final static int METRES_TO_METRES = 1;
 	public final static int METRES_TO_CENTIMETRES = 2;
 	public final static int METRES_TO_INCHES = 3;
+	public final static int METRES_TO_FEET = 4;
 
 	public static IUnitConverter create(int id)
 	{
@@ -46,6 +47,8 @@ public class UnitConverterFactory
 			return new MetresConverter();
 		case METRES_TO_CENTIMETRES:
 			return new FactorConverter("cm", 100.0d,1D);
+		case METRES_TO_FEET:
+			return new FeetConverter();
 		default:
 			return new FactorConverter("in", 1d/INCH_METRE_FACTOR,1D);
 		}
@@ -166,6 +169,51 @@ class StonesConverter implements IUnitConverter
 	public double getStepIncrement()
 	{
 		return 1.0d/14.0d;
+	}
+	
+}
+class FeetConverter implements IUnitConverter
+{
+	private static final String FEET_UNITS = "ft";
+	private static final String INCHES_UNITS = "in";
+	
+	private static final double FEET_TO_INCHES_FACTOR = 12d;
+	private static final double FEET_TO_METRES = UnitConverterFactory.INCH_METRE_FACTOR*FEET_TO_INCHES_FACTOR;
+	public String getUnits()
+	{
+		return FEET_UNITS;
+	}
+
+	public double convert(double value)
+	{
+		return value/FEET_TO_METRES;
+	}
+
+	public double inverse(double value)
+	{
+		return value*FEET_TO_METRES;
+	}
+
+	/**
+	 * NB Does not convert the weight
+	 * @param length in the user units
+	 * @return string representation of the weight in user units
+	 */
+	public String getDisplayString(double length)
+	{
+		//Convert to pounds
+		length = length*FEET_TO_INCHES_FACTOR;
+		int intLength = (int)Math.round(length);
+		int feet= intLength/12;
+		int inches=intLength - feet*12;
+		return feet==0 ? 
+				String.format("%d %s", inches, INCHES_UNITS):
+				String.format("%d%s %d%s", feet, FEET_UNITS, inches, INCHES_UNITS);
+	}
+
+	public double getStepIncrement()
+	{
+		return 1.0d/FEET_TO_INCHES_FACTOR;
 	}
 	
 }

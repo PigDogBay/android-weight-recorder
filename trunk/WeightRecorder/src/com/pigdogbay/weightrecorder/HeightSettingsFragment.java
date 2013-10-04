@@ -35,6 +35,7 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
     	setupRadioButtons();
     	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingCentimetres)).setOnClickListener(this);
     	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingInches)).setOnClickListener(this);
+    	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingFeet)).setOnClickListener(this);
     	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingMetres)).setOnClickListener(this);
     	_NumberPicker = (NumberPicker)getActivity().findViewById(R.id.HeightSettingsPicker);
     	setupNumberPicker(_MainModel.getHeightInMetres());
@@ -66,6 +67,12 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
     		radioButtonId = R.id.rbHeightSettingCentimetres;
     		
     	}
+    	else if (UnitConverterFactory.METRES_TO_FEET==_LengthUnitsId)
+    	{
+    		radioButtonId = R.id.rbHeightSettingFeet;
+    		
+    	}
+    	
     	RadioButton radioButton = (RadioButton) getActivity().findViewById(radioButtonId);
     	radioButton.setChecked(true);
     }
@@ -93,6 +100,9 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
             break;
         case R.id.rbHeightSettingInches:
         	_LengthUnitsId = UnitConverterFactory.METRES_TO_INCHES;
+            break;
+        case R.id.rbHeightSettingFeet:
+        	_LengthUnitsId = UnitConverterFactory.METRES_TO_FEET;
             break;
         default:
         	return;

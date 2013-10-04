@@ -14,7 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/length_unit_inches" />
-
+        
+        <RadioButton
+            android:id="@+id/rbHeightSettingFeet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/length_unit_feet" />
         <RadioButton
             android:id="@+id/rbHeightSettingMetres"
             android:layout_width="wrap_content"
