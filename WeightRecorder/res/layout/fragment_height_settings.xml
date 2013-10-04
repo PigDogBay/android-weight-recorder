@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+
+        <RadioButton
+            android:id="@+id/rbHeightSettingInches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/length_unit_inches" />
+
+        <RadioButton
+            android:id="@+id/rbHeightSettingMetres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/length_unit_metres" />
+
+        <RadioButton
+            android:id="@+id/rbHeightSettingCentimetres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/length_unit_centimetres" />
+    </RadioGroup>
+    <com.pigdogbay.androidutils.usercontrols.NumberPicker
+            android:id="@+id/HeightSettingsPicker"
+            android:layout_margin="5dp"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"/>
+    
+</LinearLayout>
