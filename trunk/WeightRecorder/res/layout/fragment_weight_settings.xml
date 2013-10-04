@@ -28,5 +28,10 @@
             android:layout_height="wrap_content"
             android:text="@string/weight_unit_stones" />
     </RadioGroup>
-
+    <com.pigdogbay.androidutils.usercontrols.NumberPicker
+            android:id="@+id/WeightSettingsGoal"
+            android:layout_margin="5dp"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"/>
+    
 </LinearLayout>

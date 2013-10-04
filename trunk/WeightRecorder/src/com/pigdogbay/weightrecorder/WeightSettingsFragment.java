@@ -1,9 +1,11 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.usercontrols.INumberPickerValue;
+import com.pigdogbay.androidutils.usercontrols.NumberPicker;
+import com.pigdogbay.weightrecorder.model.IUnitConverter;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 
-import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +18,10 @@ import android.widget.RadioButton;
 public class WeightSettingsFragment extends Fragment implements OnClickListener{
 	
 	MainModel _MainModel;
+	NumberPicker _NumberPicker; 
+	UnitConverterAdapter _UnitConverterAdapter;
+	int _WeightUnitsId;
+	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_weight_settings, container, false);
@@ -26,21 +32,37 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     public void onActivityCreated(Bundle savedInstanceState) {
     	super.onActivityCreated(savedInstanceState);
     	_MainModel = new MainModel(getActivity());
-    	setRadioButtons();
+    	_WeightUnitsId = _MainModel.getWeightUnitsId();
+    	setupRadioButtons();
     	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingKilograms)).setOnClickListener(this);
     	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingPounds)).setOnClickListener(this);
     	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingStones)).setOnClickListener(this);
+    	_NumberPicker = (NumberPicker)getActivity().findViewById(R.id.WeightSettingsGoal);
+    	setupNumberPicker(_MainModel.getTargetWeightInKilograms());
     }
-    
-    void setRadioButtons()
+    /* 
+     * Persist any changes here
+     */
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	if (_WeightUnitsId!=_MainModel.getWeightUnitsId())
+    	{
+    		_MainModel.setWeightUnitsId(_WeightUnitsId);
+    	}
+    	if (_UnitConverterAdapter.getValue()!=_MainModel.getTargetWeight())
+    	{
+    		_MainModel.setTargetWeight(_UnitConverterAdapter.getValue());
+    	}
+    }
+    void setupRadioButtons()
     {
-    	int weightUnitsId = _MainModel.getWeightUnitsId();
     	int radioButtonId = R.id.rbWeightSettingKilograms; 
-    	if (UnitConverterFactory.KILOGRAMS_TO_POUNDS==weightUnitsId)
+    	if (UnitConverterFactory.KILOGRAMS_TO_POUNDS==_WeightUnitsId)
     	{
     		radioButtonId = R.id.rbWeightSettingPounds;
     	}
-    	else if (UnitConverterFactory.KILOGRAMS_TO_STONES==weightUnitsId)
+    	else if (UnitConverterFactory.KILOGRAMS_TO_STONES==_WeightUnitsId)
     	{
     		radioButtonId = R.id.rbWeightSettingStones;
     		
@@ -48,10 +70,16 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     	RadioButton radioButton = (RadioButton) getActivity().findViewById(radioButtonId);
     	radioButton.setChecked(true);
     }
+    void setupNumberPicker(double targetWeightInKg)
+    {
+    	IUnitConverter converter = UnitConverterFactory.create(_WeightUnitsId);
+    	_UnitConverterAdapter = new UnitConverterAdapter(converter);
+    	_UnitConverterAdapter.setValue(converter.convert(targetWeightInKg));
+    	_NumberPicker.setNumberPickerValue(_UnitConverterAdapter);
+    }
 
 	@Override
 	public void onClick(View view) {
-    	Log.v("WeightRecorder","onRadioButtonClicked");
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
         if (!checked){
@@ -59,14 +87,56 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
         }
         switch(view.getId()) {
         case R.id.rbWeightSettingKilograms:
-        	_MainModel.setWeightUnitsId(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS);
+        	_WeightUnitsId = UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS;
             break;
         case R.id.rbWeightSettingPounds:
-        	_MainModel.setWeightUnitsId(UnitConverterFactory.KILOGRAMS_TO_POUNDS);
+        	_WeightUnitsId = UnitConverterFactory.KILOGRAMS_TO_POUNDS;
             break;
         case R.id.rbWeightSettingStones:
-        	_MainModel.setWeightUnitsId(UnitConverterFactory.KILOGRAMS_TO_STONES);
+        	_WeightUnitsId = UnitConverterFactory.KILOGRAMS_TO_STONES;
             break;
+        default:
+        	return;
         }
-		
+        setupNumberPicker(_UnitConverterAdapter.getValueInPrimaryUnits());
 	}}
+
+class UnitConverterAdapter implements INumberPickerValue{
+
+	double _Value = 0;
+	IUnitConverter _Converter;
+	public UnitConverterAdapter(IUnitConverter converter)
+	{
+		_Converter = converter;
+	}
+
+	@Override
+	public void increase() {
+		_Value+=_Converter.getStepIncrement();
+	}
+
+	@Override
+	public void decrease() {
+		_Value-=_Converter.getStepIncrement();
+	}
+
+	@Override
+	public String getFormattedString() {
+		return _Converter.getDisplayString(_Value);
+	}
+
+	@Override
+	public double getValue() {
+		return _Value;
+	}
+
+	@Override
+	public void setValue(double value) {
+		_Value = value;
+	}
+	
+	public double getValueInPrimaryUnits()
+	{
+		return _Converter.inverse(_Value);
+	}
+}
