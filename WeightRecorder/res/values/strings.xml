@@ -224,6 +224,7 @@ Number of Readings 					\t\t$Count<br/>
     <string name="length_unit_metres">Metres</string>
     <string name="length_unit_centimetres">Centimetres</string>
     <string name="length_unit_inches">Inches</string>
+    <string name="length_unit_feet">Feet and Inches</string>
     <string name="weight_unit_kilograms">Kilograms</string>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
