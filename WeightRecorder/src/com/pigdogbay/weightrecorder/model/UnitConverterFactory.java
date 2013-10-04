@@ -29,12 +29,12 @@ public class UnitConverterFactory
 	{
 		switch (id)
 		{
-		case KILOGRAMS_TO_POUNDS:
-			return new FactorConverter("lb", 1d/POUND_TO_KILOGRAM_FACTOR,0.5d);
+		case KILOGRAMS_TO_KILOGRAMS:
+			return new FactorConverter("kg", 1.0d);
 		case KILOGRAMS_TO_STONES:
 			return new StonesConverter();
 		default:
-			return new FactorConverter("kg", 1.0d);
+			return new FactorConverter("lb", 1d/POUND_TO_KILOGRAM_FACTOR,0.5d);
 		}
 	}
 
@@ -42,12 +42,12 @@ public class UnitConverterFactory
 	{
 		switch (id)
 		{
+		case METRES_TO_METRES:
+			return new FactorConverter("m", 1.0d);
 		case METRES_TO_CENTIMETRES:
 			return new FactorConverter("cm", 100.0d);
-		case METRES_TO_INCHES:
-			return new FactorConverter("in", 1d/INCH_METRE_FACTOR);
 		default:
-			return new FactorConverter("m", 1.0d);
+			return new FactorConverter("in", 1d/INCH_METRE_FACTOR);
 		}
 	}
 }
