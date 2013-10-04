@@ -56,10 +56,10 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     }
     void setupRadioButtons()
     {
-    	int radioButtonId = R.id.rbWeightSettingKilograms; 
-    	if (UnitConverterFactory.KILOGRAMS_TO_POUNDS==_WeightUnitsId)
+    	int radioButtonId = R.id.rbWeightSettingPounds; 
+    	if (UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS==_WeightUnitsId)
     	{
-    		radioButtonId = R.id.rbWeightSettingPounds;
+    		radioButtonId = R.id.rbWeightSettingKilograms;
     	}
     	else if (UnitConverterFactory.KILOGRAMS_TO_STONES==_WeightUnitsId)
     	{
