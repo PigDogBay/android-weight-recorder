@@ -19,6 +19,9 @@ public class UnitConverterAdapter implements INumberPickerValue{
 	@Override
 	public void decrease() {
 		_Value-=_Converter.getStepIncrement();
+		if (_Value<0){
+			_Value=0;
+		}
 	}
 
 	@Override
@@ -34,6 +37,9 @@ public class UnitConverterAdapter implements INumberPickerValue{
 	@Override
 	public void setValue(double value) {
 		_Value = value;
+		if (_Value<0){
+			_Value=0;
+		}
 	}
 	
 	public double getValueInPrimaryUnits()
