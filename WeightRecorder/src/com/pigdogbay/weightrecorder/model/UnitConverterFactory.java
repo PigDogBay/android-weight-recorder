@@ -43,12 +43,35 @@ public class UnitConverterFactory
 		switch (id)
 		{
 		case METRES_TO_METRES:
-			return new FactorConverter("m", 1.0d);
+			return new MetresConverter();
 		case METRES_TO_CENTIMETRES:
-			return new FactorConverter("cm", 100.0d);
+			return new FactorConverter("cm", 100.0d,1D);
 		default:
-			return new FactorConverter("in", 1d/INCH_METRE_FACTOR);
+			return new FactorConverter("in", 1d/INCH_METRE_FACTOR,1D);
 		}
+	}
+}
+class MetresConverter implements IUnitConverter{
+	private static final String UNITS = "m";
+	@Override
+	public String getUnits() {
+		return UNITS;
+	}
+	@Override
+	public double convert(double value) {
+		return value;
+	}
+	@Override
+	public double inverse(double value) {
+		return value;
+	}
+	@Override
+	public double getStepIncrement() {
+		return 0.01D;
+	}
+	@Override
+	public String getDisplayString(double length) {
+		return String.format("%.2f %s", length, UNITS);
 	}
 }
 
