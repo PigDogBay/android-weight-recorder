@@ -80,9 +80,17 @@ public class MainModel
 	{
 		return getPreferencesHelper().getDouble(R.string.code_pref_height_key, DEFAULT_HEIGHT_INCHES);
 	}
+	public void setHeight(double height)
+	{
+		getPreferencesHelper().setDouble(R.string.code_pref_height_key, height);
+	}
 	public double getTargetWeight()
 	{
 		return getPreferencesHelper().getDouble(R.string.code_pref_target_weight_key, DEFAULT_TARGET_WEIGHT_POUNDS);
+	}
+	public void setTargetWeight(double weight)
+	{
+		getPreferencesHelper().setDouble(R.string.code_pref_target_weight_key, weight);
 	}
 	public IUnitConverter getWeightConverter()
 	{
