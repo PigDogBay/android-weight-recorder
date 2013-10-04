@@ -3,6 +3,8 @@ package com.pigdogbay.weightrecorder;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.HelpActivity.HelpFragment;
+import com.pigdogbay.weightrecorder.HelpActivity.QuickHelpFragment;
 import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.content.SharedPreferences;
@@ -10,10 +12,15 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener, IBackgroundColorView{
+public class SettingsActivity extends FragmentActivity implements OnSharedPreferenceChangeListener, IBackgroundColorView{
 
 	BackgroundColorPresenter _BackgroundColorPresenter;
 
@@ -23,8 +30,10 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         // Note that none of the preferences are actually defined here.
         // They're all in the XML file res/xml/preferences.xml.
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
         setContentView(R.layout.activity_settings);
+        SettingsPagerAdapter adapter = new SettingsPagerAdapter(getSupportFragmentManager());
+        ViewPager viewPager = (ViewPager)findViewById(R.id.rootLayout);
+        viewPager.setAdapter(adapter);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,new MainModel(this).createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
     }
@@ -85,5 +94,44 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	public void showPurchaseRequiredWarning() {
 		ActivityUtils.showInfoDialog(this,R.string.settings_purchase_color_pack_title , R.string.settings_purchase_color_pack_message);
 	}	
+
+    public class SettingsPagerAdapter extends FragmentPagerAdapter {
+
+        public SettingsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new WeightSettingsFragment();
+                case 1:
+                    return new WeightSettingsFragment();
+                case 2:
+                    return new WeightSettingsFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "WEIGHT";
+                case 1:
+                    return "HEIGHT";
+                case 2:
+                    return "OTHER";
+            }
+            return null;
+        }
+    }
+
    
 }
