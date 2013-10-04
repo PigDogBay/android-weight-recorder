@@ -89,10 +89,26 @@ public class MainModel
 		int converterType = getPreferencesHelper().getInt(R.string.code_pref_weight_units_key, UnitConverterFactory.KILOGRAMS_TO_POUNDS);
 		return UnitConverterFactory.create(converterType);
 	}
+	public int getWeightUnitsId()
+	{
+		return getPreferencesHelper().getInt(R.string.code_pref_weight_units_key, UnitConverterFactory.KILOGRAMS_TO_POUNDS);
+	}
+	public void setWeightUnitsId(int id)
+	{
+		getPreferencesHelper().setInt(R.string.code_pref_weight_units_key, id);
+	}
 	public IUnitConverter getLengthConverter()
 	{
 		int converterType = getPreferencesHelper().getInt(R.string.code_pref_length_units_key, UnitConverterFactory.METRES_TO_INCHES);
 		return UnitConverterFactory.createLengthConverter(converterType);
+	}
+	public int getLengthUnitsId()
+	{
+		return getPreferencesHelper().getInt(R.string.code_pref_length_units_key, UnitConverterFactory.METRES_TO_INCHES);
+	}
+	public void setLengthUnitsId(int id)
+	{
+		getPreferencesHelper().setInt(R.string.code_pref_length_units_key, id);
 	}
 	public double getHeightInMetres()
 	{
