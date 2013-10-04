@@ -235,4 +235,10 @@ Number of Readings 					\t\t$Count<br/>
     <string name="rate_dialog_positive">Rate it!</string>
     <string name="rate_dialog_neutral">Remind me later</string>
     <string name="rate_dialog_negative">No thanks</string>
+    <string name="quickhelp_description_add">Add new daily weight measurements</string>
+    <string name="quickhelp_description_edit">Review and edit your data</string>
+    <string name="quickhelp_description_chart">Chart showing your weight changes over time</string>
+    <string name="quickhelp_description_report">Statistics about your weight and BMI</string>
+    <string name="quickhelp_description_settings">Change settings like the weight units</string>
+    <string name="quickhelp_description_help">Show this help screen</string>
 </resources>

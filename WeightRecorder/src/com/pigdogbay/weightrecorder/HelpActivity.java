@@ -6,13 +6,21 @@ import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class HelpActivity extends Activity implements IAdView
+public class HelpActivity extends FragmentActivity
 {
 	static int _TextStyleID = android.R.style.TextAppearance_Medium;
 	AdPresenter _AdPresenter;
@@ -21,13 +29,9 @@ public class HelpActivity extends Activity implements IAdView
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-		TextView textView = (TextView) findViewById(R.id.HelpTextBox);
-		textView.setText(Html.fromHtml(getString(R.string.help_html)));
-		textView.setMovementMethod(new ScrollingMovementMethod());
-		MainModel mainModel = new MainModel(this);
-		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
-		try{_AdPresenter.adCheck();}catch(Exception e){}
-		mainModel.close();
+    	HelpPagerAdapter helpPagerAdapter = new HelpPagerAdapter(getSupportFragmentManager());
+    	ViewPager viewPager = (ViewPager)findViewById(R.id.helpPager);
+    	viewPager.setAdapter(helpPagerAdapter);
     }
 
 	@Override
@@ -57,17 +61,66 @@ public class HelpActivity extends Activity implements IAdView
 		default:
 			return false;
 		}
-		textView.setTextAppearance(this, _TextStyleID);
+		if(textView!=null)
+		{
+			textView.setTextAppearance(this, _TextStyleID);
+		}
 		return true;
 	}	
-	@Override
-	public void removeAd() {
-		ActivitiesHelper.removeAds(this);
-	}
+    public class HelpPagerAdapter extends FragmentPagerAdapter {
 
-	@Override
-	public void showAd() {
-		ActivitiesHelper.loadAd(this);
-	}
+        public HelpPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new QuickHelpFragment();
+                case 1:
+                    return new HelpFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "QUICK HELP";
+                case 1:
+                    return "HELP";
+                case 2:
+            }
+            return null;
+        }
+    }
 	
+    public static class QuickHelpFragment extends Fragment{
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_quickhelp, container, false);
+            return rootView;
+        }
+    }	
+    public static class HelpFragment extends Fragment{
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_help, container, false);
+            return rootView;
+        }
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+        	super.onActivityCreated(savedInstanceState);
+    		TextView textView = (TextView) getActivity().findViewById(R.id.HelpTextBox);
+    		textView.setText(Html.fromHtml(getString(R.string.help_html)));
+    		textView.setMovementMethod(new ScrollingMovementMethod());
+        }
+    }	
 }
