@@ -240,4 +240,8 @@ Number of Readings 					\t\t$Count<br/>
     <string name="quickhelp_description_report">Statistics about your weight and BMI</string>
     <string name="quickhelp_description_settings">Change settings like the weight units</string>
     <string name="quickhelp_description_help">Show this help screen</string>
+    <string name="weight_settings_units_title">Weight Units</string>
+    <string name="weight_settings_units_description">Select the weight units to use such as pounds or kilograms</string>
+    <string name="weight_settings_target_weight_title">Target Weight</string>
+    <string name="weight_settings_target_weight_description">Enter the weight you would like to achieve. Use the +/- buttons to adjust or press the middle button to edit.</string>
 </resources>

@@ -414,6 +414,10 @@ public final class R {
         public static final int twitter=0x7f06000b;
         public static final int version=0x7f060026;
         public static final int website=0x7f060009;
+        public static final int weight_settings_target_weight_description=0x7f0600cc;
+        public static final int weight_settings_target_weight_title=0x7f0600cb;
+        public static final int weight_settings_units_description=0x7f0600ca;
+        public static final int weight_settings_units_title=0x7f0600c9;
         public static final int weight_unit_kilograms=0x7f0600ba;
         public static final int weight_unit_pounds=0x7f0600bb;
         public static final int weight_unit_stones=0x7f0600bc;
@@ -428,6 +432,11 @@ public final class R {
         public static final int ReportFieldValue=0x7f080009;
         public static final int ReportHeader=0x7f080005;
         public static final int ReportSubHeader=0x7f080006;
+        public static final int SettingDescription=0x7f08000b;
+        public static final int SettingNumberPicker=0x7f08000e;
+        public static final int SettingRadioButton=0x7f08000c;
+        public static final int SettingRadioGroup=0x7f08000d;
+        public static final int SettingTitle=0x7f08000a;
         public static final int SmallButton=0x7f080002;
     }
     public static final class xml {
