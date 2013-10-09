@@ -130,9 +130,25 @@ public class MainModel
 	{
 		return getPreferencesHelper().getBoolean(R.string.code_pref_show_targetline_key, true);
 	}
+	public void setShowTargetLine(boolean show)
+	{
+		getPreferencesHelper().setBoolean(R.string.code_pref_show_targetline_key, show);
+	}
 	public boolean getShowTrendLine()
 	{
 		return getPreferencesHelper().getBoolean(R.string.code_pref_show_trendline_key, true);
+	}
+	public void setShowTrendLine(boolean show)
+	{
+		getPreferencesHelper().setBoolean(R.string.code_pref_show_trendline_key, show);
+	}
+	public boolean getIsAutoBackupEnabled()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_auto_backup_key, true);
+	}
+	public void setIsAutoBackupEnabled(boolean flag)
+	{
+		getPreferencesHelper().setBoolean(R.string.code_pref_auto_backup_key, flag);
 	}
 	
 	public UserSettings getUserSettings()
