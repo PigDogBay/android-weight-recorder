@@ -283,6 +283,10 @@ public final class R {
         public static final int editreading_updated=0x7f06006c;
         public static final int email=0x7f060008;
         public static final int facebookPage=0x7f06000a;
+        public static final int height_settings_height_description=0x7f0600d0;
+        public static final int height_settings_height_title=0x7f0600cf;
+        public static final int height_settings_units_description=0x7f0600ce;
+        public static final int height_settings_units_title=0x7f0600cd;
         public static final int help_html=0x7f0600b1;
         public static final int import_dialog_message=0x7f0600b0;
         public static final int import_dialog_title=0x7f0600af;

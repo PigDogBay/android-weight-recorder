@@ -244,4 +244,8 @@ Number of Readings 					\t\t$Count<br/>
     <string name="weight_settings_units_description">Select the weight units to use such as pounds or kilograms</string>
     <string name="weight_settings_target_weight_title">Target Weight</string>
     <string name="weight_settings_target_weight_description">Enter the weight you would like to achieve. Use the +/- buttons to adjust or press the middle button to edit.</string>
+    <string name="height_settings_units_title">Height Units</string>
+    <string name="height_settings_units_description">Select the height units to use such as inches or metres</string>
+    <string name="height_settings_height_title">Your Height</string>
+    <string name="height_settings_height_description">Enter your height so that your Body Mass Index can be calculated. Use the +/- buttons to adjust or press the middle button to edit.</string>
 </resources>
