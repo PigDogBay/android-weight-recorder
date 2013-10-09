@@ -227,6 +227,8 @@ public final class R {
         public static final int addreading_add_btn=0x7f06006b;
         public static final int addreading_added=0x7f06006a;
         public static final int app_name=0x7f060025;
+        public static final int background_settings_description=0x7f0600d2;
+        public static final int background_settings_title=0x7f0600d1;
         public static final int backup_readings_error=0x7f060028;
         public static final int blogger=0x7f06000c;
         public static final int bmi_class_normal=0x7f060081;
