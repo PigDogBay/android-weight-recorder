@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-
-</LinearLayout>
+    android:fillViewport="true">
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+        <RadioButton
+            android:id="@+id/BackgroundSettingSkyBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_skyblue" />
+        <RadioButton
+            android:id="@+id/BackgroundSettingDarkPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_dark_pink" />
+        <RadioButton
+            android:id="@+id/BackgroundSettingLightPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_light_pink" />
+		<RadioButton
+            android:id="@+id/BackgroundSettingTurquoise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_turquoise" />
+        <RadioButton
+            android:id="@+id/BackgroundSettingYellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_yellow" />
+        <RadioButton
+            android:id="@+id/BackgroundSettingGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_grey" />
+        <RadioButton
+            android:id="@+id/BackgroundSettingWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color_white" />
+    </RadioGroup>
+</ScrollView>
