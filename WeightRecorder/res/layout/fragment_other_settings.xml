@@ -11,32 +11,31 @@
     android:orientation="vertical" >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_chart_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+        style="@style/SettingTitle"
+        android:text="@string/chart_settings_title"/>
+        <TextView
+            style="@style/SettingDescription"
+            android:text="@string/chart_settings_description" />
+    
     <CheckBox
+        style="@style/SettingCheckBox"
         android:id="@+id/OtherSettingsTrendLineChkBx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_chart_show_trendline_title" />
+        android:text="@string/chart_settings_trendline" />
     <CheckBox
+        style="@style/SettingCheckBox"
         android:id="@+id/OtherSettingsTargetLineChkBx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_chart_show_targetline_title" />
+        android:text="@string/chart_settings_targetline" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_other_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        style="@style/SettingTitle"
+        android:text="@string/other_settings_title"/>
+        <TextView
+            style="@style/SettingDescription"
+            android:text="@string/other_settings_description" />
     <CheckBox
+        style="@style/SettingCheckBox"
         android:id="@+id/OtherSettingsBackupChkBx"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_auto_backup_title" />
+        android:text="@string/other_settings_backups" />
     
 </LinearLayout>
 </ScrollView>

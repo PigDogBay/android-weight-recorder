@@ -242,6 +242,10 @@ public final class R {
         public static final int cancel=0x7f060042;
         public static final int chart_notenoughdata_message=0x7f06003e;
         public static final int chart_notenoughdata_title=0x7f06003d;
+        public static final int chart_settings_description=0x7f0600d4;
+        public static final int chart_settings_targetline=0x7f0600d6;
+        public static final int chart_settings_title=0x7f0600d3;
+        public static final int chart_settings_trendline=0x7f0600d5;
         public static final int chart_share_chooser_title=0x7f060041;
         public static final int chart_xaxis_title=0x7f06003f;
         public static final int chart_yaxis_title=0x7f060040;
@@ -332,6 +336,9 @@ public final class R {
         public static final int menu_report_export=0x7f06007e;
         public static final int menu_settings=0x7f060031;
         public static final int ok=0x7f060007;
+        public static final int other_settings_backups=0x7f0600d9;
+        public static final int other_settings_description=0x7f0600d8;
+        public static final int other_settings_title=0x7f0600d7;
         public static final int pref_auto_backup_summary=0x7f060063;
         public static final int pref_auto_backup_title=0x7f060062;
         public static final int pref_background_color_summary=0x7f06000f;
@@ -438,6 +445,7 @@ public final class R {
         public static final int ReportFieldValue=0x7f080009;
         public static final int ReportHeader=0x7f080005;
         public static final int ReportSubHeader=0x7f080006;
+        public static final int SettingCheckBox=0x7f08000f;
         public static final int SettingDescription=0x7f08000b;
         public static final int SettingNumberPicker=0x7f08000e;
         public static final int SettingRadioButton=0x7f08000c;
