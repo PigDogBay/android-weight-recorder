@@ -9,7 +9,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_chart_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <CheckBox
+        android:id="@+id/OtherSettingsTrendLineChkBx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_chart_show_trendline_title" />
+    <CheckBox
+        android:id="@+id/OtherSettingsTargetLineChkBx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_chart_show_targetline_title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_other_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <CheckBox
+        android:id="@+id/OtherSettingsBackupChkBx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_auto_backup_title" />
+    
 </LinearLayout>
 </ScrollView>
