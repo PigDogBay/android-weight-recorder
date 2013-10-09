@@ -109,7 +109,7 @@ public class SettingsActivity extends FragmentActivity implements OnSharedPrefer
                 case 1:
                     return new HeightSettingsFragment();
                 case 2:
-                    return new HelpActivity.QuickHelpFragment();
+                    return new OtherSettingsFragment();
             }
             return null;
         }
