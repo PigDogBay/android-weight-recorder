@@ -248,4 +248,6 @@ Number of Readings 					\t\t$Count<br/>
     <string name="height_settings_units_description">Select the height units to use such as inches or metres</string>
     <string name="height_settings_height_title">Your Height</string>
     <string name="height_settings_height_description">Enter your height so that your Body Mass Index can be calculated. Use the +/- buttons to adjust or press the middle button to edit.</string>
+    <string name="background_settings_title">Background Color</string>
+    <string name="background_settings_description">Select the background color to use.</string>
 </resources>
