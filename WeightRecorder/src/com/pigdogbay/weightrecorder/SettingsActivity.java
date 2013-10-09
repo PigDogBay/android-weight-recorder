@@ -109,6 +109,8 @@ public class SettingsActivity extends FragmentActivity implements OnSharedPrefer
                 case 1:
                     return new HeightSettingsFragment();
                 case 2:
+                    return new BackgroundSettingsFragment();
+                case 3:
                     return new OtherSettingsFragment();
             }
             return null;
@@ -116,7 +118,7 @@ public class SettingsActivity extends FragmentActivity implements OnSharedPrefer
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
@@ -127,6 +129,8 @@ public class SettingsActivity extends FragmentActivity implements OnSharedPrefer
                 case 1:
                     return "HEIGHT";
                 case 2:
+                    return "BACKGROUND";
+                case 3:
                     return "OTHER";
             }
             return null;
