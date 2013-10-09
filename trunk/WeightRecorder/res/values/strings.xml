@@ -250,4 +250,11 @@ Number of Readings 					\t\t$Count<br/>
     <string name="height_settings_height_description">Enter your height so that your Body Mass Index can be calculated. Use the +/- buttons to adjust or press the middle button to edit.</string>
     <string name="background_settings_title">Background Color</string>
     <string name="background_settings_description">Select the background color to use.</string>
+    <string name="chart_settings_title">Chart Settings</string>
+    <string name="chart_settings_description">Show the trend line or your weight goal line on the chart</string>
+    <string name="chart_settings_trendline">Show Trend Line</string>
+    <string name="chart_settings_targetline">Show Target Weight</string>
+    <string name="other_settings_title">General Settings</string>
+    <string name="other_settings_description">Allow automatic weekly backups of your data</string>
+    <string name="other_settings_backups">Automatic Backups</string>
 </resources>
