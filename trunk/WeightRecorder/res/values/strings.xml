@@ -38,33 +38,7 @@
     <string name="main_btn_shop">Shop</string>
     <string name="main_btn_help">Help</string>
     <string name="main_welcome_title">Welcome</string>
-    <string name="main_welcome_msg">
-        Start by pressing the settings buttons to enter your details.\n\nGood luck with your diet!\n
-    </string>
-    <string name="pref_measurement_title">Measurement Units</string>
-    <string name="pref_measurement_summary">The weight and length units used within the app</string>
-    <string name="pref_weight_units_title">Weight Units</string>
-    <string name="pref_weight_units_summary">Select the weight units to use such as pounds or kilograms</string>
-    <string name="pref_length_units_title">Length Units</string>
-    <string name="pref_length_units_summary">Select the length units to use for your height</string>
-    <string name="pref_bmi_title">About You</string>
-    <string name="pref_bmi_summary">Used to calculate BMI and your weight goal</string>
-    <string name="pref_bmi_dialog_height_title">Enter Your Height</string>
-    <string name="pref_bmi_height_title">Your Height</string>
-    <string name="pref_bmi_height_summary">Use the above settings to select length units first.</string>
-    <string name="pref_bmi_dialog_target_weight_title">Enter Your Target Weight</string>
-    <string name="pref_bmi_target_weight_title">Target Weight</string>
-    <string name="pref_bmi_target_weight_summary">Use the above settings to select weight units first.</string>
-    <string name="pref_chart_title">Chart Settings</string>
-    <string name="pref_chart_summary">Display settings for the chart screen</string>
-    <string name="pref_chart_show_trendline_title">Show Trend Line</string>
-    <string name="pref_chart_show_trendline_summary">Display the best line of fit to see your weight trend</string>
-    <string name="pref_chart_show_targetline_title">Show Target Weight</string>
-    <string name="pref_chart_show_targetline_summary">Display your target weight as a line on the chart</string>
-    <string name="pref_other_title">General Settings</string>
-    <string name="pref_other_summary">Various application settings</string>
-    <string name="pref_auto_backup_title">Automatic Backups</string>
-    <string name="pref_auto_backup_summary">Let the app back up your readings every week</string>
+    <string name="main_welcome_msg">Start by pressing the settings buttons to enter your details.\n\nGood luck with your diet!\n</string>
     <string name="edit_weight_hint">Enter weight</string>
     <string name="edit_comment_hint">Enter comment</string>
     <string name="edit_weight_error">Please enter weight</string>
