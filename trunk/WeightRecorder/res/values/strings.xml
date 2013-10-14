@@ -22,6 +22,8 @@
     <string name="title_activity_about">About Weight Tracker</string>
     <string name="title_activity_help">Weight Tracker Help</string>
     <string name="title_activity_shop">Weight Tracker Store</string>
+    <string name="title_activity_settings">Weight Tracker Settings</string>
+    <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_debug">Weight Tracker Debugging</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
@@ -56,6 +58,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_main_help">Help</string>
     <string name="menu_main_about">About</string>
+    <string name="menu_main_welcome">Show Welcome Screen</string>
     <string name="menu_chart_all">Fit All</string>
     <string name="menu_chart_share">Share</string>
     <string name="menu_chart_30">30 Days</string>

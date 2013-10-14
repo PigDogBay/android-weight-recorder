@@ -141,6 +141,10 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			Intent intent = new Intent(this, AboutActivity.class);
 			startActivity(intent);
 			break;
+		case (R.id.menu_main_welcome):
+			intent = new Intent(this, WelcomeWizardActivity.class);
+			startActivity(intent);
+			break;
 		default:
 			return false;
 		}
