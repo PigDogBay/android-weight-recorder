@@ -51,6 +51,10 @@ public class ReadingListActivity extends ListActivity implements IAdView, IBackg
 
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,_MainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
+		if (_ReadingsArrayAdapter.getCount()==0)
+		{
+			ActivityUtils.showInfoDialog(this,R.string.readings_no_readings_dialog_title,R.string.readings_no_readings_dialog_msg);
+		}
 
     }
 	@Override
