@@ -1,6 +1,6 @@
 <resources>
     <string translatable="false" name="app_name">Weight Tracker</string>
-    <string translatable="false" name="version">1.1002</string>
+    <string translatable="false" name="version">1.11.00</string>
     <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
