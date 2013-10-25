@@ -1,6 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
 import java.util.Date;
+import java.util.Locale;
 
 import com.pigdogbay.androidutils.iab.IabHelper;
 import com.pigdogbay.androidutils.iab.IabResult;
@@ -11,6 +12,7 @@ import com.pigdogbay.androidutils.mvp.IBackgroundColorModel;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -111,6 +113,26 @@ public class DebugActivity extends Activity implements IabHelper.OnIabPurchaseFi
 			@Override
 			public void onClick(View v) {
 				_AppPurchases.broadcastPurchase(AppPurchases.SKU_COLOR_PACK);
+			}
+		});
+		((Button) findViewById(R.id.dbgBtnShowLocale)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Locale l = Locale.getDefault();
+				log(l.getDisplayName());
+			}
+		});
+		((Button) findViewById(R.id.dbgBtnDefaultSettings)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Locale l = Locale.getDefault();
+				SettingsUtils.setDefaultSettings(l, _MainModel);
+			}
+		});
+		((Button) findViewById(R.id.dbgBtnResetFirstTime)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				_MainModel.setIsFirstTime(false);
 			}
 		});
 		_ChBxColorPack.setOnCheckedChangeListener(new OnCheckedChangeListener() {
