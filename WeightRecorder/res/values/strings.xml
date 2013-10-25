@@ -79,6 +79,8 @@
     <string name="readings_no_readings_export">No readings to export</string>
     <string name="readings_export_error">Unable to export readings</string>
     <string name="readings_share_chooser_title">Share Readings</string>
+    <string name="readings_no_readings_dialog_title">No Readings</string>
+    <string name="readings_no_readings_dialog_msg">There are no readings to show. If you would like to import existing readings press the IMPORT button on the menu.</string>
     <string name="report_notenoughdata_title">Not Enough Readings</string>
     <string name="report_notenoughdata_message">You have no readings the report will show example data.</string>
     <string name="report_share_chooser_title">Share Report</string>
