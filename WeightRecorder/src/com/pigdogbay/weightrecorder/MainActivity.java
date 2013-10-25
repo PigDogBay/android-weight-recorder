@@ -162,7 +162,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		if (!mainModel.getIsFirstTime()) {
 			mainModel.setIsFirstTime(true);
 			SettingsUtils.setDefaultSettings(Locale.getDefault(), new MainModel(this));
-			showWelcomeScreen();
+			Intent intent = new Intent(this, WelcomeWizardActivity.class);
+			startActivity(intent);
 		}
 	}
 
@@ -174,24 +175,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			autoBackup.setBackupDateToNow();
 			ActivitiesHelper.backupReadings(this);
 		}
-	}
-
-	private void showWelcomeScreen() {
-		String whatsNewTitle = getResources().getString(
-				R.string.main_welcome_title);
-		String whatsNewText = getResources().getString(
-				R.string.main_welcome_msg);
-		new AlertDialog.Builder(this)
-				.setIcon(android.R.drawable.ic_dialog_info)
-				.setTitle(whatsNewTitle)
-				.setMessage(whatsNewText)
-				.setPositiveButton(R.string.ok,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-							}
-						}).show();
 	}
 	
 	@Override
