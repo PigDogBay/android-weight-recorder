@@ -20,7 +20,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="You are now ready to begin, press the HOME button on the menu to exit."
+        android:text="You are now ready to begin tracking your weight. Press the HOME button on the menu to exit."
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:layout_width="wrap_content"

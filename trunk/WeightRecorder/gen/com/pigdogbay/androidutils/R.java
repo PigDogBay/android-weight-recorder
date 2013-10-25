@@ -18,7 +18,7 @@ public final class R {
 		public static final int bgskyblue = 0x7f020006;
 		public static final int bgsunshine = 0x7f020007;
 		public static final int bgturquoise = 0x7f020008;
-		public static final int white = 0x7f02001b;
+		public static final int white = 0x7f02001c;
 	}
 	public static final class string {
 		public static final int blogger = 0x7f05000c;
