@@ -5,10 +5,40 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to weight recorder"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:text="Welcome!"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Enter your daily weight measurements so that you can track your diet."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Before starting, please enter your height and weight details"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="16dp"
+        android:textColor="#800"
+        android:text="&lt;&lt; Slide &gt;&gt;"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
 </LinearLayout>

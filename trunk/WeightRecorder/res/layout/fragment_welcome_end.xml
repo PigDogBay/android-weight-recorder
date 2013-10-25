@@ -5,10 +5,31 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thanks for all the fish"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:text="That's It!"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="You are now ready to begin, press the HOME button on the menu to exit."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Tip: Press the help button on the main menu screen for a Quick Help Guide."
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>
