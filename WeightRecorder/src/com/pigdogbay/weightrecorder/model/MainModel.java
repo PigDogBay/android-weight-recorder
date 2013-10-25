@@ -150,6 +150,14 @@ public class MainModel
 	{
 		getPreferencesHelper().setBoolean(R.string.code_pref_auto_backup_key, flag);
 	}
+	public boolean getIsFirstTime()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_welcome_shown_key, false);
+	}
+	public void setIsFirstTime(boolean flag)
+	{
+		getPreferencesHelper().setBoolean(R.string.code_pref_welcome_shown_key, flag);
+	}
 	
 	public UserSettings getUserSettings()
 	{

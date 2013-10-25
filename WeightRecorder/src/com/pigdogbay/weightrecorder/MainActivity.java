@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.Locale;
+
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
@@ -10,6 +12,7 @@ import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,7 +40,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		PreferencesHelper prefHelper = new PreferencesHelper(this);
 		wireUpButtons();
 		PreferenceManager
 				.getDefaultSharedPreferences(this)
@@ -47,17 +49,16 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		try{_AdPresenter.adCheck();}catch(Exception e){}
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
-		mainModel.close();
 		
-
 		try {
-			checkFirstTime(prefHelper);
-			checkIfBackupDue(prefHelper);
+			checkFirstTime(mainModel);
+			checkIfBackupDue(mainModel.getPreferencesHelper());
 			checkRate();
 			new AppPurchases(this).QueryAsync();
 		}
 		catch (Exception e) {
 		}
+		mainModel.close();
 	}
 
 	private void checkRate() {
@@ -157,12 +158,11 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		return true;
 	}
 
-	private void checkFirstTime(PreferencesHelper prefHelper) {
-		boolean welcomeScreenShown = prefHelper.getBoolean(
-				R.string.code_pref_welcome_shown_key, false);
-		if (!welcomeScreenShown) {
+	private void checkFirstTime(MainModel mainModel) {
+		if (!mainModel.getIsFirstTime()) {
+			mainModel.setIsFirstTime(true);
+			SettingsUtils.setDefaultSettings(Locale.getDefault(), new MainModel(this));
 			showWelcomeScreen();
-			prefHelper.setBoolean(R.string.code_pref_welcome_shown_key, true);
 		}
 	}
 
