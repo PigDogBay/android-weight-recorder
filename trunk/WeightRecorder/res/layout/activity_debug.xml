@@ -98,7 +98,13 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Color" />
-       	</LinearLayout>     
+            <Button
+                android:id="@+id/dbgBtnShowShop"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Show Shop" />
+            	</LinearLayout>     
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

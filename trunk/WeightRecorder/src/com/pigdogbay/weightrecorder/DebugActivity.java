@@ -16,6 +16,7 @@ import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -133,6 +134,13 @@ public class DebugActivity extends Activity implements IabHelper.OnIabPurchaseFi
 			@Override
 			public void onClick(View v) {
 				_MainModel.setIsFirstTime(false);
+			}
+		});
+		((Button) findViewById(R.id.dbgBtnShowShop)).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(DebugActivity.this, ShopActivity.class);
+				startActivity(intent);
 			}
 		});
 		_ChBxColorPack.setOnCheckedChangeListener(new OnCheckedChangeListener() {
