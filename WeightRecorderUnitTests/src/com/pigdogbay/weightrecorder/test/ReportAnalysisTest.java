@@ -79,7 +79,7 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long actual = target.getEstimatedDateUsingLastWeek();
 		long diff = Math.abs(expected-actual);
 		//check within one hour
-		assertTrue(diff<60L*60L*1000L);
+		assertTrue(diff<2L*60L*60L*1000L);
 	}
 
 	public void testGetEstimatedDateUsingLastMonth() {
@@ -90,7 +90,7 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long actual = target.getEstimatedDateUsingLastMonth();
 		long diff = Math.abs(expected-actual);
 		//check within one hour
-		assertTrue(diff<60L*60L*1000L);
+		assertTrue(diff<2L*60L*60L*1000L);
 	}
 
 	public void testGetEstimatedDateUsingAllTime() {
@@ -101,7 +101,7 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		long actual = target.getEstimatedDateUsingAllTime();
 		long diff = Math.abs(expected-actual);
 		//check within one hour
-		assertTrue(diff<60L*60L*1000L);
+		assertTrue(diff<2L*60L*60L*1000L);
 	}
 
 }
