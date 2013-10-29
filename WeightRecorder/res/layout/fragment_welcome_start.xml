@@ -18,7 +18,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
-        android:text="Welcome!"
+        android:text="@string/fragment_welcome_start_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Before starting, please enter your height and weight details"
+        android:text="@string/fragment_welcome_start_msg1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginTop="16dp"
         android:textColor="#800"
-        android:text="&lt;&lt; Slide &gt;&gt;"
+        android:text="@string/fragment_welcome_start_msg2"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
 </LinearLayout>

@@ -1,6 +1,6 @@
 <resources>
     <string translatable="false" name="app_name">Weight Tracker</string>
-    <string translatable="false" name="version">1.11.00</string>
+    <string translatable="false" name="version">1.11.01</string>
     <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
@@ -234,4 +234,10 @@ Number of Readings 					\t\t$Count<br/>
     <string name="other_settings_title">General Settings</string>
     <string name="other_settings_description">Allow automatic weekly backups of your data</string>
     <string name="other_settings_backups">Automatic Backups</string>
+    <string name="fragment_welcome_end_title">That\'s It!</string>
+    <string name="fragment_welcome_end_msg1">You are now ready to begin tracking your weight. Press the HOME button on the menu to exit.</string>
+    <string name="fragment_welcome_end_msg2">Tip: Press the help button on the main menu screen for a Quick Help Guide.</string>
+    <string name="fragment_welcome_start_title">Welcome!</string>
+    <string name="fragment_welcome_start_msg1">Before starting, please enter your height and weight details</string>
+    <string name="fragment_welcome_start_msg2">&lt;&lt; Slide &gt;&gt;</string>
 </resources>
