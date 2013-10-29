@@ -9,6 +9,7 @@ import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
 import com.pigdogbay.weightrecorder.model.UserSettings;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 public class ReportFormattingTest extends AndroidTestCase {
 
@@ -97,15 +98,36 @@ public class ReportFormattingTest extends AndroidTestCase {
 		Locale.setDefault(Locale.UK);
 		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
 		Calendar cal = new GregorianCalendar(2013,Calendar.JUNE,14,16,01);
-		assertEquals("14 June 2013",target.getDateString(cal.getTimeInMillis()));
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+		{
+			assertEquals("June 14, 2013",target.getDateString(cal.getTimeInMillis()));
+		}
+		else{
+			assertEquals("14 June 2013",target.getDateString(cal.getTimeInMillis()));
+		}
+		
 		//DateUtils suffers from Year 2038 problem
 		cal = new GregorianCalendar(3000,Calendar.JUNE,14,16,01);
-		assertEquals("14 June 3000",target.getDateString(cal.getTimeInMillis()));
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+		{
+			assertEquals("June 14, 3000",target.getDateString(cal.getTimeInMillis()));
+		}
+		else{
+			assertEquals("14 June 3000",target.getDateString(cal.getTimeInMillis()));
+		}
 	}
 	public void testGetDateString2() {
 		Locale.setDefault(Locale.UK);
 		ReportFormatting target = new ReportFormatting(this.mContext,createMetricSettings());
-		assertEquals("1 January 1970",target.getDateString(0));
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+		{
+			assertEquals("January 1, 1970",target.getDateString(0));
+		}
+		else{
+			assertEquals("1 January 1970",target.getDateString(0));
+		}
 	}
 
 
