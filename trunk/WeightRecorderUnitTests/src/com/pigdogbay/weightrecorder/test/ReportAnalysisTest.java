@@ -1,10 +1,13 @@
 package com.pigdogbay.weightrecorder.test;
 
 import java.util.Calendar;
+
 import com.pigdogbay.weightrecorder.model.BMICalculator;
 import com.pigdogbay.weightrecorder.model.Query;
 import com.pigdogbay.weightrecorder.model.ReportAnalysis;
+
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 public class ReportAnalysisTest extends AndroidTestCase {
 	
@@ -77,9 +80,10 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		cal.add(Calendar.DAY_OF_MONTH,1500);
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingLastWeek();
-		long diff = Math.abs(expected-actual);
-		//check within one hour
-		assertTrue(diff<2L*60L*60L*1000L);
+		//Convert to minutes
+		expected /=(1000L*60L);
+		actual /=(1000L*60L);
+		assertEquals(expected, actual);
 	}
 
 	public void testGetEstimatedDateUsingLastMonth() {
@@ -88,9 +92,10 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		cal.add(Calendar.DAY_OF_MONTH,1500);
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingLastMonth();
-		long diff = Math.abs(expected-actual);
-		//check within one hour
-		assertTrue(diff<2L*60L*60L*1000L);
+		//Convert to minutes
+		expected /=(1000L*60L);
+		actual /=(1000L*60L);
+		assertEquals(expected, actual);
 	}
 
 	public void testGetEstimatedDateUsingAllTime() {
@@ -99,9 +104,10 @@ public class ReportAnalysisTest extends AndroidTestCase {
 		cal.add(Calendar.DAY_OF_MONTH,1500);
 		long expected = cal.getTimeInMillis();
 		long actual = target.getEstimatedDateUsingAllTime();
-		long diff = Math.abs(expected-actual);
-		//check within one hour
-		assertTrue(diff<2L*60L*60L*1000L);
+		//Convert to minutes
+		expected /=(1000L*60L);
+		actual /=(1000L*60L);
+		assertEquals(expected, actual);
 	}
 
 }
