@@ -41,13 +41,13 @@ public class Mocks {
 	public static List<Reading> createReadings(double startWeight,int number, double weightStep)
 	{
 		List<Reading> readings = new ArrayList<Reading>();
-		double weight = 100;
 		Calendar cal = Calendar.getInstance();
-		for (int i=0;i<number;i++){
-			Reading r = new Reading(weight,cal.getTime(),"");
+		long timeInMillis = cal.getTimeInMillis();
+		for (;number>0;number--){
+			Reading r = new Reading(startWeight,new Date(timeInMillis),"");
 			readings.add(r);
-			weight = weight -weightStep;
-			cal.add(Calendar.DAY_OF_MONTH, -1);
+			startWeight = startWeight -weightStep;
+			timeInMillis -= 24L*60L*60L*1000L;
 		}
 		return readings;
 	}
