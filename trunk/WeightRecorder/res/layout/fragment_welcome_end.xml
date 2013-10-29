@@ -10,7 +10,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="14dp"
-        android:text="That's It!"
+        android:text="@string/fragment_welcome_end_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="You are now ready to begin tracking your weight. Press the HOME button on the menu to exit."
+        android:text="@string/fragment_welcome_end_msg1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:layout_width="wrap_content"
@@ -30,6 +30,6 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Tip: Press the help button on the main menu screen for a Quick Help Guide."
+        android:text="@string/fragment_welcome_end_msg2"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>

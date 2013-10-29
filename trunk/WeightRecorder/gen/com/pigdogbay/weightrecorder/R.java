@@ -296,6 +296,12 @@ public final class R {
         public static final int editreading_updated=0x7f050054;
         public static final int email=0x7f050008;
         public static final int facebookPage=0x7f05000a;
+        public static final int fragment_welcome_end_msg1=0x7f0500c6;
+        public static final int fragment_welcome_end_msg2=0x7f0500c7;
+        public static final int fragment_welcome_end_title=0x7f0500c5;
+        public static final int fragment_welcome_start_msg1=0x7f0500c9;
+        public static final int fragment_welcome_start_msg2=0x7f0500ca;
+        public static final int fragment_welcome_start_title=0x7f0500c8;
         public static final int height_settings_height_description=0x7f0500bb;
         public static final int height_settings_height_title=0x7f0500ba;
         public static final int height_settings_units_description=0x7f0500b9;
