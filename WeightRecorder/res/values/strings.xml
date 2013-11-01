@@ -1,6 +1,6 @@
 <resources>
     <string translatable="false" name="app_name">Weight Tracker</string>
-    <string translatable="false" name="version">1.11.01</string>
+    <string translatable="false" name="version">1.11.02</string>
     <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
     <string name="about_btn_rate">Rate this app</string>
@@ -132,7 +132,7 @@
         Slide your finger over the settings tabs to select them:
         <br/><br/><i>Weight</i><br/><br/>
         Set your weight units such as pounds or kilograms.
-        <br/>Enter the weight you would like to be, your target weight is used by the chart and report.
+        <br/>Enter the weight you would like to be, this is used by the chart and report.
         <br/><br/><i>Height</i><br/><br/>
         Your height is needed for the  Body Mass Index calculations which are used in your Report. 
         <br/>First set your length units and then enter your height.
@@ -149,12 +149,18 @@
         <br/><br/>Share your readings with other apps such as Google Drive and Evernote by pressing the Share menu button.
         <br/><br/>Import readings into the app by pressing the Import menu button.
         <br/><br/><b>Chart</b><br/><br/>
-        The chart displays weight versus time. You can drag and zoom the chart using touch.
-        <br/><br/>Your weight goal is shown as a horizontal line and your weight trend is shown as a straight line going through your weight readings. See if the two lines meet!<br/>
-        <br/>Share the chart with other apps such as Facebook and Twitter by pressing the Share menu button.
+        The chart displays weight changes over time. You can drag and zoom the chart using touch or by using the chart buttons.
+        <br/><br/>Your weight goal is shown as a light blue horizontal line and your weight trend is shown as a red straight line going through your weight readings. See if the two lines meet, this is your target weight prediction.
+		<br/><br/>Press the menu for a list of options to change the fit. You can view the last 30, 60, 90 days and 1 year from the current date, press fit all to position all your weight readings onto the chart.         
+        <br/><br/>Share the chart with other apps such as Facebook and Twitter by pressing the Share menu button.
         <br/><br/><b>Report</b><br/><br/>
-        Displays your latest BMI, weight statistics and trends. 
-        <br/><br/>Share the report with other apps such as Gmail and Yahoo! Mail by pressing the Share menu button.
+        Displays your latest BMI, weight statistics and trends. Share the report with other apps such as Gmail by pressing the Share menu button. The report is split into 3 sections:
+        <br/><br/><i>Body Mass Index</i><br/><br/>
+        Shows your latest BMI measurement based on your the last weight reading and your height. The goal BMI is based upon your target weight. Ideal weight is based upon your height, see Settings for target weight and height settings.
+        <br/><br/><i>Trends</i><br/><br/>
+        Shows how much weight you are losing or gaining based on your weight entries for the last week, month and overall. The report will calculate when you will reach your target weight (Goal Date) based on your weight loss trends.
+        <br/><br/><i>Stats</i><br/><br/>
+        Shows the minimum, maximum and average weight based on all your readings. Average BMI is based on your average weight and height setting.
         <br/><br/><b>Advanced Topics</b><br/><br/>
         You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
 		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Tracker.
