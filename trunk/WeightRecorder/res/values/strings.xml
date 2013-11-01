@@ -129,23 +129,32 @@
 		<b>Introduction</b><br/><br/>
         Enter your weight each day, use the chart and report screens to see how your diet is going.
         <br/><br/><b>Settings</b><br/><br/>
-        Set your weight units such as pounds, kilograms and stones, then set yourself a goal by entering your Target Weight.
-        <br/><br/>For Body Mass Index calculations, first set your length units and then enter your height.
+        Slide your finger over the settings tabs to select them:
+        <br/><br/><i>Weight</i><br/><br/>
+        Set your weight units such as pounds or kilograms.
+        <br/>Enter the weight you would like to be, your target weight is used by the chart and report.
+        <br/><br/><i>Height</i><br/><br/>
+        Your height is needed for the  Body Mass Index calculations which are used in your Report. 
+        <br/>First set your length units and then enter your height.
+        <br/><br/><i>Background Color</i><br/><br/>
+        Personalize the app by choosing one of the exciting background.
+        <br/><br/><i>Other</i><br/><br/>
+        The app will automatically back up your readings every week, you can turn this feature off here.
+        <br/>The chart will display a trend line through your data and your target weight, you can turn these off here.  
         <br/><br/><b>New</b><br/><br/>
         Enter new daily weight readings here, the date will already be set and you can also add comments. Past weight measurements can also be entered.
         <br/><br/>To enter your weight press the button displaying the weight. You can also use the -/+ buttons to adjust the weight.
         <br/><br/><b>Edit</b><br/><br/>
-        Your readings are all displayed in a list, most recent first. Press a reading to edit or delete it.
-        <br/><br/>Share your readings with other apps such as Google Drive and Evernote, press the Share menu button.
+        Your readings are all displayed in a list with the most recent first. Press a reading to edit or delete it.
+        <br/><br/>Share your readings with other apps such as Google Drive and Evernote by pressing the Share menu button.
         <br/><br/>Import readings into the app by pressing the Import menu button.
         <br/><br/><b>Chart</b><br/><br/>
         The chart displays weight versus time. You can drag and zoom the chart using touch.
         <br/><br/>Your weight goal is shown as a horizontal line and your weight trend is shown as a straight line going through your weight readings. See if the two lines meet!<br/>
-        <br/>Share the chart with other apps such as Facebook and Twitter, press the Share menu button.
+        <br/>Share the chart with other apps such as Facebook and Twitter by pressing the Share menu button.
         <br/><br/><b>Report</b><br/><br/>
         Displays your latest BMI, weight statistics and trends. 
-        <br/><br/>Share the report with other apps such as Gmail and Yahoo! Mail, press the Share menu button.
-        <br/><br/>All purchases go through Google Play and are securely stored on Google Play servers, Google will securely process your payment details. 
+        <br/><br/>Share the report with other apps such as Gmail and Yahoo! Mail by pressing the Share menu button.
         <br/><br/><b>Advanced Topics</b><br/><br/>
         You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
 		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Tracker.
