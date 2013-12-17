@@ -5,10 +5,10 @@ import com.pigdogbay.androidutils.utils.ActivityUtils;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -19,18 +19,28 @@ public class AboutActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
-		RegisterIcon(R.id.facebookImg, R.string.facebookPage);
-		RegisterIcon(R.id.twitterImg, R.string.twitter);
-		RegisterIcon(R.id.bloggerImg, R.string.blogger);
+
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int width = displayMetrics.widthPixels/2;
 		
-		((Button) findViewById(R.id.AboutBtnRate)).setOnClickListener(new OnClickListener()
-		{
+        Button btn = (Button) findViewById(R.id.aboutBtnRate);
+        btn.setMinimumWidth(width);
+        btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v)
 			{
-				ShowWebPage(getString(R.string.market_weightrecorder));
+				showWebPage(R.string.market_weightrecorder);
 			}
 		});
-		((Button) findViewById(R.id.AboutBtnLegal)).setOnClickListener(new OnClickListener()
+        btn = (Button) findViewById(R.id.aboutBtnFacebook);
+        btn.setMinimumWidth(width);
+        btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showWebPage(R.string.facebookPage);
+			}
+		});
+		((Button) findViewById(R.id.aboutBtnLegal)).setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View v)
 			{
@@ -38,33 +48,14 @@ public class AboutActivity extends Activity
 			}
 		});
 		
-		ImageView img = (ImageView) findViewById(R.id.mailImg);
-		img.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				ActivityUtils.SendEmail(AboutActivity.this, new String[]{getString(R.string.email)}, AboutActivity.this.getString(R.string.about_email_subject), AboutActivity.this.getString(R.string.about_email_content));
-			}
-		});
 		
 	}
-	private void RegisterIcon(int iconID, final int stringID)
-	{
-		ImageView img = (ImageView) findViewById(iconID);
-		img.setOnClickListener(new View.OnClickListener()
-		{
-			public void onClick(View v)
-			{
-				ShowWebPage(getString(stringID));
-			}
-		});
-	}
 
-	private void ShowWebPage(String url)
+	private void showWebPage(int urlId)
 	{
 		try
 		{
-			ActivityUtils.ShowWebPage(this, url);
+			ActivityUtils.ShowWebPage(this, getString(urlId));
 		}
 		catch (ActivityNotFoundException e)
 		{ 

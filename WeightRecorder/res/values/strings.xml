@@ -3,14 +3,16 @@
     <string translatable="false" name="version">1.12.01</string>
     <string translatable="false" name="market_weightrecorder">market://details?id=com.pigdogbay.weightrecorder</string>
     <string name="backup_readings_error">Backup Error</string>
-    <string name="about_btn_rate">Rate this app</string>
-    <string name="about_version">Version:</string>
-    <string name="about_email">Email:</string>
-    <string name="about_web">Web:</string>
-    <string name="about_email_subject">Weight Tracker Feedback</string>
-    <string name="about_email_content">Hi Pig Dog Bay,</string>
-    <string name="about_no_market_app">Unable to find market app</string>
-    <string name="about_button_legal">Legal</string>
+    <string name="about_version">Version 1.12.1</string>
+    <string name="about_copyright">\u00A92014 Pig Dog Bay</string>
+    <string name="about_web">www.pigdogbay.com</string>
+    <string name="about_header_info">INFO</string>
+    <string name="about_header_feedback">FEEDBACK</string>
+    <string name="about_body_feedback">Help to support the app by rating this app and liking my Facebook page, your feedback is most welcome.</string>
+    <string name="about_button_rate">RATE THIS APP</string>
+    <string name="about_button_facebook">GO TO FACEBOOK</string>
+    <string name="about_button_legal">Legal Notices</string>
+    <string name="about_no_market_app">Unable to find market app</string>    
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Weight Tracker</string>
     <string name="title_activity_chart">Weight Tracker Chart</string>
