@@ -12,13 +12,13 @@ public final class R {
 		public static final int background_colours_values = 0x7f040001;
 	}
 	public static final class drawable {
-		public static final int bggrey = 0x7f020004;
-		public static final int bglightpink = 0x7f020005;
-		public static final int bgpink = 0x7f020006;
-		public static final int bgskyblue = 0x7f020007;
-		public static final int bgsunshine = 0x7f020008;
-		public static final int bgturquoise = 0x7f020009;
-		public static final int white = 0x7f02001d;
+		public static final int bggrey = 0x7f020001;
+		public static final int bglightpink = 0x7f020002;
+		public static final int bgpink = 0x7f020003;
+		public static final int bgskyblue = 0x7f020004;
+		public static final int bgsunshine = 0x7f020005;
+		public static final int bgturquoise = 0x7f020006;
+		public static final int white = 0x7f020015;
 	}
 	public static final class string {
 		public static final int blogger = 0x7f05000c;
