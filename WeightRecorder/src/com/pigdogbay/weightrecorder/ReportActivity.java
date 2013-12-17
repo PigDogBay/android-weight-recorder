@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
-import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.DummyData;
@@ -26,7 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class ReportActivity extends Activity implements IAdView, IBackgroundColorView{
+public class ReportActivity extends Activity implements IBackgroundColorView{
 	private static final String TEXT_FIELD_PREFIX = "ReportTextView";
 	private static final int MINIMUM_READINGS = 2;
 	private ReportText _ReportText;
@@ -50,8 +49,6 @@ public class ReportActivity extends Activity implements IAdView, IBackgroundColo
 			Log.v(MainActivity.TAG,
 					"Unable to populate views: " + e.getMessage());
 		}
-		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
-		try{_AdPresenter.adCheck();}catch(Exception e){}
 
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
@@ -122,15 +119,4 @@ public class ReportActivity extends Activity implements IAdView, IBackgroundColo
 	public void showPurchaseRequiredWarning() {
 		//Do nothing
 	}	
-	
-	@Override
-	public void removeAd() {
-		ActivitiesHelper.removeAds(this);
-	}
-
-	@Override
-	public void showAd() {
-		ActivitiesHelper.loadAd(this);
-	}
-	
 }

@@ -3,9 +3,7 @@ package com.pigdogbay.weightrecorder;
 import java.util.Locale;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
-import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
-import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
@@ -26,11 +24,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements OnSharedPreferenceChangeListener, IAdView, IBackgroundColorView{
+public class MainActivity extends Activity implements OnSharedPreferenceChangeListener, IBackgroundColorView{
 
 	public static final String TAG = "WeightRecorder";
 
-	AdPresenter _AdPresenter;
 	BackgroundColorPresenter _BackgroundColorPresenter;
 	
 	
@@ -43,8 +40,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 				.getDefaultSharedPreferences(this)
 				.registerOnSharedPreferenceChangeListener(this);
 		MainModel mainModel = new MainModel(this);
-		_AdPresenter = new AdPresenter(this, mainModel.createAdModel());
-		try{_AdPresenter.adCheck();}catch(Exception e){}
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
 		
@@ -186,24 +181,8 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		if (key.equals(getString(R.string.code_pref_background_colour))){
 			_BackgroundColorPresenter.updateBackground();
 		}
-		else if (key.equals(getString(R.string.code_pref_unlock_color_pack_key))){
-			_BackgroundColorPresenter.updateBackground();
-		}
-		else if (key.equals(getString(R.string.code_pref_disable_ads_key))){
-			_AdPresenter.adCheck();
-		}
-		
 	}
 	
-	@Override
-	public void removeAd() {
-		ActivitiesHelper.removeAds(this);
-	}
-
-	@Override
-	public void showAd() {
-		ActivitiesHelper.loadAd(this);
-	}
 	@Override
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);

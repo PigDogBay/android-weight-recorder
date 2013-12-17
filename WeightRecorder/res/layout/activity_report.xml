@@ -213,14 +213,5 @@
             android:text="136"
             />
     </LinearLayout>
-    <com.google.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="a150ec1ad9123c4"
-        ads:loadAdOnCreate="false"
-        />
 </LinearLayout>
 </ScrollView>
