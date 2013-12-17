@@ -22,7 +22,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ReadingListActivity extends ListActivity implements IAdView, IBackgroundColorView
+public class ReadingListActivity extends ListActivity implements IBackgroundColorView
 {
 	//Constants for Activity Result requests 
 	protected static final int REQUEST_EDIT = 1;
@@ -45,9 +45,6 @@ public class ReadingListActivity extends ListActivity implements IAdView, IBackg
         setListAdapter(_ReadingsArrayAdapter);
         _BroadcastReceiver = new ImportBroadcastReceiver();
 		LocalBroadcastManager.getInstance(this).registerReceiver(_BroadcastReceiver, new IntentFilter(ImportActivity.NEW_IMPORTED_READINGS));
-
-		_AdPresenter = new AdPresenter(this,_MainModel.createAdModel());
-		try{_AdPresenter.adCheck();}catch(Exception e){}
 
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,_MainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
@@ -178,14 +175,4 @@ public class ReadingListActivity extends ListActivity implements IAdView, IBackg
 	public void showPurchaseRequiredWarning() {
 		//Do nothing
 	}	
-	@Override
-	public void removeAd() {
-		ActivitiesHelper.removeAds(this);
-	}
-
-	@Override
-	public void showAd() {
-		ActivitiesHelper.loadAd(this);
-	}
-	
 }

@@ -169,25 +169,4 @@ public class ActivitiesHelper {
 
 	}
 	
-	public static void removeAds(Activity activity)
-	{
-		View ad = (View) activity.findViewById(R.id.adView);
-		if (ad!=null)
-		{
-			ad.setEnabled(false);
-			ad.setVisibility(View.GONE);
-		}
-	}
-	public static void loadAd(Activity activity)
-	{
-		AdView ad = (AdView) activity.findViewById(R.id.adView);
-		if (ad!=null)
-		{
-			AdRequest adRequest = new AdRequest();
-			adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
-			adRequest.addTestDevice(activity.getString(R.string.code_test_device_1_id));
-			adRequest.addTestDevice(activity.getString(R.string.code_test_device_2_id));
-			ad.loadAd(adRequest);
-		}
-	}
 }

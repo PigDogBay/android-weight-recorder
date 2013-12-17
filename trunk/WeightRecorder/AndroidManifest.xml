@@ -4,8 +4,6 @@
     android:versionName="1.12.01" 
     android:installLocation="auto">
 
-	<uses-permission android:name="android.permission.INTERNET"/>
-  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-sdk
         android:minSdkVersion="8"
@@ -83,8 +81,5 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".WelcomeWizardActivity"
             android:label="@string/title_activity_welcome"/>
-		<activity android:name="com.google.ads.AdActivity"
-		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
-                  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>   
     </application>
 </manifest>

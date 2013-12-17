@@ -7,17 +7,6 @@
     
      <ListView android:id="@android:id/list"
                android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight="1"
+               android:layout_height="match_parent"
                android:drawSelectorOnTop="false"/>
-    <com.google.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        ads:adSize="BANNER"
-        ads:adUnitId="a150ec1ad9123c4"
-        ads:loadAdOnCreate="false"
-        />
 </LinearLayout>
