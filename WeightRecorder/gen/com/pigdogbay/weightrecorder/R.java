@@ -111,9 +111,9 @@ public final class R {
         public static final int ResultsItemDate=0x7f090046;
         public static final int ResultsItemWeight=0x7f090045;
         public static final int WeightSettingsGoal=0x7f090044;
-        public static final int aboutBtnFacebook=0x7f090001;
-        public static final int aboutBtnLegal=0x7f090002;
-        public static final int aboutBtnRate=0x7f090000;
+        public static final int aboutBtnFacebook=0x7f090002;
+        public static final int aboutBtnLegal=0x7f090003;
+        public static final int aboutBtnRate=0x7f090001;
         public static final int helpPager=0x7f09000a;
         public static final int helpPagerTitleStrip=0x7f09000b;
         public static final int menu_add_reading_home=0x7f090051;
@@ -145,7 +145,7 @@ public final class R {
         public static final int rbWeightSettingKilograms=0x7f090042;
         public static final int rbWeightSettingPounds=0x7f090041;
         public static final int rbWeightSettingStones=0x7f090043;
-        public static final int rootLayout=0x7f090003;
+        public static final int rootLayout=0x7f090000;
         public static final int settingsPagerTitleStrip=0x7f090029;
         public static final int welcomePagerTitleStrip=0x7f09002a;
     }

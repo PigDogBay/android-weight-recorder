@@ -1,6 +1,9 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
+import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.weightrecorder.model.MainModel;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -12,8 +15,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-public class AboutActivity extends Activity
+public class AboutActivity extends Activity implements IBackgroundColorView
 {
+	BackgroundColorPresenter _BackgroundColorPresenter;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -48,6 +52,8 @@ public class AboutActivity extends Activity
 			}
 		});
 		
+		_BackgroundColorPresenter = new BackgroundColorPresenter(this,new MainModel(this).createBackgroundColorModel());
+		_BackgroundColorPresenter.updateBackground();
 		
 	}
 
@@ -68,4 +74,12 @@ public class AboutActivity extends Activity
 	{
 		ActivityUtils.showInfoDialog(this, R.string.copyright_title, R.string.copyright);
 	}
+	@Override
+	public void setBackgroundColor(int id) {
+		ActivityUtils.setBackground(this, R.id.rootLayout, id);
+	}
+	@Override
+	public void showPurchaseRequiredWarning() {
+		//Do nothing
+	}	
 }
