@@ -12,4 +12,6 @@
     <drawable name="skyblue">#40145E9D</drawable>
     <drawable name="translucentred">#40FF0000</drawable>
     <drawable name="white">#ffffffff</drawable>
+    <drawable name="blue">#00f</drawable>
+    <drawable name="light_blue">#88f</drawable>    
 </resources>
