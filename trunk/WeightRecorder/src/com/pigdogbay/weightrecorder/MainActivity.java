@@ -9,14 +9,12 @@ import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
-import com.pigdogbay.weightrecorder.model.AppPurchases;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -54,7 +52,6 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 			checkFirstTime(mainModel);
 			checkIfBackupDue(mainModel.getPreferencesHelper());
 			checkRate();
-			new AppPurchases(this).QueryAsync();
 		}
 		catch (Exception e) {
 		}

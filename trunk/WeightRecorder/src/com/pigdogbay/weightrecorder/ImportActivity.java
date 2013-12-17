@@ -101,12 +101,6 @@ public class ImportActivity extends Activity {
 	private void importReadings() {
 		EditText editText = (EditText) findViewById(R.id.ImportEdit);
 		String text = editText.getText().toString();
-		if ("369141944".equals(text)){
-			this.finish();
-			showDebugScreen();
-			return;
-		}
-		
 		if (text == null || "".equals(text)) {
 			Toast.makeText(this, getString(R.string.import_no_text),
 					Toast.LENGTH_SHORT).show();
@@ -138,11 +132,4 @@ public class ImportActivity extends Activity {
 		}
 		this.finish();
 	}
-	
-	private void showDebugScreen()
-	{
-		Intent intent = new Intent(this, DebugActivity.class);
-		startActivity(intent);
-	}
-	
 }

@@ -7,7 +7,6 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
   	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="com.android.vending.BILLING" />    
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
@@ -76,10 +75,6 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"/>     
-        <activity 
-            android:windowSoftInputMode="stateHidden"
-            android:name=".ShopActivity"
-            android:label="@string/title_activity_shop"/>     
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".SettingsActivity"
@@ -88,10 +83,6 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".WelcomeWizardActivity"
             android:label="@string/title_activity_welcome"/>
-        <activity 
-            android:windowSoftInputMode="stateHidden"
-            android:name=".DebugActivity"
-            android:label="@string/title_activity_debug"/>     
 		<activity android:name="com.google.ads.AdActivity"
 		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>   
