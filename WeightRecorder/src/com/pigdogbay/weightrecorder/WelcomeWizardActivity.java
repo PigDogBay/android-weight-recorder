@@ -52,10 +52,7 @@ public class WelcomeWizardActivity extends FragmentActivity implements IBackgrou
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
-	@Override
-	public void showPurchaseRequiredWarning() {
-	}	
-	
+
     public class WelcomePagerAdapter extends FragmentPagerAdapter {
 
         public WelcomePagerAdapter(FragmentManager fm) {

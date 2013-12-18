@@ -90,10 +90,6 @@ public class SettingsActivity extends FragmentActivity implements OnSharedPrefer
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
-	@Override
-	public void showPurchaseRequiredWarning() {
-		ActivityUtils.showInfoDialog(this,R.string.settings_purchase_color_pack_title , R.string.settings_purchase_color_pack_message);
-	}	
 
     public class SettingsPagerAdapter extends FragmentPagerAdapter {
 
