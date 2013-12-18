@@ -108,10 +108,4 @@ public class EditReadingActivity extends FragmentActivity implements IBackground
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
-	@Override
-	public void showPurchaseRequiredWarning() {
-		//Do nothing
-	}	
-	
-
 }

@@ -187,9 +187,4 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.rootLayout, id);
 	}
-	@Override
-	public void showPurchaseRequiredWarning() {
-		//Do nothing
-	}	
-	
 }
