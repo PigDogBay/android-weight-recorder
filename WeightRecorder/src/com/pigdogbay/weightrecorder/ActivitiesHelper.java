@@ -4,20 +4,15 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
 import com.pigdogbay.androidutils.utils.DateStampComparator;
 import com.pigdogbay.androidutils.utils.DateStampedFileFilter;
 import com.pigdogbay.androidutils.utils.FileUtils;
