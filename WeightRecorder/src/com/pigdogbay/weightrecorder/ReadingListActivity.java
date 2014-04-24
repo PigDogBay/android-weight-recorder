@@ -1,8 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
-import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
-import com.pigdogbay.androidutils.mvp.IAdView;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
@@ -33,7 +31,6 @@ public class ReadingListActivity extends ListActivity implements IBackgroundColo
 	private BroadcastReceiver _BroadcastReceiver;
 	private boolean _DataChanged = false;
 
-	AdPresenter _AdPresenter;
 	BackgroundColorPresenter _BackgroundColorPresenter;
 	
 	public void onCreate(Bundle savedInstanceState) 
