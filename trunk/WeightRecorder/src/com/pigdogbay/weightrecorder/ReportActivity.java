@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.pigdogbay.androidutils.mvp.AdPresenter;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
@@ -31,7 +30,6 @@ public class ReportActivity extends Activity implements IBackgroundColorView{
 	private ReportText _ReportText;
 	private ReportFormatting _ReportFormatting;
 	private boolean isLoaded = false;
-	AdPresenter _AdPresenter;
 	BackgroundColorPresenter _BackgroundColorPresenter;
 
 	public void onCreate(Bundle savedInstanceState) {
