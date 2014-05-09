@@ -41,7 +41,7 @@ public class AboutActivity extends Activity implements IBackgroundColorView
         btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showWebPage(R.string.facebookPage);
+				showWebPage(R.string.market_pigdogbay_apps);
 			}
 		});
 		((Button) findViewById(R.id.aboutBtnLegal)).setOnClickListener(new OnClickListener()
