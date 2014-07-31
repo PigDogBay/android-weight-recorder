@@ -14,7 +14,8 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 _Changes_
   * Min API is now 16, Jelly Bean 4.1
   * MainActivity is now a fragment holder
-  * 
+  * Home screen is now a fragment
+  * Instead of different layouts for each screen size, there are now different styles for the home buttons for each screen size.
 
 == Release 1.14.01 ==
 
