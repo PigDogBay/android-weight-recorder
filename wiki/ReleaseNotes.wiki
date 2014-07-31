@@ -1,0 +1,126 @@
+Release notes for the Android Weight Tracker App
+
+= Introduction =
+
+IDE: Eclipse 4.3
+
+Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder
+
+= Details =
+== Release 1.14.02 ==
+
+<br/>
+
+_Changes_
+  * 
+  * 
+  * 
+
+== Release 1.14.01 ==
+
+12th May 2014 *Alpha*<br/>
+
+_Changes_
+  * Removed references to admob library
+  * Setup for linux developement
+  * Upgraded to achartengine 1.1
+  * About facebook button now shows my other apps  * 
+
+== Release 1.12.02 ==
+
+ 20th Dec 2013 *Production*<br/>
+
+_Changes_
+  * Removed In App Billing code from Android Utils 
+  * Removed purchase warning for background colour as no longer in AndroidUtils
+
+== Release 1.12.01 ==
+
+17th Dec 2013 *Alpha*<br/>
+
+_Changes_
+  * Changed About to the new simplified style
+  * Removed In App Billing Code
+  * Removed Ads
+
+== Release 1.11.02 ==
+
+7th Nov 2013 *Production*<br/>
+
+_Changes_
+  * Removed remnants of in app billing help. 
+  * Improved settings help for the new settings screen
+  * Improved chart help, explains menu fit options.
+
+== Release 1.11.01 ==
+
+29th Oct 2013 *Alpha*<br/>
+
+_Changes_
+  * Welcome start fragment now shows doctor icon, improved text.
+
+== Release 1.11.00 ==
+
+24th Oct 2013 *Alpha*<br/>
+
+_Changes_
+  * Removed ad banner from chart
+  * Ads now back on the main screen
+  * Ads loadOnCreate is now false, only load if ads are not blocked by purchase
+  * Now uses BackgroundColor and RemoveAds MVP
+  * Added Debug Screen
+  * Renamed app to weight tracker
+  * Placed home button on the shop menu
+  * Shop shows contacting google play, Wait Screen till inventory done
+  * Removed Shop
+  * Moved help from the menu to the dashboard
+  * Background color now free
+  * Added new quick help screen
+  * Simplified and improved the the target weight and height settings, 
+feet and inches now an option for height
+  * Swipe tabs now used for each settings type
+  * Default settings now based on Locale.
+  * Add a dialog message if no readings on edit screen. Tell user about import option on the menu
+
+== Release 1.1000 ==
+
+16th Aug 2013 *Production* <br/>
+
+_Changes_
+  * Ad banners removed from main screen, now shown on chart, list, report and help
+  * Setting to change background colour
+  * In App Purchases: Disable Ads and unlock new background colours
+  * 7 Days grace for ad banners
+
+== Release 1.09 ==
+
+_Changes_
+  * Removed application code from AndroidUtils
+  * Localization: Moved all strings to string.xml
+  * Chart now uses SP and DP instead of pixel sizes, this is to fix a bug where fonts are too small
+  * Added intent filter to open CSV files into import activity
+  * Added Backup feature that stores readings in the downloads folder
+  * Imported readings are now merged into the database, matching dates are overwritten
+  * Share readings now shares the readings as a csv file
+  * Chart screen shot can now be shared.
+  * Automatic weekly backup of readings
+  * US Settings (Pounds and Inches) are now default settings
+  * Broadcasts now used to notify ReadingList of imported readings
+  * Soft keyboard now hidden for all activities - Thanks to Carvell
+  * BMI String now says check height settings if error, 
+
+== Release 1.08 ==
+
+_Changes_
+  * Rebuild, v1,.07 had a corrupted APK
+
+== Release 1.07 ==
+
+_Changes_
+  * Fixed unit conversion bug on the add new reading screen. Previous reading was not being converted if the weight units changed.
+  * Revamped the Report screen for a more professional look.
+  * MainModel no longer a singleton. Database instance now created for each activity.
+  * Chart code now refactored into data, logic and UI.
+  * Add Zoom buttons to chart.
+  * Increase axis labels font size by 2pts
+  * Improved unit conversion accuracy, based on international standards
