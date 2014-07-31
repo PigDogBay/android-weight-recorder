@@ -14,19 +14,19 @@
 
         <Button
             android:id="@+id/HomeBtnEntry"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/tape_measure_add"
             android:text="@string/main_btn_enter" />
 
         <Button
             android:id="@+id/HomeBtnEditor"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/index_edit"
             android:text="@string/main_btn_edit" />
 
         <Button
             android:id="@+id/HomeBtnSettings"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/wrench"
             android:text="@string/main_btn_settings" />
     </LinearLayout>
@@ -40,19 +40,19 @@
 
         <Button
             android:id="@+id/HomeBtnChart"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/line_chart"
             android:text="@string/main_btn_chart" />
 
         <Button
             android:id="@+id/HomeBtnReport"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/presentation_chart"
             android:text="@string/main_btn_report" />
 
         <Button
             android:id="@+id/HomeBtnHelp"
-	        style="@style/NormalButton"
+	        style="@style/HomeButton"
             android:drawableTop="@drawable/help"
             android:text="@string/main_btn_help"/>
     </LinearLayout>
