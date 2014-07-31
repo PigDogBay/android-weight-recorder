@@ -12,7 +12,7 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 <br/>
 
 _Changes_
-  * 
+  * Min API is now 16, Jelly Bean 4.1
   * 
   * 
 
