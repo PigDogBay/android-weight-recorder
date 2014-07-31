@@ -16,6 +16,7 @@ _Changes_
   * MainActivity is now a fragment holder
   * Home screen is now a fragment
   * Instead of different layouts for each screen size, there are now different styles for the home buttons for each screen size.
+  * About is now a fragment, also uses same code as anagram solver
 
 == Release 1.14.01 ==
 
