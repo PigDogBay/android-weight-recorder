@@ -11,34 +11,30 @@ import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnSharedPreferenceChangeListener, IBackgroundColorView{
-
-	public static final String TAG = "WeightRecorder";
+public class MainActivity extends FragmentActivity implements OnSharedPreferenceChangeListener,IBackgroundColorView{
+	public static final String TAG = "WeightTracker";
 
 	BackgroundColorPresenter _BackgroundColorPresenter;
-	
-	
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		wireUpButtons();
+		setContentView(R.layout.activity_main_fragment);
 		PreferenceManager
-				.getDefaultSharedPreferences(this)
-				.registerOnSharedPreferenceChangeListener(this);
+			.getDefaultSharedPreferences(this)
+			.registerOnSharedPreferenceChangeListener(this);
+
 		MainModel mainModel = new MainModel(this);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
@@ -64,7 +60,28 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		catch (Exception e) {
 		}
 	}
-
+	private void checkFirstTime(MainModel mainModel) {
+		if (!mainModel.getIsFirstTime()) {
+			SettingsUtils.setDefaultSettings(Locale.getDefault(), new MainModel(this));
+			mainModel.setIsFirstTime(true);
+			showWelcome();
+		}
+		else
+		{
+			showHome();
+		}
+	}
+	
+	private void checkIfBackupDue(PreferencesHelper prefHelper) {
+		AutoBackup autoBackup = new AutoBackup(prefHelper);
+		if (autoBackup.isAutoBackupEnabled()
+				&& autoBackup.isBackupDue(AutoBackup.WEEKLY_BACKUP_PERIOD_IN_DAYS)) {
+			autoBackup.setBackupDateToNow();
+			ActivitiesHelper.backupReadings(this);
+		}
+	}
+	
+	
 	private AlertDialog.Builder createRateDialog() {
 		return new AlertDialog.Builder(this)
 				.setTitle(R.string.rate_dialog_title)
@@ -74,100 +91,67 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 				.setNeutralButton(R.string.rate_dialog_neutral, null);
 	}
 
-	private void wireUpButtons() {
-		((Button) findViewById(R.id.MainBtnEntry))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								AddReadingActivity.class);
-						startActivity(intent);
-					}
-				});
-		((Button) findViewById(R.id.MainBtnEditor))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								ReadingListActivity.class);
-						startActivity(intent);
-					}
-				});
-		((Button) findViewById(R.id.MainBtnChart))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								ChartActivity.class);
-						startActivity(intent);
-					}
-				});
-		((Button) findViewById(R.id.MainBtnReport))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								ReportActivity.class);
-						startActivity(intent);
-					}
-				});
-		((Button) findViewById(R.id.MainBtnHelp))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								HelpActivity.class);
-						startActivity(intent);
-					}
-				});
-		((Button) findViewById(R.id.MainBtnSettings))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						Intent intent = new Intent(MainActivity.this,
-								SettingsActivity.class);
-						startActivity(intent);
-					}
-				});
-
+	@Override
+	public void onBackPressed() {
+		Fragment f = (Fragment) getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
+		if (f!=null)
+		{
+			super.onBackPressed();
+		}
+		else
+		{
+			showHome();
+		}
+		
 	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId())
+		switch(item.getItemId())
 		{
-		case (R.id.menu_main_about):
-			Intent intent = new Intent(this, AboutActivity.class);
-			startActivity(intent);
-			break;
-		case (R.id.menu_main_welcome):
-			intent = new Intent(this, WelcomeWizardActivity.class);
-			startActivity(intent);
-			break;
-		default:
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-	private void checkFirstTime(MainModel mainModel) {
-		if (!mainModel.getIsFirstTime()) {
-			mainModel.setIsFirstTime(true);
-			SettingsUtils.setDefaultSettings(Locale.getDefault(), new MainModel(this));
-			Intent intent = new Intent(this, WelcomeWizardActivity.class);
-			startActivity(intent);
+			case android.R.id.home:
+				showHome();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
-
-	private void checkIfBackupDue(PreferencesHelper prefHelper) {
-		AutoBackup autoBackup = new AutoBackup(prefHelper);
-		if (autoBackup.isAutoBackupEnabled()
-				&& autoBackup
-						.isBackupDue(AutoBackup.WEEKLY_BACKUP_PERIOD_IN_DAYS)) {
-			autoBackup.setBackupDateToNow();
-			ActivitiesHelper.backupReadings(this);
-		}
+	private void replaceFragment(Fragment fragment, String tag) {
+		getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.main_fragment_container, fragment, tag)
+				.commit();
 	}
+	
+	
+	public void showHome(){
+		replaceFragment(new HomeFragment(), HomeFragment.TAG);
+	}
+	public void showAbout(){
+		Log.v(TAG,"Show About");
+	}
+	public void showWelcome(){
+		Log.v(TAG,"Show About");
+	}
+	public void showNew(){
+		Log.v(TAG,"Show New");
+		Toast.makeText(this, "New", Toast.LENGTH_SHORT).show();
+	}
+	public void showEdit(){
+		Log.v(TAG,"Show Edit");
+	}
+	public void showSettings(){
+		Log.v(TAG,"Show Settings");
+	}
+	public void showChart(){
+		Log.v(TAG,"Show Chart");
+	}
+	public void showReport(){
+		Log.v(TAG,"Show Report");
+	}
+	public void showHelp(){
+		Log.v(TAG,"Show Help");
+	}
+	
 	
 	@Override
 	protected void onDestroy() {
@@ -181,10 +165,9 @@ public class MainActivity extends Activity implements OnSharedPreferenceChangeLi
 		if (key.equals(getString(R.string.code_pref_background_colour))){
 			_BackgroundColorPresenter.updateBackground();
 		}
-	}
-	
+	}	
 	@Override
 	public void setBackgroundColor(int id) {
-		ActivityUtils.setBackground(this, R.id.rootLayout, id);
-	}
+		ActivityUtils.setBackground(this, R.id.root_layout, id);
+	}	
 }
