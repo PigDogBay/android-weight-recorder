@@ -42,7 +42,6 @@ public class ReportFragment  extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		//Disable the the android home button
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
 		//Dont set up controls again if state has been saved (eg on a rotate)
