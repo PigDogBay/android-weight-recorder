@@ -20,6 +20,7 @@ _Changes_
   * Welcome wizard is now a fragment
   * Updated to latest version of the v4 support library
   * Help is now a fragment
+  * Settings is now a fragment
 
 == Release 1.14.01 ==
 
