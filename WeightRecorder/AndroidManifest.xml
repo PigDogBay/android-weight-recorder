@@ -63,10 +63,6 @@
             android:label="@string/title_activity_edit" />
         <activity
             android:windowSoftInputMode="stateHidden"
-            android:name=".HelpActivity"
-            android:label="@string/title_activity_help" />
-        <activity
-            android:windowSoftInputMode="stateHidden"
             android:name=".ReportActivity"
             android:label="@string/title_activity_report" />
         <activity
