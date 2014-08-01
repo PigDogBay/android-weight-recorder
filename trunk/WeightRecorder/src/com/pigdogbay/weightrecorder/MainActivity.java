@@ -34,17 +34,21 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		PreferenceManager
 			.getDefaultSharedPreferences(this)
 			.registerOnSharedPreferenceChangeListener(this);
-
+		
 		MainModel mainModel = new MainModel(this);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
 		
-		try {
-			checkFirstTime(mainModel);
-			checkIfBackupDue(mainModel.getPreferencesHelper());
-			checkRate();
-		}
-		catch (Exception e) {
+		//if app has been rotated, then skip this part as the existing fragment will have already been recreated
+		if (getSupportFragmentManager().findFragmentById(R.id.main_fragment_container)==null)
+		{
+			try {
+				checkFirstTime(mainModel);
+				checkIfBackupDue(mainModel.getPreferencesHelper());
+				checkRate();
+			}
+			catch (Exception e) {
+			}
 		}
 		mainModel.close();
 	}
