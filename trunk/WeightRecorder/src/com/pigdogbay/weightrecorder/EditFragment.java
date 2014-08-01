@@ -48,30 +48,15 @@ public class EditFragment extends Fragment
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.edit_fragment, container, false);
-	}
-
-	@Override
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		// Views and contexts have now been created
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
-		_EditTextComment = (EditText) activity
+		_EditTextComment = (EditText) getView()
 				.findViewById(R.id.EditFragmentComment);
-		_DatePicker = (DatePicker) activity
+		_DatePicker = (DatePicker) getView()
 				.findViewById(R.id.EditFragmentDatePicker);
-		((ImageButton) activity.findViewById(R.id.EditFragmentCommentSpeak))
+		((ImageButton) getView().findViewById(R.id.EditFragmentCommentSpeak))
 				.setOnClickListener(new OnClickListener()
 				{
 					public void onClick(View v)
@@ -80,7 +65,7 @@ public class EditFragment extends Fragment
 
 					}
 				});
-		((Button) activity.findViewById(R.id.EditFragmentWeightPickerMinus))
+		((Button) getView().findViewById(R.id.EditFragmentWeightPickerMinus))
 				.setOnClickListener(new OnClickListener()
 				{
 					public void onClick(View v)
@@ -88,7 +73,7 @@ public class EditFragment extends Fragment
 						minus();
 					}
 				});
-		((Button) activity.findViewById(R.id.EditFragmentWeightPickerPlus))
+		((Button) getView().findViewById(R.id.EditFragmentWeightPickerPlus))
 				.setOnClickListener(new OnClickListener()
 				{
 					public void onClick(View v)
@@ -96,7 +81,7 @@ public class EditFragment extends Fragment
 						plus();
 					}
 				});
-		_EditWeightButton = (Button) activity
+		_EditWeightButton = (Button) getView()
 				.findViewById(R.id.EditFragmentWeightPickerEdit);
 		_EditWeightButton.setOnClickListener(new OnClickListener()
 		{

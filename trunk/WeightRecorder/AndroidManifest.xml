@@ -52,10 +52,6 @@
             android:label="@string/title_activity_list" />
         <activity
             android:windowSoftInputMode="stateHidden"
-            android:name=".AddReadingActivity"
-            android:label="@string/title_activity_add" />
-        <activity
-            android:windowSoftInputMode="stateHidden"
             android:name=".EditReadingActivity"
             android:label="@string/title_activity_edit" />
     </application>
