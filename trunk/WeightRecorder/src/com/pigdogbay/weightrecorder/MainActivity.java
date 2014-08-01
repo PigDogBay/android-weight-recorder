@@ -171,7 +171,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);
 	}
 	public void showImport(){
-//		replaceFragment(new ImportFragment(), ImportFragment.TAG);
+		replaceFragment(new ImportFragment(), ImportFragment.TAG);
 	}
 	
 	

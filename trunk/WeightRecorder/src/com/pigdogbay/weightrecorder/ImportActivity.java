@@ -1,6 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.io.File;
 import java.util.List;
 
 import com.pigdogbay.androidutils.utils.FileUtils;
@@ -15,7 +14,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ImportActivity extends Activity {
-	public static final String NEW_IMPORTED_READINGS = "com.pigdogbay.weightrecorder.NEW_IMPORTED_READINGS";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,12 +31,6 @@ public class ImportActivity extends Activity {
 				.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
 						importReadings();
-					}
-				});
-		((Button) findViewById(R.id.ImportLoadBackupButton))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						loadBackupReadings();
 					}
 				});
 		Intent intent = getIntent();
@@ -59,24 +50,6 @@ public class ImportActivity extends Activity {
 			textView.setText(data);
 		}
 		catch (Exception e) {
-		}
-	}
-
-	private void loadBackupReadings() {
-		File latest = ActivitiesHelper.getLatestBackupFile(this);
-		if (latest == null) {
-			Toast.makeText(this, getString(R.string.import_no_backup_file),
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
-		try {
-			String data = FileUtils.readText(latest);
-			TextView textView = (TextView) findViewById(R.id.ImportEdit);
-			textView.setText(data);
-		}
-		catch (Exception e) {
-			Toast.makeText(this, getString(R.string.import_error_loading_backup_file),
-					Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -121,8 +94,6 @@ public class ImportActivity extends Activity {
 				}
 
 				setResult(RESULT_OK);
-				Intent intent = new Intent(NEW_IMPORTED_READINGS);
-				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
 			}
 			Toast.makeText(
 					this,
