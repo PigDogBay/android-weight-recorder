@@ -156,7 +156,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		replaceFragment(frag, EditReadingFragment.TAG);
 	}
 	public void showList(){
-		Log.v(TAG,"Show Edit");
+		replaceFragment(new ReadingListFragment(), ReadingListFragment.TAG);
 	}
 	public void showSettings(){
 		replaceFragment(new SettingsWizardFragment(), SettingsWizardFragment.TAG);
@@ -169,6 +169,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	}
 	public void showHelp(){
 		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);
+	}
+	public void showImport(){
+//		replaceFragment(new ImportFragment(), ImportFragment.TAG);
 	}
 	
 	

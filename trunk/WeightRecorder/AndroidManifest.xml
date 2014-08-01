@@ -46,9 +46,5 @@
 		        <data android:host="*" />                
 			</intent-filter>            
         </activity>
-        <activity
-            android:windowSoftInputMode="stateHidden"
-            android:name=".ReadingListActivity"
-            android:label="@string/title_activity_list" />
     </application>
 </manifest>
