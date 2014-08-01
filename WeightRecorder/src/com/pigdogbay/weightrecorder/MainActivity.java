@@ -156,7 +156,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		replaceFragment(new SettingsWizardFragment(), SettingsWizardFragment.TAG);
 	}
 	public void showChart(){
-		Log.v(TAG,"Show Chart");
+		replaceFragment(new ChartFragment(), ChartFragment.TAG);
 	}
 	public void showReport(){
 		replaceFragment(new ReportFragment(), ReportFragment.TAG);
