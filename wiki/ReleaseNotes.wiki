@@ -19,6 +19,7 @@ _Changes_
   * About is now a fragment, also uses same code as anagram solver
   * Welcome wizard is now a fragment
   * Updated to latest version of the v4 support library
+  * Help is now a fragment
 
 == Release 1.14.01 ==
 
