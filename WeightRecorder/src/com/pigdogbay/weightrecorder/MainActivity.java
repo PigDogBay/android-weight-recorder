@@ -31,9 +31,6 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		PreferenceManager
-			.getDefaultSharedPreferences(this)
-			.registerOnSharedPreferenceChangeListener(this);
 		
 		MainModel mainModel = new MainModel(this);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
@@ -52,6 +49,18 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 		mainModel.close();
 	}
+    @Override
+    protected void onResume() {
+    	super.onResume();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.registerOnSharedPreferenceChangeListener(this);
+    }
+    @Override
+    protected void onPause() {
+    	super.onPause();
+		PreferenceManager.getDefaultSharedPreferences(this)
+		.unregisterOnSharedPreferenceChangeListener(this);
+    }
 
 	private void checkRate() {
 		try {
@@ -145,7 +154,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		Log.v(TAG,"Show Edit");
 	}
 	public void showSettings(){
-		Log.v(TAG,"Show Settings");
+		replaceFragment(new SettingsWizardFragment(), SettingsWizardFragment.TAG);
 	}
 	public void showChart(){
 		Log.v(TAG,"Show Chart");
@@ -157,13 +166,6 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);
 	}
 	
-	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		PreferenceManager.getDefaultSharedPreferences(this)
-		.unregisterOnSharedPreferenceChangeListener(this);
-	}
 	
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
