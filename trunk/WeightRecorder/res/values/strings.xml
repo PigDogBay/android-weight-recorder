@@ -21,12 +21,8 @@
     <string name="title_activity_edit">Edit Weight</string>
     <string name="title_activity_import">Import Readings</string>
     <string name="title_activity_report">Weight Tracker Report</string>
-    <string name="title_activity_about">About Weight Tracker</string>
     <string name="title_activity_help">Weight Tracker Help</string>
-    <string name="title_activity_shop">Weight Tracker Store</string>
     <string name="title_activity_settings">Weight Tracker Settings</string>
-    <string name="title_activity_welcome">Welcome</string>
-    <string name="title_activity_debug">Weight Tracker Debugging</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
     <string name="chart_xaxis_title">Date</string>

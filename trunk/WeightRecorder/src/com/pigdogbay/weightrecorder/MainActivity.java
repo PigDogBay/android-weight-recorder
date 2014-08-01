@@ -135,7 +135,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		replaceFragment(new AboutFragment(), AboutFragment.TAG);
 	}
 	public void showWelcome(){
-		Log.v(TAG,"Show About");
+		replaceFragment(new WelcomeWizardFragment(), WelcomeWizardFragment.TAG);
 	}
 	public void showNew(){
 		Log.v(TAG,"Show New");
