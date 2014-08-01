@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
 		((Button) activity.findViewById(R.id.HomeBtnEditor))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				activity.showEdit(new Reading(99, new Date(), "Hello"));
+				activity.showList();
 			}
 		});
 		((Button) activity.findViewById(R.id.HomeBtnSettings))
