@@ -139,38 +139,49 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	
 	
 	public void showHome(){
+		setTitle(getString(R.string.title_main));
 		replaceFragment(new HomeFragment(), HomeFragment.TAG);
 	}
 	public void showAbout(){
+		setTitle(getString(R.string.title_about));
 		replaceFragment(new AboutFragment(), AboutFragment.TAG);
 	}
 	public void showWelcome(){
+		setTitle(getString(R.string.title_welcome));
 		replaceFragment(new WelcomeWizardFragment(), WelcomeWizardFragment.TAG);
 	}
 	public void showNew(){
+		setTitle(getString(R.string.title_new));
 		replaceFragment(new NewReadingFragment(), NewReadingFragment.TAG);
 	}
 	public void showEdit(Reading reading){
+		setTitle(getString(R.string.title_edit));
 		EditReadingFragment frag = new EditReadingFragment();
 		frag.setReadingToEdit(reading);
 		replaceFragment(frag, EditReadingFragment.TAG);
 	}
 	public void showList(){
+		setTitle(getString(R.string.title_list));
 		replaceFragment(new ReadingListFragment(), ReadingListFragment.TAG);
 	}
 	public void showSettings(){
+		setTitle(getString(R.string.title_settings));
 		replaceFragment(new SettingsWizardFragment(), SettingsWizardFragment.TAG);
 	}
 	public void showChart(){
+		setTitle(getString(R.string.title_chart));
 		replaceFragment(new ChartFragment(), ChartFragment.TAG);
 	}
 	public void showReport(){
+		setTitle(getString(R.string.title_report));
 		replaceFragment(new ReportFragment(), ReportFragment.TAG);
 	}
 	public void showHelp(){
+		setTitle(getString(R.string.title_help));
 		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);
 	}
 	public void showImport(){
+		setTitle(getString(R.string.title_import));
 		replaceFragment(new ImportFragment(), ImportFragment.TAG);
 	}
 	
