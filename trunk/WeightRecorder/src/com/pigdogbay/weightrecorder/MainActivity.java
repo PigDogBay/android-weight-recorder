@@ -154,7 +154,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		Log.v(TAG,"Show Report");
 	}
 	public void showHelp(){
-		Log.v(TAG,"Show Help");
+		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);
 	}
 	
 	
