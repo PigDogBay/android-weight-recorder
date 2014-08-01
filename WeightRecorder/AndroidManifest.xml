@@ -73,9 +73,5 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"/>
-        <activity
-            android:windowSoftInputMode="stateHidden"
-            android:name=".WelcomeWizardActivity"
-            android:label="@string/title_activity_welcome"/>
     </application>
 </manifest>
