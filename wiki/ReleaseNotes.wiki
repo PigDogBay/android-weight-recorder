@@ -17,6 +17,8 @@ _Changes_
   * Home screen is now a fragment
   * Instead of different layouts for each screen size, there are now different styles for the home buttons for each screen size.
   * About is now a fragment, also uses same code as anagram solver
+  * Welcome wizard is now a fragment
+  * Updated to latest version of the v4 support library
 
 == Release 1.14.01 ==
 
