@@ -65,9 +65,5 @@
             android:windowSoftInputMode="stateHidden"
             android:name=".ReportActivity"
             android:label="@string/title_activity_report" />
-        <activity
-            android:windowSoftInputMode="stateHidden"
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"/>
     </application>
 </manifest>
