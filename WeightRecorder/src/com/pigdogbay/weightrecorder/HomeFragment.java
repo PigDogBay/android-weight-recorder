@@ -1,5 +1,9 @@
 package com.pigdogbay.weightrecorder;
 
+import java.util.Date;
+
+import com.pigdogbay.weightrecorder.model.Reading;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -58,7 +62,7 @@ public class HomeFragment extends Fragment {
 		((Button) activity.findViewById(R.id.HomeBtnEditor))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				activity.showEdit();
+				activity.showEdit(new Reading(99, new Date(), "Hello"));
 			}
 		});
 		((Button) activity.findViewById(R.id.HomeBtnSettings))

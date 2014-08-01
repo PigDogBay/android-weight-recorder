@@ -16,7 +16,6 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Weight Tracker</string>
     <string name="title_activity_list">Weight Tracker Readings</string>
-    <string name="title_activity_edit">Edit Weight</string>
     <string name="title_activity_import">Import Readings</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
