@@ -42,7 +42,7 @@ public class EditFragment extends Fragment
 	private DatePicker _DatePicker;
 	private IUnitConverter _WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS); 
 
-	public void setWeightConvert(IUnitConverter weightConverter)
+	protected void setWeightConvert(IUnitConverter weightConverter)
 	{
 		_WeightConverter = weightConverter;
 	}
@@ -92,7 +92,7 @@ public class EditFragment extends Fragment
 		});
 	}
 
-	public void setReading(Reading reading)
+	protected void setReading(Reading reading)
 	{
 		_EditTextComment.setText(reading.getComment());
 		_Weight = _WeightConverter.convert(reading.getWeight());
@@ -103,7 +103,7 @@ public class EditFragment extends Fragment
 				cal.get(Calendar.DAY_OF_MONTH));
 	}
 
-	public Reading getReading()
+	protected Reading getReading()
 	{
 		Reading reading = new Reading();
 		// convert to kilograms
@@ -124,7 +124,7 @@ public class EditFragment extends Fragment
 		return cal.getTime();
 	}
 
-	public void hideKeyboard()
+	protected void hideKeyboard()
 	{
 		try
 		{
@@ -184,13 +184,13 @@ public class EditFragment extends Fragment
 		}
 	}
 
-	public void setWeight(double weight)
+	protected void setWeight(double weight)
 	{
 		_Weight = weight;
 		updateText();
 	}
 
-	public double getWeight()
+	protected double getWeight()
 	{
 		return _Weight;
 	}

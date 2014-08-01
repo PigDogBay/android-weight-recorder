@@ -38,7 +38,6 @@ public class NewReadingFragment extends EditFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		//Disable the the android home button
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
 		_MainModel = new MainModel(getActivity());

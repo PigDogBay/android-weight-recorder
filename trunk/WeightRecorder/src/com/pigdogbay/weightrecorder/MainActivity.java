@@ -9,6 +9,7 @@ import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.MainModel;
+import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.SettingsUtils;
 
 import android.app.AlertDialog;
@@ -149,7 +150,12 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	public void showNew(){
 		replaceFragment(new NewReadingFragment(), NewReadingFragment.TAG);
 	}
-	public void showEdit(){
+	public void showEdit(Reading reading){
+		EditReadingFragment frag = new EditReadingFragment();
+		frag.setReadingToEdit(reading);
+		replaceFragment(frag, EditReadingFragment.TAG);
+	}
+	public void showList(){
 		Log.v(TAG,"Show Edit");
 	}
 	public void showSettings(){

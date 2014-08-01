@@ -83,9 +83,9 @@ public class ReadingListActivity extends ListActivity implements IBackgroundColo
 	 */
 	public void readingSelected(Reading reading)
 	{
-		Intent intent = new Intent(this,EditReadingActivity.class);
-		intent.putExtra("ReadingID", reading.getID());
-		startActivityForResult(intent,REQUEST_EDIT);
+//		Intent intent = new Intent(this,EditReadingActivity.class);
+//		intent.putExtra("ReadingID", reading.getID());
+//		startActivityForResult(intent,REQUEST_EDIT);
 	}
 	private void onDataChanged()
 	{
