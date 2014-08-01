@@ -148,7 +148,6 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	}
 	public void showNew(){
 		Log.v(TAG,"Show New");
-		Toast.makeText(this, "New", Toast.LENGTH_SHORT).show();
 	}
 	public void showEdit(){
 		Log.v(TAG,"Show Edit");
@@ -160,7 +159,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		Log.v(TAG,"Show Chart");
 	}
 	public void showReport(){
-		Log.v(TAG,"Show Report");
+		replaceFragment(new ReportFragment(), ReportFragment.TAG);
 	}
 	public void showHelp(){
 		replaceFragment(new HelpWizardFragment(), HelpWizardFragment.TAG);

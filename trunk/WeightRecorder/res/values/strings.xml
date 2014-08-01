@@ -20,7 +20,6 @@
     <string name="title_activity_add">New Weight</string>
     <string name="title_activity_edit">Edit Weight</string>
     <string name="title_activity_import">Import Readings</string>
-    <string name="title_activity_report">Weight Tracker Report</string>
     <string name="chart_notenoughdata_title">Not Enough Readings</string>
     <string name="chart_notenoughdata_message">You have less than 3 readings, the chart will show example data. </string>
     <string name="chart_xaxis_title">Date</string>
@@ -164,7 +163,7 @@
     <string name="report_template">
         <![CDATA[
 Weight Tracker Report<br/>
-http://www.facebook.com/pigdogbay<br/>
+http://www.pigdogbay.com<br/>
 <br/>
 <br/>
 <br/>
