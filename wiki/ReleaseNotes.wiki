@@ -22,6 +22,7 @@ _Changes_
   * Help is now a fragment
   * Settings is now a fragment
   * Chart is now a fragment
+  * New and Edit are fragments and now use EditFragment as a super class
 
 == Release 1.14.01 ==
 
