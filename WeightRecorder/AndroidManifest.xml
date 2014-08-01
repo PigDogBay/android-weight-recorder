@@ -17,7 +17,7 @@
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
         <activity
             android:name=".ImportActivity"
             android:windowSoftInputMode="stateHidden"
-            android:label="@string/title_activity_import">
+            android:label="@string/title_import">
             <intent-filter>
 		        <action android:name="android.intent.action.VIEW" />
 		        <category android:name="android.intent.category.DEFAULT" />
