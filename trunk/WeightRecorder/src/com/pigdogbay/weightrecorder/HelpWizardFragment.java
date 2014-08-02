@@ -36,11 +36,6 @@ public class HelpWizardFragment extends Fragment {
     	ViewPager viewPager = (ViewPager)getView().findViewById(R.id.help_wizard_viewpager);
     	viewPager.setAdapter(helpPagerAdapter);
 	}
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-    	super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_welcome_wizard, menu);
-    }
 	
     public static class HelpPagerAdapter extends FragmentPagerAdapter {
 

@@ -43,11 +43,6 @@ public class NewReadingFragment extends EditFragment {
 		_MainModel = new MainModel(getActivity());
 		loadPreferences();
 	}
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_new_reading, menu);
-	}
 	private void onEnterClick()
 	{
 		Reading reading = getReading();

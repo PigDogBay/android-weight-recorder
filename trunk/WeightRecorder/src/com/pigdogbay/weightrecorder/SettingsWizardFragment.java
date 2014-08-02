@@ -33,11 +33,6 @@ public class SettingsWizardFragment extends Fragment{
         viewPager.setAdapter(adapter);
 	}
 
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_settings, menu);
-	}
     public static class SettingsPagerAdapter extends FragmentPagerAdapter {
 
         public SettingsPagerAdapter(FragmentManager fm) {

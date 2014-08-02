@@ -122,7 +122,6 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId())
 		{
-			case R.id.menu_home:
 			case android.R.id.home:
 				showHome();
 				return true;

@@ -52,11 +52,6 @@ public class ImportFragment extends Fragment {
 		});
 		showHelp();
 	}
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_import, menu);
-	}
 	
 	private void loadBackupReadings() {
 		File latest = ActivitiesHelper.getLatestBackupFile(getActivity());
