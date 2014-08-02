@@ -1,9 +1,5 @@
 package com.pigdogbay.weightrecorder;
 
-import java.util.Date;
-
-import com.pigdogbay.weightrecorder.model.Reading;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,15 +18,11 @@ public class HomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_home, container,false);
-		return rootView;
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 		//Disable the the android home button
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);	
 		setHasOptionsMenu(true);
-		wireUpButtons();
+		wireUpButtons(rootView);
+		return rootView;
 	}
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -51,39 +43,39 @@ public class HomeFragment extends Fragment {
 			return super.onOptionsItemSelected(item);
 		}
 	}	
-	private void wireUpButtons() {
+	private void wireUpButtons(View view) {
 		final MainActivity activity = (MainActivity) getActivity();
-		((Button) activity.findViewById(R.id.HomeBtnEntry))
+		((Button) view.findViewById(R.id.HomeBtnEntry))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showNew();
 			}
 		});
-		((Button) activity.findViewById(R.id.HomeBtnEditor))
+		((Button) view.findViewById(R.id.HomeBtnEditor))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showList();
 			}
 		});
-		((Button) activity.findViewById(R.id.HomeBtnSettings))
+		((Button) view.findViewById(R.id.HomeBtnSettings))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showSettings();
 			}
 		});
-		((Button) activity.findViewById(R.id.HomeBtnChart))
+		((Button) view.findViewById(R.id.HomeBtnChart))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showChart();
 			}
 		});
-		((Button) activity.findViewById(R.id.HomeBtnReport))
+		((Button) view.findViewById(R.id.HomeBtnReport))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showReport();
 			}
 		});
-		((Button) activity.findViewById(R.id.HomeBtnHelp))
+		((Button) view.findViewById(R.id.HomeBtnHelp))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				activity.showHelp();

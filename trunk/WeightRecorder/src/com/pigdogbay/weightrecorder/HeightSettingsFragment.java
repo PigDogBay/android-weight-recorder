@@ -20,26 +20,25 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
 	NumberPicker _NumberPicker; 
 	UnitConverterAdapter _UnitConverterAdapter;
 	int _LengthUnitsId;
-	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+    	_MainModel = new MainModel(getActivity());
+    	_LengthUnitsId = _MainModel.getLengthUnitsId();
+	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_height_settings, container, false);
+    	setupRadioButtons(rootView);
+    	((RadioButton)rootView.findViewById(R.id.rbHeightSettingCentimetres)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.rbHeightSettingInches)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.rbHeightSettingFeet)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.rbHeightSettingMetres)).setOnClickListener(this);
+    	_NumberPicker = (NumberPicker)rootView.findViewById(R.id.HeightSettingsPicker);
+    	setupNumberPicker(_MainModel.getHeightInMetres());
         return rootView;
     }
     
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-    	super.onActivityCreated(savedInstanceState);
-    	_MainModel = new MainModel(getActivity());
-    	_LengthUnitsId = _MainModel.getLengthUnitsId();
-    	setupRadioButtons();
-    	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingCentimetres)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingInches)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingFeet)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.rbHeightSettingMetres)).setOnClickListener(this);
-    	_NumberPicker = (NumberPicker)getActivity().findViewById(R.id.HeightSettingsPicker);
-    	setupNumberPicker(_MainModel.getHeightInMetres());
-    }
     /* 
      * Persist any changes here
      */
@@ -55,7 +54,7 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
     		_MainModel.setHeight(_UnitConverterAdapter.getValue());
     	}
     }
-    void setupRadioButtons()
+    void setupRadioButtons(View view)
     {
     	int radioButtonId = R.id.rbHeightSettingInches; 
     	if (UnitConverterFactory.METRES_TO_METRES==_LengthUnitsId)
@@ -73,7 +72,7 @@ public class HeightSettingsFragment extends Fragment implements OnClickListener{
     		
     	}
     	
-    	RadioButton radioButton = (RadioButton) getActivity().findViewById(radioButtonId);
+    	RadioButton radioButton = (RadioButton) view.findViewById(radioButtonId);
     	radioButton.setChecked(true);
     }
     void setupNumberPicker(double heightInMetres)

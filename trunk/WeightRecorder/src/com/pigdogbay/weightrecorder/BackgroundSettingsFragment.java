@@ -2,9 +2,6 @@ package com.pigdogbay.weightrecorder;
 
 import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
-import com.pigdogbay.weightrecorder.model.MainModel;
-import com.pigdogbay.weightrecorder.model.UnitConverterFactory;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,25 +12,26 @@ import android.widget.RadioButton;
 
 public class BackgroundSettingsFragment extends Fragment implements OnClickListener{
 	BackgroundColorModel _BackgroundColorModel;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+    	_BackgroundColorModel = new BackgroundColorModel(new PreferencesHelper(getActivity()));
+	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_background_setting, container, false);
+    	dataExchangeToControls(rootView);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingSkyBlue)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingDarkPink)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingLightPink)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingTurquoise)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingYellow)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingGrey)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.BackgroundSettingWhite)).setOnClickListener(this);
         return rootView;
     }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-    	super.onActivityCreated(savedInstanceState);
-    	_BackgroundColorModel = new BackgroundColorModel(new PreferencesHelper(getActivity()));
-    	dataExchangeToControls();
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingSkyBlue)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingDarkPink)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingLightPink)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingTurquoise)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingYellow)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingGrey)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.BackgroundSettingWhite)).setOnClickListener(this);
-   }
-	@Override
 	public void onClick(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -65,7 +63,7 @@ public class BackgroundSettingsFragment extends Fragment implements OnClickListe
         }
 		
 	}
-    private void dataExchangeToControls()
+    private void dataExchangeToControls(View view)
     {
     	int color = _BackgroundColorModel.getBackgroundIndex();
     	int radioButtonId = R.id.BackgroundSettingSkyBlue;
@@ -90,7 +88,7 @@ public class BackgroundSettingsFragment extends Fragment implements OnClickListe
 			radioButtonId = R.id.BackgroundSettingWhite;
 			break;
     	}
-    	RadioButton radioButton = (RadioButton) getActivity().findViewById(radioButtonId);
+    	RadioButton radioButton = (RadioButton) view.findViewById(radioButtonId);
     	radioButton.setChecked(true);
     }
 }

@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -17,20 +15,16 @@ public class SettingsWizardFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_settings_wizard, container,false);
-		return rootView;
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
+		View rootView = inflater.inflate(R.layout.fragment_settings_wizard, container,false);
 		//Need to use ChildFragmentManager as ViewPager is nested in a fragment
 		//If you use getFragmentManager then the red/blue/green fragments are not released
 		//when the VPFragment is destroyed
         SettingsPagerAdapter adapter = new SettingsPagerAdapter(getChildFragmentManager());
-        ViewPager viewPager = (ViewPager)getView().findViewById(R.id.settings_wizard_viewpager);
+        ViewPager viewPager = (ViewPager)rootView.findViewById(R.id.settings_wizard_viewpager);
         viewPager.setAdapter(adapter);
+		return rootView;
 	}
 
     public static class SettingsPagerAdapter extends FragmentPagerAdapter {

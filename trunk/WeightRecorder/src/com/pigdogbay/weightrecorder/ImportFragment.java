@@ -28,25 +28,25 @@ public class ImportFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_import, container,false);
-		return rootView;
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
-		((Button) getView().findViewById(R.id.ImportOKButton))
+		((Button) rootView.findViewById(R.id.ImportOKButton))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				importReadings();
 			}
 		});
-		((Button) getView().findViewById(R.id.ImportLoadBackupButton))
+		((Button) rootView.findViewById(R.id.ImportLoadBackupButton))
 		.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				loadBackupReadings();
 			}
 		});
+		return rootView;
+	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 		showHelp();
 	}
 	

@@ -25,21 +25,24 @@ public class ReadingListFragment extends ListFragment {
 
 	private MainModel _MainModel;
 	private ReadingsAdapter _Adapter;
-	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        _MainModel = new MainModel(getActivity());
+        _Adapter = this.new ReadingsAdapter();
+        setListAdapter(_Adapter);
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+		setHasOptionsMenu(true);
 		View rootView = inflater.inflate(R.layout.fragment_readings_list, container,false);
 		return rootView;
 	}
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-		setHasOptionsMenu(true);
-        _MainModel = new MainModel(getActivity());
-        _Adapter = this.new ReadingsAdapter();
-        setListAdapter(_Adapter);
         if (_Adapter.getCount()==0)
         {
 			ActivityUtils.showInfoDialog(getActivity(),R.string.readings_no_readings_dialog_title,R.string.readings_no_readings_dialog_msg);
