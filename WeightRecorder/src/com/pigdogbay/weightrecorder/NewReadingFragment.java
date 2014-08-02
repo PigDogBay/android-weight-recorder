@@ -17,9 +17,16 @@ public class NewReadingFragment extends EditFragment {
 	private MainModel _MainModel;
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		_MainModel = new MainModel(getActivity());
+	}
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_new_reading, container,false);
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+		setHasOptionsMenu(true);
 
 		((Button) rootView.findViewById(R.id.AddReadingBtnAdd))
 		.setOnClickListener(new OnClickListener()
@@ -35,9 +42,6 @@ public class NewReadingFragment extends EditFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-		setHasOptionsMenu(true);
-		_MainModel = new MainModel(getActivity());
 		loadPreferences();
 	}
 	private void onEnterClick()

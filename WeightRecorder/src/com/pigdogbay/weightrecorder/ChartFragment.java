@@ -32,19 +32,22 @@ public class ChartFragment extends Fragment {
 	private MainModel _MainModel;
 	private boolean _UseDummyReadings;
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		_MainModel = new MainModel(getActivity());
+		_UseDummyReadings =_MainModel.getDatabase().getReadingsCount()< MINIMUM_READINGS; 
+	}
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_chart, container,false);
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+		setHasOptionsMenu(true);
 		return rootView;
 	}
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-		setHasOptionsMenu(true);
-
-		_MainModel = new MainModel(getActivity());
-		_UseDummyReadings =_MainModel.getDatabase().getReadingsCount()< MINIMUM_READINGS; 
 		createChart();
 		if (_UseDummyReadings)
 		{

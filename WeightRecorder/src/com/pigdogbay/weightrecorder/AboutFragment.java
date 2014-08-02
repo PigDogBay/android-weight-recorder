@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -66,15 +64,11 @@ public class AboutFragment extends Fragment {
 			}
 		});
         
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+		setHasOptionsMenu(true);
 
         return rootView;
     }
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-		setHasOptionsMenu(true);
-	}
 	
 	private void showWebPage(int urlId)
 	{

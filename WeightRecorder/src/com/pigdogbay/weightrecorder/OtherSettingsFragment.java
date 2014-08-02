@@ -12,22 +12,21 @@ import android.widget.CheckBox;
 public class OtherSettingsFragment extends Fragment {
 	MainModel _MainModel;
 	CheckBox _ChkBxShowTrendLine,_ChkBxShowTargetLine,_ChkBxAutoBackup;
-	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+    	_MainModel = new MainModel(getActivity());
+	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_other_settings, container, false);
+    	_ChkBxAutoBackup = (CheckBox)rootView.findViewById(R.id.OtherSettingsBackupChkBx);
+    	_ChkBxShowTargetLine = (CheckBox)rootView.findViewById(R.id.OtherSettingsTargetLineChkBx);
+    	_ChkBxShowTrendLine = (CheckBox)rootView.findViewById(R.id.OtherSettingsTrendLineChkBx);
+    	dataExchangeToControls();
         return rootView;
     }
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-    	super.onActivityCreated(savedInstanceState);
-    	_MainModel = new MainModel(getActivity());
-    	_ChkBxAutoBackup = (CheckBox)getActivity().findViewById(R.id.OtherSettingsBackupChkBx);
-    	_ChkBxShowTargetLine = (CheckBox)getActivity().findViewById(R.id.OtherSettingsTargetLineChkBx);
-    	_ChkBxShowTrendLine = (CheckBox)getActivity().findViewById(R.id.OtherSettingsTrendLineChkBx);
-    	dataExchangeToControls();
-    }
-    
+   
     /* 
      * Persist any changes here
      */

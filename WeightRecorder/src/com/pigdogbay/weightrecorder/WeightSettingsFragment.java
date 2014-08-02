@@ -20,24 +20,23 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
 	NumberPicker _NumberPicker; 
 	UnitConverterAdapter _UnitConverterAdapter;
 	int _WeightUnitsId;
-	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+    	_MainModel = new MainModel(getActivity());
+    	_WeightUnitsId = _MainModel.getWeightUnitsId();
+	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_weight_settings, container, false);
-        return rootView;
-    }
-    
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-    	super.onActivityCreated(savedInstanceState);
-    	_MainModel = new MainModel(getActivity());
-    	_WeightUnitsId = _MainModel.getWeightUnitsId();
-    	setupRadioButtons();
-    	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingKilograms)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingPounds)).setOnClickListener(this);
-    	((RadioButton)getActivity().findViewById(R.id.rbWeightSettingStones)).setOnClickListener(this);
-    	_NumberPicker = (NumberPicker)getActivity().findViewById(R.id.WeightSettingsGoal);
+    	((RadioButton)rootView.findViewById(R.id.rbWeightSettingKilograms)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.rbWeightSettingPounds)).setOnClickListener(this);
+    	((RadioButton)rootView.findViewById(R.id.rbWeightSettingStones)).setOnClickListener(this);
+    	_NumberPicker = (NumberPicker)rootView.findViewById(R.id.WeightSettingsGoal);
     	setupNumberPicker(_MainModel.getTargetWeightInKilograms());
+    	setupRadioButtons(rootView);
+        return rootView;
     }
     /* 
      * Persist any changes here
@@ -54,7 +53,7 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     		_MainModel.setTargetWeight(_UnitConverterAdapter.getValue());
     	}
     }
-    void setupRadioButtons()
+    void setupRadioButtons(View view)
     {
     	int radioButtonId = R.id.rbWeightSettingPounds; 
     	if (UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS==_WeightUnitsId)
@@ -66,7 +65,7 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     		radioButtonId = R.id.rbWeightSettingStones;
     		
     	}
-    	RadioButton radioButton = (RadioButton) getActivity().findViewById(radioButtonId);
+    	RadioButton radioButton = (RadioButton) view.findViewById(radioButtonId);
     	radioButton.setChecked(true);
     }
     void setupNumberPicker(double targetWeightInKg)

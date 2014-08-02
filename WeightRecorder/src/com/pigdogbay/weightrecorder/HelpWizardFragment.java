@@ -22,19 +22,15 @@ public class HelpWizardFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_help_wizard, container,false);
-		return rootView;
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
 		//Need to use ChildFragmentManager as ViewPager is nested in a fragment
 		//If you use getFragmentManager then the red/blue/green fragments are not released
 		//when the VPFragment is destroyed
     	HelpPagerAdapter helpPagerAdapter = new HelpPagerAdapter(getChildFragmentManager());
-    	ViewPager viewPager = (ViewPager)getView().findViewById(R.id.help_wizard_viewpager);
+    	ViewPager viewPager = (ViewPager)rootView.findViewById(R.id.help_wizard_viewpager);
     	viewPager.setAdapter(helpPagerAdapter);
+		return rootView;
 	}
 	
     public static class HelpPagerAdapter extends FragmentPagerAdapter {
