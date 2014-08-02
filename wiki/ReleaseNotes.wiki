@@ -25,6 +25,7 @@ _Changes_
   * New and Edit are fragments and now use EditFragment as a super class
   * Create a fragment version of import. Import activity is now only for import intents from opening files
   * Retired the home button
+  * MainActivity is now a mediator for the navigation
 
 == Release 1.14.01 ==
 
