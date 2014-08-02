@@ -53,11 +53,6 @@ public class EditReadingFragment extends EditFragment{
 
 	}
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_edit_reading, menu);
-	}
-	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		_MainModel.close();

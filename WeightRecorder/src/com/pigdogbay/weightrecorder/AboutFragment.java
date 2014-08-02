@@ -75,11 +75,6 @@ public class AboutFragment extends Fragment {
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
 		setHasOptionsMenu(true);
 	}
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_about, menu);
-	}	
 	
 	private void showWebPage(int urlId)
 	{

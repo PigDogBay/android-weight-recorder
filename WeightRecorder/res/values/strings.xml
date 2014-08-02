@@ -53,7 +53,6 @@
     <string name="editreading_delete_btn">Delete</string>
     <string name="editreading_delete_dialog_title">Confirm</string>
     <string name="editreading_delete_dialog_message">Are you sure you wish to delete all the readings?</string>
-    <string name="menu_home">Home</string>
     <string name="menu_main_help">Help</string>
     <string name="menu_main_about">About</string>
     <string name="menu_main_welcome">Show Welcome</string>
@@ -244,8 +243,8 @@ Number of Readings 					\t\t$Count<br/>
     <string name="other_settings_description">Allow automatic weekly backups of your data</string>
     <string name="other_settings_backups">Automatic Backups</string>
     <string name="fragment_welcome_end_title">That\'s It!</string>
-    <string name="fragment_welcome_end_msg1">You are now ready to begin tracking your weight. Press the HOME button on the menu to exit.</string>
-    <string name="fragment_welcome_end_msg2">Tip: Press the help button on the main menu screen for a Quick Help Guide.</string>
+    <string name="fragment_welcome_end_msg1">You are now ready to begin tracking your weight. Press the app ICON on the top left to exit.</string>
+    <string name="fragment_welcome_end_msg2">Tip: Press the help button on the home screen for a Quick Help Guide.</string>
     <string name="fragment_welcome_start_title">Welcome!</string>
     <string name="fragment_welcome_start_msg1">Before starting, please enter your height and weight details</string>
     <string name="fragment_welcome_start_msg2">&lt;&lt; Slide &gt;&gt;</string>

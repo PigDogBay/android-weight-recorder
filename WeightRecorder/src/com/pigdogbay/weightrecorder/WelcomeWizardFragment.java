@@ -33,11 +33,6 @@ public class WelcomeWizardFragment extends Fragment {
         viewPager.setAdapter(adapter);		
 		
 	}
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.menu_welcome_wizard, menu);
-	}
 	
     public static class WelcomePagerAdapter extends FragmentPagerAdapter {
 
