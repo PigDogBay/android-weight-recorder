@@ -64,16 +64,14 @@ public class EditReadingFragment extends EditFragment{
 		_MainModel.getDatabase().updateReading(reading);
 		Toast.makeText(getActivity(), getString(R.string.editreading_updated),
 				Toast.LENGTH_SHORT).show();
-//??		setResult(RESULT_OK);
-		((MainActivity)getActivity()).showList();
+		((MainActivity)getActivity()).navigateBack(TAG);
 	}
 
 	private void onDeleteClick() {
 		_MainModel.getDatabase().deleteReading(_Reading);
 		Toast.makeText(getActivity(), getString(R.string.editreading_deleted),
 				Toast.LENGTH_SHORT).show();
-		//??	setResult(RESULT_OK);
-		((MainActivity)getActivity()).showList();
+		((MainActivity)getActivity()).navigateBack(TAG);
 	}
 
 	

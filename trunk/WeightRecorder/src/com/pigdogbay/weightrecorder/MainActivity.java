@@ -107,26 +107,53 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 
 	@Override
 	public void onBackPressed() {
-		Fragment f = (Fragment) getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
-		if (f!=null)
+		Fragment f= getSupportFragmentManager().findFragmentById(R.id.main_fragment_container);
+		String tag="";
+		if (f!=null){
+			tag = f.getTag();
+		}
+		if (HomeFragment.TAG.equals(tag))
 		{
 			super.onBackPressed();
 		}
 		else
 		{
-			showHome();
+			navigateBack(tag);
 		}
 		
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Fragment f= getSupportFragmentManager().findFragmentById(R.id.main_fragment_container);
+		String tag="";
+		if (f!=null){
+			tag = f.getTag();
+		}
 		switch(item.getItemId())
 		{
 			case android.R.id.home:
-				showHome();
+				navigateBack(tag);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+	public void navigateBack(String tag){
+		if (HomeFragment.TAG.equals(tag))
+		{
+			//do nothing
+		}
+		else if (EditReadingFragment.TAG.equals(tag))
+		{
+			showList();
+		}
+		else if (ImportFragment.TAG.equals(tag))
+		{
+			showList();
+		}
+		else
+		{
+			showHome();
 		}
 	}
 	private void replaceFragment(Fragment fragment, String tag) {

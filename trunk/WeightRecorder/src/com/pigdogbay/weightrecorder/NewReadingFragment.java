@@ -5,10 +5,7 @@ import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -51,7 +48,7 @@ public class NewReadingFragment extends EditFragment {
 		savePreferences();
 		Toast.makeText(getActivity(), getString(R.string.addreading_added),
 				Toast.LENGTH_SHORT).show();
-		((MainActivity)getActivity()).showHome();
+		((MainActivity)getActivity()).navigateBack(TAG);
 	}
 
 	@Override
