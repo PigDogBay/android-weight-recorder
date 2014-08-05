@@ -44,6 +44,8 @@ public class ReportFragment  extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_report, container,false);
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
+		setHasOptionsMenu(true);
 		try {
 			populateTextViews(rootView);
 		}
