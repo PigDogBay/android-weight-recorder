@@ -23,6 +23,19 @@
             />
     </LinearLayout>
     <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_average_bmi"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewAverageBMI"
+            style="@style/ReportFieldValue"
+            android:text="26.2"
+            />
+    </LinearLayout>
+    <LinearLayout
         style="@style/ReportFieldLayout">
         <TextView
             style="@style/ReportFieldTitle"
@@ -144,7 +157,20 @@
     </LinearLayout>
     <TextView
         style="@style/ReportHeader"
-        android:text="@string/report_stats"/>
+        android:text="@string/report_weight"/>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_average_weight"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewAverageWeight"
+            style="@style/ReportFieldValue"
+            android:text="73.0 kg"
+            />
+    </LinearLayout>
     <LinearLayout
         style="@style/ReportFieldLayout"
         >
@@ -189,12 +215,12 @@
         >
         <TextView
             style="@style/ReportFieldTitle"
-            android:text="@string/report_average_weight"
+            android:text="@string/report_first_weight"
 			/>
         <TextView
-            android:id="@+id/ReportTextViewAverageWeight"
+            android:id="@+id/ReportTextViewFirstWeight"
             style="@style/ReportFieldValue"
-            android:text="73.0 kg"
+            android:text="72.1 kg"
             />
     </LinearLayout>
     <LinearLayout
@@ -202,14 +228,30 @@
         >
         <TextView
             style="@style/ReportFieldTitle"
-            android:text="@string/report_average_bmi"
+            android:text="@string/report_last_weight"
 			/>
         <TextView
-            android:id="@+id/ReportTextViewAverageBMI"
+            android:id="@+id/ReportTextViewLastWeight"
             style="@style/ReportFieldValue"
-            android:text="26.2"
+            android:text="77.5 kg"
             />
     </LinearLayout>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_first_minus_last_weight"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewFirstMinusLastWeight"
+            style="@style/ReportFieldValue"
+            android:text="5.2 kg"
+            />
+    </LinearLayout>
+    <TextView
+        style="@style/ReportHeader"
+        android:text="@string/report_stats"/>
     <LinearLayout
         style="@style/ReportFieldLayout"
         >
