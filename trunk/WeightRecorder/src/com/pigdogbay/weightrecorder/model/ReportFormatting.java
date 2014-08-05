@@ -48,6 +48,17 @@ public class ReportFormatting {
 		//One gripe with SDF is that UK locale formats like June 14, 2013 which is more American IMHO
 		return SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(new Date(timeInMillis));
 	}
+	public String getDateString(Date date)
+	{
+		//DateUtils.formatDateTime suffers from the Year 2038 problem
+		//One gripe with SDF is that UK locale formats like June 14, 2013 which is more American IMHO
+		return SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(date);
+	}
+	public String getNumberOfDays(Long timeInMillis)
+	{
+		timeInMillis = timeInMillis/(1000L*60L*60L*24L);
+		return Long.toString(timeInMillis)+" "+_Context.getString(R.string.report_days);
+	}
 	public String getDateTimeString(Date date)
 	{
 		return SimpleDateFormat.getDateTimeInstance(SimpleDateFormat.LONG, SimpleDateFormat.MEDIUM).format(date);

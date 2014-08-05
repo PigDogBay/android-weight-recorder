@@ -107,6 +107,10 @@
     <string name="report_first_minus_last_weight">First - Last</string>
     <string name="report_average_weight">Average</string>
     <string name="report_average_bmi">Average BMI</string>
+    <string name="report_first_date">Start Date</string>
+    <string name="report_last_date">Last Date</string>
+    <string name="report_time_spent">Time Spent</string>
+    <string name="report_days">days</string>
     <string name="report_number_of_readings">Number of Readings</string>
     <string name="settings_purchase_color_pack_title">Purchase Required</string>
     <string name="settings_purchase_color_pack_message">Please purchase the Color Pack item from the Shop to unlock the background color settings.</string>
@@ -198,17 +202,20 @@ Goal Date 							\t\t\t\t$TrendAllGoalDate<br/>
 <br/>
 --- Weight ---<br/>
 <br/>
+Average Weight 						\t\t\t\t$AverageWeight<br/>
 Min Weight 							\t\t\t\t\t\t$MinWeight<br/>
 Max Weight 							\t\t\t\t\t$MaxWeight<br/>
 Max - Min 							\t\t\t\t\t$MaxMinusMinWeight<br/>
 First Weight 						\t\t\t\t\t\t$FirstWeight<br/>
 Last Weight 						\t\t\t\t\t$LastWeight<br/>
 First - Last 						\t\t\t\t\t$FirstMinusLastWeight<br/>
-Average Weight 						\t\t\t\t$AverageWeight<br/>
 <br/>		
 <br/>		
 --- Stats ---<br/>
 Number of Readings 					\t\t$Count<br/>
+Start Date	 						\t\t\t\t\t$FirstDate<br/>
+Last Date	 						\t\t\t\t\t$LastDate<br/>
+Time Spent	 						\t\t\t\t\t$TimeSpent<br/>
 <br/>		
 <br/>		
 http://www.pigdogbay.com<br/>

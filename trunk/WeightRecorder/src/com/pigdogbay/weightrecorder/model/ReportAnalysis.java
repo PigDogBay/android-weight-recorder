@@ -8,18 +8,20 @@ public class ReportAnalysis {
 	UserSettings _UserSettings;
 	BMICalculator _BMICalculator;
 	TrendAnalysis _TrendAnalysis, _TrendanalysisLastWeek, _TrendanalysisLastMonth;
-	public double MinWeight,MaxWeight,AverageWeight,LatestWeight, FirstWeight; 
+	public double MinWeight,MaxWeight,AverageWeight; 
 	public boolean IsWeekTrendAvaialble=false, IsMonthTrendAvailable=false;
 	public int Count;
+	public Reading FirstReading, LastReading;
 	
 	public ReportAnalysis(UserSettings userSettings, Query query)
 	{
+		query.sortByDate();
 		_UserSettings = userSettings;
 		_BMICalculator = new BMICalculator(userSettings);
 		MinWeight = query.getMinWeight().getWeight();
 		MaxWeight = query.getMaxWeight().getWeight();
-		LatestWeight = query.getLatestReading().getWeight();
-		FirstWeight = query.getFirstReading().getWeight();
+		FirstReading = query.getFirstReading();
+		LastReading = query.getLatestReading();
 		AverageWeight = query.getAverageWeight();
 		Count = query._Readings.size();
 		
@@ -42,10 +44,13 @@ public class ReportAnalysis {
 			}
 		}
 	}
-	
+	public double getFirstMinusLast()
+	{
+		return FirstReading.getWeight()-LastReading.getWeight();
+	}
 	public double getLatestBMI()
 	{
-		return _BMICalculator.calculateBMI(LatestWeight);		
+		return _BMICalculator.calculateBMI(LastReading.getWeight());		
 	}
 	public double getTargetBMI()
 	{
@@ -86,5 +91,9 @@ public class ReportAnalysis {
 	public long getEstimatedDateUsingAllTime()
 	{
 		return _TrendAnalysis.getEstimatedDate(_UserSettings.TargetWeight);
+	}
+	public long getTimeSpent()
+	{
+		return LastReading.getDate().getTime() - FirstReading.getDate().getTime();
 	}
 }
