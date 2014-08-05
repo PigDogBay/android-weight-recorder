@@ -34,20 +34,24 @@ public class ReportFragment  extends Fragment {
 	private ReportFormatting _ReportFormatting;
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		MainModel mainModel = new MainModel(getActivity());
+		createReport(mainModel);
+		mainModel.close();
+	}
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_report, container,false);
-		return rootView;
-	}
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);	
-		setHasOptionsMenu(true);
-		//Dont set up controls again if state has been saved (eg on a rotate)
-		if (savedInstanceState==null) {
-			init();
+		try {
+			populateTextViews(rootView);
 		}
+		catch (Exception e) {
+			Log.v(MainActivity.TAG,
+					"Unable to populate views: " + e.getMessage());
+		}
+		return rootView;
 	}
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -65,19 +69,6 @@ public class ReportFragment  extends Fragment {
 			return super.onOptionsItemSelected(item);
 		}
 	}	
-	private void init()
-	{
-		MainModel mainModel = new MainModel(getActivity());
-		createReport(mainModel);
-		mainModel.close();
-		try {
-			populateTextViews();
-		}
-		catch (Exception e) {
-			Log.v(MainActivity.TAG,
-					"Unable to populate views: " + e.getMessage());
-		}
-	}
 	private void createReport(MainModel mainModel) {
 		UserSettings userSettings = mainModel.getUserSettings();
 		List<Reading> readings = mainModel.getDatabase().getAllReadings();
@@ -93,12 +84,12 @@ public class ReportFragment  extends Fragment {
 		_ReportText = new ReportText(analysis, _ReportFormatting);
 	}
 
-	private void populateTextViews() throws IllegalArgumentException,
+	private void populateTextViews(View view) throws IllegalArgumentException,
 			IllegalAccessException, NoSuchFieldException {
 		for (Map.Entry<String, String> entry : _ReportText.getEntrySet()) {
 			String fieldName = entry.getKey().replace("$", TEXT_FIELD_PREFIX);
 			int id = R.id.class.getField(fieldName).getInt(null);
-			TextView textView = (TextView) getView().findViewById(id);
+			TextView textView = (TextView) view.findViewById(id);
 			textView.setText(entry.getValue());
 		}
 	}	
