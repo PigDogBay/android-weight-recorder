@@ -43,7 +43,7 @@ public class ReportText {
 		_Map.put(TrendMonthGoalDate_Key, formatter.getValidDateString(analysis.getEstimatedDateUsingLastMonth()));
 		_Map.put(TrendAllTitle_Key, formatter.getWeightTrendDirection(analysis.getWeeklyTrendAllTime()));
 		_Map.put(TrendAllValue_Key, formatter.getWeightTrend(analysis.getWeeklyTrendAllTime()));
-		_Map.put(TrendAllGoalDate_Key, formatter.getDateString(analysis.getEstimatedDateUsingAllTime()));
+		_Map.put(TrendAllGoalDate_Key, formatter.getValidDateString(analysis.getEstimatedDateUsingAllTime()));
 		_Map.put(MinWeight_Key, formatter.getWeightString(analysis.MinWeight));
 		_Map.put(MaxWeight_Key, formatter.getWeightString(analysis.MaxWeight));
 		_Map.put(AverageWeight_Key, formatter.getWeightString(analysis.AverageWeight));
