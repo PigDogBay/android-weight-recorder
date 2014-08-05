@@ -168,9 +168,6 @@
     <string name="report_template">
         <![CDATA[
 Weight Tracker Report<br/>
-http://www.pigdogbay.com<br/>
-<br/>
-<br/>
 <br/>
 --- Body Mass Index ---<br/>
 <br/>
@@ -203,6 +200,8 @@ Average Weight 						\t\t\t\t$AverageWeight<br/>
 Average BMI 						\t\t\t\t\t$AverageBMI<br/>
 Number of Readings 					\t\t$Count<br/>
 <br/>		
+<br/>		
+http://www.pigdogbay.com<br/>
 		]]>
 	</string>
     <string name="menu_help_text_small">Text Small</string>
