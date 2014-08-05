@@ -24,6 +24,7 @@ public class ReportText {
 	public static final String TrendAllGoalDate_Key = "$TrendAllGoalDate";
 	public static final String MinWeight_Key = "$MinWeight";
 	public static final String MaxWeight_Key = "$MaxWeight";
+	public static final String MaxMinusMinWeight_Key = "$MaxMinusMinWeight";
 	public static final String AverageWeight_Key = "$AverageWeight";
 	public static final String AverageBMI_Key = "$AverageBMI";
 	public static final String Count_Key = "$Count";
@@ -46,6 +47,7 @@ public class ReportText {
 		_Map.put(TrendAllGoalDate_Key, formatter.getValidDateString(analysis.getEstimatedDateUsingAllTime()));
 		_Map.put(MinWeight_Key, formatter.getWeightString(analysis.MinWeight));
 		_Map.put(MaxWeight_Key, formatter.getWeightString(analysis.MaxWeight));
+		_Map.put(MaxMinusMinWeight_Key, formatter.getWeightString(analysis.MaxWeight-analysis.MinWeight));
 		_Map.put(AverageWeight_Key, formatter.getWeightString(analysis.AverageWeight));
 		_Map.put(AverageBMI_Key, formatter.getBMIString(analysis.getAverageBMI()));
 		_Map.put(Count_Key, Integer.toString(analysis.Count));
