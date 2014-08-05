@@ -100,6 +100,7 @@
     <string name="report_stats">Stats</string>
     <string name="report_min_weight">Min Weight</string>
     <string name="report_max_weight">Max Weight</string>
+    <string name="report_max_minus_min_weight">Max - Min</string>
     <string name="report_average_weight">Average Weight</string>
     <string name="report_average_bmi">Average BMI</string>
     <string name="report_number_of_readings">Number of Readings</string>
@@ -197,6 +198,7 @@ Goal Date 							\t\t\t\t$TrendAllGoalDate<br/>
 <br/>
 Min Weight 							\t\t\t\t\t\t$MinWeight<br/>
 Max Weight 							\t\t\t\t\t$MaxWeight<br/>
+Max - Min 							\t\t\t\t\t$MaxMinusMinWeight<br/>
 Average Weight 						\t\t\t\t$AverageWeight<br/>
 Average BMI 						\t\t\t\t\t$AverageBMI<br/>
 Number of Readings 					\t\t$Count<br/>

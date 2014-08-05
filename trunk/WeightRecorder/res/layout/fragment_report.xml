@@ -176,6 +176,19 @@
         >
         <TextView
             style="@style/ReportFieldTitle"
+            android:text="@string/report_max_minus_min_weight"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewMaxMinusMinWeight"
+            style="@style/ReportFieldValue"
+            android:text="5.2 kg"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
             android:text="@string/report_average_weight"
 			/>
         <TextView
