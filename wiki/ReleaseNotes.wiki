@@ -14,10 +14,10 @@ _Changes_
   * Report bug fix, report is now created every time
   * Goal date for all time now validates the date
   * Updated report:
-  ** New min, max, max-min fields
-  ** New first, last, first-last weight fields
-  ** Start date, last date, number of days between first and last
-  ** Re-organized fields, new weight category
+    * New min, max, max-min fields
+    * New first, last, first-last weight fields
+    * Start date, last date, number of days between first and last
+    * Re-organized fields, new weight category
   
 
 == Release 1.14.02 ==
