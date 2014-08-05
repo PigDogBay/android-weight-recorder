@@ -97,11 +97,15 @@
     <string name="report_goal_date">Goal Date</string>
     <string name="report_last_30_days">Last 30 Days</string>
     <string name="report_all_time">All Time</string>
+    <string name="report_weight">Weight</string>
     <string name="report_stats">Stats</string>
-    <string name="report_min_weight">Min Weight</string>
-    <string name="report_max_weight">Max Weight</string>
+    <string name="report_min_weight">Min</string>
+    <string name="report_max_weight">Max</string>
     <string name="report_max_minus_min_weight">Max - Min</string>
-    <string name="report_average_weight">Average Weight</string>
+    <string name="report_first_weight">First</string>
+    <string name="report_last_weight">Last</string>
+    <string name="report_first_minus_last_weight">First - Last</string>
+    <string name="report_average_weight">Average</string>
     <string name="report_average_bmi">Average BMI</string>
     <string name="report_number_of_readings">Number of Readings</string>
     <string name="settings_purchase_color_pack_title">Purchase Required</string>
@@ -172,6 +176,7 @@ Weight Tracker Report<br/>
 --- Body Mass Index ---<br/>
 <br/>
 Latest 								\t\t\t\t\t\t$LatestBMI<br/>
+Average BMI 						\t\t\t\t\t$AverageBMI<br/>
 Goal 								\t\t\t\t\t\t$GoalBMI<br/>
 Ideal Weight 						\t\t\t$IdealRange<br/>
 <br/>
@@ -191,13 +196,18 @@ $TrendAllTitle						\t\t\t\t\t\t$TrendAllValue<br/>
 Goal Date 							\t\t\t\t$TrendAllGoalDate<br/>
 <br/>
 <br/>
---- Stats ---<br/>
+--- Weight ---<br/>
 <br/>
 Min Weight 							\t\t\t\t\t\t$MinWeight<br/>
 Max Weight 							\t\t\t\t\t$MaxWeight<br/>
 Max - Min 							\t\t\t\t\t$MaxMinusMinWeight<br/>
+First Weight 						\t\t\t\t\t\t$FirstWeight<br/>
+Last Weight 						\t\t\t\t\t$LastWeight<br/>
+First - Last 						\t\t\t\t\t$FirstMinusLastWeight<br/>
 Average Weight 						\t\t\t\t$AverageWeight<br/>
-Average BMI 						\t\t\t\t\t$AverageBMI<br/>
+<br/>		
+<br/>		
+--- Stats ---<br/>
 Number of Readings 					\t\t$Count<br/>
 <br/>		
 <br/>		

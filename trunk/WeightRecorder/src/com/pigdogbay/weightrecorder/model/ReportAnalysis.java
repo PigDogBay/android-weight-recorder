@@ -8,7 +8,7 @@ public class ReportAnalysis {
 	UserSettings _UserSettings;
 	BMICalculator _BMICalculator;
 	TrendAnalysis _TrendAnalysis, _TrendanalysisLastWeek, _TrendanalysisLastMonth;
-	public double MinWeight,MaxWeight,AverageWeight,LatestWeight; 
+	public double MinWeight,MaxWeight,AverageWeight,LatestWeight, FirstWeight; 
 	public boolean IsWeekTrendAvaialble=false, IsMonthTrendAvailable=false;
 	public int Count;
 	
@@ -19,6 +19,7 @@ public class ReportAnalysis {
 		MinWeight = query.getMinWeight().getWeight();
 		MaxWeight = query.getMaxWeight().getWeight();
 		LatestWeight = query.getLatestReading().getWeight();
+		FirstWeight = query.getFirstReading().getWeight();
 		AverageWeight = query.getAverageWeight();
 		Count = query._Readings.size();
 		
