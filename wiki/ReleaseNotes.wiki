@@ -7,19 +7,15 @@ IDE: Eclipse 4.3
 Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder
 
 = Details =
-== Release 1.14.02 ==
-8th Aug 2014 *Alpha*<br/>
-
-<br/>
+== Release 1.14.03 ==
+8th Aug 2014 *Alpha*
 
 _Changes_
   * blah
 
 == Release 1.14.02 ==
 
-5th Aug 2014 *Alpha*<br/>
-
-<br/>
+5th Aug 2014 *Alpha*
 
 _Changes_
   * Min API is now 16, Jelly Bean 4.1
