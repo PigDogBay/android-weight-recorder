@@ -265,4 +265,43 @@
             android:text="136"
             />
     </LinearLayout>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_first_date"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewFirstDate"
+            style="@style/ReportFieldValue"
+            android:text="25th Dec 2013"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_last_date"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewLastDate"
+            style="@style/ReportFieldValue"
+            android:text="25th Dec 2014"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/ReportFieldLayout"
+        >
+        <TextView
+            style="@style/ReportFieldTitle"
+            android:text="@string/report_time_spent"
+			/>
+        <TextView
+            android:id="@+id/ReportTextViewTimeSpent"
+            style="@style/ReportFieldValue"
+            android:text="365 days"
+            />
+    </LinearLayout>
 </LinearLayout>

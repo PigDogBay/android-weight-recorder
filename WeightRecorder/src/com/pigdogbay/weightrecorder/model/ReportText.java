@@ -31,6 +31,9 @@ public class ReportText {
 	public static final String AverageWeight_Key = "$AverageWeight";
 	public static final String AverageBMI_Key = "$AverageBMI";
 	public static final String Count_Key = "$Count";
+	public static final String FirstDate_Key = "$FirstDate";
+	public static final String LastDate_Key = "$LastDate";
+	public static final String TimeSpent_Key = "$TimeSpent";
 	
 	public ReportText(ReportAnalysis analysis, ReportFormatting formatter)
 	{
@@ -51,12 +54,15 @@ public class ReportText {
 		_Map.put(MinWeight_Key, formatter.getWeightString(analysis.MinWeight));
 		_Map.put(MaxWeight_Key, formatter.getWeightString(analysis.MaxWeight));
 		_Map.put(MaxMinusMinWeight_Key, formatter.getWeightString(analysis.MaxWeight-analysis.MinWeight));
-		_Map.put(FirstWeight_Key, formatter.getWeightString(analysis.FirstWeight));
-		_Map.put(LastWeight_Key, formatter.getWeightString(analysis.LatestWeight));
-		_Map.put(FirstMinusLastWeight_Key, formatter.getWeightString(analysis.FirstWeight-analysis.LatestWeight));
+		_Map.put(FirstWeight_Key, formatter.getWeightString(analysis.FirstReading.getWeight()));
+		_Map.put(LastWeight_Key, formatter.getWeightString(analysis.LastReading.getWeight()));
+		_Map.put(FirstMinusLastWeight_Key, formatter.getWeightString(analysis.getFirstMinusLast()));
 		_Map.put(AverageWeight_Key, formatter.getWeightString(analysis.AverageWeight));
 		_Map.put(AverageBMI_Key, formatter.getBMIString(analysis.getAverageBMI()));
 		_Map.put(Count_Key, Integer.toString(analysis.Count));
+		_Map.put(FirstDate_Key, formatter.getDateString(analysis.FirstReading.getDate()));
+		_Map.put(LastDate_Key, formatter.getDateString(analysis.LastReading.getDate()));
+		_Map.put(TimeSpent_Key, formatter.getNumberOfDays(analysis.getTimeSpent()));
 	}
 	public Set<Map.Entry<String, String>> getEntrySet()
 	{
