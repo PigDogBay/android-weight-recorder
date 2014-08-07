@@ -13,6 +13,7 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 _Changes_
   * Report bug fix, report is now created every time
   * Goal date for all time now validates the date
+  * Displays well done message when the target weight is reached
   * Updated report:
     * New min, max, max-min fields
     * New first, last, first-last weight fields
