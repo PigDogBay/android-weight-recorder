@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string translatable="false" name="code_pref_weight_units_key">weight_units_pref_key</string>
+    <string translatable="false" name="code_pref_length_units_key">length_units_pref_key</string>
+    <string translatable="false" name="code_pref_height_key">height_pref_key</string>
+    <string translatable="false" name="code_pref_target_weight_key">target_weight_pref_key</string>
+    <string translatable="false" name="code_pref_welcome_shown_key">welcome_screen_shown_pref_key</string>
+    <string translatable="false" name="code_pref_last_weight_key">last_weight_key</string>
+    <string translatable="false" name="code_pref_show_trendline_key">show_trendline_key</string>
+    <string translatable="false" name="code_pref_show_targetline_key">show_targetline_key</string>
+    <string translatable="false" name="code_pref_auto_backup_key">auto_backup_key</string>
+    <string translatable="false" name="code_pref_auto_backup_last_date_key">auto_backup_last_date_key</string>
+    <string translatable="false" name="code_pref_enable_goal_congratulations_key">enable_goal_congratulations_key</string>
+</resources>
