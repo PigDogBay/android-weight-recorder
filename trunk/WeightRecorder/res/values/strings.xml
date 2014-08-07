@@ -47,6 +47,8 @@
     <string name="edit_speak_prompt_comment">Speak your comment</string>
     <string name="addreading_added">Reading Added</string>
     <string name="addreading_add_btn">Add</string>
+    <string name="addreading_reached_goal_title">Congratulations!</string>
+    <string name="addreading_reached_goal_message">You have reached your target weight. Go to Settings and set yourself a new goal.</string>
     <string name="editreading_updated">Reading Updated</string>
     <string name="editreading_deleted">Reading Deleted</string>
     <string name="editreading_update_btn">Update</string>

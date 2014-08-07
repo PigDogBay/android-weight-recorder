@@ -152,6 +152,14 @@ public class MainModel
 	{
 		getPreferencesHelper().setBoolean(R.string.code_pref_welcome_shown_key, flag);
 	}
+	public boolean getIsGoalCongratulationsEnabled()
+	{
+		return getPreferencesHelper().getBoolean(R.string.code_pref_enable_goal_congratulations_key, true);
+	}
+	public void setIsGoalCongratulationsEnabled(boolean flag)
+	{
+		getPreferencesHelper().setBoolean(R.string.code_pref_enable_goal_congratulations_key, flag);
+	}
 	
 	public UserSettings getUserSettings()
 	{

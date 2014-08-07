@@ -51,6 +51,8 @@ public class WeightSettingsFragment extends Fragment implements OnClickListener{
     	if (_UnitConverterAdapter.getValue()!=_MainModel.getTargetWeight())
     	{
     		_MainModel.setTargetWeight(_UnitConverterAdapter.getValue());
+    		//Allow well done message to be shown when goal is reached
+    		_MainModel.setIsGoalCongratulationsEnabled(true);
     	}
     }
     void setupRadioButtons(View view)
