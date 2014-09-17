@@ -3,8 +3,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:ignore="TypographyDashes"
     >
-  <!--Replace placeholder ID with your tracking ID-->
-  <string name="ga_trackingId">UA-49161285-7</string>
+  <screenName name="com.pigdogbay.weightrecorder.MainActivity">Main Activity</screenName>
+    <!--Replace placeholder ID with your tracking ID-->
+  <string name="ga_trackingId">UA-49161285-8</string>
 
   <!--Enable automatic activity tracking-->
   <bool name="ga_autoActivityTracking">true</bool>

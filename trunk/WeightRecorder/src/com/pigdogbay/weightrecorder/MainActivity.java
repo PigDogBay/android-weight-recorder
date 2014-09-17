@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
@@ -91,6 +92,17 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 		super.onDestroy();
     }
+	@Override
+	protected void onStart() {
+		super.onStart();
+		//Report the start of an Activity, so that it can be tracked by any Trackers that have enabled auto activity tracking
+		GoogleAnalytics.getInstance(this).reportActivityStart(this);
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		GoogleAnalytics.getInstance(this).reportActivityStop(this);;
+	}    
 	private void checkRate() {
 		try {
 			new AppRate(this).setCustomDialog(createRateDialog())
@@ -185,6 +197,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 	}
 	private void replaceFragment(Fragment fragment, String tag) {
+		WeightRecorderApplication.trackEvent(this,"Navigate",tag);
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.main_fragment_container, fragment, tag)
