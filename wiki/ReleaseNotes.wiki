@@ -8,7 +8,7 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 
 = Details =
 == Release 1.14.03 ==
-8th Aug 2014 *Alpha*
+8th Aug 2014 *Production*
 
 _Changes_
   * Report bug fix, report is now created every time
