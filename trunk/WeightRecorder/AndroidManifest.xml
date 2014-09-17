@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="11403"
-    android:versionName="1.14.03" 
+    android:versionCode="11501"
+    android:versionName="1.15.01" 
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET"/>
+  	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="19" />
@@ -14,6 +16,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+		<meta-data 
+		    android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>        
         <activity
             android:windowSoftInputMode="stateHidden"
             android:name=".MainActivity"
@@ -46,5 +51,8 @@
 		        <data android:host="*" />                
 			</intent-filter>            
         </activity>
-    </application>
+		<activity android:name="com.google.android.gms.ads.AdActivity"
+		    	  android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
+		          android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>        
+        </application>
 </manifest>

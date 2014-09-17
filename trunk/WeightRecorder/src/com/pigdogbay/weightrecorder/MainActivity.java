@@ -2,6 +2,8 @@ package com.pigdogbay.weightrecorder;
 
 import java.util.Locale;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
@@ -25,6 +27,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	public static final String TAG = "WeightTracker";
 
 	BackgroundColorPresenter _BackgroundColorPresenter;
+	private AdView _AdView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		MainModel mainModel = new MainModel(this);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
+		
+		setupAds();
 		
 		//if app has been rotated, then skip this part as the existing fragment will have already been recreated
 		if (getSupportFragmentManager().findFragmentById(R.id.main_fragment_container)==null)
@@ -48,19 +53,44 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 		mainModel.close();
 	}
-    @Override
+	private void setupAds() {
+		// Look up the AdView as a resource and load a request.
+		_AdView = (AdView) this.findViewById(R.id.adView);
+		if (_AdView != null) {
+			AdRequest adRequest = new AdRequest.Builder()
+					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+					.addTestDevice(getString(R.string.code_test_device_1_id))
+					.addTestDevice(getString(R.string.code_test_device_2_id))
+					.addTestDevice(getString(R.string.code_test_device_3_id))
+					.build();
+			_AdView.loadAd(adRequest);
+		}
+	}
+	@Override
     protected void onResume() {
     	super.onResume();
+		if (_AdView != null) {
+			_AdView.resume();
+		}
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.registerOnSharedPreferenceChangeListener(this);
     }
     @Override
     protected void onPause() {
+		if (_AdView != null) {
+			_AdView.pause();
+		}
     	super.onPause();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
     }
-
+    @Override
+    protected void onDestroy() {
+		if (_AdView != null) {
+			_AdView.destroy();
+		}
+		super.onDestroy();
+    }
 	private void checkRate() {
 		try {
 			new AppRate(this).setCustomDialog(createRateDialog())
