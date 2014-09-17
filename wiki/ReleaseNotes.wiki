@@ -13,6 +13,8 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 
 _Changes_
 
+  * Admob is back
+  * Google Analytics now integrated
 
 == Release 1.14.03 ==
 8th Aug 2014 *Production*
