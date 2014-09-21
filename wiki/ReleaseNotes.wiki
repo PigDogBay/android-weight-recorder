@@ -8,6 +8,15 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 
 = Details =
 
+== Release 1.15.02 ==
+21th Sept 2014 *Alpha*
+
+_Changes_
+
+  * Removed landscape activity so thats ads are now shown in landscape
+  * Added Italian strings from Luciano, evvivame@tiscali.it
+  * Moved web address strings into code_strings.xml
+
 == Release 1.15.01 ==
 17th Sept 2014 *Alpha*
 
