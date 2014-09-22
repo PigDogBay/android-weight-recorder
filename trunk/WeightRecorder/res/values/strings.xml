@@ -266,4 +266,8 @@ http://www.pigdogbay.com<br/>
     <string name="fragment_welcome_start_title">Welcome!</string>
     <string name="fragment_welcome_start_msg1">Before starting, please enter your height and weight details</string>
     <string name="fragment_welcome_start_msg2">&lt;&lt; Slide &gt;&gt;</string>
+    <string name="fragment_welcome_wizard_page_title_welcome">WELCOME</string>
+    <string name="fragment_welcome_wizard_page_title_weight">WEIGHT</string>
+    <string name="fragment_welcome_wizard_page_title_height">HEIGHT</string>
+    <string name="fragment_welcome_wizard_page_title_finished">FINISHED</string>
 </resources>
