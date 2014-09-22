@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,16 +28,18 @@ public class HelpWizardFragment extends Fragment {
 		//Need to use ChildFragmentManager as ViewPager is nested in a fragment
 		//If you use getFragmentManager then the red/blue/green fragments are not released
 		//when the VPFragment is destroyed
-    	HelpPagerAdapter helpPagerAdapter = new HelpPagerAdapter(getChildFragmentManager());
+    	HelpPagerAdapter helpPagerAdapter = new HelpPagerAdapter(getChildFragmentManager(), getActivity());
     	ViewPager viewPager = (ViewPager)rootView.findViewById(R.id.help_wizard_viewpager);
     	viewPager.setAdapter(helpPagerAdapter);
 		return rootView;
 	}
 	
     public static class HelpPagerAdapter extends FragmentPagerAdapter {
+    	Context _Context;
 
-        public HelpPagerAdapter(FragmentManager fm) {
+        public HelpPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
+            _Context = context;
         }
 
         @Override
@@ -59,9 +62,9 @@ public class HelpWizardFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "QUICK HELP";
+                    return _Context.getString(R.string.fragment_help_wizard_page_title_quick_help);
                 case 1:
-                    return "HELP";
+                    return _Context.getString(R.string.fragment_help_wizard_page_title_help);
             }
             return null;
         }
