@@ -2,11 +2,21 @@ Release notes for the Android Weight Tracker App
 
 = Introduction =
 
-IDE: Eclipse 4.3
+IDE: Eclipse 4.4
 
 Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder
 
 = Details =
+
+== Release 1.15.03 ==
+22nd Sept 2014 *Alpha*
+
+_Changes_
+
+  * Removed hard coded page title strings in the PageAdapter classes
+  * Added missing Italian strings from Luciano, evvivame@tiscali.it
+  * Added Italian colour strings also from Luciano
+  * Moved more strings like version and web page into code_strings.xml
 
 == Release 1.15.02 ==
 21th Sept 2014 *Alpha*
