@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+		style="@style/AboutHeader"
+        android:text="@string/about_header_info" />
+    <TextView
+		style="@style/AboutBodyText"
+        android:text="@string/about_version" />
+    <TextView
+		style="@style/AboutBodyText"
+        android:text="@string/about_copyright" />
+    <TextView
+        android:id="@+id/aboutWebsiteLink"
+		android:linksClickable="false"
+		style="@style/AboutBodyText"
+		android:autoLink="web"
+        android:text="@string/website" />
+    <TextView
+        android:id="@+id/aboutFacebookLink"
+		android:linksClickable="false"
+		style="@style/AboutBodyText"
+		android:autoLink="web"
+        android:text="@string/facebookPage" />
+    <TextView
+        android:id="@+id/aboutTwitterLink"
+		android:linksClickable="false"
+		style="@style/AboutBodyText"
+		android:autoLink="web"
+        android:text="@string/twitter" />
+    <TextView
+		style="@style/AboutHeader"
+        android:text="@string/about_header_feedback" />
+    <TextView
+		style="@style/AboutBodyText"
+        android:text="@string/about_body_feedback" />
+    <Button 
+        style="@style/AboutButton"
+        android:id="@+id/aboutBtnRate"
+        android:background="@drawable/about_blue_button"
+        android:text="@string/about_button_rate"/>
+    <Button 
+        style="@style/AboutButton"
+        android:id="@+id/aboutBtnFacebook"
+        android:background="@drawable/about_blue_button"
+        android:text="@string/about_button_facebook"/>
+
+    <Button
+        android:id="@+id/aboutBtnLegal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:text="@string/about_button_legal" />
+    
+</LinearLayout>
