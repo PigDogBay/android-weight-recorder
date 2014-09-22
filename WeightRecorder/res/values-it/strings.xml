@@ -273,4 +273,11 @@ http://www.pigdogbay.com<br/>
     <string name="fragment_settings_wizard_page_title_height">ALTEZZA</string>
     <string name="fragment_settings_wizard_page_title_background">SFONDO</string>
     <string name="fragment_settings_wizard_page_title_other">ALTRO</string>
+    <string name="color_skyblue">Blu cielo</string>
+    <string name="color_dark_pink">Rosa intenso</string>
+    <string name="color_light_pink">Fior di melo</string>
+    <string name="color_turquoise">Oceano</string>
+    <string name="color_yellow">Giallo</string>
+    <string name="color_grey">Grigio sfumato</string>
+    <string name="color_white">Bianco semplice</string>    
 </resources>
