@@ -263,4 +263,14 @@ http://www.pigdogbay.com<br/>
     <string name="fragment_welcome_start_title">Benvenuto!</string>
     <string name="fragment_welcome_start_msg1">Prima di iniziare, introduci la tua altezza e peso</string>
     <string name="fragment_welcome_start_msg2">&lt;&lt; Pagina &gt;&gt;</string>
+    <string name="fragment_welcome_wizard_page_title_welcome">BENEVUTO</string>
+    <string name="fragment_welcome_wizard_page_title_weight">PESO</string>
+    <string name="fragment_welcome_wizard_page_title_height">ALTEZZA</string>
+    <string name="fragment_welcome_wizard_page_title_finished">FINITO</string>
+    <string name="fragment_help_wizard_page_title_quick_help">AIUTO VELOCE</string>
+    <string name="fragment_help_wizard_page_title_help">AIUTO</string>
+    <string name="fragment_settings_wizard_page_title_weight">PESO</string>
+    <string name="fragment_settings_wizard_page_title_height">ALTEZZA</string>
+    <string name="fragment_settings_wizard_page_title_background">SFONDO</string>
+    <string name="fragment_settings_wizard_page_title_other">ALTRO</string>
 </resources>
