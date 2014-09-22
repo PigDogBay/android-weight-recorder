@@ -272,4 +272,8 @@ http://www.pigdogbay.com<br/>
     <string name="fragment_welcome_wizard_page_title_finished">FINISHED</string>
     <string name="fragment_help_wizard_page_title_quick_help">QUICK HELP</string>
     <string name="fragment_help_wizard_page_title_help">HELP</string>
+    <string name="fragment_settings_wizard_page_title_weight">WEIGHT</string>
+    <string name="fragment_settings_wizard_page_title_height">HEIGHT</string>
+    <string name="fragment_settings_wizard_page_title_background">BACKGROUND</string>
+    <string name="fragment_settings_wizard_page_title_other">OTHER</string>
 </resources>

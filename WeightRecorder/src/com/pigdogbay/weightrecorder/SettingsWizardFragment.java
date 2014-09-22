@@ -1,5 +1,6 @@
 package com.pigdogbay.weightrecorder;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,16 +22,18 @@ public class SettingsWizardFragment extends Fragment{
 		//Need to use ChildFragmentManager as ViewPager is nested in a fragment
 		//If you use getFragmentManager then the red/blue/green fragments are not released
 		//when the VPFragment is destroyed
-        SettingsPagerAdapter adapter = new SettingsPagerAdapter(getChildFragmentManager());
+        SettingsPagerAdapter adapter = new SettingsPagerAdapter(getChildFragmentManager(), getActivity());
         ViewPager viewPager = (ViewPager)rootView.findViewById(R.id.settings_wizard_viewpager);
         viewPager.setAdapter(adapter);
 		return rootView;
 	}
 
     public static class SettingsPagerAdapter extends FragmentPagerAdapter {
+    	Context _Context;
 
-        public SettingsPagerAdapter(FragmentManager fm) {
+        public SettingsPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
+            _Context = context;
         }
 
         @Override
@@ -57,13 +60,13 @@ public class SettingsWizardFragment extends Fragment{
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "WEIGHT";
+                    return _Context.getString(R.string.fragment_settings_wizard_page_title_weight);
                 case 1:
-                    return "HEIGHT";
+                    return _Context.getString(R.string.fragment_settings_wizard_page_title_height);
                 case 2:
-                    return "BACKGROUND";
+                    return _Context.getString(R.string.fragment_settings_wizard_page_title_background);
                 case 3:
-                    return "OTHER";
+                    return _Context.getString(R.string.fragment_settings_wizard_page_title_other);
             }
             return null;
         }
