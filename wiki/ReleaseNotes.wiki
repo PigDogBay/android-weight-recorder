@@ -8,6 +8,14 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 
 = Details =
 
+== Release 1.15.05 ==
+3rd Oct 2014 *Alpha*
+
+_Changes_
+
+  * Update to V4 of the Italian strings by Luciano
+
+
 == Release 1.15.04 ==
 23rd Sept 2014 *Alpha*
 
