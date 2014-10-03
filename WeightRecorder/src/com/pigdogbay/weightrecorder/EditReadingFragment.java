@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class EditReadingFragment extends EditFragment{
+	private static final String BUNDLE_READING_ID = "BUNDLE_READING_ID";
+	
 	public static final String TAG = "edit";
 	private Reading _Reading;
 	private MainModel _MainModel;
@@ -47,8 +49,22 @@ public class EditReadingFragment extends EditFragment{
 		});
 		_MainModel = new MainModel(getActivity());
 		setWeightConvert(_MainModel.getWeightConverter());
-		setReading(_Reading);
-
+		if (savedInstanceState!=null)
+		{
+			int id = savedInstanceState.getInt(BUNDLE_READING_ID);
+			_Reading = _MainModel.getDatabase().getReading(id);
+		}
+		if (null!=_Reading)
+		{
+			setReading(_Reading);
+		}
+		
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(BUNDLE_READING_ID, _Reading.getID());
 	}
 	@Override
 	public void onDestroy() {
