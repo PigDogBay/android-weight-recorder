@@ -3,7 +3,7 @@
     <string name="backup_readings_error">Errore durante il Backup</string>
     <string name="about_header_info">INFO</string>
     <string name="about_header_feedback">FEEDBACK</string>
-    <string name="about_body_feedback">Vota questa app per incrementarne lo sviluppo, il tuo parere è benvenuto. Prova le altre nostre Apps su Google Play.</string>
+    <string name="about_body_feedback">Vota questa app per incrementarne lo sviluppo, il tuo parere è molto gradito. Prova le altre nostre Apps su Google Play.</string>
     <string name="about_button_rate">VOTA QUESTA APP</string>
     <string name="about_button_facebook">ALTRE APPS</string>
     <string name="about_button_legal">Notizie legali</string>
@@ -21,7 +21,7 @@
     <string name="title_settings">Impostazioni</string>
     <string name="title_welcome">Benvenuto</string>
     <string name="chart_notenoughdata_title">Pesate insufficenti</string>
-    <string name="chart_notenoughdata_message">Hai fatto meno di 3 pesate, per questo il grafico mostra un esempio. </string>
+    <string name="chart_notenoughdata_message">Hai fatto meno di 3 pesate, per questo il grafico mostra solo un esempio. </string>
     <string name="chart_xaxis_title">Data</string>
     <string name="chart_yaxis_title">Peso</string>
     <string name="chart_share_chooser_title">Condividi il grafico</string>
@@ -78,7 +78,7 @@
     <string name="readings_no_readings_dialog_title">Nessuna pesata</string>
     <string name="readings_no_readings_dialog_msg">Non ci sono pesate da mostrare.Se vuoi importare delle pesate pigia il pulsante Importa pesate nel menu.</string>
     <string name="report_notenoughdata_title">Pesate insufficenti</string>
-    <string name="report_notenoughdata_message">Non hai pesate,per queso il grafico mostrera\' un esempio.</string>
+    <string name="report_notenoughdata_message">Non hai pesate,per queso il grafico mostrera\' solo un esempio.</string>
     <string name="report_share_chooser_title">Condividi report</string>
     <string name="report_email_subject">Weight Tracker Report</string>
     <string name="report_per_no_readings">Non ci sono pesate disponibili</string>
@@ -93,7 +93,7 @@
     <string name="report_gaining">Acquistati</string>
     <string name="report_goal_date">Data dell\'obiettivo</string>
     <string name="report_last_30_days">Ultimi 30 giorni</string>
-    <string name="report_all_time">Completo</string>
+    <string name="report_all_time">Totale</string>
     <string name="report_weight">Peso</string>
     <string name="report_stats">Periodo</string>
     <string name="report_min_weight">Min</string>
@@ -128,7 +128,7 @@
 		<b>Introduzione</b><br/><br/>
         Digita il tuo peso ogni giorno, usa il grafico per vedere come procede la tua dieta.
         <br/><br/><b>Impostazioni</b><br/><br/>
-        Far scorrere il dito sulle schede delle Opzioni per selezionarle:
+        Fai scorrere il dito sulle schede delle Opzioni per selezionare:
         <br/><br/><i>Peso</i><br/><br/>
         Imposta l\'unita\' di misura: per esempio pounds o chilogrammi.
         <br/>Imposta il peso che vuoi raggiungere, questo sara\' usato nel grafico e nel report.
@@ -136,10 +136,10 @@
         La tua altezza è necessaria per calcolare l\'indice della massa corporea (BMI) mostrato nel Report. 
         <br/>Prima imposta l\'unita\' di misura e poi la tua altezza.
         <br/><br/><i>Colore di sfondo</i><br/><br/>
-        Personalizza l\'apps scegliendo uno sfondo.
+        Personalizza l\'app per scegliere uno sfondo.
         <br/><br/><i>Altro</i><br/><br/>
         L\'app eseguira\' automaticamente il backup delle pesate ogni settimana, puoi modificare questa opzione qui.
-        <br/>Il grafico visualizza una linea di tendenza dei tuoi dati e il tuo obiettivo di peso, è possibile moficare questa opzione qui.  
+        <br/>Il grafico visualizza la linea di tendenza dei tuoi dati e il tuo obiettivo di peso, è possibile moficare questa opzione qui.  
         <br/><br/><b>Nuovo</b><br/><br/>
         Inserisci qui ogni giorno le nuove pesate, la data sarà già impostata e si può anche aggiungere commenti. Si possono inserire pesate anche nel passato
         <br/><br/>Puoi inserire qui il tuo peso. È inoltre possibile utilizzare i pulsanti / - per regolare il peso.
@@ -235,7 +235,7 @@ http://www.pigdogbay.com<br/>
     <string name="rate_dialog_neutral">Ricordami piu tardi</string>
     <string name="rate_dialog_negative">No grazie</string>
     <string name="quickhelp_description_add">Aggiungi giornalmete il tuo peso</string>
-    <string name="quickhelp_description_edit">Rivedi e modifica la data</string>
+    <string name="quickhelp_description_edit">Rivedi e modifica la pesata</string>
     <string name="quickhelp_description_chart">Il grafico mostra la variazione di peso nel tempo</string>
     <string name="quickhelp_description_report">Statistiche del tuo peso e del BMI</string>
     <string name="quickhelp_description_settings">Cambia le impostazioni come l\'unità di misura del peso</string>
@@ -244,18 +244,18 @@ http://www.pigdogbay.com<br/>
     <string name="weight_settings_units_description">Seleziona l\'unità di misura per il peso: per esempio pounds o chilogrammi</string>
     <string name="weight_settings_target_weight_title">Peso da raggiungiure</string>
     <string name="weight_settings_target_weight_description">Imposta il peso che vuoi raggiungere. Per impostarlo usa  pulsanti +/- o pigia sul pulsante centrale.</string>
-    <string name="height_settings_units_title">Unità per l\'altezzaUnits</string>
+    <string name="height_settings_units_title">Unità per l\'altezza</string>
     <string name="height_settings_units_description">Imposta l\'unita\' di misura per l\'altezza: per esempio inches o metri</string>
-    <string name="height_settings_height_title">Tua altezza</string>
+    <string name="height_settings_height_title">La tua altezza</string>
     <string name="height_settings_height_description">Digita la tua altezza che verra\' usata per calcolare l\'indice di massa corporea. Usa i bottoni +/- o digitarlo direttamente.</string>
     <string name="background_settings_title">Colore dello sfondo</string>
     <string name="background_settings_description">Seleziona lo sfondo desiderato.</string>
     <string name="chart_settings_title">Impostazione grafico</string>
-    <string name="chart_settings_description">Mostra la linea di tendenza o la linea del peso obiettivo</string>
+    <string name="chart_settings_description">Mostra la linea di tendenza e/o la linea del peso obiettivo</string>
     <string name="chart_settings_trendline">Mostra la tendenza del peso</string>
     <string name="chart_settings_targetline">Mostra il peso obiettivo</string>
     <string name="other_settings_title">Impostazioni generali</string>
-    <string name="other_settings_description">Abilita il backup settimanale dei tuoi dati</string>
+    <string name="other_settings_description">Abilita il backup settimanale dei tuoi dati che verrà effettuato nella cartella Download. </string>
     <string name="other_settings_backups">Backup automatico</string>
     <string name="fragment_welcome_end_title">Questo e\' tutto!</string>
     <string name="fragment_welcome_end_msg1">Ora puoi iniziare a monitorare il tuo peso. Pigia l\'icona dell\'app in alto a sinistra per iniziare.</string>
