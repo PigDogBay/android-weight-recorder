@@ -37,9 +37,9 @@ public class EditFragment extends Fragment
 	Button _EditWeightButton;
 
 	private EditText _EditTextComment;
-	private DatePicker _DatePicker;
 	private IUnitConverter _WeightConverter = UnitConverterFactory.create(UnitConverterFactory.KILOGRAMS_TO_KILOGRAMS); 
-
+	private DatePickerSpinner _DatePickerSpinner;
+	
 	protected void setWeightConvert(IUnitConverter weightConverter)
 	{
 		_WeightConverter = weightConverter;
@@ -52,8 +52,8 @@ public class EditFragment extends Fragment
 		super.onActivityCreated(savedInstanceState);
 		_EditTextComment = (EditText) getView()
 				.findViewById(R.id.EditFragmentComment);
-		_DatePicker = (DatePicker) getView()
-				.findViewById(R.id.EditFragmentDatePicker);
+		_DatePickerSpinner = (DatePickerSpinner) getView()
+				.findViewById(R.id.EditFragmentDatePickerSpinner);
 		((ImageButton) getView().findViewById(R.id.EditFragmentCommentSpeak))
 				.setOnClickListener(new OnClickListener()
 				{
@@ -97,8 +97,7 @@ public class EditFragment extends Fragment
 		updateText();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(reading.getDate());
-		_DatePicker.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
-				cal.get(Calendar.DAY_OF_MONTH));
+		_DatePickerSpinner.setCalendar(cal);
 	}
 
 	protected Reading getReading()
@@ -114,11 +113,7 @@ public class EditFragment extends Fragment
 
 	private Date getDateTime()
 	{
-		Calendar cal = Calendar.getInstance();
-		int year = _DatePicker.getYear();
-		int month = _DatePicker.getMonth();
-		int day = _DatePicker.getDayOfMonth();
-		cal.set(year, month, day);
+		Calendar cal = _DatePickerSpinner.getCalendar();
 		return cal.getTime();
 	}
 
