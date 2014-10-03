@@ -82,7 +82,7 @@ public class DatePickerSpinner extends LinearLayout implements
 	}
 
 	private void updateDisplay() {
-		String display = SimpleDateFormat.getDateInstance(SimpleDateFormat.LONG).format(_Calendar.getTime());
+		String display = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM).format(_Calendar.getTime());
 		_DisplayButton.setText(display);
 	}
 
