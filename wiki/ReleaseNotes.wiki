@@ -15,6 +15,7 @@ _Changes_
 
   * Update to V4 of the Italian strings by Luciano
   * New date entry control that is similar to the weight data entry
+  * Fixed crash when rotation changes on the edit reading screen, the reading id is now stored in the instance state.
 
 == Release 1.15.04 ==
 23rd Sept 2014 *Alpha*
