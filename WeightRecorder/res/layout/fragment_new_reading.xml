@@ -20,6 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:minWidth="50dp"
+            android:minEms="2"
+            android:textStyle="bold"
 	        style="@android:style/TextAppearance.Large"
             android:text="-" />
 
@@ -28,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:minWidth="150dp"
+            android:minEms="2"
 	        style="@android:style/TextAppearance.Large"
             android:text="97.6 kg" />
 
@@ -36,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:minWidth="50dp"
+            android:textStyle="bold"
+            android:minEms="2"
 	        style="@android:style/TextAppearance.Large"
             android:text="+" />
     </LinearLayout>
@@ -74,5 +79,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="@string/addreading_add_btn" />
+    <CheckBox 
+            android:id="@+id/AddReadingStayOnScreen"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+	        android:layout_gravity="center_horizontal"
+	        android:text="@string/addreading_stay_on_the_screen"
+	        android:layout_marginTop="20dp" />
     
 </LinearLayout>
