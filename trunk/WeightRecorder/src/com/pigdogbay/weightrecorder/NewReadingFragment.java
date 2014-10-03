@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 public class NewReadingFragment extends EditFragment {
 	public static final String TAG = "new";
 	private MainModel _MainModel;
+	private CheckBox _ChkBxStayOnScreen;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class NewReadingFragment extends EditFragment {
 				onEnterClick();
 			}
 		});
+		_ChkBxStayOnScreen = (CheckBox)rootView.findViewById(R.id.AddReadingStayOnScreen);
 		
 		return rootView;
 	}
@@ -50,10 +53,14 @@ public class NewReadingFragment extends EditFragment {
 	{
 		Reading reading = getReading();
 		_MainModel.getDatabase().addReading(reading);
-		hideKeyboard();
 		savePreferences();
 		Toast.makeText(getActivity(), getString(R.string.addreading_added),
 				Toast.LENGTH_SHORT).show();
+		if (_ChkBxStayOnScreen.isChecked())
+		{
+			return;
+		}
+		hideKeyboard();
 		//Show well done message if target weight has been reached for the first time
 		showCongrats(reading);
 		((MainActivity)getActivity()).navigateBack(TAG);
