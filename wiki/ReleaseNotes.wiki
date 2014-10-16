@@ -9,7 +9,7 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 = Details =
 
 == Release 1.15.05 ==
-3rd Oct 2014 *Alpha*
+TBD Oct 2014 *Alpha*
 
 _Changes_
 
@@ -17,6 +17,7 @@ _Changes_
   * New date entry control that is similar to the weight data entry
   * Fixed crash when rotation changes on the edit reading screen, the reading id is now stored in the instance state.
   * Added stay on screen check, so user can add multiple readings.
+  * Fixed nested scrollview issue
 
 == Release 1.15.04 ==
 23rd Sept 2014 *Alpha*
