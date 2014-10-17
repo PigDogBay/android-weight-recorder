@@ -40,6 +40,8 @@
     <string name="edit_no_speech">Il tuo smartphone non supporta la funzione da voce a testo</string>
     <string name="edit_speak_prompt_weight">Pronuncia il peso</string>
     <string name="edit_speak_prompt_comment">Pronuncia il commento</string>
+    <string name="addreading_stay_on_the_screen">Tieni attivo lo schermo</string>
+    <string name="addreading_tip">Per modificare usare i pulsanti +/- o pigia il pulsante centrale.Infine pigia il pulsante Inserisci per memorizzate la tua pesata</string>
     <string name="addreading_added">Pesata aggiunta</string>
     <string name="addreading_add_btn">Aggiungi</string>
     <string name="addreading_reached_goal_title">Congratulazioni!</string>
