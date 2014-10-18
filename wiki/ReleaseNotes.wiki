@@ -8,6 +8,14 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightre
 
 = Details =
 
+== Release 1.15.06 ==
+18th Oct 2014 *Alpha*
+
+_Changes_
+
+  * Update of the new edit Italian strings by Luciano
+  * Target API 21, Lollipop
+
 == Release 1.15.05 ==
 17th Oct 2014 *Alpha*
 
