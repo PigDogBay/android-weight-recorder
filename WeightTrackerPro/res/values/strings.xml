@@ -9,14 +9,14 @@
     <string name="about_button_legal">Legal Notices</string>
     <string name="about_no_market_app">Unable to find market app</string>    
     <string name="menu_settings">Settings</string>
-    <string name="title_main">Weight Tracker</string>
+    <string name="title_main">Weight Tracker Pro</string>
     <string name="title_chart">Chart</string>
     <string name="title_list">Readings</string>
     <string name="title_new">New Weight</string>
     <string name="title_edit">Edit Weight</string>
     <string name="title_import">Import Readings</string>
     <string name="title_report">Report</string>
-    <string name="title_about">About Weight Tracker</string>
+    <string name="title_about">About Weight Tracker Pro</string>
     <string name="title_help">Help</string>
     <string name="title_settings">Settings</string>
     <string name="title_welcome">Welcome</string>
@@ -82,7 +82,7 @@
     <string name="report_notenoughdata_title">Not Enough Readings</string>
     <string name="report_notenoughdata_message">You have no readings the report will show example data.</string>
     <string name="report_share_chooser_title">Share Report</string>
-    <string name="report_email_subject">Weight Tracker Report</string>
+    <string name="report_email_subject">Weight Tracker Pro Report</string>
     <string name="report_per_no_readings">No readings available</string>
     <string name="report_per_week">per week</string>
     <string name="report_body_mass_index">Body Mass Index</string>
@@ -164,7 +164,7 @@
         Shows the minimum, maximum and average weight based on all your readings. Average BMI is based on your average weight and height setting.
         <br/><br/><b>Advanced Topics</b><br/><br/>
         You can import and export your data via the menu on the Edit screen. The data is presenteded as text in a comma separated values (CSV) format for compatibility with spreadsheets. 
-		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Tracker.
+		<br/><br/>Every week the app will back up its database to your downloads folder on your SD card. Using a file viewer app such as ASTRO File Manager you can browse to the downloads folder and open the files directly into Weight Tracker Pro.
 		<br/><br/>The imported readings are merged with the readings in the apps database, if any two readings have the same date, the imported reading will overwrite the one in the database. 
         <br/><br/>When importing data, please ensure the format of the data is similar to:
         <br/><br/>92.50,2013-07-04 16:24:35,lovely day
@@ -174,7 +174,7 @@
     </string>
     <string name="report_template">
         <![CDATA[
-Weight Tracker Report<br/>
+Weight Tracker Pro Report<br/>
 <br/>
 --- Body Mass Index ---<br/>
 <br/>
@@ -231,8 +231,8 @@ http://www.pigdogbay.com<br/>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
     <string name="share_readings_chooser_title">Share Readings</string>
-    <string name="rate_dialog_title">Rate Weight Tracker</string>
-    <string name="rate_dialog_message">If you enjoy using Weight Tracker, please take a moment to rate it. Thanks for your support!</string>
+    <string name="rate_dialog_title">Rate Weight Tracker Pro</string>
+    <string name="rate_dialog_message">If you enjoy using Weight Tracker Pro, please take a moment to rate it. Thanks for your support!</string>
     <string name="rate_dialog_positive">Rate it!</string>
     <string name="rate_dialog_neutral">Remind me later</string>
     <string name="rate_dialog_negative">No thanks</string>
