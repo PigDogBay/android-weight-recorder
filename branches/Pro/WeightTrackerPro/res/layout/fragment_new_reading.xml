@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.pigdogbay.weightrecorder.DatePickerSpinner
+        <com.pigdogbay.weighttrackerpro.DatePickerSpinner
             android:id="@+id/EditFragmentDatePickerSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

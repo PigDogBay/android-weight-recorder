@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.pigdogbay.weightrecorder.R;
+import com.pigdogbay.weighttrackerpro.R;
 
 public class ReportText {
 

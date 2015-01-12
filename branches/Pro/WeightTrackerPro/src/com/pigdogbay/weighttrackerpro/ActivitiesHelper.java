@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import java.io.File;
 import java.util.Arrays;

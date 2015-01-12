@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
