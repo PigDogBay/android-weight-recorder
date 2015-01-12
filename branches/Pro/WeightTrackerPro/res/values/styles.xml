@@ -150,7 +150,7 @@
         <item name="android:typeface">sans</item>
         <item name="android:textStyle">bold</item>
         </style>
-    <style name="AboutBodyText" parent="@android:style/TextAppearance.Medium">
+    <style name="AboutBodyText" parent="@android:style/TextAppearance.Small">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#000</item>
@@ -170,12 +170,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textColor">#FFF</item>
-        <item name="android:background">#00F</item>
+        <item name="android:background">@drawable/about_blue_button</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:paddingBottom">30dp</item>
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingTop">30dp</item>
-        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingRight">10dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_marginLeft">20dp</item>

@@ -2,6 +2,9 @@
 <resources>
     <color name="skyblue">#00145E9D</color>
     <color name="pink">#fffdd7e4</color>
+    <color name="fb_blue">#3b5998</color>
+    <color name="blue">#00F</color>
+    <color name="grey">#444</color>
     <color name="translucentred">#40FF0000</color>
     <color name="report_header_bg">#FF101050</color>
     <color name="report_header">#FFFFFFFF</color>
@@ -14,4 +17,7 @@
     <drawable name="white">#ffffffff</drawable>
     <drawable name="blue">#00f</drawable>
     <drawable name="light_blue">#88f</drawable>    
+    <drawable name="light_grey">#888</drawable>     
+    <drawable name="dark_blue">#008</drawable>     
+    <drawable name="fb_blue">#3b5998</drawable>
 </resources>
