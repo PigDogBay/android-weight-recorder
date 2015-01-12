@@ -11,7 +11,7 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weighttr
 = Details =
 
 == Release Pro 1.00.00 ==
-12th Jan 2014 *Alpha*
+12th Jan 2015 *Alpha*
 
 _Changes_
 
