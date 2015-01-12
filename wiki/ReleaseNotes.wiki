@@ -6,7 +6,23 @@ IDE: Eclipse 4.4
 
 Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder
 
+Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weighttrackerpro
+
 = Details =
+
+== Release Pro 1.00.00 ==
+12th Jan 2014 *Alpha*
+
+_Changes_
+
+  * Initial code base taken from 1.15.06
+  * Renamed to Weight Tracker Pro
+  * Removed admob, analytics and Google Play Services
+  * About buttons are now fb_blue
+  * New blue launcher icon
+  * Automatically load back readings if first time
+  * Changed market place url to new package name, weighttrackerpro
+
 
 == Release 1.15.06 ==
 18th Oct 2014 *Alpha*
