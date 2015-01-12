@@ -1,24 +1,28 @@
 package com.pigdogbay.weighttrackerpro;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Locale;
 
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
+import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.SettingsUtils;
-
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity implements OnSharedPreferenceChangeListener,IBackgroundColorView{
@@ -75,12 +79,49 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		if (!mainModel.getIsFirstTime()) {
 			SettingsUtils.setDefaultSettings(Locale.getDefault(), new MainModel(this));
 			mainModel.setIsFirstTime(true);
+			AutoBackup autoBackup = new AutoBackup(mainModel.getPreferencesHelper());
+			autoBackup.setBackupDateToNow();
+			loadReadingsInBackground();
 			showWelcome();
 		}
 		else
 		{
 			showHome();
 		}
+	}
+	
+	private void loadReadingsInBackground()
+	{
+		new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected Void doInBackground(Void... params) 
+			{
+				try
+				{
+					loadReadings();
+				}
+				catch(Exception e)
+				{
+					Log.v(TAG,"Import readings error");
+				}
+				return null;
+			}
+		}.execute();
+	}
+	private void loadReadings() throws IOException {
+		File latest = ActivitiesHelper.getLatestBackupFile(this);
+		if (latest==null)
+		{
+			Log.v(TAG,"No readings file");
+			return;
+		}
+		String data = FileUtils.readText(latest);
+		if (data == null || "".equals(data)) {
+			Log.v(TAG,"Readings is empty");
+			return;
+		}
+		int count = ActivitiesHelper.mergeReadings(this, data);
+		Log.v(TAG,"Import "+count+" files");
 	}
 	
 	private void checkIfBackupDue(PreferencesHelper prefHelper) {
