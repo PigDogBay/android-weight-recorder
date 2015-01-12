@@ -19,6 +19,7 @@ import com.pigdogbay.androidutils.utils.FileUtils;
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;
 import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
+import com.pigdogbay.weightrecorder.model.Synchronization;
 
 public class ActivitiesHelper {
 
@@ -124,9 +125,23 @@ public class ActivitiesHelper {
 		return null;
 	}
 	
-	
-	
-
+	public static int mergeReadings(Activity activity, String data){
+		List<Reading> readings = ReadingsSerializer.parse(data);
+		int count = readings.size();
+		if (count > 0) {
+			MainModel mainModel = new MainModel(activity);
+			try {
+				Synchronization sync = new Synchronization(
+						mainModel.getReverseOrderedReadings());
+				sync.Merge(readings);
+				mainModel.getDatabase().mergeReadings(sync._Readings);
+			}
+			finally {
+				mainModel.close();
+			}
+		}
+		return count;
+	}
 	public static void SendFile(Activity activity, File file, String type, int chooserTitleID) {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType(type);

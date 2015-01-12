@@ -1,14 +1,7 @@
 package com.pigdogbay.weighttrackerpro;
 
 import java.io.File;
-import java.util.List;
-
 import com.pigdogbay.androidutils.utils.FileUtils;
-import com.pigdogbay.weightrecorder.model.MainModel;
-import com.pigdogbay.weightrecorder.model.Reading;
-import com.pigdogbay.weightrecorder.model.ReadingsSerializer;
-import com.pigdogbay.weightrecorder.model.Synchronization;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -94,20 +87,7 @@ public class ImportFragment extends Fragment {
 					Toast.LENGTH_SHORT).show();
 		}
 		else {
-			List<Reading> readings = ReadingsSerializer.parse(text);
-			int count = readings.size();
-			if (count > 0) {
-				MainModel mainModel = new MainModel(getActivity());
-				try {
-					Synchronization sync = new Synchronization(
-							mainModel.getReverseOrderedReadings());
-					sync.Merge(readings);
-					mainModel.getDatabase().mergeReadings(sync._Readings);
-				}
-				finally {
-					mainModel.close();
-				}
-			}
+			int count = ActivitiesHelper.mergeReadings(getActivity(), text);
 			Toast.makeText(
 					getActivity(),
 					String.valueOf(count)
