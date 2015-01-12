@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pigdogbay.weightrecorder"
+    package="com.pigdogbay.weighttrackerpro"
     android:versionCode="11506"
     android:versionName="1.15.06" 
     android:installLocation="auto">

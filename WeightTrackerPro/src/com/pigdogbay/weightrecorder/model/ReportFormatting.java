@@ -2,7 +2,8 @@ package com.pigdogbay.weightrecorder.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import com.pigdogbay.weightrecorder.R;
+
+import com.pigdogbay.weighttrackerpro.R;
 
 import android.content.Context;
 

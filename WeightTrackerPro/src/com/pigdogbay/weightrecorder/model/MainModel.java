@@ -6,7 +6,8 @@ import java.util.List;
 import com.pigdogbay.androidutils.mvp.BackgroundColorModel;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorModel;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
-import com.pigdogbay.weightrecorder.R;
+import com.pigdogbay.weighttrackerpro.R;
+
 import android.content.Context;
 
 /*

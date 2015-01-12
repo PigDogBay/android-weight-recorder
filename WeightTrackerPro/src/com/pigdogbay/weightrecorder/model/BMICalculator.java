@@ -2,7 +2,7 @@ package com.pigdogbay.weightrecorder.model;
 
 import android.content.Context;
 
-import com.pigdogbay.weightrecorder.R;
+import com.pigdogbay.weighttrackerpro.R;
 
 public class BMICalculator {
 	

@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import java.util.Calendar;
 import java.util.Date;

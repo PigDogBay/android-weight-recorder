@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import com.pigdogbay.androidutils.usercontrols.NumberPicker;
 import com.pigdogbay.weightrecorder.model.IUnitConverter;

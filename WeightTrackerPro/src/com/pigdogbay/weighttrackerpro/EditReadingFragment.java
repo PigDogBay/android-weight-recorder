@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import com.pigdogbay.weightrecorder.model.MainModel;
 import com.pigdogbay.weightrecorder.model.Reading;

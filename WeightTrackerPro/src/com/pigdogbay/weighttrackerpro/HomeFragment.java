@@ -1,4 +1,4 @@
-package com.pigdogbay.weightrecorder;
+package com.pigdogbay.weighttrackerpro;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
