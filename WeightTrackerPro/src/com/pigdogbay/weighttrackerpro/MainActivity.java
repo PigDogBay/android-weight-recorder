@@ -38,11 +38,9 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		MainModel mainModel = new MainModel(this);
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
-		
-		setupAds();
-		
+				
 		//if app has been rotated, then skip this part as the existing fragment will have already been recreated
-		if (getSupportFragmentManager().findFragmentById(R.id.main_fragment_container)==null)
+		if (getSupportFragmentManager().findFragmentById(R.id.root_layout)==null)
 		{
 			try {
 				checkFirstTime(mainModel);
@@ -54,42 +52,20 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 		mainModel.close();
 	}
-	private void setupAds() {
-		// Look up the AdView as a resource and load a request.
-		_AdView = (AdView) this.findViewById(R.id.adView);
-		if (_AdView != null) {
-			AdRequest adRequest = new AdRequest.Builder()
-					.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-					.addTestDevice(getString(R.string.code_test_device_1_id))
-					.addTestDevice(getString(R.string.code_test_device_2_id))
-					.addTestDevice(getString(R.string.code_test_device_3_id))
-					.build();
-			_AdView.loadAd(adRequest);
-		}
-	}
 	@Override
     protected void onResume() {
     	super.onResume();
-		if (_AdView != null) {
-			_AdView.resume();
-		}
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.registerOnSharedPreferenceChangeListener(this);
     }
     @Override
     protected void onPause() {
-		if (_AdView != null) {
-			_AdView.pause();
-		}
     	super.onPause();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
     }
     @Override
     protected void onDestroy() {
-		if (_AdView != null) {
-			_AdView.destroy();
-		}
 		super.onDestroy();
     }
 	@Override
@@ -147,7 +123,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 
 	@Override
 	public void onBackPressed() {
-		Fragment f= getSupportFragmentManager().findFragmentById(R.id.main_fragment_container);
+		Fragment f= getSupportFragmentManager().findFragmentById(R.id.root_layout);
 		String tag="";
 		if (f!=null){
 			tag = f.getTag();
@@ -164,7 +140,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Fragment f= getSupportFragmentManager().findFragmentById(R.id.main_fragment_container);
+		Fragment f= getSupportFragmentManager().findFragmentById(R.id.root_layout);
 		String tag="";
 		if (f!=null){
 			tag = f.getTag();
@@ -200,7 +176,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		WeightRecorderApplication.trackEvent(this,"Navigate",tag);
 		getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.main_fragment_container, fragment, tag)
+				.replace(R.id.root_layout, fragment, tag)
 				.commit();
 	}
 	
