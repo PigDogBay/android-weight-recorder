@@ -9,18 +9,18 @@
     <string name="about_button_legal">Notizie legali</string>
     <string name="about_no_market_app">Non e\' possibile trovare il market app</string>    
     <string name="menu_settings">Impostazioni</string>
-    <string name="title_main">Weight Tracker</string>
+    <string name="title_main">Weight Tracker Pro</string>
     <string name="title_chart">Grafico</string>
     <string name="title_list">Pesate</string>
     <string name="title_new">Nuovo peso</string>
     <string name="title_edit">Modifica peso</string>
     <string name="title_import">Importa pesate</string>
     <string name="title_report">Report</string>
-    <string name="title_about">A proposito di Weight Tracker</string>
+    <string name="title_about">A proposito di Weight Tracker Pro</string>
     <string name="title_help">Guida</string>
     <string name="title_settings">Impostazioni</string>
     <string name="title_welcome">Benvenuto</string>
-    <string name="chart_notenoughdata_title">Pesate insufficenti</string>
+    <string name="chart_notenoughdata_title">Pesate insufficienti</string>
     <string name="chart_notenoughdata_message">Hai fatto meno di 3 pesate, per questo il grafico mostra solo un esempio. </string>
     <string name="chart_xaxis_title">Data</string>
     <string name="chart_yaxis_title">Peso</string>
@@ -82,7 +82,7 @@
     <string name="report_notenoughdata_title">Pesate insufficenti</string>
     <string name="report_notenoughdata_message">Non hai pesate,per queso il grafico mostrera\' solo un esempio.</string>
     <string name="report_share_chooser_title">Condividi report</string>
-    <string name="report_email_subject">Weight Tracker Report</string>
+    <string name="report_email_subject">Weight Tracker Pro Report</string>
     <string name="report_per_no_readings">Non ci sono pesate disponibili</string>
     <string name="report_per_week">per settimana</string>
     <string name="report_body_mass_index">Indice Massa corporea (BMI)</string>
@@ -164,7 +164,7 @@
         Mostra il peso minimo, medio e massimo in realazione alle tue pesate.Il Coefficente massa corporea (BMI) medio è basato sul peso medio e l\'altezza.
         <br/><br/><b>Argomenti avanzati</b><br/><br/>
         È possibile importare ed esportare i dati tramite il menu sullo schermo Modifica. I dati vengono presentati come testo con una virgola come separatore campi(CSV) per la compatibilità con i fogli elettronici. 
-		<br/><br/>Ogni settimana l\'applicazione eseguirà il backup del database nella cartella download sulla scheda SD. Tramite l\'utilizzo di un app visualizzatore di file come ad esempio ASTROFile Manager è possibile accedere alla cartella download e aprire i file direttamente in Weight Tracker.
+		<br/><br/>Ogni settimana l\'applicazione eseguirà il backup del database nella cartella download sulla scheda SD. Tramite l\'utilizzo di un app visualizzatore di file come ad esempio ASTROFile Manager è possibile accedere alla cartella download e aprire i file direttamente in Weight Tracker Pro.
 		<br/><br/>Le pesate importate vengono aggiunte aquelle presenti nel database dell\'app, se una pesata ha la stessa data, l\'importazione sovrascrive quello nel database. 
         <br/><br/>Quando si importa pesate fare attenzione al formato di cui si riporta un esempio:
         <br/><br/>92.50,2013-07-04 16:24:35,lovely day
@@ -174,7 +174,7 @@
     </string>
     <string name="report_template">
         <![CDATA[
-Weight Tracker Report<br/>
+Weight Tracker Pro Report<br/>
 <br/>
 --- Indice Massa Corporea (BMI) ---<br/>
 <br/>
@@ -231,8 +231,8 @@ http://www.pigdogbay.com<br/>
     <string name="weight_unit_pounds">Pounds</string>
     <string name="weight_unit_stones">Stones</string>
     <string name="share_readings_chooser_title">Condividi le pesate</string>
-    <string name="rate_dialog_title">Vota Weight Tracker</string>
-    <string name="rate_dialog_message">Se Weight Tracker ti piace , dedica un momento per votarla. Grazie per il supporto!</string>
+    <string name="rate_dialog_title">Vota Weight Tracker Pro</string>
+    <string name="rate_dialog_message">Se Weight Tracker Pro ti piace , dedica un momento per votarla. Grazie per il supporto!</string>
     <string name="rate_dialog_positive">Votalo!</string>
     <string name="rate_dialog_neutral">Ricordami piu tardi</string>
     <string name="rate_dialog_negative">No grazie</string>
