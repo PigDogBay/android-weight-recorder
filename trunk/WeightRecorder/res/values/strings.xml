@@ -8,6 +8,9 @@
     <string name="about_button_facebook">GET MORE APPS</string>
     <string name="about_button_legal">Legal Notices</string>
     <string name="about_no_market_app">Unable to find market app</string>    
+    <string name="about_header_go_pro">Go Pro</string>
+    <string name="about_body_go_pro">Get the Ad free version of the app from the Google Play Store. Enjoy more screen space, the way the app is meant to be.</string>
+    <string name="about_button_go_pro">GO PRO</string>
     <string name="menu_settings">Settings</string>
     <string name="title_main">Weight Tracker</string>
     <string name="title_chart">Chart</string>
