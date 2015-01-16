@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pigdogbay.weightrecorder"
-    android:versionCode="11506"
-    android:versionName="1.15.06" 
+    android:versionCode="11600"
+    android:versionName="1.16.00" 
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
