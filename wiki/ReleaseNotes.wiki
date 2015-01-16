@@ -10,6 +10,18 @@ Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weighttr
 
 = Details =
 
+== Release 1.16.00 ==
+
+16th Jan 2015 *Alpha*<br/>
+
+_Changes_
+  * Updated to 2015
+  * Added new test device id for nexus 7 lollipop
+  * Added Go Pro button on the about form
+  * Added Go Pro button on the home menu
+  * Go Pro nag box appears every 100 navigations
+  * Track each fragment screen properly now instead of using events
+
 == Release Pro 1.00.00 ==
 12th Jan 2015 *Alpha*
 
