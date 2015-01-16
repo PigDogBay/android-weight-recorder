@@ -1,5 +1,7 @@
 package com.pigdogbay.weightrecorder;
 
+import com.pigdogbay.androidutils.utils.ActivityUtils;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.Button;
 
 public class HomeFragment extends Fragment {
 	public static final String TAG = "home";
+    private static final String EVENT_LABEL = "Home Screen";
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,9 +38,15 @@ public class HomeFragment extends Fragment {
 		{
 		case (R.id.menu_home_about):
 			((MainActivity) getActivity()).showAbout();
+			WeightRecorderApplication.trackEvent(HomeFragment.this, EVENT_LABEL, "menu_about");
 			return true;
 		case (R.id.menu_home_welcome):
 			((MainActivity) getActivity()).showWelcome();
+			WeightRecorderApplication.trackEvent(HomeFragment.this, EVENT_LABEL, "menu_show_welcome");
+			return true;
+		case (R.id.menu_home_go_pro):
+			ActivityUtils.ShowAppOnMarketPlace(getActivity(), R.string.market_weightrecorderpro);
+			WeightRecorderApplication.trackEvent(HomeFragment.this, EVENT_LABEL, "menu_go_pro");
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
