@@ -58,6 +58,7 @@
     <string name="menu_main_help">Help</string>
     <string name="menu_main_about">About</string>
     <string name="menu_main_welcome">Show Welcome</string>
+    <string name="menu_main_go_pro">Go Pro</string>
     <string name="menu_chart_all">Fit All</string>
     <string name="menu_chart_share">Share</string>
     <string name="menu_chart_30">30 Days</string>
