@@ -35,5 +35,12 @@ public class WeightRecorderApplication  extends Application{
 	public static void trackEvent(Fragment fragment, String screenName, String label){
 		trackEvent(fragment.getActivity(), screenName, label);
 	}	
+	
+	public static void trackScreen(Activity activity, String screenName)
+	{
+		Tracker t = ((WeightRecorderApplication)activity.getApplication()).getTracker();
+		t.setScreenName(screenName);
+		t.send(new HitBuilders.AppViewBuilder().build());
+	}
 
 }
