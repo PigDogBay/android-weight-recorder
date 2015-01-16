@@ -210,7 +210,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		}
 	}
 	private void replaceFragment(Fragment fragment, String tag) {
-		WeightRecorderApplication.trackEvent(this,"Navigate",tag);
+		WeightRecorderApplication.trackScreen(this,tag);
 		getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.main_fragment_container, fragment, tag)
