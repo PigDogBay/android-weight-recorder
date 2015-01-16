@@ -74,6 +74,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 					.addTestDevice(getString(R.string.code_test_device_1_id))
 					.addTestDevice(getString(R.string.code_test_device_2_id))
 					.addTestDevice(getString(R.string.code_test_device_3_id))
+					.addTestDevice(getString(R.string.code_test_device_4_id))
 					.build();
 			_AdView.loadAd(adRequest);
 		}
