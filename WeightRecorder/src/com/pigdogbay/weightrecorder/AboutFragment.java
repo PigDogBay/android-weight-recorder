@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class AboutFragment extends Fragment {
 	public static final String TAG = "about";
+    private static final String EVENT_LABEL = "about";
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,14 +29,25 @@ public class AboutFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.market_weightrecorder);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "rate");
 			}
 		});
-        btn = (Button) rootView.findViewById(R.id.aboutBtnFacebook);
+        btn = (Button) rootView.findViewById(R.id.aboutBtnGetMoreApps);
         btn.setMinimumWidth(width);
         btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.market_pigdogbay_apps);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "get_more_apps");
+			}
+		});
+        btn = (Button) rootView.findViewById(R.id.aboutBtnGoPro);
+        btn.setMinimumWidth(width);
+        btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showWebPage(R.string.market_weightrecorderpro);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "about_go_pro");
 			}
 		});
         btn = (Button) rootView.findViewById(R.id.aboutBtnLegal);
@@ -43,24 +55,28 @@ public class AboutFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showLegalNotices();
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "legal");
 			}
 		});
         rootView.findViewById(R.id.aboutFacebookLink).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.facebookPage);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "facebook");
 			}
 		});
         rootView.findViewById(R.id.aboutTwitterLink).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.twitter);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "twitter");
 			}
 		});
         rootView.findViewById(R.id.aboutWebsiteLink).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showWebPage(R.string.website);
+				WeightRecorderApplication.trackEvent(AboutFragment.this, EVENT_LABEL, "website");
 			}
 		});
         

@@ -14,4 +14,5 @@
     <drawable name="white">#ffffffff</drawable>
     <drawable name="blue">#00f</drawable>
     <drawable name="light_blue">#88f</drawable>    
+    <drawable name="fb_blue">#3b5998</drawable>
 </resources>
