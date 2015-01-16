@@ -8,6 +8,7 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.pigdogbay.androidutils.apprate.AppRate;
 import com.pigdogbay.androidutils.mvp.BackgroundColorPresenter;
 import com.pigdogbay.androidutils.mvp.IBackgroundColorView;
+import com.pigdogbay.androidutils.usercontrols.GoProNagBox;
 import com.pigdogbay.androidutils.utils.ActivityUtils;
 import com.pigdogbay.androidutils.utils.PreferencesHelper;
 import com.pigdogbay.weightrecorder.model.AutoBackup;
@@ -24,11 +25,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 
-public class MainActivity extends FragmentActivity implements OnSharedPreferenceChangeListener,IBackgroundColorView{
+public class MainActivity extends FragmentActivity implements OnSharedPreferenceChangeListener,IBackgroundColorView, GoProNagBox.IGoProResult{
 	public static final String TAG = "WeightTracker";
 
 	BackgroundColorPresenter _BackgroundColorPresenter;
 	private AdView _AdView;
+	private GoProNagBox _GoProNagBox;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 		_BackgroundColorPresenter = new BackgroundColorPresenter(this,mainModel.createBackgroundColorModel());
 		_BackgroundColorPresenter.updateBackground();
 		
+		setUpNagBox();
 		setupAds();
 		
 		//if app has been rotated, then skip this part as the existing fragment will have already been recreated
@@ -53,6 +56,14 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 			}
 		}
 		mainModel.close();
+	}
+	private void setUpNagBox()
+	{
+		_GoProNagBox = new GoProNagBox(this);
+		_GoProNagBox.setFrequency(100)
+		.setResultListener(this)
+		.setUrlId(R.string.market_weightrecorderpro);
+		
 	}
 	private void setupAds() {
 		// Look up the AdView as a resource and load a request.
@@ -84,6 +95,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
     	super.onPause();
 		PreferenceManager.getDefaultSharedPreferences(this)
 		.unregisterOnSharedPreferenceChangeListener(this);
+    	_GoProNagBox.save();
     }
     @Override
     protected void onDestroy() {
@@ -202,6 +214,7 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 				.beginTransaction()
 				.replace(R.id.main_fragment_container, fragment, tag)
 				.commit();
+		_GoProNagBox.check();
 	}
 	
 	
@@ -262,5 +275,15 @@ public class MainActivity extends FragmentActivity implements OnSharedPreference
 	@Override
 	public void setBackgroundColor(int id) {
 		ActivityUtils.setBackground(this, R.id.root_layout, id);
+	}
+	@Override
+	public void noGoPro() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void yesGoPro() {
+		// TODO Auto-generated method stub
+		
 	}	
 }
