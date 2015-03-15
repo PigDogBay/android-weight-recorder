@@ -1,0 +1,233 @@
+Release notes for the Android Weight Tracker App
+
+# Introduction #
+
+IDE: Eclipse 4.4
+
+Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weightrecorder
+
+Google Play: http://play.google.com/store/apps/details?id=com.pigdogbay.weighttrackerpro
+
+# Details #
+
+## Release 1.16.00 ##
+
+16th Jan 2015 **Alpha**<br />
+
+_Changes_
+  * Updated to 2015
+  * Added new test device id for nexus 7 lollipop
+  * Added Go Pro button on the about form
+  * Added Go Pro button on the home menu
+  * Go Pro nag box appears every 100 navigations
+  * Track each fragment screen properly now instead of using events
+
+## Release Pro 1.00.00 ##
+12th Jan 2015 **Alpha**
+
+_Changes_
+
+  * Initial code base taken from 1.15.06
+  * Renamed to Weight Tracker Pro
+  * Removed admob, analytics and Google Play Services
+  * About buttons are now fb\_blue
+  * New blue launcher icon
+  * Automatically load back readings if first time
+  * Changed market place url to new package name, weighttrackerpro
+
+
+## Release 1.15.06 ##
+18th Oct 2014 **Alpha**
+
+_Changes_
+
+  * Update of the new edit Italian strings by Luciano
+  * Target API 21, Lollipop
+
+## Release 1.15.05 ##
+17th Oct 2014 **Alpha**
+
+_Changes_
+
+  * Update to V4 of the Italian strings by Luciano
+  * New date entry control that is similar to the weight data entry
+  * Fixed crash when rotation changes on the edit reading screen, the reading id is now stored in the instance state.
+  * Added stay on screen check, so user can add multiple readings.
+  * Fixed nested scrollview issue
+
+## Release 1.15.04 ##
+23rd Sept 2014 **Alpha**
+
+_Changes_
+
+  * Update to Italian strings by Luciano
+
+## Release 1.15.03 ##
+22nd Sept 2014 **Alpha**
+
+_Changes_
+
+  * Removed hard coded page title strings in the PageAdapter classes
+  * Added missing Italian strings from Luciano, evvivame@tiscali.it
+  * Added Italian colour strings also from Luciano
+  * Moved more strings like version and web page into code\_strings.xml
+
+## Release 1.15.02 ##
+21th Sept 2014 **Alpha**
+
+_Changes_
+
+  * Removed landscape activity so thats ads are now shown in landscape
+  * Added Italian strings from Luciano, evvivame@tiscali.it
+  * Moved web address strings into code\_strings.xml
+
+## Release 1.15.01 ##
+17th Sept 2014 **Alpha**
+
+_Changes_
+
+  * Admob is back
+  * Google Analytics now integrated
+
+## Release 1.14.03 ##
+8th Aug 2014 **Production**
+
+_Changes_
+  * Report bug fix, report is now created every time
+  * Goal date for all time now validates the date
+  * Displays well done message when the target weight is reached
+  * Updated report:
+    * New min, max, max-min fields
+    * New first, last, first-last weight fields
+    * Start date, last date, number of days between first and last
+    * Re-organized fields, new weight category
+
+
+## Release 1.14.02 ##
+
+5th Aug 2014 **Alpha**
+
+_Changes_
+  * Min API is now 16, Jelly Bean 4.1
+  * MainActivity is now a fragment holder
+  * Home screen is now a fragment
+  * Instead of different layouts for each screen size, there are now different styles for the home buttons for each screen size.
+  * About is now a fragment, also uses same code as anagram solver
+  * Welcome wizard is now a fragment
+  * Updated to latest version of the v4 support library
+  * Help is now a fragment
+  * Settings is now a fragment
+  * Chart is now a fragment
+  * New and Edit are fragments and now use EditFragment as a super class
+  * Create a fragment version of import. Import activity is now only for import intents from opening files
+  * Retired the home button
+  * MainActivity is now a mediator for the navigation
+
+## Release 1.14.01 ##
+
+12th May 2014 **Alpha**<br />
+
+_Changes_
+  * Removed references to admob library
+  * Setup for linux developement
+  * Upgraded to achartengine 1.1
+  * About facebook button now shows my other apps  
+
+## Release 1.12.02 ##
+
+> 20th Dec 2013 **Production**<br />
+
+_Changes_
+  * Removed In App Billing code from Android Utils
+  * Removed purchase warning for background colour as no longer in AndroidUtils
+
+## Release 1.12.01 ##
+
+17th Dec 2013 **Alpha**<br />
+
+_Changes_
+  * Changed About to the new simplified style
+  * Removed In App Billing Code
+  * Removed Ads
+
+## Release 1.11.02 ##
+
+7th Nov 2013 **Production**<br />
+
+_Changes_
+  * Removed remnants of in app billing help.
+  * Improved settings help for the new settings screen
+  * Improved chart help, explains menu fit options.
+
+## Release 1.11.01 ##
+
+29th Oct 2013 **Alpha**<br />
+
+_Changes_
+  * Welcome start fragment now shows doctor icon, improved text.
+
+## Release 1.11.00 ##
+
+24th Oct 2013 **Alpha**<br />
+
+_Changes_
+  * Removed ad banner from chart
+  * Ads now back on the main screen
+  * Ads loadOnCreate is now false, only load if ads are not blocked by purchase
+  * Now uses BackgroundColor and RemoveAds MVP
+  * Added Debug Screen
+  * Renamed app to weight tracker
+  * Placed home button on the shop menu
+  * Shop shows contacting google play, Wait Screen till inventory done
+  * Removed Shop
+  * Moved help from the menu to the dashboard
+  * Background color now free
+  * Added new quick help screen
+  * Simplified and improved the the target weight and height settings,
+feet and inches now an option for height
+  * Swipe tabs now used for each settings type
+  * Default settings now based on Locale.
+  * Add a dialog message if no readings on edit screen. Tell user about import option on the menu
+
+## Release 1.1000 ##
+
+16th Aug 2013 **Production** <br />
+
+_Changes_
+  * Ad banners removed from main screen, now shown on chart, list, report and help
+  * Setting to change background colour
+  * In App Purchases: Disable Ads and unlock new background colours
+  * 7 Days grace for ad banners
+
+## Release 1.09 ##
+
+_Changes_
+  * Removed application code from AndroidUtils
+  * Localization: Moved all strings to string.xml
+  * Chart now uses SP and DP instead of pixel sizes, this is to fix a bug where fonts are too small
+  * Added intent filter to open CSV files into import activity
+  * Added Backup feature that stores readings in the downloads folder
+  * Imported readings are now merged into the database, matching dates are overwritten
+  * Share readings now shares the readings as a csv file
+  * Chart screen shot can now be shared.
+  * Automatic weekly backup of readings
+  * US Settings (Pounds and Inches) are now default settings
+  * Broadcasts now used to notify ReadingList of imported readings
+  * Soft keyboard now hidden for all activities - Thanks to Carvell
+  * BMI String now says check height settings if error,
+
+## Release 1.08 ##
+
+_Changes_
+  * Rebuild, v1,.07 had a corrupted APK
+
+## Release 1.07 ##
+
+_Changes_
+  * Fixed unit conversion bug on the add new reading screen. Previous reading was not being converted if the weight units changed.
+  * Revamped the Report screen for a more professional look.
+  * MainModel no longer a singleton. Database instance now created for each activity.
+  * Chart code now refactored into data, logic and UI.
+  * Add Zoom buttons to chart.
+  * Increase axis labels font size by 2pts
+  * Improved unit conversion accuracy, based on international standards
